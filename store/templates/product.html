@@ -1,12 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-
-
-
 <div class="container">
-    <br />
-
-
+    <br/>
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
@@ -16,8 +11,8 @@
                 <div class="card-body">
                     <center>
                         <h5 class="card-title">{{ product.name }}</h5>
-                        <br />
-                        <p class="card-text justified">{{ product.description }}</p>
+                        <br/>
+                        <p class="card-text text-justify">{{ product.description }}</p>
 
                         {% if product.is_sale %}
                         <div class="d-flex justify-content-center small text-warning mb-2">
@@ -27,20 +22,17 @@
                         </div>
 
                         <!-- Product price-->
-                        <strike>
-                            ${{ product.price }}
-                        </strike>
-                        &nbsp;
-                        ${{ product.sale_price }}
-
-
+                        <strike>${{ product.price|floatformat:2 }}</strike>
+                        &nbsp;${{ product.sale_price|floatformat:2 }}
 
                         {% else %}
-                        ${{ product.price }}
+                        ${{ product.price|floatformat:2 }}
                         {% endif %}
 
-                        <br /><br />
+                        <br/><br/>
                         <a href="{% url 'home'%}" class="btn btn-secondary">Home</a>
+                        <button type="button" value="{{ product.id }}" class="btn btn-secondary add-cart-btn"
+                            id="add-cart-{{ product.id }}">Add To Cart</button>
 
                     </center>
                 </div>
@@ -49,7 +41,26 @@
     </div>
 </div>
 
-
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
+<script>
+// Check if button pressed
+$(document).on('click', '.add-cart-btn', function(e){
+    e.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'shopcart_add' %}",
+        data: {
+            product_id: $(this).val(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: 'post'
+        },
+        success: function(json){
+            console.log(json);
+        },
+        error: function(xhr, errmsg, err){
+            console.log("Error: " + errmsg);
+            alert("An error occurred: " + errmsg);
+        }
+    });
+});
+</script>
 {% endblock %}
