@@ -56,8 +56,12 @@ $(document).on('click', '.add-cart-btn', function(e){
             csrfmiddlewaretoken: '{{ csrf_token }}',
             action: 'post'
         },
+
+        
         success: function(json){
-            console.log(json);
+            document.getElementById('cart_quantity').textContent = json.qty
+            // debug from console
+            // console.log(json);
         },
         error: function(xhr, errmsg, err){
             console.log("Error: " + errmsg);
