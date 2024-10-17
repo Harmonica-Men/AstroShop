@@ -17,9 +17,9 @@ class Cart():
 		product_id = str(product.id)
 
 		# Logic
-		if product_id in self.cart:
+		if product_id in self.shopcart:
 			pass
 		else:
-			self.cart[product_id] = {'price': str(product.price)}
+			self.shopcart[product_id] = {'price': str(product.price)}
 
 		self.session.modified = True

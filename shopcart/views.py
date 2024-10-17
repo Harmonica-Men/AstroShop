@@ -19,14 +19,14 @@ def shopcart_add(request):
 		product = get_object_or_404(Product, id=product_id)
 		
 		# Save to session
-		shopcart.add(product=product)
+		cart.add(product=product)
 
 		# Return resonse
 		response = JsonResponse({'Product Name: ': product.name})
 		return response
 
-def cart_delete(request):
+def shopcart_delete(request):
 	pass
 
-def cart_update(request):
+def shopcart_update(request):
 	pass

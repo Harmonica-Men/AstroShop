@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <center>
+                    <div>
                         <h5 class="card-title">{{ product.name }}</h5>
                         <br/>
                         <p class="card-text text-justify">{{ product.description }}</p>
@@ -22,7 +22,7 @@
                         </div>
 
                         <!-- Product price-->
-                        <strike>${{ product.price|floatformat:2 }}</strike>
+                        <strong>${{ product.price|floatformat:2 }}</strong>
                         &nbsp;${{ product.sale_price|floatformat:2 }}
 
                         {% else %}
@@ -36,7 +36,7 @@
                         <button type="button" value="{{ product.id }}" class="btn btn-secondary add-cart-btn"
                             id="add-cart-{{ product.id }}">Add To Cart</button>
 
-                    </center>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,6 +52,7 @@ $(document).on('click', '.add-cart-btn', function(e){
         url: "{% url 'shopcart_add' %}",
         data: {
             product_id: $(this).val(),
+            // product_id: $('#add-cart').val(),
             csrfmiddlewaretoken: '{{ csrf_token }}',
             action: 'post'
         },
