@@ -1,18 +1,16 @@
 from django.shortcuts import render, get_object_or_404
-from .shopcart import Cart
 from store.models import Product
 from django.http import JsonResponse
 from django.contrib import messages
 
-def shopcart_summary(request):
-	# Get the cart
-	shopcart = Cart(request)
+def shopcart_summary(request):	
+	return render(request, "shopcart_summary.html", {})
 	
-def cart_add(request):
+def shopcart_add(request):
 	pass
 
-def cart_delete(request):
+def shopcart_delete(request):
     pass
 
-def cart_update(request):
+def shopcart_update(request):
 	pass
