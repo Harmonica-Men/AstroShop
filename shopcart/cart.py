@@ -1,4 +1,4 @@
-from store.models import Product, Profile
+from store.models import Product
 
 class Cart():
 	def __init__(self, request):
@@ -26,3 +26,8 @@ class Cart():
 
 	def __len__(self):
 		return len(self.shopcart)
+
+	def get_prods(self):
+		product_ids = self.shopcart.keys()
+		products = Product.objects.filter(id__in=product_ids)
+		return products
