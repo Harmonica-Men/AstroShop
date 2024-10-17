@@ -27,6 +27,8 @@
 
                         {% else %}
                         ${{ product.price|floatformat:2 }}
+                        <br>
+                        <p>ID: {{ product.id }}</p>
                         {% endif %}
 
                         <br/><br/>
