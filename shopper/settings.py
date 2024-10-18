@@ -13,8 +13,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 
 import os
+import dj_database_url
 
 
+if os.path.exists("env.py"):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,12 +84,28 @@ WSGI_APPLICATION = 'shopper.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse('postgres://uwb4hdjzua9:7p5Hb6Ee1XKE@ep-gentle-mountain-a23bxz6h-pooler.eu-central-1.aws.neon.tech/vice_game_gap_360908')
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "vice_game_gap_360908",
+#         "USER": "uwb4hdjzua9",
+#         "PASSWORD": "7p5Hb6Ee1XKE",
+#         "HOST": "ep-gentle-mountain-a23bxz6h-pooler.eu-central-1.aws.neon.tech",
+#         "PORT": "5432",
+#     }
+# }
 
 
 # Password validation
