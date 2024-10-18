@@ -15,8 +15,7 @@
     <div class="row">
 
         <div class="col-md-6 offset-md-3">
-
-            <br /><br />
+            <br>
             <form method="POST" action="{% url 'update_user' %}">
                 {% csrf_token %}
 
@@ -27,7 +26,14 @@
                 </button>
             </form>
 
-            <br /><br />
+            <br>
+                
+                
+            <a href="{% url 'update_password' %}" class="btn btn-secondary">Change or Update Password</a>
+
+            <br>
+
+
         </div>
 
     </div>
