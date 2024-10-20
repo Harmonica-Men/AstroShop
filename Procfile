@@ -1,1 +1,1 @@
-web: gunicorn astroshop.wsgi
+web: gunicorn AstroShop.wsgi
