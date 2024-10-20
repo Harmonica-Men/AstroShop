@@ -30,9 +30,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b^0@k0$hqlw+=_xcf0b)q35&+a-1f!)j^bb-+=t%zi!ty10h*f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['8000-harmonicamen-astroshop-vvtcpb3038t.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = ['8000-harmonicamen-astroshop-vvtcpb3038t.ws.codeinstitute-ide.net',
+                '.herokuapp.com']
 CSRF_TRUSTED_ORIGINS = ['https://8000-harmonicamen-astroshop-vvtcpb3038t.ws.codeinstitute-ide.net']
 
 
