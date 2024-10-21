@@ -1,16 +1,10 @@
 ---
-name: User story template
-about: Custom template for project User Stories
-title: ''
+name: USER STORY template
+about: This is the default template
+title: 'USER STORY: <TITLE>'
 labels: ''
 assignees: ''
 
 ---
 
-As a **role** I can **capability** so that **received benefit**
-
-- Acceptance criteria 1
-
-- Acceptance criteria 2
-
-- Acceptance criteria 3
+As a **role** I can **capability** so that **recieved benefit**
