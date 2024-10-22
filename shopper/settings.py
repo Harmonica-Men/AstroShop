@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b^0@k0$hqlw+=_xcf0b)q35&+a-1f!)j^bb-+=t%zi!ty10h*f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-harmonicamen-astroshop-37z6o1iwvkr.ws.codeinstitute-ide.net',
                 '.herokuapp.com']
@@ -84,32 +84,17 @@ WSGI_APPLICATION = 'shopper.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
-# DATABASES = {
-#     'default': dj_database_url.parse('postgres://uwb4hdjzua9:7p5Hb6Ee1XKE@ep-gentle-mountain-a23bxz6h-pooler.eu-central-1.aws.neon.tech/vice_game_gap_360908')
-# }
-
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "vice_game_gap_360908",
-#         "USER": "uwb4hdjzua9",
-#         "PASSWORD": "7p5Hb6Ee1XKE",
-#         "HOST": "ep-gentle-mountain-a23bxz6h-pooler.eu-central-1.aws.neon.tech",
-#         "PORT": "5432",
-#     }
-# }
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
