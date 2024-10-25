@@ -7,12 +7,15 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm
 from django import forms
 from django.db.models import Q
+import json
+from shopcart.cart import Cart
+
 
 def search(request):
 	# Determine if they filled out the form
 	if request.method == "POST":
 		searched = request.POST['searched']
-		# Query The Products  Incentitive
+		# Query The Products DB Model
 		searched = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
 		# Test for null
 		if not searched:
@@ -24,30 +27,32 @@ def search(request):
 		return render(request, "search.html", {})	
 
 
-
-def update_profile(request):
+def update_info(request):
 	if request.user.is_authenticated:
 		current_user = Profile.objects.get(user__id=request.user.id)
 		form = UserInfoForm(request.POST or None, instance=current_user)
+
 		if form.is_valid():
 			form.save()
 			messages.success(request, "Your Info Has Been Updated!!")
 			return redirect('home')
-		return render(request, "update_profile.html", {'form':form})
+		return render(request, "update_info.html", {'form':form})
 	else:
 		messages.success(request, "You Must Be Logged In To Access That Page!!")
 		return redirect('home')
 
 
+
 def update_password(request):
 	if request.user.is_authenticated:
 		current_user = request.user
-
+		# Did they fill out the form
 		if request.method  == 'POST':
 			form = ChangePasswordForm(current_user, request.POST)
-		
+			# Is the form valid
 			if form.is_valid():
 				form.save()
+				messages.success(request, "Your Password Has Been Updated...")
 				login(request, current_user)
 				return redirect('update_user')
 			else:
@@ -60,9 +65,6 @@ def update_password(request):
 	else:
 		messages.success(request, "You Must Be Logged In To View That Page...")
 		return redirect('home')
-
-
-
 def update_user(request):
 	if request.user.is_authenticated:
 		current_user = User.objects.get(id=request.user.id)
@@ -82,14 +84,14 @@ def update_user(request):
 
 def category_summary(request):
 	categories = Category.objects.all()
-	return render(request, 'category_summary.html', {"categories":categories})
-
+	return render(request, 'category_summary.html', {"categories":categories})	
 
 def category(request, foo):
-	# Slugified it
+	# Replace Hyphens with Spaces
 	foo = foo.replace('-', ' ')
-	
+	# Grab the category from the url
 	try:
+		# Look Up The Category
 		category = Category.objects.get(name=foo)
 		products = Product.objects.filter(category=category)
 		return render(request, 'category.html', {'products':products, 'category':category})
@@ -118,6 +120,22 @@ def login_user(request):
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
+
+			# Do some shopping cart stuff
+			current_user = Profile.objects.get(user__id=request.user.id)
+			# Get their saved cart from database
+			saved_cart = current_user.old_cart
+			# Convert database string to python dictionary
+			if saved_cart:
+				# Convert to dictionary using JSON
+				converted_cart = json.loads(saved_cart)
+				# Add the loaded cart dictionary to our session
+				# Get the cart
+				cart = Cart(request)
+				# Loop thru the cart and add the items from the database
+				for key,value in converted_cart.items():
+					cart.db_add(product=key, quantity=value)
+
 			messages.success(request, ("You Have Been Logged In!"))
 			return redirect('home')
 		else:
@@ -146,8 +164,8 @@ def register_user(request):
 			# log in user
 			user = authenticate(username=username, password=password)
 			login(request, user)
-			messages.success(request, ("You Have Registered Successfully!! Welcome!"))
-			return redirect('update_profile')
+			messages.success(request, ("Username Created - Please Fill Out Your User Info Below..."))
+			return redirect('update_info')
 		else:
 			messages.success(request, ("Whoops! There was a problem Registering, please try again..."))
 			return redirect('register')

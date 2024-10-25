@@ -27,7 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT' in os.environ
+
+DEBUG = False
+# DEBUG = 'DEVELOPMENT' in os.environ
+
 
 ALLOWED_HOSTS = ['8000-harmonicamen-astroshop-37z6o1iwvkr.ws.codeinstitute-ide.net',
                 '.herokuapp.com']
@@ -35,6 +38,7 @@ CSRF_TRUSTED_ORIGINS = ['https://8000-harmonicamen-astroshop-37z6o1iwvkr.ws.code
 
 
 # Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
