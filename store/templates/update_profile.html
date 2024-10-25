@@ -19,7 +19,7 @@
             <br>
             <strong>Billing Information</strong>
             <br>
-            <form method="POST" action="{% url 'update_info' %}">
+            <form method="POST" action="{% url 'update_profile' %}">
                 {% csrf_token %}
 
                 {{ form.as_p }}
