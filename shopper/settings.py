@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 # DEBUG = 'DEVELOPMENT' in os.environ
 
 
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'store',
     'shopcart',
     'storages',
-    'payment',
+    # 'payment',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +69,7 @@ ROOT_URLCONF = 'shopper.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
