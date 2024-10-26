@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm
 
-# from payment.forms import ShippingForm
-# from payment.models import ShippingAddress
+from payment.forms import ShippingForm
+from payment.models import ShippingAddress
 
 from django import forms
 from django.db.models import Q
@@ -31,19 +31,43 @@ def search(request):
 		return render(request, "search.html", {})	
 
 
-def update_profile(request):
-	if request.user.is_authenticated:
-		current_user = Profile.objects.get(user__id=request.user.id)
-		form = UserInfoForm(request.POST or None, instance=current_user)
 
-		if form.is_valid():
-			form.save()
-			messages.success(request, "Your Info Has Been Updated!!")
-			return redirect('home')
-		return render(request, "update_profile.html", {'form':form})
-	else:
-		messages.success(request, "You Must Be Logged In To Access That Page!!")
-		return redirect('home')
+def update_profile(request):
+    if request.user.is_authenticated:
+        # Get Current User
+        current_user = Profile.objects.get(user__id=request.user.id)
+        
+        # Get Current User's Shipping Info with error handling
+        try:
+            shipping_user = ShippingAddress.objects.get(user=request.user)
+        except ShippingAddress.DoesNotExist:
+            shipping_user = None  # Optional: handle missing shipping address here
+            
+        # Get original User Form
+        form = UserInfoForm(request.POST or None, instance=current_user)
+        
+        # Get User's Shipping Form (use an empty instance if shipping_user is None)
+        shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
+        
+        if form.is_valid() and shipping_form.is_valid():
+            # Save forms if valid
+            form.save()
+            if shipping_user:
+                shipping_form.save()
+            else:
+                # Optionally, create a new ShippingAddress instance if it doesn't exist
+                shipping_user = shipping_form.save(commit=False)
+                shipping_user.user = request.user
+                shipping_user.save()
+
+            messages.success(request, "Your Info Has Been Updated!!")
+            return redirect('home')
+        
+        return render(request, "update_profile.html", {'form': form, 'shipping_form': shipping_form})
+    
+    else:
+        messages.warning(request, "You Must Be Logged In To Access That Page!!")
+        return redirect('home')
 
 def update_password(request):
 	if request.user.is_authenticated:
