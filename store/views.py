@@ -45,8 +45,6 @@ def update_profile(request):
 		messages.success(request, "You Must Be Logged In To Access That Page!!")
 		return redirect('home')
 
-
-
 def update_password(request):
 	if request.user.is_authenticated:
 		current_user = request.user
