@@ -39,7 +39,7 @@ def update_profile(request):
         
         # Get Current User's Shipping Info with error handling
         try:
-            shipping_user = ShippingAddress.objects.get(user=request.user)
+            shipping_user = ShippingAddress.objects.get(user__id=request.user)
         except ShippingAddress.DoesNotExist:
             shipping_user = None  # Optional: handle missing shipping address here
             
