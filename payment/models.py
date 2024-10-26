@@ -13,8 +13,6 @@ class ShippingAddress(models.Model):
 	shipping_zipcode = models.CharField(max_length=200, null=True, blank=True)
 	shipping_country = models.CharField(max_length=255)
 
-
-	# Don't pluralize address
 	class Meta:
 		verbose_name_plural = "Shipping Address"
 
