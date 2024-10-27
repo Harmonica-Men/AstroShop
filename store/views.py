@@ -39,7 +39,7 @@ def update_profile(request):
         
         # Get Current User's Shipping Info with error handling
         try:
-            shipping_user = ShippingAddress.objects.get(user__id=request.user)
+            shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
         except ShippingAddress.DoesNotExist:
             shipping_user = None  # Optional: handle missing shipping address here
             
@@ -91,6 +91,7 @@ def update_password(request):
 	else:
 		messages.success(request, "You Must Be Logged In To View That Page...")
 		return redirect('home')
+
 def update_user(request):
 	if request.user.is_authenticated:
 		current_user = User.objects.get(id=request.user.id)
@@ -106,7 +107,6 @@ def update_user(request):
 	else:
 		messages.success(request, "You Must Be Logged In To Access That Page!!")
 		return redirect('home')
-
 
 def category_summary(request):
 	categories = Category.objects.all()
@@ -191,7 +191,7 @@ def register_user(request):
 			user = authenticate(username=username, password=password)
 			login(request, user)
 			messages.success(request, ("Username Created - Please Fill Out Your User Info Below..."))
-			return redirect('update_info')
+			return redirect('update_profile')
 		else:
 			messages.success(request, ("Whoops! There was a problem Registering, please try again..."))
 			return redirect('register')
