@@ -3,12 +3,11 @@
 
 <!-- Header-->
 
-
 <div class="container">
     <div class="row">
         <div>
             <div class="col-8">
-                <br>
+                <br /><br />
                 <h3>Shipped Items</h3>
                 <table class="table table-striped table-hover table-bordered">
                     <thead class="table-dark">
@@ -22,7 +21,7 @@
                     <tbody>
                         {% for item in orders %}
                         <tr>
-                            <td>{{ item.id }}</td>
+                            <td><a href="{% url 'orders' item.id %}">{{ item.id }}</a></td>
                             <td>${{ item.amount_paid }}</td>
                             <td>{{ item.email }}</td>
                             <td>{{ item.date_shipped }}</td>
@@ -32,8 +31,6 @@
 
                     </tbody>
                 </table>
-
-
                 <br>
             </div>
         </div>
