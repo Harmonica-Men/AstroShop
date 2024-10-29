@@ -1,13 +1,17 @@
 asgiref==3.8.1
 boto3==1.35.45
 botocore==1.35.45
+cart==1.2.2
 dj-database-url==0.5.0
 Django==4.2
+django-paypal==2.1
 django-storages==1.14.4
 gunicorn==23.0.0
 jmespath==1.0.1
 pillow==10.4.0
 psycopg2==2.9.10
+pycryptodome==3.21.0
+pytz==2024.2
 s3transfer==0.10.3
 sqlparse==0.5.1
 whitenoise==6.7.0
