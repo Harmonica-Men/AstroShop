@@ -203,7 +203,7 @@ if 'USE_AWS' in os.environ:
 
 # Add basic paypal settings
 # Set paypal test sandbox to true
-PAYPAL_URL = "https://www.paypal.com/cgi-bin/webscr"
+PAYPAL_URL = "https://www.sandbox.paypal.com/cgi-bin/webscr"
 
 PAYPAL_TEST = True
 
