@@ -77,15 +77,3 @@ class OrderItem(models.Model):
 	def __str__(self):
 		return f'Order Item - {str(self.id)}'
 
-
-class PaymentLog(models.Model):
-    transaction_id = models.CharField(max_length=255)
-    payment_status = models.CharField(max_length=50)
-    payment_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    currency = models.CharField(max_length=10)
-    receiver_email = models.EmailField()
-    payer_email = models.EmailField()
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.transaction_id} - {self.payment_status}"
