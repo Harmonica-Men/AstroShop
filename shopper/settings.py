@@ -22,9 +22,6 @@ if os.path.isfile('env.py'):
 
 import os
 
-
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -206,6 +203,8 @@ if 'USE_AWS' in os.environ:
 
 # Add basic paypal settings
 # Set paypal test sandbox to true
+PAYPAL_URL = "https://www.paypal.com/cgi-bin/webscr"
+
 PAYPAL_TEST = True
 
 PAYPAL_RECEIVER_EMAIL = 'test-business-paypal@vanelslande.com' # Business Sandbox test account

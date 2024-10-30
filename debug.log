@@ -7,3 +7,67 @@ Watching for file changes with StatReloader
 /workspace/AstroShop/payment/views.py changed, reloading.
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /payment/billing_info
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/AstroShop/payment/views.py", line 269, in billing_info
+    return HttpResponseRedirect(paypal_form.get_redirect_url())
+           ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'HttpResponseRedirect' is not defined
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /payment/billing_info
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/AstroShop/payment/views.py", line 271, in billing_info
+    return HttpResponseRedirect(paypal_form.get_redirect_url())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'PayPalPaymentsForm' object has no attribute 'get_redirect_url'
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /payment/billing_info
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/AstroShop/payment/views.py", line 250, in billing_info
+    paypal_redirect_url = f"{settings.PAYPAL_URL}?{paypal_form.initial()}"
+                                                   ^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'dict' object is not callable
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
