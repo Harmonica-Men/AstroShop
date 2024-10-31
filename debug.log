@@ -91,3 +91,75 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 /workspace/AstroShop/payment/views.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /payment/billing_info
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/AstroShop/payment/views.py", line 211, in billing_info
+    'amount': totals,
+              ^^^^^^
+NameError: name 'totals' is not defined. Did you mean: 'locals'?
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /payment/PAYPAL_URL
+Not Found: /payment/PAYPAL_URL
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /payment/payment_success
+Not Found: /paypal/success
+Not Found: /paypal/success/
+Not Found: /payment/payment_success
+/workspace/AstroShop/payment/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/payment/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader

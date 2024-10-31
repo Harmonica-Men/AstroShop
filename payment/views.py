@@ -352,21 +352,13 @@ def checkout(request):
 	
 
 def payment_success(request):
-
-	# delete the browser cart
-	
-	for key in list(request.session.keys()):
-		if key == "session_key":
-			# Delete the key
-			del request.session[key]
-
 	return render(request, "payment/payment_success.html", {})
+
+	for key in list(request.session.keys()):
+				if key == "session_key":
+					# Delete the key
+					del request.session[key]
 
 
 def payment_failed(request):
-
-	# delete browser cart
-
-
-
 	return render(request, "payment/payment_failed.html", {})
