@@ -48,3 +48,5 @@ Is a non-validating SQL parser for Python. It provides tools for parsing, format
 
 `whitenoise==5.3.0`
 A middleware for serving static files in a Django application. Whitenoise allows applications to serve static assets directly without needing a separate web server, simplifying deployment and reducing complexity.
+
+![alt text](static/images/readme-images/diagram-export-11-3-2024-10_20_07-AM.png)
