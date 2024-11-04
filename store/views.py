@@ -14,6 +14,24 @@ from django.db.models import Q
 import json
 from shopcart.cart import Cart
 
+from django.shortcuts import get_object_or_404, redirect
+from .models import Product
+
+
+def delete_product_confirmation(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'delete_product_confirm.html', {'product': product})
+
+
+def delete_product(request, pk):
+    if request.user.is_superuser:
+        product = get_object_or_404(Product, pk=pk)
+        product.delete()
+        messages.success(request, "Product has been deleted successfully.")
+        return redirect('home')  # Redirect to home or any other page after deletion
+    else:
+        messages.error(request, "You do not have permission to delete this product.")
+        return redirect('home')
 
 def search(request):
 	# Determine if they filled out the form

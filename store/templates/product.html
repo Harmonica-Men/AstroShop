@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-
 <div class="container">
     <br />
-
 
     <div class="card mb-3">
         <div class="row g-0">
@@ -32,13 +29,10 @@
                         </strong>
                         &nbsp;
                         ${{ product.sale_price }}
-
-
-
                         {% else %}
                         ${{ product.price }}
-
                         {% endif %}
+
                         <br /><br />
                         <div class="row justify-content-center">
                             <div class="col-md-2">Quantity:</div>
@@ -52,10 +46,16 @@
                                 </select>
                             </div>
                         </div>
+
                         <br /><br />
-                        <a href="{% url 'home'%}" class="btn btn-secondary">Home</a>
-                        <button type="button" value="{{ product.id }}" class="btn btn-secondary" id="add-cart">Add To
-                            Cart</button>
+                        <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+                        <button type="button" value="{{ product.id }}" class="btn btn-secondary" id="add-cart">Add To Cart</button>
+
+                        <!-- Display Delete Button if User is Superuser -->
+                        {% if user.is_superuser %}
+                        <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger">Delete Product</a>
+
+                        {% endif %}
 
                     </div>
                 </div>
@@ -63,7 +63,6 @@
         </div>
     </div>
 </div>
-
 
 <br>
 
@@ -80,24 +79,15 @@
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 action: 'post'
             },
-
             success: function (json) {
-                //console.log(json)
                 document.getElementById("cart_quantity").textContent = json.qty
                 location.reload();
             },
-
             error: function (xhr, errmsg, err) {
-
+                // Handle error
             }
-
-
         });
-
-
-
     })
 </script>
-
 
 {% endblock %}
