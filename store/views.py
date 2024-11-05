@@ -17,6 +17,26 @@ from shopcart.cart import Cart
 from django.shortcuts import get_object_or_404, redirect
 from .models import Product
 
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from .forms import UpdateProductForm
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def update_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == "POST":
+        form = UpdateProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Product updated successfully.")
+            return redirect('product', pk=product.pk)
+    else:
+        form = UpdateProductForm(instance=product)
+    return render(request, 'update_product.html', {'form': form, 'product': product})
+
+
 
 def delete_product_confirmation(request, pk):
     product = get_object_or_404(Product, pk=pk)

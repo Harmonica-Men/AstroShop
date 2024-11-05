@@ -2,6 +2,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from django import forms
 from .models import Profile
+from .models import Product
+
+class UpdateProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'price', 'sale_price', 'is_sale', 'category', 'image']
+
 
 
 

@@ -493,3 +493,11 @@ Traceback (most recent call last):
 django.template.exceptions.TemplateDoesNotExist: delete_product_confirmation.html
 /workspace/AstroShop/store/views.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspace/AstroShop/store/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/workspace/AstroShop/store/forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspace/AstroShop/store/urls.py changed, reloading.
+Watching for file changes with StatReloader

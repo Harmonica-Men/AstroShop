@@ -49,12 +49,18 @@
 
                         <br /><br />
                         <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
-                        <button type="button" value="{{ product.id }}" class="btn btn-secondary" id="add-cart">Add To Cart</button>
+                        <button type="button" value="{{ product.id }}" class="btn btn-secondary" id="add-cart">Add To
+                            Cart</button>
 
                         <!-- Display Delete Button if User is Superuser -->
                         {% if user.is_superuser %}
-                        <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger">Delete Product</a>
+                        <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger">Delete
+                            Product</a>
 
+                        {% endif %}
+
+                        {% if user.is_superuser %}
+                        <a href="{% url 'update_product' product.id %}" class="btn btn-warning">Edit Product</a>
                         {% endif %}
 
                     </div>

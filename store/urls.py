@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import update_product
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -16,4 +17,5 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('product/delete/confirm/<int:pk>/', views.delete_product_confirmation, name='delete_product_confirmation'),
     path('product/delete/<int:pk>/', views.delete_product, name='delete_product'),
+    path('product/update/<int:pk>/', update_product, name='update_product'),
 ]
