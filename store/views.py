@@ -21,6 +21,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
 
+def index(request):
+    """ A view to return the index page """
+
+    return render(request, 'index.html')
+
 def home(request):
     sort_by_price = request.GET.get('sort', None)  # Check if sorting is requested
     products = Product.objects.all()

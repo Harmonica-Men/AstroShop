@@ -78,10 +78,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    # 'allauth',
-    # 'allauth.account',
-    # # Optional -- requires install using `django-allauth[socialaccount]`.
-    # 'allauth.socialaccount',
+   
     'store',
     'shopcart',    
     'payment',
@@ -110,7 +107,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'shopcart.context_processors.shopcart',
