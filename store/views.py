@@ -21,6 +21,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
 
+def home(request):
+    sort_by_price = request.GET.get('sort', None)  # Check if sorting is requested
+    products = Product.objects.all()
+    
+    if sort_by_price == 'asc':
+        products = products.order_by('price')  # Ascending order
+    elif sort_by_price == 'desc':
+        products = products.order_by('-price')  # Descending order
+
+    return render(request, 'home.html', {'products': products})
+
+
 @user_passes_test(lambda u: u.is_superuser)
 def add_product(request):
     if request.method == "POST":
