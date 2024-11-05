@@ -21,7 +21,7 @@
                         data-bs-toggle="dropdown" aria-expanded="false">Product Management</a>
 
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Add Product</a></li>
+                        <li><a class="dropdown-item" href="{% url 'add_product' %}">Add a New Product</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="{% url 'shipped_dash' %}">Shipped Orders</a></li>
                         <li><a class="dropdown-item" href="{% url 'not_shipped_dash'  %}">UnShipped Orders</a></li>

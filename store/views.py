@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm
+from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm, UpdateProductForm
 
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress
@@ -14,13 +14,24 @@ from django.db.models import Q
 import json
 from shopcart.cart import Cart
 
-from django.shortcuts import get_object_or_404, redirect
 from .models import Product
 
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .forms import UpdateProductForm
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def add_product(request):
+    if request.method == "POST":
+        form = UpdateProductForm(request.POST, request.FILES)  # We use UpdateProductForm to add new products as well
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Product added successfully.")
+            return redirect('home')  # Redirect to home or any other page after adding the product
+    else:
+        form = UpdateProductForm()
+    return render(request, 'add_product.html', {'form': form})
 
 
 @user_passes_test(lambda u: u.is_superuser)
