@@ -11,7 +11,6 @@
 
 {% block content %}
 <div class="container">
-    <br />
 
     <div class="card mb-3">
         <div class="row g-0">
@@ -26,7 +25,7 @@
                     <div>
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text justified">{{ product.description }}</p>
-            
+
                         {% if product.is_sale %}
                         <div class="d-flex justify-content-center small text-warning mb-2">
                             <div class="bi-star-fill"></div>
@@ -34,7 +33,7 @@
                             <div class="bi-star-fill"></div>
                         </div>
                         {% endif %}
-            
+
                         <div class="d-flex align-items-center">
                             <!-- Product price or sale price -->
                             <div class="me-3">
@@ -46,7 +45,12 @@
                                 <strong>${{ product.price }}</strong>
                                 {% endif %}
                             </div>
-            
+
+
+                            
+
+
+
                             <!-- Quantity selector -->
                             <div class="col-md-2">Quantity:
                                 <select class="form-select form-select-sm" id="qty-cart">
@@ -57,22 +61,37 @@
                                     <option value="5">5</option>
                                 </select>
                             </div>
+
+                            <!-- {% if product.category %}
+                            <p class="small mt-1 mb-0">
+                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                                    <i class="fas fa-tag mr-1"></i>{{ product.category.name }}
+                                </a>
+                            </p>
+                            {% endif %} -->
+
+                            <a href="{% url 'category' 'Books' %}" class="dropdown-item">Books</a>
+
+
+
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Centered buttons container with added margins -->
                 <div class="d-flex justify-content-center mt-3">
-                    <button type="button" value="{{ product.id }}" class="btn btn-secondary me-2" id="add-cart">Add To Cart</button>
-            
+                    <button type="button" value="{{ product.id }}" class="btn btn-secondary me-2" id="add-cart">Add To
+                        Cart</button>
+
                     <!-- Display Delete & Edit buttons if User is Superuser -->
                     {% if user.is_superuser %}
-                    <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger me-2">Delete Product</a>
+                    <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger me-2">Delete
+                        Product</a>
                     <a href="{% url 'update_product' product.id %}" class="btn btn-warning">Edit Product</a>
                     {% endif %}
                 </div>
             </div>
-            
+
 
 
 

@@ -60,14 +60,6 @@ body {
     background: #000 !important;
 }
 
-.list-inline-item .nav-link {
-    padding: 0 10px;
-}
-.d-flex .nav-link {
-    white-space: nowrap;
-}
-
-
 .overlay {
 	height: 100%;
 	width: 100%;
@@ -76,6 +68,23 @@ body {
 	position: fixed;
 	background: white;
 	z-index: -1;
+}
+
+a.category-badge > span.badge:hover {
+    background: #212529 !important;
+    color: #fff !important;
+}
+
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btt-link {
+    cursor: pointer;
 }
 
 /* -------------------------------- Media Queries */
