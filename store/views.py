@@ -21,6 +21,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
 
+def all_products(request):
+    """ A view to show all products, including sorting and search queries """
+
+    products = Product.objects.all()
+
+    context = {
+        'products': products,
+    }
+
+    return render(request, 'products.html', context)
+
+
 def index(request):
     """ A view to return the index page """
 

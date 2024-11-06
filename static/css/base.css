@@ -3,7 +3,6 @@ html {
 }
 
 body {
-   
     background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
