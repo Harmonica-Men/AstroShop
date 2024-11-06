@@ -5,10 +5,10 @@
                 All Products
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item ">By Category</a>
-                <a href="" class="dropdown-item">All Products</a>
+                <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                
+                <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
+                <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
             </div>
         </li>
 
@@ -17,12 +17,12 @@
                 Product
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
-                <a class="dropdown-item" href="{% url 'category' 'Books' %}">Books</a>
-                <a class="dropdown-item" href="{% url 'category' 'Telescopes' %}">Telescopes</a>
-                <a class="dropdown-item" href="{% url 'category' 'Globes' %}">Globes</a>
-                <a class="dropdown-item" href="{% url 'category' 'Binoculars' %}">Binoculars</a>
-                <a class="dropdown-item" href="{% url 'category' 'Wheater Stations' %}">Weather Stations</a>
-                <a href="{% url 'home' %}" class="dropdown-item">All Products</a>
+                <a href="{% url 'category' 'Books' %}" class="dropdown-item">Books</a>
+                <a href="{% url 'category' 'Telescopes' %}" class="dropdown-item">Telescopes</a>
+                <a href="{% url 'category' 'Globes' %}" class="dropdown-item">Globes</a>
+                <a href="{% url 'category' 'Binoculars' %}" class="dropdown-item">Binoculars</a>
+                <a href="{% url 'category' 'Wheater Stations' %}" class="dropdown-item">Weather Stations</a>
+                <a href="{% url 'products' %}" class="dropdown-item" class="dropdown-item">All Products</a>
             </div>
         </li>
 

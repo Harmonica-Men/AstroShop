@@ -22,13 +22,52 @@ from django.contrib import messages
 
 
 def all_products(request):
-    """ A view to show all products, including sorting and search queries """
+    """ A view to show all products, including sorting """
 
     products = Product.objects.all()
+    query = None
+    categories = None
+    sort = None
+    direction = None
+
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)
+            
+        # if 'category' in request.GET:
+        #     categories = request.GET['category'].split(',')
+        #     products = products.filter(category__name__in=categories)
+        #     categories = Category.objects.filter(name__in=categories)
+
+        # if 'q' in request.GET:
+        #     query = request.GET['q']
+        #     if not query:
+        #         messages.error(request, "You didn't enter any search criteria!")
+        #         return redirect(reverse('products'))
+            
+        #     queries = Q(name__icontains=query) | Q(description__icontains=query)
+        #     products = products.filter(queries)
+
+    current_sorting = f'{sort}_{direction}'
 
     context = {
         'products': products,
-    }
+        'search_term': query,
+        'current_categories': categories,
+        'current_sorting': current_sorting,
+	  }
+
+
 
     return render(request, 'products.html', context)
 
@@ -38,16 +77,7 @@ def index(request):
 
     return render(request, 'index.html')
 
-def home(request):
-    sort_by_price = request.GET.get('sort', None)  # Check if sorting is requested
-    products = Product.objects.all()
-    
-    if sort_by_price == 'asc':
-        products = products.order_by('price')  # Ascending order
-    elif sort_by_price == 'desc':
-        products = products.order_by('-price')  # Descending order
 
-    return render(request, 'home.html', {'products': products})
 
 
 @user_passes_test(lambda u: u.is_superuser)
