@@ -3,6 +3,7 @@ html {
 }
 
 body {
+   
     background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
@@ -59,6 +60,24 @@ body {
     background: #000 !important;
 }
 
+.list-inline-item .nav-link {
+    padding: 0 10px;
+}
+.d-flex .nav-link {
+    white-space: nowrap;
+}
+
+
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: white;
+	z-index: -1;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -80,5 +99,16 @@ body {
 
     .header-container {
         padding-top: 164px;
+    }
+}
+
+/* pad the top a bit when navbar is collapsed on mobile */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px);
     }
 }

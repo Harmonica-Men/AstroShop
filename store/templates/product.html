@@ -7,9 +7,7 @@
         <div class="col"></div>
     </div>
 </div>
-
 {% endblock %}
-
 
 {% block content %}
 <div class="container">
@@ -18,72 +16,72 @@
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="...">
+                <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.image.url }}">
             </div>
+
+
+
             <div class="col-md-8">
                 <div class="card-body">
                     <div>
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text justified">{{ product.description }}</p>
-
+            
                         {% if product.is_sale %}
                         <div class="d-flex justify-content-center small text-warning mb-2">
                             <div class="bi-star-fill"></div>
                             &nbsp;&nbsp;Sale!&nbsp;&nbsp;
                             <div class="bi-star-fill"></div>
                         </div>
-
-                        <!-- Product price-->
-                        <strong>
-                            ${{ product.price }}
-                        </strong>
-                        &nbsp;
-                        ${{ product.sale_price }}
-                        {% else %}
-                        ${{ product.price }}
                         {% endif %}
-                        <div class="row justify-content-center">
-                            <div class="col-md-2">Quantity:</div>
-                                <div class="col-md-2">
-                                    <select class="form-select form-select-sm" id="qty-cart">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
+            
+                        <div class="d-flex align-items-center">
+                            <!-- Product price or sale price -->
+                            <div class="me-3">
+                                {% if product.is_sale %}
+                                <strong class="text-muted text-decoration-line-through">${{ product.price }}</strong>
+                                &nbsp;
+                                <strong class="text-black">${{ product.sale_price }}</strong>
+                                {% else %}
+                                <strong>${{ product.price }}</strong>
+                                {% endif %}
                             </div>
-                            
-                        <button type="button" value="{{ product.id }}" class="btn btn-secondary" id="add-cart">Add To
-                            Cart</button>
-                        
+            
+                            <!-- Quantity selector -->
+                            <div class="col-md-2">Quantity:
+                                <select class="form-select form-select-sm" id="qty-cart">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
                         </div>
-
-                        
-                        
-                        
-
-                        <!-- Display Delete Button if User is Superuser -->
-                        {% if user.is_superuser %}
-                        <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger">Delete
-                            Product</a>
-
-                        {% endif %}
-
-                        {% if user.is_superuser %}
-                        <a href="{% url 'update_product' product.id %}" class="btn btn-warning">Edit Product</a>
-                        {% endif %}
-
                     </div>
                 </div>
+                
+                <!-- Centered buttons container with added margins -->
+                <div class="d-flex justify-content-center mt-3">
+                    <button type="button" value="{{ product.id }}" class="btn btn-secondary me-2" id="add-cart">Add To Cart</button>
+            
+                    <!-- Display Delete & Edit buttons if User is Superuser -->
+                    {% if user.is_superuser %}
+                    <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger me-2">Delete Product</a>
+                    <a href="{% url 'update_product' product.id %}" class="btn btn-warning">Edit Product</a>
+                    {% endif %}
+                </div>
             </div>
+            
+
+
+
+
+
+
         </div>
     </div>
 </div>
-
-<br>
-
 <script>
     // Check if button pressed
     $(document).on('click', '#add-cart', function (e) {
@@ -107,5 +105,4 @@
         });
     })
 </script>
-
 {% endblock %}

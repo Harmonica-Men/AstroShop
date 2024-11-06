@@ -17,10 +17,12 @@
                 Product
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
-                <a href="" class="dropdown-item">Telescopes</a>
-                <a href="" class="dropdown-item">Books</a>
-                <a href="" class="dropdown-item">Toys</a>
-                <a href="" class="dropdown-item">All Products</a>
+                <a class="dropdown-item" href="{% url 'category' 'Books' %}">Books</a>
+                <a class="dropdown-item" href="{% url 'category' 'Telescopes' %}">Telescopes</a>
+                <a class="dropdown-item" href="{% url 'category' 'Globes' %}">Globes</a>
+                <a class="dropdown-item" href="{% url 'category' 'Binoculars' %}">Binoculars</a>
+                <a class="dropdown-item" href="{% url 'category' 'Wheater Stations' %}">Weather Stations</a>
+                <a href="{% url 'home' %}" class="dropdown-item">All Products</a>
             </div>
         </li>
 
