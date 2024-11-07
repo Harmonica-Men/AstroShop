@@ -76,19 +76,21 @@
 
             <!-- Centered buttons container with added margins -->
             <div class="d-flex justify-content-center">
-                <button type="button" value="{{ product.id }}" class="btn btn-secondary mt-2 mb-2"
-                    id="add-cart">Add
-                    To
-                    Cart</button>
-
+                <button type="button" value="{{ product.id }}" class="btn btn-secondary mt-2 mb-2 me-2 mr-2" id="add-cart">
+                    Add To Cart
+                </button>
+            
                 <!-- Display Delete & Edit buttons if User is Superuser -->
                 {% if user.is_superuser %}
-                <a href="{% url 'delete_product_confirmation' product.id %}"
-                    class="btn btn-danger me-2">Delete
-                    Product</a>
-                <a href="{% url 'update_product' product.id %}" class="btn btn-warning">Edit Product</a>
+                    <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger mt-2 mb-2 mr-2 me-2">
+                        Delete Product
+                    </a>
+                    <a href="{% url 'update_product' product.id %}" class="btn btn-warning mt-2 mb-2">
+                        Edit Product
+                    </a>
                 {% endif %}
             </div>
+            
         </div>
     </div>
 
