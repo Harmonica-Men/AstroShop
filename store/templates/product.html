@@ -11,110 +11,104 @@
 
 {% block content %}
 <div class="container">
+    <div class="card border-1 mb-3 p-3">
+        {% if product.category %}
+        <p class="large mt-1 mb-0 ml-3">
+            <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                <i class="fas fa-tag mr-1"></i>{{ product.category.name }}
+            </a>
+        </p>
+        {% endif %}
+        <div class="d-flex flex-column flex-md-row align-items-center">
 
-    <div class="card mb-3">
-        <div class="row g-0">
-            <div class="col-md-4 ml-3 mt-3">
-                <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.image.url }}">
+            <!-- Image container with 40% width -->
+            <div class="flex-shrink-0 mb-3 mb-md-0" style="width: 40%;">
+                <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}"
+                    style="width: 100%; height: auto;">
             </div>
 
-
-
-            <div class="col-md-8">
+            <!-- Text container with 60% width -->
+            <div class="text-md-left" style="width: 60%;">
                 <div class="card-body">
-                    <div>
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text justified">{{ product.description }}</p>
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
 
-                        {% if product.is_sale %}
-                        <div class="d-flex justify-content-center small text-warning mb-2">
-                            <div class="fa-regular fa-star"></div>
-
-                            <strong style="font-size: 1.25rem;">Sale!</strong>
-                            <div class="fa-regular fa-star"></div>
-                        </div>
-                        {% endif %}
-
-                        
+                    {% if product.is_sale %}
+                    <div class="d-flex justify-content-center justify-content-md-start small text-warning mb-2">
+                        <span class="fa-regular fa-star"></span>
+                        <strong class="mx-2" style="font-size: 1.25rem;">Sale!</strong>
+                        <span class="fa-regular fa-star"></span>
                     </div>
+                    {% endif %}
                 </div>
-
             </div>
-
         </div>
     </div>
 
+
+
+    <!-- Price, Quantity, and Action Buttons -->
     <div class="card border-1">
-
-        <div class="d-flex justify-content-around">
+        <div class="d-flex justify-content-around align-items-center p-3">
             <!-- Product price or sale price -->
-            <div>
+            <div class="text-center">
                 {% if product.is_sale %}
-
-                <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}
-                </div>
-
-                <strong class="text-black" style="font-size: 1.5rem;">€{{ product.sale_price }}
-                </strong>
-
-
+                <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
+                <strong class="text-black" style="font-size: 1.5rem;">€{{ product.sale_price }}</strong>
                 {% else %}
                 <strong class="text-black" style="font-size: 2rem;">€{{ product.price }}</strong>
                 {% endif %}
             </div>
 
             <!-- Quantity selector -->
-            <div class="mt-3">Quantity:                
-                    <select class="form-select form-select-sm" id="qty-cart">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
+            <div class="text-center">
+                <label for="qty-cart" class="mb-1">Quantity:</label>
+                <select class="form-select form-select-sm" id="qty-cart" aria-label="Select quantity">
+                    {% for i in "12345" %}
+                    <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                    {% endfor %}
+                </select>
             </div>
 
-            <!-- Centered buttons container with added margins -->
-            <div class="d-flex justify-content-center">
-                <button type="button" value="{{ product.id }}" class="btn btn-secondary mt-2 mb-2 me-2 mr-2" id="add-cart">
+            <!-- Centered buttons -->
+            <div class="text-center">
+                <button type="button" value="{{ product.id }}" class="btn btn-secondary mt-2 mb-2" id="add-cart">
                     Add To Cart
                 </button>
-            
-                <!-- Display Delete & Edit buttons if User is Superuser -->
+
                 {% if user.is_superuser %}
-                    <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger mt-2 mb-2 mr-2 me-2">
-                        Delete Product
-                    </a>
-                    <a href="{% url 'update_product' product.id %}" class="btn btn-warning mt-2 mb-2">
-                        Edit Product
-                    </a>
+                <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger mt-2 mb-2">
+                    Delete Product
+                </a>
+                <a href="{% url 'update_product' product.id %}" class="btn btn-warning mt-2 mb-2">
+                    Edit Product
+                </a>
                 {% endif %}
             </div>
-            
         </div>
     </div>
+</div>
 
-    <script>
-        // Check if button pressed
-        $(document).on('click', '#add-cart', function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'shopcart_add' %}",
-                data: {
-                    product_id: $('#add-cart').val(),
-                    product_qty: $('#qty-cart option:selected').text(),
-                    csrfmiddlewaretoken: '{{ csrf_token }}',
-                    action: 'post'
-                },
-                success: function (json) {
-                    document.getElementById("cart_quantity").textContent = json.qty
-                    location.reload();
-                },
-                error: function (xhr, errmsg, err) {
-                    // Handle error
-                }
-            });
-        })
-    </script>
-    {% endblock %}
+<script>
+    $(document).on('click', '#add-cart', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'shopcart_add' %}",
+            data: {
+                product_id: $('#add-cart').val(),
+                product_qty: $('#qty-cart option:selected').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+            success: function (json) {
+                document.getElementById("cart_quantity").textContent = json.qty;
+                location.reload();
+            },
+            error: function (xhr, errmsg, err) {
+                // Handle error
+            }
+        });
+    });
+</script>
+{% endblock %}
