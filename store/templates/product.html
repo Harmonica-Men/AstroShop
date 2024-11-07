@@ -21,7 +21,7 @@
 
 
             <div class="col-md-8">
-                <div class="card-body">
+                <div class="card-body ">
                     <div>
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text justified">{{ product.description }}</p>
@@ -30,93 +30,97 @@
                         <div class="d-flex justify-content-center small text-warning mb-2">
                             <div class="fa-regular fa-star"></div>
 
-                            &nbsp;&nbsp;Sale!&nbsp;&nbsp;
-
+                            <strong style="font-size: 1.25rem;">Sale!</strong>
                             <div class="fa-regular fa-star"></div>
                         </div>
                         {% endif %}
 
 
-                        <div class="card-body">
-                            
-                            <div class="d-flex align-items-center">
+                        <div class="card border-1">
+
+                            <div class="d-flex justify-content-around">
                                 <!-- Product price or sale price -->
-                                <div class="me-3">
+                                <div>
                                     {% if product.is_sale %}
-                                    <strong
-                                        class="text-muted text-decoration-line-through">${{ product.price }}</strong>
-                                    &nbsp;
-                                    <strong class="text-black">${{ product.sale_price }}</strong>
+
+                                    <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}
+                                    </div>
+
+                                    <strong class="text-black" style="font-size: 1.5rem;">€{{ product.sale_price }}
+                                    </strong>
+
+
                                     {% else %}
-                                    <strong>${{ product.price }}</strong>
+                                    <strong class="ml-2 text-muted"
+                                        style="font-size: 1.5rem;">€{{ product.price }}</strong>
                                     {% endif %}
                                 </div>
 
                                 <!-- Quantity selector -->
                                 <div class="col-md-2">Quantity:
-                                    <select class="form-select form-select-sm" id="qty-cart">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
-                                <a href="{% url 'category' 'Books' %}" class="dropdown-item">Books</a>
-                            </div>
 
+                                    <div>
+                                        <select class="form-select form-select-sm" id="qty-cart">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                            </div>
                         </div>
 
+                        <!-- Centered buttons container with added margins -->
+                        <div class="d-flex justify-content-center mt-3">
+                            <button type="button" value="{{ product.id }}" class="btn btn-secondary me-2"
+                                id="add-cart">Add
+                                To
+                                Cart</button>
 
-
-
+                            <!-- Display Delete & Edit buttons if User is Superuser -->
+                            {% if user.is_superuser %}
+                            <a href="{% url 'delete_product_confirmation' product.id %}"
+                                class="btn btn-danger me-2">Delete
+                                Product</a>
+                            <a href="{% url 'update_product' product.id %}" class="btn btn-warning">Edit Product</a>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
 
-                <!-- Centered buttons container with added margins -->
-                <div class="d-flex justify-content-center mt-3">
-                    <button type="button" value="{{ product.id }}" class="btn btn-secondary me-2" id="add-cart">Add To
-                        Cart</button>
 
-                    <!-- Display Delete & Edit buttons if User is Superuser -->
-                    {% if user.is_superuser %}
-                    <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger me-2">Delete
-                        Product</a>
-                    <a href="{% url 'update_product' product.id %}" class="btn btn-warning">Edit Product</a>
-                    {% endif %}
+
+
+
+
+
                 </div>
             </div>
-
-
-
-
-
-
-
         </div>
-    </div>
-</div>
-<script>
-    // Check if button pressed
-    $(document).on('click', '#add-cart', function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: "{% url 'shopcart_add' %}",
-            data: {
-                product_id: $('#add-cart').val(),
-                product_qty: $('#qty-cart option:selected').text(),
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-                action: 'post'
-            },
-            success: function (json) {
-                document.getElementById("cart_quantity").textContent = json.qty
-                location.reload();
-            },
-            error: function (xhr, errmsg, err) {
-                // Handle error
-            }
-        });
-    })
-</script>
-{% endblock %}
+        <script>
+            // Check if button pressed
+            $(document).on('click', '#add-cart', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'shopcart_add' %}",
+                    data: {
+                        product_id: $('#add-cart').val(),
+                        product_qty: $('#qty-cart option:selected').text(),
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        action: 'post'
+                    },
+                    success: function (json) {
+                        document.getElementById("cart_quantity").textContent = json.qty
+                        location.reload();
+                    },
+                    error: function (xhr, errmsg, err) {
+                        // Handle error
+                    }
+                });
+            })
+        </script>
+        {% endblock %}

@@ -19,6 +19,10 @@ body {
     width: 1.5rem;
 }
 
+.strike-through {
+    text-decoration: line-through;
+}
+
 .logo-font {
     text-transform: uppercase;
 }
