@@ -23,6 +23,14 @@ body {
     text-decoration: line-through;
 }
 
+.transparent-gray-bg {
+    background-color: rgba(128, 128, 128, 0.75);
+}
+
+.shrink-image {
+    transform: scale(0.9);
+}
+
 .logo-font {
     text-transform: uppercase;
 }

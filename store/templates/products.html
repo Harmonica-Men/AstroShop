@@ -84,12 +84,12 @@
 
                             {% if product.image %}
                             <a href="{% url 'product' product.id %}">
-                                <img class="card-img-top img-fluid" src="{{ product.image.url }}"
+                                <img class="card-img-top img-fluid shrink-image" src="{{ product.image.url }}"
                                     alt="{{ product.name }}">
                             </a>
                             {% else %}
                             <a href="#">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                                <img class="card-img-top img-fluid shrink-image" src="{{ MEDIA_URL }}noimage.png"
                                     alt="{{ product.name }}">
                             </a>
                             {% endif %}
@@ -101,7 +101,7 @@
                                 <!-- Sale details -->
                                 <div class="d-flex justify-content-center small text-warning mb-2">
                                     <div class="fa-regular fa-star"></div>
-                                    
+
                                     &nbsp;&nbsp;Sale!&nbsp;&nbsp;
                                     <div class="fa-regular fa-star"></div>
                                 </div>
@@ -114,7 +114,7 @@
                                 {% endif %}
                             </div>
 
-                            
+
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
@@ -153,7 +153,7 @@
         <div class="btt-button shadow-sm rounded-0 border border-black">
             <a class="btt-link d-flex h-100">
                 <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-            </a>	
+            </a>
         </div>
     </div>
 </div>

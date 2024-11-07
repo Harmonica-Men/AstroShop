@@ -158,28 +158,16 @@
                             </li>
                         </ul>
                     </div>
-
-
                 </nav>
             </div>
 
             <div id="delivery-banner" class="row text-center">
-                <div class="col bg-black text-red">
+                <div class="col text-black" style="background-color: rgba(128, 128, 128, 0.75);">
                     <h4 class="logo-font my-1">Free delivery on orders over 50€!</h4>
                 </div>
             </div>
+            
     </header>
-
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endfor %}
-    {% endif %}
-
-
 
     {% block page_header %}
     {% endblock %}
