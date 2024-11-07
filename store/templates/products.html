@@ -75,9 +75,6 @@
                             </p>
                             {% endif %}
 
-
-
-
                             {% if product.is_sale %}
                             <!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
@@ -86,12 +83,12 @@
                             {% endif %}
 
                             {% if product.image %}
-                            <a href=" ">
+                            <a href="{% url 'product' product.id %}">
                                 <img class="card-img-top img-fluid" src="{{ product.image.url }}"
                                     alt="{{ product.name }}">
                             </a>
                             {% else %}
-                            <a href="">
+                            <a href="#">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
                                     alt="{{ product.name }}">
                             </a>
@@ -152,14 +149,16 @@
                 </div>
             </div>
         </div>
+
+        <div class="btt-button shadow-sm rounded-0 border border-black">
+            <a class="btt-link d-flex h-100">
+                <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+            </a>	
+        </div>
     </div>
 </div>
 
-<div class="btt-button shadow-sm rounded-0 border border-black">
-    <a class="btt-link d-flex h-100">
-        <i class="fas fa-arrow-up text-black mx-auto my-auto">UP</i>
-    </a>
-</div>
+
 
 {% endblock %}
 
