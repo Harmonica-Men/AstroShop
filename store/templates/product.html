@@ -28,53 +28,48 @@
 
                         {% if product.is_sale %}
                         <div class="d-flex justify-content-center small text-warning mb-2">
-                            <div class="bi-star-fill"></div>
+                            <div class="fa-regular fa-star"></div>
+
                             &nbsp;&nbsp;Sale!&nbsp;&nbsp;
-                            <div class="bi-star-fill"></div>
+
+                            <div class="fa-regular fa-star"></div>
                         </div>
                         {% endif %}
 
-                        <div class="d-flex align-items-center">
-                            <!-- Product price or sale price -->
-                            <div class="me-3">
-                                {% if product.is_sale %}
-                                <strong class="text-muted text-decoration-line-through">${{ product.price }}</strong>
-                                &nbsp;
-                                <strong class="text-black">${{ product.sale_price }}</strong>
-                                {% else %}
-                                <strong>${{ product.price }}</strong>
-                                {% endif %}
-                            </div>
 
-
+                        <div class="card-body">
                             
+                            <div class="d-flex align-items-center">
+                                <!-- Product price or sale price -->
+                                <div class="me-3">
+                                    {% if product.is_sale %}
+                                    <strong
+                                        class="text-muted text-decoration-line-through">${{ product.price }}</strong>
+                                    &nbsp;
+                                    <strong class="text-black">${{ product.sale_price }}</strong>
+                                    {% else %}
+                                    <strong>${{ product.price }}</strong>
+                                    {% endif %}
+                                </div>
 
-
-
-                            <!-- Quantity selector -->
-                            <div class="col-md-2">Quantity:
-                                <select class="form-select form-select-sm" id="qty-cart">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
+                                <!-- Quantity selector -->
+                                <div class="col-md-2">Quantity:
+                                    <select class="form-select form-select-sm" id="qty-cart">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <a href="{% url 'category' 'Books' %}" class="dropdown-item">Books</a>
                             </div>
-
-                            <!-- {% if product.category %}
-                            <p class="small mt-1 mb-0">
-                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
-                                    <i class="fas fa-tag mr-1"></i>{{ product.category.name }}
-                                </a>
-                            </p>
-                            {% endif %} -->
-
-                            <a href="{% url 'category' 'Books' %}" class="dropdown-item">Books</a>
-
-
 
                         </div>
+
+
+
+
                     </div>
                 </div>
 
