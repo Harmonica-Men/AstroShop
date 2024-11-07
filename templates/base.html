@@ -143,15 +143,11 @@
                             </li>
                             <li class="list-inline-item">
                                 <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
-                                    href="">
+                                href="{% url 'shopcart_summary' %}">
                                     <div class="text-center">
-                                        <div><i class="fas fa-shopping-bag fa-lg"></i></div>
-                                        <p class="my-0">
-                                            {% if grand_total %}
-                                            €{{ grand_total|floatformat:2 }}
-                                            {% else %}
-                                            €0.00
-                                            {% endif %}
+                                        <div><i class="fas fa-cart-shopping fa-lg"></i></div>
+                                        <p class="my-0">Shopping Cart                                        
+                                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>                                            
                                         </p>
                                     </div>
                                 </a>
