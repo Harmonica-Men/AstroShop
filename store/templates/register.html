@@ -5,36 +5,25 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Register</h1>
+            <h1 class="display-2 fw-bolder">Register</h1>
             <p class="lead fw-normal text-white-50 mb-0">Register for a User Account...</p>
         </div>
     </div>
 </header>
 
-<div class="container">
-    <div class="row">
+<div class="container d-flex justify-content-center  mt-3 mb-3" style="min-height: calc(60vh);">
+    <div class="p-4 shadow-sm" style="width: 100%; max-width: 500px;">
 
-        <div class="col-md-6 offset-md-3">
-
-            <br /><br />
+        <div>
             <form method="POST" action="{% url 'register' %}">
                 {% csrf_token %}
 
                 {{ form.as_p }}
-                <br /><br />
                 <button type="submit" class="btn btn-secondary">
                     Register
                 </button>
 
             </form>
-
-            <br /><br />
-            <br /><br />
-            <br /><br />
-            <br /><br />
-            <br /><br />
-            <br /><br />
-            <br /><br />
         </div>
 
     </div>

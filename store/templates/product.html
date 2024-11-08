@@ -45,11 +45,9 @@
         </div>
     </div>
 
-
-
     <!-- Price, Quantity, and Action Buttons -->
-    <div class="card border-1">
-        <div class="d-flex justify-content-around align-items-center p-3">
+    <div class="card border-1 mb-3">
+        <div class="d-flex justify-content-around align-items-center">
             <!-- Product price or sale price -->
             <div class="text-center">
                 {% if product.is_sale %}
@@ -89,26 +87,4 @@
     </div>
 </div>
 
-<script>
-    $(document).on('click', '#add-cart', function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: "{% url 'shopcart_add' %}",
-            data: {
-                product_id: $('#add-cart').val(),
-                product_qty: $('#qty-cart option:selected').val(),
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-                action: 'post'
-            },
-            success: function (json) {
-                document.getElementById("cart_quantity").textContent = json.qty;
-                location.reload();
-            },
-            error: function (xhr, errmsg, err) {
-                // Handle error
-            }
-        });
-    });
-</script>
 {% endblock %}

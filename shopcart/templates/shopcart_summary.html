@@ -7,26 +7,25 @@
 <header class="bg-dark py-5">
   <div class="container px-4 px-lg-5 my-5">
     <div class="text-center text-white">
-      <h1 class="display-4 fw-bolder">Shopping Cart</h1>
-      <p class="lead fw-normal text-white-50 mb-0">View Your Cart...</p>
+      <h1 class="display-2 fw-bolder">Shopping Cart</h1>
+      <p class="lead fw-normal text-white-40 mb-2">View Your Cart ...</p>
     </div>
   </div>
 </header>
-<br />
-<div class="container">
-  {% if cart_products %}
-  {% for product in cart_products %}
 
+<div class="container d-flex justify-content-center align-items-center" style="min-height: calc(60vh);">
+    {% if cart_products %}
+  {% for product in cart_products %}
   <div class="card mb-3">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="...">
+        <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="product {{ product.image.url }}">
       </div>
       <div class="col-md-8">
         <div class="card-body">
           <div>
             <h5 class="card-title">{{ product.name }}</h5>
-            <br />
+
             <p class="card-text justified">{{ product.description }}</p>
 
             {% if product.is_sale %}
@@ -37,22 +36,15 @@
             </div>
 
             <!-- Product price-->
-            <strong>
-              ${{ product.price }}
-            </strong>
-            &nbsp;
-            ${{ product.sale_price }}
-
-
-
+            <strong>€{{ product.price }}</strong>
+            €{{ product.sale_price }}
             {% else %}
-            ${{ product.price }}
-
+            €{{ product.price }}
             {% endif %}
             <br /><br />
             <div class="row justify-content-center">
-              <div class="col-md-2">Quantity:</div>
-              <div class="col-md-2">
+              <div>Quantity:</div>
+              <div>
                 <select class="form-select form-select-sm" id="select{{product.id}}">
 
                   {% for key, value in quantities.items %}
@@ -81,19 +73,20 @@
     </div>
   </div>
 
-
-
   {% endfor %}
   <div>
-    <h3>Total: ${{ totals }}</h3>
+    <h3>Total: €{{ totals }}</h3>
     <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
-
-
   </div>
-  <br>
+
   {% else %}
-  There's Nothing In Your Cart...
-  <br>
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="p-5 shadow-sm" style="width: 100%; max-width: 400px;">
+      <div class="mb-3">
+        <strong class="text-black">There's Nothing In Your Cart ... </strong>
+      </div>
+    </div>
+  </div>
   {% endif %}
 </div>
 
