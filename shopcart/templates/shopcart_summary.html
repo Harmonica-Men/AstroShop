@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 {% block content %}
 
 <!-- Header-->
@@ -26,10 +27,10 @@
       <tbody>
         {% for product in cart_products %}
         <tr>
+
+
           <!-- Image Cell -->
           <td class="text-center">
-            
-
             <img src="{{ product.image.url }}" class="img-fluid rounded-0" alt="{{ product.name }}"
               style="max-width: 100%; height: auto;">
           </td>
@@ -38,43 +39,65 @@
           <td>
             <div class="card-body">
               <h5 class="card-title">{{ product.name }}</h5>
-             
+              <p class="card-text">{{ product.description }}</p>
+              <div class="position-relative mb-5">
+                <button type="button" data-index="{{product.id}}" class="btn btn-danger delete-product">Delete Item</button>
+              </div>
 
-              <p class="card-text">{{ product.description }}</p> 
+
 
             </div>
           </td>
 
-          <!-- Quantity Cell -->
+          <!-- Quantity selector -->
           <td class="text-center align-middle">
-            <input type="number" value="{{ product.quantity }}" min="1" class="form-control" style="max-width: 80px;">
+
+            <select class="form-select form-select-sm" id="select{{product.id}}">
+
+              {% for key, value in quantities.items %}
+              {% if key == product.id|slugify %}
+              <option selected>{{ value }}</option>
+              {% endif %}
+              {% endfor %}
+
+              {% for i in "12345" %}
+              <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+              {% endfor %}
+            </select>
+
+            <a href="#" data-index="{{ product.id }}" class="text-secondary update-cart">Update</a>
           </td>
 
           <!-- Price Cell -->
           <td class="text-center align-middle">
-            {% if product.is_sale %}
             {% if product.is_sale %}
             <div class="d-flex justify-content-center justify-content-md-start small text-warning mb-2">
               <span class="fa-regular fa-star"></span>
               <strong class="mx-2">Sale!</strong>
               <span class="fa-regular fa-star"></span>
             </div>
-            {% endif %}
             <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
             <strong>€{{ product.sale_price }}</strong>
             {% else %}
-            <strong>€{{ product.price }}</strong>
+            <strong class="text-black">€{{ product.price }}</strong>
             {% endif %}
+
+
+
+
+
           </td>
+
         </tr>
         {% endfor %}
+
       </tbody>
     </table>
     {% else %}
     <div class="container d-flex justify-content-center align-items-center">
       <div class="p-5 shadow-sm" style="width: 100%; max-width: 400px;">
         <div class="mb-3">
-          <strong class="text-black" style="font-size: x-large;">There's Nothing In Your Cart ... </strong>
+          <strong class="text-black" style="font-size: xx-large;">There's Nothing In Your Cart ... </strong>
         </div>
       </div>
     </div>
@@ -84,13 +107,17 @@
   <!-- Total and Checkout Section -->
   <div class="card border-1 mb-3">
     <div class="card-body d-flex justify-content-between align-items-center">
-      <h3>Total: €{{ totals }}</h3>
+      <a href="{% url 'products'%}" class="btn btn-secondary">Back To Products</a>
+
+
+
       <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
+
+      <h3 class="text-black">Total: €{{ totals }}</h3>
+
     </div>
   </div>
 </div>
-
-
 
 
 

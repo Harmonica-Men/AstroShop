@@ -95,7 +95,6 @@ def update_product(request, pk):
     return render(request, 'update_product.html', {'form': form, 'product': product})
 
 
-
 def delete_product_confirmation(request, pk):
     product = get_object_or_404(Product, pk=pk)
     return render(request, 'delete_product_confirm.html', {'product': product})
