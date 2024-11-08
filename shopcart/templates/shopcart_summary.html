@@ -10,8 +10,8 @@
     </div>
   </div>
 </header>
-
-<div class="container mt-3">
+<br>
+<div class="container justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(55vh);">
   <div class="card border-1 mb-3 p-3">
     {% if cart_products %}
     <table class="table no-border-table">
@@ -80,14 +80,20 @@
             {% else %}
             <strong class="text-black">€{{ product.price }}</strong>
             {% endif %}
+
+
+
+
+
           </td>
+
         </tr>
         {% endfor %}
 
       </tbody>
     </table>
     {% else %}
-    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(42vh);">
+    <div class="container  d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(42vh);">
       <div class="p-5 shadow-lg" style="width: 100%; max-width: 567px;">
         <div class="mb-3">
           <strong class="text-black" style="font-size: xx-large;">There's Nothing In Your Cart ... </strong>
