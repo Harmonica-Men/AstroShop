@@ -25,17 +25,18 @@
                             <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort
                                 by...
                             </option>
+
+                            <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name
+                                (A-Z)</option>
+                            <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>
+                                Name
+                                (Z-A)</option>
                             <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>
                                 Price
                                 (low to high)</option>
                             <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>
                                 Price
                                 (high to low)</option>
-                            <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name
-                                (A-Z)</option>
-                            <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>
-                                Name
-                                (Z-A)</option>
                         </select>
                     </div>
                 </div>
@@ -52,25 +53,25 @@
 
                 {% for product in products %}
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 text-center">
-                    <div class="card h-100 border-1">
+                    <div class="card h-100 border-1 position-relative">
                         {% if product.category %}
-                        <p class="large mt-1 mb-0 ml-3">
-                            <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
-                                <i class="fas fa-tag mr-1"></i>{{ product.category.name }}
-                            </a>
-                        </p>
+                            <p class="position-absolute top-0 start-0 mt-2 ml-2 ms-2 mb-0">
+                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                                    <i class="fas fa-tag me-1"></i>{{ product.category.name }}
+                                </a>
+                            </p>
                         {% endif %}
-
+            
                         {% if product.is_sale %}
                         <!-- Sale badge-->
                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
                             Sale
                         </div>
                         {% endif %}
-
+            
                         {% if product.image %}
                         <a href="{% url 'product' product.id %}">
-                            <img class="card-img-top img-fluid shrink-image" src="{{ product.image.url }}"
+                            <img class="card-img-top img-fluid shrink-image mt-5" src="{{ product.image.url }}"
                                 alt="{{ product.name }}">
                         </a>
                         {% else %}
@@ -79,10 +80,10 @@
                                 alt="{{ product.name }}">
                         </a>
                         {% endif %}
-
+            
                         <div class="card-body pb-0 mb-2">
                             <p class="mb-0 fw-bolder">{{ product.name }}</p>
-
+            
                             {% if product.is_sale %}
                             <!-- Sale details -->
                             <div class="d-flex justify-content-center small text-warning ">
@@ -91,7 +92,7 @@
                                 <span class="fa-regular fa-star"></span>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <div class="text-muted text-center mr-2" style="text-decoration: line-through;">
+                                <div class="text-muted text-center me-2" style="text-decoration: line-through;">
                                     €{{ product.price }}</div>
                                 <strong class="text-black"
                                     style="font-size: 1.25rem;">€{{ product.sale_price }}</strong>
@@ -103,6 +104,8 @@
                         </div>
                     </div>
                 </div>
+            
+                <!-- Responsive divider rows for different screen sizes -->
                 {% if forloop.counter|divisibleby:1 %}
                 <div class="col-12 d-sm-none mb-1">
                     <hr> test
@@ -123,7 +126,14 @@
                     <hr>
                 </div>
                 {% endif %}
-                {% endfor %}
+            {% endfor %}
+            
+
+
+
+
+
+
             </div>
         </div>
     </div>
