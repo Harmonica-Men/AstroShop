@@ -42,12 +42,14 @@
                             <h5 class="fw-bolder">{{ product.name }}</h5>
                             <!-- Sale -->
                             <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="fa-regular fa-star"></div>
-                                <strong>Sales !!</strong>
-                                <div class="fa-regular fa-star"></div>
+                                <span class="fa-regular fa-star"></span>
+                                <strong class="mx-2" style="font-size: 1.25rem;">Sale!</strong>
+                                <span class="fa-regular fa-star"></span>
                             </div>
 
                             <!-- Product price-->
+
+
 
                             <div class="text-muted text-center mr-2" style="text-decoration: line-through;">
                                 €{{ product.price }}</div>
@@ -74,7 +76,7 @@
                             <!-- Product name-->
                             <h5 class="fw-bolder">{{ product.name }}</h5>
                             <!-- Product price-->
-                            ${{ product.price }}
+                            <strong class="text-black">€{{ product.price }} </strong>
                         </div>
                     </div>
 
