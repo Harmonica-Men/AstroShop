@@ -19,6 +19,15 @@ body {
     width: 1.5rem;
 }
 
+.icon-white {
+    color: white;
+    transition: color 0.3s ease; /* Smooth transition effect */
+}
+
+.icon-white:hover {
+    color: #ccc; /* Light gray on hover */
+}
+
 .strike-through {
     text-decoration: line-through;
 }
