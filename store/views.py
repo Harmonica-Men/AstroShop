@@ -161,7 +161,7 @@ def update_profile(request):
                 shipping_user.save()
 
             messages.success(request, "Your Info Has Been Updated!!")
-            return redirect('home')
+            return redirect('products')
         
         return render(request, "update_profile.html", {'form': form, 'shipping_form': shipping_form})
     

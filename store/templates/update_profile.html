@@ -15,28 +15,20 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <br>
-            <strong>Billing Information</strong>
+            <strong class="text-black" >Billing Information</strong>
             <br>
             <form method="POST" action="{% url 'update_profile' %}">
                 {% csrf_token %}
-
                 {{ form.as_p }}
                 <br>
-                <strong>Shipping Information</strong>
+                <strong class="text-black">Shipping Information</strong>
                 <br>
-
                 {{ shipping_form.as_p }}
-
-
-                <br>
-                <button type="submit" class="btn btn-secondary">
+                <button type="submit" class="btn btn-secondary mb-3">
                     Update Profile
                 </button>
             </form>
-
-            <br>
         </div>
-
     </div>
 </div>
 
