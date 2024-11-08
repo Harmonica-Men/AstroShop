@@ -14,7 +14,7 @@
 </header>
 
 <div class="container d-flex justify-content-center align-items-center" style="min-height: calc(60vh);">
-    {% if cart_products %}
+  {% if cart_products %}
   {% for product in cart_products %}
   <div class="card mb-3">
     <div class="row g-0">
@@ -30,9 +30,9 @@
 
             {% if product.is_sale %}
             <div class="d-flex justify-content-center small text-warning mb-2">
-              <div class="bi-star-fill"></div>
-              &nbsp;&nbsp;Sale!&nbsp;&nbsp;
-              <div class="bi-star-fill"></div>
+              <div class="fa-regular fa-star"></div>
+              <strong>Sales !!</strong>
+              <div class="fa-regular fa-star"></div>
             </div>
 
             <!-- Product price-->
@@ -41,19 +41,16 @@
             {% else %}
             €{{ product.price }}
             {% endif %}
-            <br /><br />
+            <br>
             <div class="row justify-content-center">
               <div>Quantity:</div>
               <div>
                 <select class="form-select form-select-sm" id="select{{product.id}}">
-
                   {% for key, value in quantities.items %}
                   {% if key == product.id|slugify %}
                   <option selected>{{ value }}</option>
                   {% endif %}
                   {% endfor %}
-
-
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>

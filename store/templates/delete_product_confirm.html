@@ -1,12 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
-    <h2>Are you sure you want to delete "{{ product.name }}"?</h2>
-    <p>This action cannot be undone.</p>
-    <form action="{% url 'delete_product' product.id %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Yes, Delete</button>
-        <a href="{% url 'product' product.id %}" class="btn btn-secondary">Cancel</a>
-    </form>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Delete Product</h1>
+            <p class="lead fw-normal text-white-40 mb-2">View Your Cart ...</p>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="container d-flex justify-content-center align-items-center mt-5 mb-3" style="min-height: calc(55vh);">
+    <div class="p-4 shadow-sm" style="width: 100%; max-width: 750px;">
+
+        <h2>Are you sure you want to delete "{{ product.name }}"?</h2>
+        <p>This action cannot be undone.</p>
+        <form action="{% url 'delete_product' product.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger mr-3">Yes, Delete</button>
+            <a href="{% url 'product' product.id %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
 </div>
+
+
 {% endblock %}

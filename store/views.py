@@ -110,10 +110,10 @@ def delete_product(request, pk):
         product = get_object_or_404(Product, pk=pk)
         product.delete()
         messages.success(request, "Product has been deleted successfully.")
-        return redirect('home')  # Redirect to home or any other page after deletion
+        return redirect('products')  # Redirect to home or any other page after deletion
     else:
         messages.error(request, "You do not have permission to delete this product.")
-        return redirect('home')
+        return redirect('products')
 
 def search(request):
 	# Determine if they filled out the form
