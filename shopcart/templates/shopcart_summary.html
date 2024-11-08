@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
 
 <!-- Header-->
@@ -13,79 +11,88 @@
   </div>
 </header>
 
-<div class="container d-flex justify-content-center align-items-center" style="min-height: calc(60vh);">
-  {% if cart_products %}
-  {% for product in cart_products %}
-  <div class="card mb-3">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="product {{ product.image.url }}">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <div>
-            <h5 class="card-title">{{ product.name }}</h5>
+<div class="container mt-3">
+  <div class="card border-1 mb-3 p-3">
+    {% if cart_products %}
+    <table class="table no-border-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Image</th>
+          <th style="width: 75%;">Product Details</th>
+          <th style="width: 5%;">Quantity</th>
+          <th style="width: 15%;">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in cart_products %}
+        <tr>
+          <!-- Image Cell -->
+          <td class="text-center">
+            
 
-            <p class="card-text justified">{{ product.description }}</p>
+            <img src="{{ product.image.url }}" class="img-fluid rounded-0" alt="{{ product.name }}"
+              style="max-width: 100%; height: auto;">
+          </td>
 
+          <!-- Product Details Cell -->
+          <td>
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+             
+
+              <p class="card-text">{{ product.description }}</p> 
+
+            </div>
+          </td>
+
+          <!-- Quantity Cell -->
+          <td class="text-center align-middle">
+            <input type="number" value="{{ product.quantity }}" min="1" class="form-control" style="max-width: 80px;">
+          </td>
+
+          <!-- Price Cell -->
+          <td class="text-center align-middle">
             {% if product.is_sale %}
-            <div class="d-flex justify-content-center small text-warning mb-2">
-              <div class="fa-regular fa-star"></div>
-              <strong>Sales !!</strong>
-              <div class="fa-regular fa-star"></div>
+            {% if product.is_sale %}
+            <div class="d-flex justify-content-center justify-content-md-start small text-warning mb-2">
+              <span class="fa-regular fa-star"></span>
+              <strong class="mx-2">Sale!</strong>
+              <span class="fa-regular fa-star"></span>
             </div>
-
-            <!-- Product price-->
-            <strong>€{{ product.price }}</strong>
-            €{{ product.sale_price }}
-            {% else %}
-            €{{ product.price }}
             {% endif %}
-            <br>
-            <div class="row justify-content-center">
-              <div>Quantity:</div>
-              <div>
-                <select class="form-select form-select-sm" id="select{{product.id}}">
-                  {% for key, value in quantities.items %}
-                  {% if key == product.id|slugify %}
-                  <option selected>{{ value }}</option>
-                  {% endif %}
-                  {% endfor %}
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-              </div>
-            </div>
-            <br /><br />
-            <a href="{% url 'home'%}" class="btn btn-secondary">Home</a>
-            <button type="button" data-index="{{product.id}}" class="btn btn-secondary update-cart">Update</button>
-            <button type="button" data-index="{{product.id}}" class="btn btn-danger delete-product">Remove</button>
-
-          </div>
+            <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
+            <strong>€{{ product.sale_price }}</strong>
+            {% else %}
+            <strong>€{{ product.price }}</strong>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="container d-flex justify-content-center align-items-center">
+      <div class="p-5 shadow-sm" style="width: 100%; max-width: 400px;">
+        <div class="mb-3">
+          <strong class="text-black" style="font-size: x-large;">There's Nothing In Your Cart ... </strong>
         </div>
       </div>
     </div>
+    {% endif %}
   </div>
 
-  {% endfor %}
-  <div>
-    <h3>Total: €{{ totals }}</h3>
-    <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
-  </div>
-
-  {% else %}
-  <div class="container d-flex justify-content-center align-items-center">
-    <div class="p-5 shadow-sm" style="width: 100%; max-width: 400px;">
-      <div class="mb-3">
-        <strong class="text-black">There's Nothing In Your Cart ... </strong>
-      </div>
+  <!-- Total and Checkout Section -->
+  <div class="card border-1 mb-3">
+    <div class="card-body d-flex justify-content-between align-items-center">
+      <h3>Total: €{{ totals }}</h3>
+      <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
     </div>
   </div>
-  {% endif %}
 </div>
+
+
+
+
 
 
 
