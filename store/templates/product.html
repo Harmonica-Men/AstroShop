@@ -1,34 +1,38 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
-
 {% block content %}
-<div class="container">
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-5 fw-bolder">Product Detail </h1>
+            <p class="lead fw-normal text-white-40 mb-2">Details...</p>
+          </div>
+    </div>
+</header>
+
+
+<div class="container mt-3">
     <div class="card border-1 mb-3 p-3">
         {% if product.category %}
-        <p class="large mt-1 mb-0 ml-3">
+        <p class="large mt-1 mb-0 ml-4">
             <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
                 <i class="fas fa-tag mr-1"></i>{{ product.category.name }}
             </a>
         </p>
         {% endif %}
-        <div class="d-flex flex-column flex-md-row align-items-center">
 
-            <!-- Image container with 40% width -->
-            <div class="flex-shrink-0 mb-3 mb-md-0" style="width: 40%;">
-                <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}"
+
+        <div class="d-flex justify-content-between ml-5 mr-5">            
+            <!-- Image container with 33% width -->
+            <div class="flex-shrink-0 mb-3 mb-md-0" style="width: 33%;">
+                <img src="{{ product.image.url }}" class="img-fluid rounded-0" alt="{{ product.name }}"
                     style="width: 100%; height: auto;">
             </div>
 
-            <!-- Text container with 60% width -->
-            <div class="text-md-left" style="width: 60%;">
+            <!-- Text container with 55% width -->
+            <div class="text-md-left ml-5" style="width: 55%;">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description }}</p>
@@ -70,12 +74,12 @@
 
             <!-- Centered buttons -->
             <div class="text-center">
-                <button type="button" value="{{ product.id }}" class="btn btn-secondary mt-2 mb-2" id="add-cart">
+                <button type="button" value="{{ product.id }}" class="btn btn-secondary mt-2 mb-2 mr-4" id="add-cart">
                     Add To Cart
                 </button>
 
                 {% if user.is_superuser %}
-                <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger mt-2 mb-2">
+                <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger mt-2 mb-2 mr-4">
                     Delete Product
                 </a>
                 <a href="{% url 'update_product' product.id %}" class="btn btn-warning mt-2 mb-2">
