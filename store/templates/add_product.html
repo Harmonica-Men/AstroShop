@@ -13,49 +13,57 @@
 
 
 
-<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(55vh);">
-    <div class="p-4 shadow-sm" style="width: 100%; max-width: 500px;">
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
+    <div class="p-4  shadow-lg" style="width: 100%; max-width: 850px;">
 
 
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-
-
-            <div class="mb-2">
-                <label for="name" class="form-label">Product Name</label>
-                {{ form.name }}
+            <div class="row mb-2 border-1">
+                <label for="name" class="col-sm-3 col-form-label">Product Name</label>
+                <div class="col-sm-9">
+                    {{ form.name }}
+                </div>
             </div>
-
-            <div class="mb-2">
-                <label for="price" class="form-label">Price</label>
-                {{ form.price }}
+            <div class="row mb-2">
+                <label for="price" class="col-sm-3 col-form-label">Price</label>
+                <div class="col-sm-9">
+                    {{ form.price }}
+                </div>
             </div>
-
-            <div class="mb-2">
-                <label for="category" class="form-label">Category</label>
-                {{ form.category }}
+            <div class="row mb-2">
+                <label for="category" class="col-sm-3 col-form-label">Category</label>
+                <div class="col-sm-9">
+                    {{ form.category }}
+                </div>
             </div>
-
-            <div class="mb-2">
-                <label for="description" class="form-label">Description</label>
-                {{ form.description }}
+            <div class="row mb-2">
+                <label for="description" class="col-sm-3 col-form-label">Description</label>
+                <div class="col-sm-9">
+                    {{ form.description }}
+                </div>
             </div>
-
-            <div class="mb-2">
-                <label for="image" class="form-label">Image</label>
-                {{ form.image }}
+            <div class="row mb-2">
+                <label for="image" class="col-sm-3 col-form-label">Image</label>
+                <div class="col-sm-9">
+                    {{ form.image }}
+                </div>
             </div>
-
-            <div class="mb-2">
-                <label for="is_sale" class="form-label">Is Sale</label>
-                {{ form.is_sale }}
+            <div class="row mb-2">
+                <label for="is_sale" class="col-sm-3 col-form-label">Is Sale</label>
+                <div class="col-sm-9">
+                    {{ form.is_sale }}
+                </div>
             </div>
-
-            <div class="mb-2">
-                <label for="sale_price" class="form-label">Sale Price</label>
-                {{ form.is_sale }}
+            <div class="row mb-2">
+                <label for="sale_price" class="col-sm-3 col-form-label">Sale Price</label>
+                <div class="col-sm-9">
+                    {{ form.sale_price }}
+                </div>
             </div>
         </form>
+        
+        
 
         <div class="mt-3 mb-3">
 

@@ -23,10 +23,13 @@ body {
     text-decoration: line-through;
 }
 
+.wider-input input {
+    width: 120%;
+}
+
 
 .fixed-width-label {
     width: 120px;
-    /* Set this width as needed */
 }
 
 
