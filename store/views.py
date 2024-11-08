@@ -60,16 +60,12 @@ def all_products(request):
         'current_categories': categories,
         'current_sorting': current_sorting,
 	  }
-
     return render(request, 'products.html', context)
 
 
 def index(request):
     """ A view to return the index page """
-
     return render(request, 'index.html')
-
-
 
 
 @user_passes_test(lambda u: u.is_superuser)

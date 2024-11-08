@@ -15,7 +15,7 @@
     {% endblock %}
 
     {% block corecss %}
-   
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
@@ -43,11 +43,14 @@
         const aboutUrl = "{% url 'about' %}";
     </script>
 
-    
-    
+
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     {% endblock %}
 
     {% block extra_js %}
@@ -126,11 +129,12 @@
                             </li>
                             <li class="list-inline-item">
                                 <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
-                                href="{% url 'shopcart_summary' %}">
+                                    href="{% url 'shopcart_summary' %}">
                                     <div class="text-center">
                                         <div><i class="fas fa-cart-shopping fa-lg"></i></div>
-                                        <p class="my-0">Shopping Cart                                        
-                                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>                                            
+                                        <p class="my-0">Shop Cart Items
+                                            <span class="badge bg-dark text-white ms-1 rounded-pill"
+                                                id="cart_quantity">{{ cart|length }}</span>
                                         </p>
                                     </div>
                                 </a>
@@ -138,7 +142,7 @@
                         </ul>
                     </div>
                 </nav>
-            </div>          
+            </div>
     </header>
 
     {% block page_header %}
