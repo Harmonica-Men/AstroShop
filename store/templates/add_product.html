@@ -15,66 +15,86 @@
 
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
     <div class="p-4  shadow-lg" style="width: 100%; max-width: 850px;">
-
-
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="row mb-2 border-1">
-                <label for="name" class="col-sm-3 col-form-label">Product Name</label>
-                <div class="col-sm-9">
-                    {{ form.name }}
-                </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Product Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Product Name">
             </div>
-            <div class="row mb-2">
-                <label for="price" class="col-sm-3 col-form-label">Price</label>
-                <div class="col-sm-9">
-                    {{ form.price }}
-                </div>
+
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" class="form-control" name="price" placeholder="Price">
             </div>
-            <div class="row mb-2">
-                <label for="category" class="col-sm-3 col-form-label">Category</label>
-                <div class="col-sm-9">
-                    {{ form.category }}
-                </div>
+
+
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                {{ form.category }}
             </div>
-            <div class="row mb-2">
-                <label for="description" class="col-sm-3 col-form-label">Description</label>
-                <div class="col-sm-9">
-                    {{ form.description }}
-                </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" name="description" placeholder="Description"></textarea>
             </div>
-            <div class="row mb-2">
-                <label for="image" class="col-sm-3 col-form-label">Image</label>
-                <div class="col-sm-9">
-                    {{ form.image }}
-                </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" class="form-control border-0" name="image">
             </div>
-            <div class="row mb-2">
-                <label for="is_sale" class="col-sm-3 col-form-label">Is Sale</label>
-                <div class="col-sm-9">
-                    {{ form.is_sale }}
+
+
+            <div class="mb-3 row">
+                <div class="col-sm-6">
+                    <label for="is_sale" class="form-label">Is Sale</label>
+                    <select class="form-control" name="is_sale">
+                        <option value="True">Yes</option>
+                        <option value="False" selected>No</option>
+                    </select>
                 </div>
-            </div>
-            <div class="row mb-2">
-                <label for="sale_price" class="col-sm-3 col-form-label">Sale Price</label>
-                <div class="col-sm-9">
-                    {{ form.sale_price }}
+
+                <div class="col-sm-6">
+                    <label for="sale_price" class="form-label">Sale Price</label>
+                    <input type="text" class="form-control" name="sale_price" placeholder="Sale Price">
                 </div>
             </div>
         </form>
-        
-        
 
-        <div class="mt-3 mb-3">
-
-        <button type="submit" class="btn btn-success">Add Product</button>
-        <a href="{% url 'home' %}" class="btn btn-secondary ml-3">Cancel</a>
-
+        <div class="mt-3 mb-3 text-center">
+            <button type="submit" class="btn btn-success">Add Product</button>
+            <a href="{% url 'products' %}" class="btn btn-secondary ml-5 add">Cancel</a>
         </div>
-
-
     </div>
 </div>
+
+
+<script>
+    // Check if button pressed
+    $(document).on('click', '.add-cart-btn', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'shopcart_add' %}",
+            data: {
+                product_id: $(this).val(),
+                // product_id: $('#add-cart').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+
+
+            success: function (json) {
+                document.getElementById('cart_quantity').textContent = json.qty
+                // debug from console
+                // console.log(json);
+            },
+            error: function (xhr, errmsg, err) {
+                console.log("Error: " + errmsg);
+                alert("An error occurred: " + errmsg);
+            }
+        });
+    });
+</script>
 
 
 {% endblock %}

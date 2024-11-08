@@ -68,7 +68,7 @@ def index(request):
     return render(request, 'index.html')
 
 
-@user_passes_test(lambda u: u.is_superuser)
+# @user_passes_test(lambda u: u.is_superuser)
 def add_product(request):
     if request.method == "POST":
         form = UpdateProductForm(request.POST, request.FILES)  # We use UpdateProductForm to add new products as well
