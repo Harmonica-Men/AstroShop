@@ -1,25 +1,20 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-
-{% endblock %}
-
 {% block content %}
 
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col text-center">
-            <h2 class="logo-font">Products</h2>
-            <hr class="w-50 mb-1">
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-4">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder mt-5">Products</h1>
+             <br>
+            <p class="lead fw-normal text-white-40 mb-2">Welcome To Astro Shop E-commerce ...</p>
         </div>
     </div>
+</header>
+
+
+<div class="container-fluid">   
     <div class="row">
         <div class="product-container col-10 offset-1">
             <div class="row mt-2 mb-2">
@@ -105,16 +100,6 @@
                             €{{ product.price }}
                             {% endif %}
                         </div>
-
-
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="{% url 'product' product.id %}">View
-                                    Product</a>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
                 {% if forloop.counter|divisibleby:1 %}
