@@ -11,17 +11,21 @@
     </div>
 </header>
 
-<div class="container d-flex justify-content-center  mt-3 mb-3" style="min-height: calc(60vh);">
-    <div class="p-4 shadow-sm" style="width: 100%; max-width: 500px;">
-
-        <div>
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(58vh);">
+    <div class="row shadow-lg" style="width: 100%; max-width: 500px;">
+ 
+        <div class="col-md-12 mt-3">
             <form method="POST" action="{% url 'register' %}">
                 {% csrf_token %}
 
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-secondary">
-                    Register
-                </button>
+                
+                <!-- Button wrapped in a div for centering -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-secondary mt-3 mb-3">
+                        Register
+                    </button>
+                </div>
 
             </form>
         </div>
