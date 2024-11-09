@@ -71,10 +71,82 @@
                         </tfoot>
                     </table>
 
-                    <div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-header mb-3">
+                                Shipping Info
+                            </div>
 
-                        <a href="{% url 'shipping_info' %}" class="btn btn-md btn-secondary">Proceed</a>
+                            <form method="POST" action="{% url 'billing_info' %}">
+                                {% csrf_token %}
+                            
+                                <div class="mb-3 ml-1 row">
+                                    <label for="{{ shipping_form.shipping_full_name.id_for_label }}" class="col-sm-4 col-form-label">Name</label>
+                                    <div class="col-sm-8">
+                                        {{ shipping_form.shipping_full_name }}
+                                    </div>
+                                </div>
+                            
+                                <div class="mb-3 ml-1 row">
+                                    <label for="{{ shipping_form.shipping_email.id_for_label }}" class="col-sm-4 col-form-label">Email</label>
+                                    <div class="col-sm-8">
+                                        {{ shipping_form.shipping_email }}
+                                    </div>
+                                </div>
+                            
+                                <div class="mb-3 ml-1 row">
+                                    <label for="{{ shipping_form.shipping_address1.id_for_label }}" class="col-sm-4 col-form-label">Address 1</label>
+                                    <div class="col-sm-8">
+                                        {{ shipping_form.shipping_address1 }}
+                                    </div>
+                                </div>
+                            
+                                <div class="mb-3 ml-1 row">
+                                    <label for="{{ shipping_form.shipping_address2.id_for_label }}" class="col-sm-4 col-form-label">Address 2</label>
+                                    <div class="col-sm-8">
+                                        {{ shipping_form.shipping_address2 }}
+                                    </div>
+                                </div>
+                            
+                                <div class="mb-3 ml-1 row">
+                                    <label for="{{ shipping_form.shipping_city.id_for_label }}" class="col-sm-4 col-form-label">City</label>
+                                    <div class="col-sm-8">
+                                        {{ shipping_form.shipping_city }}
+                                    </div>
+                                </div>
+                            
+                                <div class="mb-3 ml-1 row">
+                                    <label for="{{ shipping_form.shipping_state.id_for_label }}" class="col-sm-4 col-form-label">State</label>
+                                    <div class="col-sm-8">
+                                        {{ shipping_form.shipping_state }}
+                                    </div>
+                                </div>
+                            
+                                <div class="mb-3 ml-1 row">
+                                    <label for="{{ shipping_form.shipping_zipcode.id_for_label }}" class="col-sm-4 col-form-label">Zip Code</label>
+                                    <div class="col-sm-8">
+                                        {{ shipping_form.shipping_zipcode }}
+                                    </div>
+                                </div>
+                            
+                                <div class="mb-3 ml-1 row">
+                                    <label for="{{ shipping_form.shipping_country.id_for_label }}" class="col-sm-4 col-form-label">Country</label>
+                                    <div class="col-sm-8">
+                                        {{ shipping_form.shipping_country }}
+                                    </div>
+                                </div>
+                            
+                                <div class="d-flex justify-content-center mt-5">
+                                    <button type="submit" class="btn btn-secondary">
+                                        Continue To Billing
+                                    </button>
+                                </div>
+                            
+                            </form>
+                            
 
+                         
+                        </div>
                     </div>
 
                 </div>

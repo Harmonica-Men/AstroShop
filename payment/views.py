@@ -11,11 +11,29 @@ from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 import uuid # unique user id for duplictate orders
 
-def shipped_info(request):
+def shipping_info(request):
+	# Get the cart
+	# cart = Cart(request)
+	# cart_products = cart.get_prods
+	# quantities = cart.get_quants
+	# totals = cart.cart_total()
 
-    return render(request, "payment/shipping_info.html", {})
+	if request.user.is_authenticated:
+		# Checkout as logged in user
+		# Shipping User
+		shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
+		# Shipping Form
+		shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
+		return render(request, "payment/shipping_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_form":shipping_form })
+	else:
+		# Checkout as guest
+		shipping_form = ShippingForm(request.POST or None)
+		return render(request, "payment/checkout.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_form":shipping_form})
 
 	
+
+
+
 
 def orders(request, pk):
 	if request.user.is_authenticated and request.user.is_superuser:
