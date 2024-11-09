@@ -10,13 +10,13 @@
     </div>
   </div>
 </header>
-<br>
+
 <div class="container justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(55vh);">
   <div class="card shadow-lg rounded-0 mb-3 p-3">
     {% if cart_products %}
     <table class="table no-border-table">
       <thead>
-        <tr>
+        <tr class="text-center">
           <th style="width: 15%;">Image</th>
           <th style="width: 75%;">Product Details</th>
           <th style="width: 5%;">Quantity</th>
@@ -29,7 +29,7 @@
 
 
           <!-- Image Cell -->
-          <td class="text-center">
+          <td>
             <img src="{{ product.image.url }}" class="img-fluid rounded-0" alt="{{ product.name }}"
               style="max-width: 100%; height: auto;">
           </td>
@@ -37,14 +37,24 @@
           <!-- Product Details Cell -->
           <td>
             <div class="card-body">
+              
               <h5 class="product-name card-title">{{ product.name }}</h5>
+
+
+              {% if product.is_sale %}
+              <div class="d-flex justify-content-center justify-content-md-start xx-large text-danger mb-2">
+                <span class="fa-regular fa-star"></span>
+                <strong class="mx-2">Sale!</strong>
+                <span class="fa-regular fa-star"></span>
+              </div> 
+
+              {% endif %}
+
+
               <p class="card-text">{{ product.description }}</p>
               <div class="position-relative mb-5">
                 <button type="button" data-index="{{product.id}}" class="btn btn-danger delete-product">Delete Item</button>
               </div>
-
-
-
             </div>
           </td>
 
@@ -70,23 +80,13 @@
           <!-- Price Cell -->
           <td class="text-center align-middle">
             {% if product.is_sale %}
-            <div class="d-flex justify-content-center justify-content-md-start small text-warning mb-2">
-              <span class="fa-regular fa-star"></span>
-              <strong class="mx-2">Sale!</strong>
-              <span class="fa-regular fa-star"></span>
-            </div>
-            <div class="product-price text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
-            <strong>€{{ product.sale_price }}</strong>
+            
+            <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
+            <strong class="product-price">€{{ product.sale_price }}</strong>
             {% else %}
             <strong class="product-price text-black">€{{ product.price }}</strong>
             {% endif %}
-
-
-
-
-
           </td>
-
         </tr>
         {% endfor %}
 

@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
-
-
+{% load custom_filters %}
 {% block content %}
 
-<!-- Header-->
+<!-- Header -->
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
@@ -12,40 +11,66 @@
         </div>
     </div>
 </header>
-<br />
+
+
 <div class="container">
     <div class="row">
-
         <div class="col-md-6 offset-md-3">
+
+            <!-- Order Summary Card -->
             <div class="card">
                 <div class="card-header">
                     Order Summary
                 </div>
                 <div class="card-body">
-                    {% for product in cart_products %}
-                    {{ product.name }}:
-                    {% if product.is_sale %}
-                    ${{ product.sale_price }}
-                    {% else %}
-                    ${{ product.price }}
-                    {% endif %}
-
-                    <br />
-                    <small>Quantity:
-                        {% for key, value in quantities.items %}
-                        {% if key == product.id|slugify %}
-                        {{ value }}
-                        {% endif %}
-                        {% endfor %}</small>
-                    <br /><br />
-
-                    {% endfor %}
-                    Total: ${{ totals }}
-                    <br /><br />
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in cart_products %}
+                            <tr>
+                                <td>{{ product.name }}</td>
+                                <td>
+                                    {% if product.is_sale %}
+                                        €{{ product.sale_price }}
+                                    {% else %}
+                                        €{{ product.price }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% for key, value in quantities.items %}
+                                        {% if key == product.id|slugify %}
+                                            {{ value }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    €{{ product|calculate_subtotal:quantities|floatformat:2 }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr class="product-price">
+                                <th colspan="3" class="text-end ">Total:</th>
+                                <th>€{{ totals }}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
                     <a href="{% url 'shopcart_summary' %}" class="btn btn-sm btn-outline-secondary">Update Items</a>
                 </div>
             </div>
-            <br /><br />
+
+
+            <br />
+
+            <!-- Shipping Info Card -->
             <div class="card">
                 <div class="card-header">
                     Shipping Info
@@ -54,26 +79,15 @@
                     <form method="POST" action="{% url 'billing_info' %}">
                         {% csrf_token %}
                         {{ shipping_form.as_p }}
-
+                        <button type="submit" class="btn btn-secondary mt-3">
+                            Continue To Billing
+                        </button>
+                    </form>
                 </div>
             </div>
-            <br />
-
-            <button type="submit" class="btn btn-secondary">
-                Continue To Billing
-            </button>
-
-            </form>
-            <br /><br />
-
 
         </div>
     </div>
 </div>
-
-
-
-
-
 
 {% endblock %}
