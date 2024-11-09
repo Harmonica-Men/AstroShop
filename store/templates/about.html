@@ -6,14 +6,16 @@
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">About Us ...</h1>
-             <br>
+            <br>
             <p class="lead fw-normal text-white-40 mb-2">Welcome To Astro Shop E-commerce ...</p>
         </div>
     </div>
 </header>
 
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
-    <div class="row rounded-0 shadow-lg" style="width: 100%; max-width: 850px;">
+    
+
+    <div class="p-5 shadow-lg" style="width: 100%; max-width: 1200px;">
         <p class="p-4">
             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
@@ -37,8 +39,14 @@
             Hendrerit turpis facilisis laoreet dapibus eget hac. Curae conubia mi eget natoque parturient lectus
             consequat.
         </p>
-     
-    </div>
+
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
+        </div>
+
+
+        </div>
+
 </div>
 
 {% endblock %}

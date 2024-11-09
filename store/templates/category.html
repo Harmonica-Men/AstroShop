@@ -16,17 +16,23 @@
 </header>
 <!-- Section-->
 <section class="py-5">
-
     <div class="container px-4 px-lg-5 mt-5">
+        <p class="text-muted mt-3 text-center text-md-left">
 
+            {{ products|length }} Products
+        </p>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
+
+
+
             {% for product in products %}
-            
+
+
             {% if product.is_sale %}
 
             <div class="col mb-5">
-                
+
                 <div class="card h-100 shadow-lg rounded-0">
                     <!-- Sale badge-->
                     <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
@@ -53,7 +59,8 @@
 
 
 
-                            <div class="product-price text-muted text-center mr-2" style="text-decoration: line-through;">
+                            <div class="product-price text-muted text-center mr-2"
+                                style="text-decoration: line-through;">
                                 €{{ product.price }}</div>
                             <strong class="text-black" style="font-size: 1.25rem;">€{{ product.sale_price }}</strong>
 
