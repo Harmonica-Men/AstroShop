@@ -13,9 +13,10 @@
 </header>
 
 
-<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(58vh);">
-    <!-- <div class="row shadow-lg" style="width: 100%; max-width: 1200px; height: 100%; max-height: 1000px;"> -->
-        <div class="col shadow-lg" style="width: 1800px; height: 700px;">
+<!-- Item card -->
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(48vh);">
+    <div class="col shadow-lg" style="width: 100%; max-width: 1600px;">
+
         {% if product.category %}
         <p class="large mt-1 mb-0 ml-4">
             <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
@@ -24,16 +25,13 @@
         </p>
         {% endif %}
 
-
-        <div class="d-flex justify-content-between ml-5 mr-5">
-            <!-- Image container with 30% width -->
+        <div class="d-flex flex-column flex-md-row align-items-start mt-3">
             <div class="flex-shrink-0 mb-3 mb-md-0" style="width: 30%;">
                 <img src="{{ product.image.url }}" class="img-fluid rounded-0" alt="{{ product.name }}"
-                    style="width: 100%; height: auto;">
+                     style="width: 100%; height: auto;">
             </div>
 
-            <!-- Text container with 70% width -->
-            <div class="text-md-left ml-5" style="width: 70%;">
+            <div class="text-md-left ml-md-5" style="width: 70%;">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description }}</p>
@@ -48,13 +46,14 @@
                 </div>
             </div>
         </div>
-
-        
-
     </div>
-    <!-- Price, Quantity, and Action Buttons -->
-    <div class="card border-1 rounded-0 mb-3">
-        <div class="d-flex justify-content-around align-items-center">
+</div>
+
+<!-- Price tag -->
+<div class="container d-flex justify-content-center align-items-center mt-3">
+    <div class="col shadow-lg" style="width: 100%; max-width: 1600px;">
+        <div class="d-flex justify-content-around align-items-center py-3">
+
             <!-- Product price or sale price -->
             <div class="text-center">
                 {% if product.is_sale %}
@@ -83,8 +82,7 @@
                 </button>
 
                 {% if user.is_superuser %}
-                <a href="{% url 'delete_product_confirmation' product.id %}"
-                    class="btn btn-danger mt-2 mb-2 mr-4">
+                <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger mt-2 mb-2 mr-4">
                     Delete Product
                 </a>
                 <a href="{% url 'update_product' product.id %}" class="btn btn-warning mt-2 mb-2">
@@ -94,9 +92,9 @@
             </div>
         </div>
     </div>
-
-
 </div>
+
+
 
 
 <script>
