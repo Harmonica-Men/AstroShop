@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Header -->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Checkout</h1>
+            <p class="lead fw-normal text-white-40 mb-0">Review Your Order...</p>
+        </div>
+    </div>
+</header>
+
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
+    <div class="row shadow-lg" style="width: 100%; max-width: 850px;">
+        <div class="col-12 mt-3 mb-3">
+            <div class="card-header">
+                Shipping Info
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'billing_info' %}">
+                    {% csrf_token %}
+
+                    <div class="mb-3 row">
+                        <label for="shipping_full_name" class="col-sm-4 col-form-label">Name</label>
+                        <div class="col-sm-8">
+                            {{ shipping_form.shipping_full_name }}
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="shipping_email" class="col-sm-4 col-form-label">Email</label>
+                        <div class="col-sm-8">
+                            {{ shipping_form.shipping_email }}
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="shipping_address1" class="col-sm-4 col-form-label">Address 1</label>
+                        <div class="col-sm-8">
+                            {{ shipping_form.shipping_address1 }}
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="shipping_address2" class="col-sm-4 col-form-label">Address 2</label>
+                        <div class="col-sm-8">
+                            {{ shipping_form.shipping_address2 }}
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="shipping_city" class="col-sm-4 col-form-label">City</label>
+                        <div class="col-sm-8">
+                            {{ shipping_form.shipping_city }}
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="shipping_state" class="col-sm-4 col-form-label">State</label>
+                        <div class="col-sm-8">
+                            {{ shipping_form.shipping_state }}
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="shipping_zipcode" class="col-sm-4 col-form-label">Zip Code</label>
+                        <div class="col-sm-8">
+                            {{ shipping_form.shipping_zipcode }}
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="shipping_country" class="col-sm-4 col-form-label">Country</label>
+                        <div class="col-sm-8">
+                            {{ shipping_form.shipping_country }}
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary mt-3">
+                        Continue To Billing
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

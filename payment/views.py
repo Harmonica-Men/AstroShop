@@ -6,12 +6,16 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from store.models import Product, Profile
 import datetime
-
-# Import Some Paypal Stuff
 from django.urls import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 import uuid # unique user id for duplictate orders
+
+def shipped_info(request):
+
+    return render(request, "payment/shipping_info.html", {})
+
+	
 
 def orders(request, pk):
 	if request.user.is_authenticated and request.user.is_superuser:

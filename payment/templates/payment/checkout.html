@@ -7,87 +7,79 @@
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Checkout</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Review Your Order...</p>
+            <p class="lead fw-normal text-white-40 mb-0">Review Your Order...</p>
         </div>
     </div>
 </header>
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
+    <div class="row shadow-lg" style="width: 100%; max-width: 850px;">
+        <div class="col-12 mt-3 mb-3">
             <!-- Order Summary Card -->
             <div class="card">
-                <div class="card-header">
+                <div class="card-header product-name">
                     Order Summary
                 </div>
                 <div class="card-body">
-                    <table class="table">
-                        <thead>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead class="table-secondary">
                             <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Subtotal</th>
+                                <th scope="col" style="text-align: left;">Product</th>
+                                <th scope="col" style="text-align: right;">Price</th>
+                                <th scope="col" style="text-align: right;">Qty</th>
+                                <th scope="col" style="text-align: right;">Subtotal</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for product in cart_products %}
                             <tr>
-                                <td>{{ product.name }}</td>
+                                <td>
+                                    <p style="text-align: left;">{{ product.name }}</p>
+                                </td>
                                 <td>
                                     {% if product.is_sale %}
-                                        €{{ product.sale_price }}
-                                    {% else %}
-                                        €{{ product.price }}
+                                    <p style="text-align: right;">
+                                        <span class="fa-solid fa-star" title="Sale!"></span> €{{ product.sale_price }}
+                                    </p> {% else %}
+                                    <p style="text-align: right;">€{{ product.price }}</p>
                                     {% endif %}
                                 </td>
                                 <td>
                                     {% for key, value in quantities.items %}
-                                        {% if key == product.id|slugify %}
-                                            {{ value }}
-                                        {% endif %}
+                                    {% if key == product.id|slugify %}
+                                    <p style="text-align: right;">{{ value }}</p>
+                                    {% endif %}
                                     {% endfor %}
                                 </td>
                                 <td>
-                                    €{{ product|calculate_subtotal:quantities|floatformat:2 }}
+                                    <p style="text-align: right;">
+                                        €{{ product|calculate_subtotal:quantities|floatformat:2 }}</p>
                                 </td>
                             </tr>
                             {% endfor %}
                         </tbody>
                         <tfoot>
+
                             <tr class="product-price">
-                                <th colspan="3" class="text-end ">Total:</th>
-                                <th>€{{ totals }}</th>
+                                <th style="text-align: left;">
+                                    <a href="{% url 'shopcart_summary' %}"
+                                        class="btn btn-md btn-outline-secondary">Update Chart</a>
+                                </th>
+                                <th colspan="2" style="text-align: right;">Total:</th>
+                                <th style="text-align: right;">€{{ totals }}</th>
                             </tr>
                         </tfoot>
                     </table>
-                    <a href="{% url 'shopcart_summary' %}" class="btn btn-sm btn-outline-secondary">Update Items</a>
+
+                    <div>
+
+                        <a href="{% url 'shipping_info' %}" class="btn btn-md btn-secondary">Proceed</a>
+
+                    </div>
+
                 </div>
             </div>
-
-
-            <br />
-
-            <!-- Shipping Info Card -->
-            <div class="card">
-                <div class="card-header">
-                    Shipping Info
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="{% url 'billing_info' %}">
-                        {% csrf_token %}
-                        {{ shipping_form.as_p }}
-                        <button type="submit" class="btn btn-secondary mt-3">
-                            Continue To Billing
-                        </button>
-                    </form>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
-
 {% endblock %}
