@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <!-- Header-->
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
@@ -13,11 +12,14 @@
 
 
 
-<div class="container d-flex justify-content-center align-items-center mt-5 mb-3" style="min-height: calc(55vh);">
-    <div class="p-4 shadow-sm" style="width: 100%; max-width: 750px;">
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
+    <div class="p-4 text-center shadow-lg" style="width: 100%; max-width: 850px;">
 
-        <h2>Are you sure you want to delete "{{ product.name }}"?</h2>
-        <p>This action cannot be undone.</p>
+        <h3>Are you sure you want to delete</h3>
+         <h3>
+            <strong class="text-black">"{{ product.name }}"?</strong> 
+        </h3>
+        <p >This action cannot be undone.</p>
         <form action="{% url 'delete_product' product.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger mr-3">Yes, Delete</button>

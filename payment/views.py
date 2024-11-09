@@ -84,7 +84,7 @@ def shipped_dash(request):
 			order.update(shipped=False)
 			# redirect
 			messages.success(request, "Shipping Status Updated")
-			return redirect('home')
+			return redirect('products')
 
 
 		return render(request, "payment/shipped_dash.html", {"orders":orders})
