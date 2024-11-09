@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
+
 {% block content %}
 
 <!-- Header-->
@@ -41,14 +43,7 @@
               <h5 class="product-name card-title">{{ product.name }}</h5>
 
 
-              {% if product.is_sale %}
-              <div class="d-flex justify-content-center justify-content-md-start xx-large text-danger mb-2">
-                <span class="fa-regular fa-star"></span>
-                <strong class="mx-2">Sale!</strong>
-                <span class="fa-regular fa-star"></span>
-              </div> 
-
-              {% endif %}
+             
 
 
               <p class="card-text">{{ product.description }}</p>
@@ -75,17 +70,30 @@
             </select>
 
             <a href="update" data-index="{{ product.id }}" class="text-secondary update-cart">Update</a>
+
+            {% if product.is_sale %}
+            <div class="d-flex justify-content-center justify-content-md-start xx-large text-danger mb-2"></div>
+              
+              <strong class="mx-2 text-danger">Sale!</strong>
+              
+            </div>
+            
+            <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
+            <strong class="product-price text-muted">€{{ product.sale_price }}</strong>
+            {% else %}
+            <strong class="product-price text-muted">€{{ product.price }}</strong>
+            {% endif %}
+            
           </td>
 
           <!-- Price Cell -->
           <td class="text-center align-middle">
-            {% if product.is_sale %}
+
+            <strong class="product-price text-black">€{{ product|calculate_subtotal:quantities|floatformat:2 }}</strong>
+
             
-            <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
-            <strong class="product-price">€{{ product.sale_price }}</strong>
-            {% else %}
-            <strong class="product-price text-black">€{{ product.price }}</strong>
-            {% endif %}
+
+
           </td>
         </tr>
         {% endfor %}
