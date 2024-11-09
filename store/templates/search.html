@@ -55,7 +55,6 @@
                     {% endif %}
 
                     <!-- Product Image -->
-
                     <a href="{% url 'product' product.id %}">
                         <img class="card-img-top img-fluid shrink-image" src="{{ product.image.url }}"
                             alt="{{ product.name }}">
@@ -69,7 +68,7 @@
 
                             {% if product.is_sale %}
                             <!-- Sale Label and Price -->
-                            <div class="d-flex justify-content-center small text-warning mb-2">
+                            <div class="d-flex justify-content-center small text-danger mb-2">
                                 <span class="fa-regular fa-star"></span>
                                 <strong class="mx-2" style="font-size: 1.25rem;">Sale!</strong>
                                 <span class="fa-regular fa-star"></span>
