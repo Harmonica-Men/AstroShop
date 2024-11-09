@@ -42,9 +42,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-first">
                     <p class="text-muted mt-3 text-center text-md-left">
-                        {% if current_categories or current_sorting != 'None_None' %}
-                        <span class="small"><a href="{% url 'products' %}">Products Home</a> | </span>
-                        {% endif %}
+                        
                         {{ products|length }} Products
                     </p>
                 </div>
@@ -53,7 +51,7 @@
 
                 {% for product in products %}
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 text-center">
-                    <div class="card h-100 border-1 position-relative">
+                    <div class="card h-100 shadow-lg rounded-0 position-relative">
                         {% if product.category %}
                             <p class="position-absolute top-0 start-0 mt-2 ml-2 ms-2 mb-0">
                                 <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
@@ -75,14 +73,14 @@
                                 alt="{{ product.name }}">
                         </a>
                         {% else %}
-                        <a href="#">
+                        <a href="no_image">
                             <img class="card-img-top img-fluid shrink-image" src="{{ MEDIA_URL }}noimage.png"
                                 alt="{{ product.name }}">
                         </a>
                         {% endif %}
             
                         <div class="card-body pb-0 mb-2">
-                            <p class="mb-0 fw-bolder">{{ product.name }}</p>
+                            <p class="product-name mb-0 fw-bolder">{{ product.name }}</p>
             
                             {% if product.is_sale %}
                             <!-- Sale details -->
@@ -92,14 +90,13 @@
                                 <span class="fa-regular fa-star"></span>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <div class="text-muted text-center me-2" style="text-decoration: line-through;">
+                                <div class="product-price text-muted text-center me-2" style="text-decoration: line-through;">
                                     €{{ product.price }}</div>
-                                <strong class="text-black ml-3"
-                                    style="font-size: 1.25rem;">€{{ product.sale_price }}</strong>
+                                <strong class="product-price text-black ml-3">€{{ product.sale_price }}</strong>
                             </div>
                             {% else %}
                             <!-- Regular price-->
-                            <strong class="text-black">€{{ product.price }} </strong>
+                            <strong class="product-price text-black">€{{ product.price }} </strong>
                             {% endif %}
                         </div>
                     </div>
@@ -128,17 +125,11 @@
                 {% endif %}
             {% endfor %}
             
-
-
-
-
-
-
             </div>
         </div>
     </div>
 
-    <div class="btt-button shadow-sm rounded-0 border border-black">
+    <div class="btt-button shadow-sm rounded-0 border border-black mr-3 mb-3">
         <a class="btt-link d-flex h-100">
             <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
         </a>

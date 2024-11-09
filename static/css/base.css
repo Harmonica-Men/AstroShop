@@ -19,13 +19,31 @@ body {
     width: 1.5rem;
 }
 
+
+/* Set consistent font size for product name */
+.product-name {
+    font-size: 1.25rem;
+    /* Adjust as needed */
+    font-weight: bold;
+}
+
+/* Set consistent font size for product price */
+.product-price {
+    font-size: 1.5rem;
+    /* Adjust as needed */
+    color: black;
+}
+
+
 .icon-white {
     color: white;
-    transition: color 0.3s ease; /* Smooth transition effect */
+    transition: color 0.3s ease;
+    /* Smooth transition effect */
 }
 
 .icon-white:hover {
-    color: #ccc; /* Light gray on hover */
+    color: #ccc;
+    /* Light gray on hover */
 }
 
 .strike-through {
