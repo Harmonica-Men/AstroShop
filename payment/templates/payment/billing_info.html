@@ -21,23 +21,6 @@
                     Order Summary
                 </div>
                 <div class="card-body">
-                    <!-- Invoice Header -->
-                    <div class="row mb-4">
-                        <div class="col-sm-8">
-                            <h5>Invoice Number: <strong>#123456</strong></h5>
-                            <p>Date: <strong>{{ now }}</strong></p>
-                        </div>
-                        <div class="col-sm-4 text-left" style="line-height: 1.2; margin-bottom: 0;">
-                            <h5 style="margin-bottom: 4px;">{{ shipping_info.shipping_full_name }}</h5>
-                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_address1 }}</p>
-                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_address2 }}</p>
-                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_city }}</p>
-                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_state }}</p>
-                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_zipcode }}</p>
-                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_country }}</p>
-                        </div>
-                    </div>
-
                     <!-- Order Summary Table -->
                     <table class="table table-striped table-hover table-bordered">
                         <thead class="table-secondary">
@@ -81,6 +64,8 @@
                     </table>
                 </div>
             </div>
+
+          
             <div class="card">
                 <div class="card-header">
                     Shipping Info
@@ -102,14 +87,12 @@
             </div>
             <br /><br />
 
-            
+            {% if request.user.is_authenticated %}
             <div class="card">
                 <div class="card-header">
                     Payment Information
                 </div>
                 <div class="card-body">
-                    <h5></h5>
-                
                     <!-- Display payment information fields -->
                     Name on Card: {{ payment_form.card_name.value }}<br />
                     Card Number: {{ payment_form.card_number.value }}<br />
@@ -121,16 +104,16 @@
                     State: {{ payment_form.card_state.value }}<br />
                     Zipcode: {{ payment_form.card_zipcode.value }}<br />
                     Country: {{ payment_form.card_country.value }}<br />
-                
-                    <!-- Update Payment Info button linking to the update form -->
                     <br />
                     <a href="{% url 'update_payment_paypal' %}" class="btn btn-outline-secondary">Update Payment Information</a>
                 </div>
             </div>
+
+            {% endif %}
+        
             <div>
                 {{ paypal_form.render }}
             </div>
-
         </div>
     </div>
 </div>
