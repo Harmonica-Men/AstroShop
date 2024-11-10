@@ -14,23 +14,24 @@
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
     <div class="row shadow-lg" style="width: 100%; max-width: 500px;">
         <div class="text-center col-md-12 mt-3">
-            
-            
-            
+
+
+
             <form method="POST" action="{% url 'update_profile' %}" class="mt-2">
                 {% csrf_token %}
-                <strong class="text-black">Billing Information</strong>
-                {{ form.as_p }}
-                <br>
+
                 <strong class="text-black">Shipping Information</strong>
                 {{ shipping_form.as_p }}
+
+                <strong class="text-black">Billing Information</strong>
+                {{ payment_form.as_p }}
 
 
                 <button type="submit" class="btn btn-secondary mt-3 mb-3">
                     Update Profile
                 </button>
 
-                
+
 
             </form>
         </div>

@@ -9,7 +9,10 @@ import datetime
 from django.urls import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
+
 import uuid # unique user id for duplictate orders
+
+
 
 def orders(request, pk):
 	if request.user.is_authenticated and request.user.is_superuser:
@@ -92,6 +95,7 @@ def shipped_dash(request):
 
 def process_order(request):
 	if request.POST:
+		print('test')
 		# Get the cart
 		cart = Cart(request)
 		cart_products = cart.get_prods
@@ -142,6 +146,7 @@ def process_order(request):
 
 			# Delete our cart
 			for key in list(request.session.keys()):
+				
 				if key == "session_key":
 					# Delete the key
 					del request.session[key]
@@ -159,8 +164,13 @@ def process_order(request):
 
 		else:
 			# not logged in
+			
+			print('process order not logged in ')
+			
+			
 			# Create Order
 			create_order = Order(full_name=full_name, email=email, shipping_address=shipping_address, amount_paid=amount_paid)
+			
 			create_order.save()
 
 			# Add order items
@@ -290,7 +300,9 @@ def billing_info(request):
 		
 		else:
 			# Not logged in
-            # Create Order
+			user = None  # Set user to None if not authenticated
+
+			# # Create Order
 			create_order = Order(user=user, full_name=full_name, email=email, shipping_address=shipping_address, amount_paid=amount_paid, invoice=my_Invoice)
 			create_order.save()
 
