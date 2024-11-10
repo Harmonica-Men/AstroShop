@@ -105,17 +105,26 @@
             
             <div class="card">
                 <div class="card-header">
-                    Billing Info
+                    Payment Information
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{% url 'process_order' %}">
-                        {% csrf_token %}
-                        {{ billing_form.as_p }}
-                        <button type="submit" class="btn btn-outline-secondary">
-                            update billing info
-                        </button>
-
-                    </form>
+                    <h5></h5>
+                
+                    <!-- Display payment information fields -->
+                    Name on Card: {{ payment_form.card_name.value }}<br />
+                    Card Number: {{ payment_form.card_number.value }}<br />
+                    Expiration Date: {{ payment_form.card_exp_date.value }}<br />
+                    CVV: {{ payment_form.card_cvv_number.value }}<br />
+                    Address 1: {{ payment_form.card_address1.value }}<br />
+                    Address 2: {{ payment_form.card_address2.value }}<br />
+                    City: {{ payment_form.card_city.value }}<br />
+                    State: {{ payment_form.card_state.value }}<br />
+                    Zipcode: {{ payment_form.card_zipcode.value }}<br />
+                    Country: {{ payment_form.card_country.value }}<br />
+                
+                    <!-- Update Payment Info button linking to the update form -->
+                    <br />
+                    <a href="{% url 'update_payment_paypal' %}" class="btn btn-outline-secondary">Update Payment Information</a>
                 </div>
             </div>
             <div>
