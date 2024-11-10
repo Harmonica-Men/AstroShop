@@ -17,14 +17,15 @@
 
 
 
-            <form method="POST" action="{% url 'update_profile' %}" class="mt-2">
+            <form method="POST" action="{% url 'update_user_profile' %}" class="mt-2">
                 {% csrf_token %}
 
-                <strong class="text-black">Shipping Information</strong>
-                {{ shipping_form.as_p }}
+                <strong class="text-black">User profile Information</strong>
+                {{ profile_form.as_p }}
+              
            
                 <button type="submit" class="btn btn-secondary mt-3 mb-3">
-                    Update Profile
+                    Update user Profile
                 </button>
 
 

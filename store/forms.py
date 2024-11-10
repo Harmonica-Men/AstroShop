@@ -10,6 +10,10 @@ class UpdateProductForm(forms.ModelForm):
         fields = ['name', 'description', 'price', 'sale_price', 'is_sale', 'category', 'image']
 
 
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['phone', 'address1', 'address2', 'city', 'state', 'zipcode', 'country']
 
 
 class UserInfoForm(forms.ModelForm):

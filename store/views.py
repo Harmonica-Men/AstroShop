@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm, UpdateProductForm
+from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm, UpdateProductForm, ProfileForm
 from django.db.models.functions import Lower
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress, PaymentOfPayPal
@@ -125,11 +125,48 @@ def search(request):
 		return render(request, "search.html", {})	
 
 
-
-def update_profile(request):
+def update_user_profile(request):
     if request.user.is_authenticated:
-        # Get Current User
         current_user = Profile.objects.get(user__id=request.user.id)
+        
+        
+        # Get Current User's profile Info with error handling
+        try:
+            print(current_user)
+            user_profile = Profile.objects.get(user__id=request.user.id)
+        except Profile.DoesNotExist:
+            user_profile = None  # Optional: handle missing profile here
+            
+        # Get original User Form
+        form = UserInfoForm(request.POST or None, instance=current_user)
+        
+        # Initialize profile form using the existing profile or None
+        profile_form = ProfileForm(request.POST or None, instance=user_profile)
+        
+        if form.is_valid() and profile_form.is_valid():
+            # Save forms if valid
+            form.save()            
+            if user_profile:  # If profile exists, update it
+                profile_form.save()
+            else:  # If profile doesn't exist, create a new one
+                new_profile = profile_form.save(commit=False)
+                new_profile.user = request.user
+                new_profile.save()
+
+            print("Your profile has been updated!!")
+            return redirect('products')
+        
+        return render(request, "update_user_profile.html", {'form': form, 'profile_form': profile_form})
+    
+    else:
+        print("You must be logged in to access that page!!")
+        return redirect('home')
+
+
+def update_ship_profile(request):
+    if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
+        print(current_user)
         
         # Get Current User's Shipping Info with error handling
         try:
@@ -148,16 +185,15 @@ def update_profile(request):
             form.save()
             if shipping_user:
                 shipping_form.save()
-            else:
-                # Optionally, create a new ShippingAddress instance if it doesn't exist
+            else:               
                 shipping_user = shipping_form.save(commit=False)
                 shipping_user.user = request.user
                 shipping_user.save()
 
-            print("Your Info Has Been Updated!!")
+            print("Your profile Has Been Updated!!")
             return redirect('products')
         
-        return render(request, "update_profile.html", {'form': form, 'shipping_form': shipping_form})
+        return render(request, "update_ship_profile.html", {'form': form, 'shipping_form': shipping_form})
     
     else:
         messages.warning(request, "You Must Be Logged In To Access That Page!!")
@@ -285,7 +321,7 @@ def register_user(request):
 			user = authenticate(username=username, password=password)
 			login(request, user)
 			messages.success(request, ("Username Created - Please Fill Out Your User Info Below..."))
-			return redirect('update_profile')
+			return redirect('home')
 		else:
 			messages.success(request, ("Whoops! There was a problem Registering, please try again..."))
 			return redirect('register')

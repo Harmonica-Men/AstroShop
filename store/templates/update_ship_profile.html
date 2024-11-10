@@ -5,35 +5,32 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Update Profile</h1>
-            <p class="lead fw-normal text-white-40 mb-0">Update User Profile...</p>
+            <h1 class="display-4 fw-bolder">Update Ship Info</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Update shipping Info...</p>
         </div>
     </div>
 </header>
 
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
     <div class="row shadow-lg" style="width: 100%; max-width: 500px;">
+        <div class="text-center col-md-12 mt-3">
 
-        <div class="text-center col-md-12">
-            <br>
-            <form method="POST" action="{% url 'update_user' %}">
+
+
+            <form method="POST" action="{% url 'update_ship_profile' %}" class="mt-2">
                 {% csrf_token %}
 
-                {{ user_form.as_p }}
-                
-                <div class="mt-3 mb-3 text-center">
-
-
+                <strong class="text-black">Shipping Information</strong>
+                {{ shipping_form.as_p }}
+           
                 <button type="submit" class="btn btn-secondary mt-3 mb-3">
-                    Update User Profile
+                    Update Profile
                 </button>
-                </div>
+
+
+
             </form>
-
-            
-
         </div>
-
     </div>
 </div>
 
