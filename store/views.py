@@ -5,23 +5,30 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm, UpdateProductForm
-
 from django.db.models.functions import Lower
-
-
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress
-
 from django import forms
 from django.db.models import Q
 import json
 from shopcart.cart import Cart
-
 from .models import Product
-
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def clear_cart(request):
+    if request.method == "POST":
+        # Clear the session cart data
+        request.session['cart'] = {}
+        request.session.modified = True  # Ensures Django saves the session change
+        return JsonResponse({"status": "success", "message": "Cart cleared successfully"})
+    return JsonResponse({"status": "error", "message": "Invalid request"}, status=400)
 
 
 def all_products(request):
@@ -68,14 +75,15 @@ def index(request):
     return render(request, 'index.html')
 
 
-# @user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser)
 def add_product(request):
     if request.method == "POST":
         form = UpdateProductForm(request.POST, request.FILES)  # We use UpdateProductForm to add new products as well
+		
         if form.is_valid():
             form.save()
             messages.success(request, "Product added successfully.")
-            return redirect('home')  # Redirect to home or any other page after adding the product
+            return redirect('products')  # Redirect to home or any other page after adding the product
     else:
         form = UpdateProductForm()
     return render(request, 'add_product.html', {'form': form})

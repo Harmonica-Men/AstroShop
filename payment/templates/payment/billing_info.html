@@ -1,81 +1,89 @@
 {% extends 'base.html' %}
-
-
+{% load custom_filters %}
 {% block content %}
 
-<!-- Header-->
+<!-- Header -->
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Billing Info</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Enter Your Payment Info...</p>
+            <h1 class="display-4 fw-bolder">Pay whit PayPal</h1>
+            <p class="lead fw-normal text-white-40 mb-0">All most there ...</p>
         </div>
     </div>
 </header>
-<br />
-<div class="container">
-    <div class="row">
 
-        <div class="col-md-6 offset-md-3">
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
+    <div class="row shadow-lg" style="width: 100%; max-width: 850px;">
+        <div class="col-12 mt-3 mb-3">
+            <!-- Invoice Summary Card -->
             <div class="card">
                 <div class="card-header">
                     Order Summary
                 </div>
                 <div class="card-body">
-                    {% for product in cart_products %}
-                    {{ product.name }}:
-                    {% if product.is_sale %}
-                    ${{ product.sale_price }}
-                    {% else %}
-                    ${{ product.price }}
-                    {% endif %}
+                    <!-- Invoice Header -->
+                    <div class="row mb-4">
+                        <div class="col-sm-8">
+                            <h5>Invoice Number: <strong>#123456</strong></h5>
+                            <p>Date: <strong>{{ now }}</strong></p>
+                        </div>
+                        <div class="col-sm-4 text-left" style="line-height: 1.2; margin-bottom: 0;">
+                            <h5 style="margin-bottom: 4px;">{{ shipping_info.shipping_full_name }}</h5>
+                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_address1 }}</p>
+                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_address2 }}</p>
+                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_city }}</p>
+                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_state }}</p>
+                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_zipcode }}</p>
+                            <p style="margin-bottom: 4px;">{{ shipping_info.shipping_country }}</p>
+                        </div>
+                    </div>
 
-                    <br />
-                    <small>Quantity:
-                        {% for key, value in quantities.items %}
-                        {% if key == product.id|slugify %}
-                        {{ value }}
-                        {% endif %}
-                        {% endfor %}</small>
-                    <br /><br />
-
-                    {% endfor %}
-                    Total: ${{ totals }}
-                    <br /><br />
-                    <a href="{% url 'shopcart_summary' %}" class="btn btn-sm btn-outline-secondary">Update Items</a>
+                    <!-- Order Summary Table -->
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th scope="col" style="text-align: left;">Product</th>
+                                <th scope="col" style="text-align: right;">Price</th>
+                                <th scope="col" style="text-align: right;">Qty</th>
+                                <th scope="col" style="text-align: right;">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in cart_products %}
+                            <tr>
+                                <td>{{ product.name }}</td>
+                                <td style="text-align: right;">
+                                    {% if product.is_sale %}
+                                    <span class="fa-solid fa-star" title="Sale!"></span> €{{ product.sale_price }}
+                                    {% else %}
+                                    €{{ product.price }}
+                                    {% endif %}
+                                </td>
+                                <td style="text-align: right;">
+                                    {% for key, value in quantities.items %}
+                                    {% if key == product.id|slugify %}
+                                    {{ value }}
+                                    {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td style="text-align: right;">
+                                    €{{ product|calculate_subtotal:quantities|floatformat:2 }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr class="product-price">
+                                <th style="text-align: left;" colspan="3">Total:</th>
+                                <th style="text-align: right;">€{{ totals }}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
-            <br /><br />
-            <div class="card">
-                <div class="card-header">
-                    Shipping Info
-                </div>
-                <div class="card-body">
-
-                    Name: {{ shipping_info.shipping_full_name }}<br />
-                    Email: {{ shipping_info.shipping_email }}<br />
-                    Address 1: {{ shipping_info.shipping_address1 }}<br />
-                    Address 2: {{ shipping_info.shipping_address2 }}<br />
-                    City: {{ shipping_info.shipping_city }}<br />
-                    State: {{ shipping_info.shipping_state }}<br />
-                    Zipcode: {{ shipping_info.shipping_zipcode }}<br />
-                    Country: {{ shipping_info.shipping_country }}<br />
-                    <br />
-                    <a href="{% url 'checkout' %}" class="btn btn-outline-secondary">Update Shipping</a>
-
-                </div>
-            </div>
-            
-            <br>
-            <br>
-
             <div>
                 {{ paypal_form.render }}
             </div>
-
-            <br>
-            <br>
-
             <div class="card">
                 <div class="card-header">
                     Billing Info
@@ -84,20 +92,9 @@
                     <form method="POST" action="{% url 'process_order' %}">
                         {% csrf_token %}
                         {{ billing_form.as_p }}
+                    </form>
                 </div>
             </div>
-
-            <br>
-            <br>
-
-            <button type="submit" class="btn btn-secondary">
-                Pay Now
-            </button>
-            </form>
-
-            <br>
-            <br>
-            
         </div>
     </div>
 </div>

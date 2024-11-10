@@ -12,11 +12,9 @@
     </div>
 </header>
 
-
 <!-- Item card -->
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(48vh);">
     <div class="col shadow-lg" style="width: 100%; max-width: 1600px;">
-
         {% if product.category %}
         <p class="large mt-1 mb-0 ml-4">
             <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
@@ -28,7 +26,7 @@
         <div class="d-flex flex-column flex-md-row align-items-start mt-3">
             <div class="flex-shrink-0 mb-3 mb-md-0" style="width: 30%;">
                 <img src="{{ product.image.url }}" class="img-fluid rounded-0" alt="{{ product.name }}"
-                     style="width: 100%; height: auto;">
+                    style="width: 100%; height: auto;">
             </div>
 
             <div class="text-md-left ml-md-5" style="width: 70%;">
@@ -76,10 +74,13 @@
 
             <!-- Centered buttons -->
             <div class="text-center">
-                <button type="button" value="{{ product.id }}" class="btn btn-secondary mt-2 mb-2 mr-4"
-                    id="add-cart">
+                <button type="button" value="{{ product.id }}" class="btn btn-secondary mt-2 mb-2 mr-4" id="add-cart">
                     Add To Cart
                 </button>
+
+                
+                
+                
 
                 {% if user.is_superuser %}
                 <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger mt-2 mb-2 mr-4">
@@ -98,6 +99,29 @@
 
 
 <script>
+
+    // Handle "Clear Cart" button click
+    $(document).on('click', '#clear-cart', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'clear_cart' %}",
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function (json) {
+                alert(json.message);
+                document.getElementById("cart_quantity").textContent = '0'; // Reset cart quantity display
+            },
+            error: function (xhr, errmsg, err) {
+                alert("Error clearing cart. Please try again.");
+            }
+        });
+    });
+
+
+
+
     // Check if button pressed
     $(document).on('click', '#add-cart', function (e) {
         e.preventDefault();
@@ -126,5 +150,7 @@
 
 
     })
+
+  
 </script>
 {% endblock %}

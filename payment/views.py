@@ -11,30 +11,6 @@ from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 import uuid # unique user id for duplictate orders
 
-def shipping_info(request):
-	# Get the cart
-	# cart = Cart(request)
-	# cart_products = cart.get_prods
-	# quantities = cart.get_quants
-	# totals = cart.cart_total()
-
-	if request.user.is_authenticated:
-		# Checkout as logged in user
-		# Shipping User
-		shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
-		# Shipping Form
-		shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
-		return render(request, "payment/shipping_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_form":shipping_form })
-	else:
-		# Checkout as guest
-		shipping_form = ShippingForm(request.POST or None)
-		return render(request, "payment/checkout.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_form":shipping_form})
-
-	
-
-
-
-
 def orders(request, pk):
 	if request.user.is_authenticated and request.user.is_superuser:
 		# Get the order
@@ -257,7 +233,7 @@ def billing_info(request):
 			'item_name': 'Book Order',
 			'no_shipping': '2',
 			'invoice': str(uuid.uuid4()),
-			'currency_code': 'USD', # EUR for Euros
+			'currency_code': 'EUR', 
 			'notify_url': 'https://{}{}'.format(host, reverse("paypal-ipn")),
 			'return_url': 'https://{}{}'.format(host, reverse("payment_success")),
 			'cancel_return': 'https://{}{}'.format(host, reverse("payment_failed")),
