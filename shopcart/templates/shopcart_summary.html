@@ -59,35 +59,35 @@
                         <a href="update" data-index="{{ product.id }}" class="text-secondary update-cart">Update</a>
                     </td>
 
-                    <!-- Price Cell with Sale Info -->
-                    <td class="text-center align-middle">
-                        {% if product.is_sale %}
-                        <div class="text-danger mb-2">Sale!</div>
-                        <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
-                        <strong class="product-price text-muted">€{{ product.sale_price }}</strong>
-                        {% else %}
-                        <strong class="product-price text-black">€{{ product.price }}</strong>
-                        {% endif %}
-                    </td>
-
-                    <!-- Subtotal Cell -->
-                    <td class="text-center align-middle">
-                        <strong class="product-price text-black">€{{ product|calculate_subtotal:quantities|floatformat:2 }}</strong>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
-        <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(42vh);">
-            <div class="p-5 shadow-lg" style="width: 100%; max-width: 567px;">
-                <div class="mb-3">
-                    <strong class="text-black" style="font-size: xx-large;">There's Nothing In Your Cart ...</strong>
-                </div>
+          <!-- Price Cell -->
+          <td class="text-center align-middle">
+            {% if product.is_sale %}
+            <div class="d-flex justify-content-center justify-content-md-start small text-warning mb-2">
+              <span class="fa-regular fa-star"></span>
+              <strong class="mx-2">Sale!</strong>
+              <span class="fa-regular fa-star"></span>
             </div>
+            <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
+            <strong>€{{ product.sale_price }}</strong>
+            {% else %}
+            <strong class="text-black">€{{ product.price }}</strong>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+    {% else %}
+    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(42vh);">
+      <div class="p-5 shadow-lg" style="width: 100%; max-width: 567px;">
+        <div class="mb-3">
+          <strong class="text-black" style="font-size: xx-large;">There's Nothing In Your Cart ... </strong>
         </div>
-        {% endif %}
+      </div>
     </div>
+    {% endif %}
+  </div>
 
     <!-- Total and Checkout Section -->
     <div class="card shadow-lg rounded-0 mb-3">
