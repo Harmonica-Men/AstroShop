@@ -117,6 +117,7 @@
                                 <div class="dropdown-menu border-1" aria-labelledby="user-options">
                                     {% if request.user.is_authenticated %}
                                     <a href="{% url 'update_profile' %}" class="dropdown-item">My Profile</a>
+                                    <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
 
                                     <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
 

@@ -5,8 +5,8 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Update Info</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Update User Info...</p>
+            <h1 class="display-4 fw-bolder">Payment Update Info</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Payment User Info...</p>
         </div>
     </div>
 </header>
@@ -17,14 +17,14 @@
 
 
 
-            <form method="POST" action="{% url 'update_profile' %}" class="mt-2">
+            <form method="POST" action="{% url 'update_payment_paypal' %}" class="mt-2">
                 {% csrf_token %}
 
-                <strong class="text-black">Shipping Information</strong>
-                {{ shipping_form.as_p }}
+                <strong class="text-black">Payment Information</strong>
+                {{ payment_form.as_p }}
            
                 <button type="submit" class="btn btn-secondary mt-3 mb-3">
-                    Update Profile
+                    Update Payment
                 </button>
 
 

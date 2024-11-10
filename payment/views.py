@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from shopcart.cart import Cart
 from payment.forms import ShippingForm, PaymentForm
-from payment.models import ShippingAddress, Order, OrderItem
+from payment.models import ShippingAddress, Order, OrderItem, PaymentOfPayPal
 from django.contrib.auth.models import User
 from django.contrib import messages
 from store.models import Product, Profile
@@ -11,6 +11,48 @@ from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 
 import uuid # unique user id for duplictate orders
+
+from .forms import PaymentForm  # Ensure you are importing the form
+
+
+
+def update_payment_paypal(request):
+    if request.user.is_authenticated:
+        
+        
+        current_user = User.objects.get(id=request.user.id)
+        # current_user = Profile.objects.get(user__id=request.user.id)
+        print(current_user)
+        try:
+            pay_user = PaymentOfPayPal.objects.get(user_paypal_id=request.user.id)  # Use user_paypal_id
+        except PaymentOfPayPal.DoesNotExist:
+            pay_user = None  # Optional: handle missing payment record here
+         
+        # Get original User Form
+        pay_form = PaymentForm(request.POST or None, instance=current_user)
+        
+        payment_form = PaymentForm(request.POST or None, instance=pay_user)
+        
+        if pay_form.is_valid() and payment_form.is_valid():
+            # Save forms if valid
+            pay_form.save()
+            if payment_form:
+                payment_form.save()
+            else:
+        
+                pay_user = payment_form.save(commit=False)
+                pay_user.user = request.user
+                pay_user.save()
+
+            print("Your Info Has Been Updated!!")
+            return redirect('products')
+        
+        return render(request, "payment/update_payment_paypal.html", {'pay_form': pay_form, 'payment_form': payment_form})
+    
+    else:
+        messages.warning(request, "You Must Be Logged In To Access That Page!!")
+        return redirect('home')
+
 
 
 

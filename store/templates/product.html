@@ -100,28 +100,6 @@
 
 <script>
 
-    // Handle "Clear Cart" button click
-    $(document).on('click', '#clear-cart', function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: "{% url 'clear_cart' %}",
-            data: {
-                csrfmiddlewaretoken: '{{ csrf_token }}'
-            },
-            success: function (json) {
-                alert(json.message);
-                document.getElementById("cart_quantity").textContent = '0'; // Reset cart quantity display
-            },
-            error: function (xhr, errmsg, err) {
-                alert("Error clearing cart. Please try again.");
-            }
-        });
-    });
-
-
-
-
     // Check if button pressed
     $(document).on('click', '#add-cart', function (e) {
         e.preventDefault();

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ShippingAddress, Order, OrderItem
+from .models import ShippingAddress, Order, OrderItem, PaymentOfPayPal
 from django.contrib.auth.models import User
 
 
@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 admin.site.register(ShippingAddress)
 admin.site.register(Order)
 admin.site.register(OrderItem)
+admin.site.register(PaymentOfPayPal)
 
 # Create an OrderItem Inline
 class OrderItemInline(admin.StackedInline):

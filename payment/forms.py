@@ -1,15 +1,15 @@
 from django import forms
-from .models import ShippingAddress
+from .models import ShippingAddress, PaymentOfPayPal
 
 class ShippingForm(forms.ModelForm):
-	shipping_full_name = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Full Name'}), required=True)
-	shipping_email = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}), required=True)
-	shipping_address1 = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Address1'}), required=True)
-	shipping_address2 = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Address2'}), required=False)
-	shipping_city = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'City'}), required=True)
-	shipping_state = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'State'}), required=False)
-	shipping_zipcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Zipcode'}), required=False)
-	shipping_country = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Country'}), required=True)
+	shipping_full_name = forms.CharField(label="Name", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Full Name'}), required=True)
+	shipping_email = forms.CharField(label="Email", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}), required=True)
+	shipping_address1 = forms.CharField(label="Address 1", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Address1'}), required=True)
+	shipping_address2 = forms.CharField(label="Address 2", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Address2'}), required=False)
+	shipping_city = forms.CharField(label="City", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'City'}), required=True)
+	shipping_state = forms.CharField(label="State", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'State'}), required=False)
+	shipping_zipcode = forms.CharField(label="Zip Code", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Zipcode'}), required=False)
+	shipping_country = forms.CharField(label="Country", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Country'}), required=True)
 
 	class Meta:
 		model = ShippingAddress
@@ -17,7 +17,7 @@ class ShippingForm(forms.ModelForm):
 
 		exclude = ['user',]
 
-class PaymentForm(forms.Form):
+class PaymentForm(forms.ModelForm):
 	card_name =  forms.CharField(label="Card Name", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name Of the Card'}), required=True)
 	card_number =  forms.CharField(label="Card Number", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Card Number'}), required=True)
 	card_exp_date =  forms.CharField(label="Card Expre", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Expiration Date'}), required=True)
@@ -28,3 +28,9 @@ class PaymentForm(forms.Form):
 	card_state = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Billing State'}), required=True)
 	card_zipcode =  forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Billing Zipcode'}), required=True)
 	card_country =  forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Billing Country'}), required=True)		
+
+	class Meta:
+		model = PaymentOfPayPal
+		fields = ['card_name', 'card_number', 'card_exp_date', 'card_cvv_number', 'card_address1', 'card_address2', 'card_city', 'card_state', 'card_zipcode', 'card_country']        
+
+		exclude = ['user_paypal']

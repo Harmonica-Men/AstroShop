@@ -5,7 +5,26 @@ from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver 
 import datetime
 
+class PaymentOfPayPal(models.Model):
+	user_paypal = models.OneToOneField(User, on_delete=models.CASCADE)
+	card_name = models.CharField(max_length=100)
+	card_number = models.CharField(max_length=19)
+	card_exp_date = models.CharField(max_length=5)  # Format MM/YY or MM/YYYY
+	card_cvv_number = models.CharField(max_length=4)  # CVV code can be 3 or 4 digits
+	card_address1 = models.CharField(max_length=200)
+	card_address2 = models.CharField(max_length=200, blank=True, null=True)  # Optional field
+	card_city = models.CharField(max_length=200)
+	card_state = models.CharField(max_length=200)
+	card_zipcode = models.CharField(max_length=200)
+	card_country = models.CharField(max_length=200)
+	
+	# Don't pluralize address
+	class Meta:
+		verbose_name_plural = "Payment PayPal"
 
+	def __str__(self):
+		return f"Payment PayPal details for {self.card_name}"
+	
 class ShippingAddress(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 	shipping_full_name = models.CharField(max_length=200)

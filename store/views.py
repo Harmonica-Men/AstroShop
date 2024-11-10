@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm, UpdateProductForm
 from django.db.models.functions import Lower
 from payment.forms import ShippingForm
-from payment.models import ShippingAddress
+from payment.models import ShippingAddress, PaymentOfPayPal
 from django import forms
 from django.db.models import Q
 import json
@@ -20,15 +20,6 @@ from django.contrib import messages
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
-@csrf_exempt
-def clear_cart(request):
-    if request.method == "POST":
-        # Clear the session cart data
-        request.session['cart'] = {}
-        request.session.modified = True  # Ensures Django saves the session change
-        return JsonResponse({"status": "success", "message": "Cart cleared successfully"})
-    return JsonResponse({"status": "error", "message": "Invalid request"}, status=400)
 
 
 def all_products(request):
@@ -163,7 +154,7 @@ def update_profile(request):
                 shipping_user.user = request.user
                 shipping_user.save()
 
-            messages.success(request, "Your Info Has Been Updated!!")
+            print("Your Info Has Been Updated!!")
             return redirect('products')
         
         return render(request, "update_profile.html", {'form': form, 'shipping_form': shipping_form})
