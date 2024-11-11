@@ -42,7 +42,7 @@
         const searchUrl = "{% url 'search' %}";
         const aboutUrl = "{% url 'about' %}";
     </script>
-   
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
@@ -67,7 +67,7 @@
                     <h2 class="logo-font text-black my-0"><strong>Astroshop</strong></h2>
                 </a>
             </div>
-           
+
 
             <div class="row bg-white">
                 <nav class="navbar navbar-expand-lg navbar-light w-100">
@@ -76,6 +76,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     {% include 'includes/main-nav.html' %}
+
 
 
 
@@ -115,10 +116,10 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-menu border-1" aria-labelledby="user-options">
-                                    
+
                                     {% if request.user.is_authenticated %}
-                                  
-                                    <a href="{% url 'show_payment_info' %}" class="dropdown-item">My show payment</a>
+
+
                                     <a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a>
                                     <a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a>
                                     <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
@@ -160,6 +161,16 @@
                     </div>
                 </nav>
             </div>
+        </div>
+
+        {% if request.user.is_superuser %}
+        <div id="superuser-banner" class="row text-center mt-2">
+            <div class="col bg-black text-white me-2">
+                <h4>!!! Superuser Active: {{ request.user.username }} !!!</h4>
+            </div>
+        </div>
+        {% endif %}
+
     </header>
 
     {% block page_header %}
