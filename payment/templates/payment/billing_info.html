@@ -21,6 +21,8 @@
                     Order Summary
                 </div>
                 <div class="card-body">
+                    <p><strong>Invoice Hash:</strong> {{ invoice }}</p>  <!-- Display invoice number -->
+
                     <!-- Order Summary Table -->
                     <table class="table table-striped table-hover table-bordered">
                         <thead class="table-secondary">
@@ -70,6 +72,7 @@
                 <div class="card-header">
                     Shipping Info
                 </div>
+               
                 <div class="card-body">
 
                     Name: {{ shipping_info.shipping_full_name }}<br />
@@ -80,12 +83,10 @@
                     State: {{ shipping_info.shipping_state }}<br />
                     Zipcode: {{ shipping_info.shipping_zipcode }}<br />
                     Country: {{ shipping_info.shipping_country }}<br />
-                    <br />
-                    <a href="{% url 'checkout' %}" class="btn btn-outline-secondary">Update Shipping</a>
+                   
 
                 </div>
             </div>
-            <br /><br />
 
             {% if request.user.is_authenticated %}
             <div class="card">
@@ -104,8 +105,7 @@
                     State: {{ payment_form.card_state.value }}<br />
                     Zipcode: {{ payment_form.card_zipcode.value }}<br />
                     Country: {{ payment_form.card_country.value }}<br />
-                    <br />
-                    <a href="{% url 'update_payment_paypal' %}" class="btn btn-outline-secondary">Update Payment Information</a>
+                    
                 </div>
             </div>
 
