@@ -92,11 +92,12 @@
         {% else %}
         <div class="container d-flex justify-content-center align-items-center mt-3 mb-3"
             style="min-height: calc(42vh);">
-            <div class="p-5 shadow-lg" style="width: 100%; max-width: 567px;">
-                <div class="mb-3">
-                    <strong class="text-black" style="font-size: xx-large;">There's Nothing In Your Cart ... </strong>
-                </div>
-            </div>
+            <strong class="text-black" style="font-size: xx-large;">There's Nothing In Your Cart ... </strong>
+
+        </div>
+        <!-- Centered Button -->
+        <div class="d-flex justify-content-center mb-4">
+            <a href="{% url 'products' %}" class="btn btn-secondary btn-lg">Back To Products</a>
         </div>
         {% endif %}
     </div>
