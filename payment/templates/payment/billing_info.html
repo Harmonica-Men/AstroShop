@@ -21,7 +21,7 @@
                     Order Summary
                 </div>
                 <div class="card-body">
-                    <p><strong>Invoice Hash:</strong> {{ invoice }}</p>  <!-- Display invoice number -->
+                    <p><strong>Invoice UUID:</strong> {{ invoice }}</p>  <!-- Display invoice number -->
 
                     <!-- Order Summary Table -->
                     <table class="table table-striped table-hover table-bordered">
@@ -114,6 +114,8 @@
             <div>
                 {{ paypal_form.render }}
             </div>
+            <a href="?download=invoice" class="btn btn-primary">Download Invoice PDF</a>
+
         </div>
     </div>
 </div>
