@@ -27,7 +27,23 @@
             <div class="flex-shrink-0 mb-3 mb-md-0" style="width: 30%;">
                 <img src="{{ product.image.url }}" class="img-fluid rounded-0" alt="{{ product.name }}"
                     style="width: 100%; height: auto;">
+
+                <!-- Product price or sale price -->
+                <div class="text-center mt-3">
+                    {% if product.is_sale %}
+                    <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
+                    <strong class="text-black" style="font-size: 1.5rem;">€{{ product.sale_price }}</strong>
+                    {% else %}
+                    <strong class="text-black" style="font-size: 2rem;">€{{ product.price }}</strong>
+                    {% endif %}
+                </div>
+
+
+
+
             </div>
+
+
 
             <div class="text-md-left ml-md-5" style="width: 70%;">
                 <div class="card-body">
@@ -42,64 +58,54 @@
                     </div>
                     {% endif %}
                 </div>
+
             </div>
         </div>
+        <!-- Price tag -->
+        <div class="container d-flex justify-content-end align-items-center mt-3">
+
+            <div class="d-flex justify-content-around align-items-center py-3">
+
+
+
+                <!-- Quantity selector -->
+                <div class="text-center mr-5">
+                    <label for="qty-cart" class="mb-1">Quantity:</label>
+                    <select class="form-select form-select-sm" id="qty-cart" aria-label="Select quantity">
+                        {% for i in "12345" %}
+                        <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Centered buttons -->
+                <div class="text-center">
+                    <button type="button" value="{{ product.id }}" class="btn btn-secondary mt-2 mb-2 mr-4"
+                        id="add-cart">
+                        Add To Cart
+                    </button>
+
+                    {% if user.is_superuser %}
+                    <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger mt-2 mb-2 mr-4">
+                        Delete Product
+                    </a>
+                    <a href="{% url 'update_product' product.id %}" class="btn btn-warning mt-2 mb-2">
+                        Edit Product
+                    </a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </div>
 
-<!-- Price tag -->
-<div class="container d-flex justify-content-center align-items-center mt-3">
-    <div class="col shadow-lg" style="width: 100%; max-width: 1600px;">
-        <div class="d-flex justify-content-around align-items-center py-3">
-
-            <!-- Product price or sale price -->
-            <div class="text-center">
-                {% if product.is_sale %}
-                <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
-                <strong class="text-black" style="font-size: 1.5rem;">€{{ product.sale_price }}</strong>
-                {% else %}
-                <strong class="text-black" style="font-size: 2rem;">€{{ product.price }}</strong>
-                {% endif %}
-            </div>
-
-            <!-- Quantity selector -->
-            <div class="text-center">
-                <label for="qty-cart" class="mb-1">Quantity:</label>
-                <select class="form-select form-select-sm" id="qty-cart" aria-label="Select quantity">
-                    {% for i in "12345" %}
-                    <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <!-- Centered buttons -->
-            <div class="text-center">
-                <button type="button" value="{{ product.id }}" class="btn btn-secondary mt-2 mb-2 mr-4" id="add-cart">
-                    Add To Cart
-                </button>
-
-                
-                
-                
-
-                {% if user.is_superuser %}
-                <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger mt-2 mb-2 mr-4">
-                    Delete Product
-                </a>
-                <a href="{% url 'update_product' product.id %}" class="btn btn-warning mt-2 mb-2">
-                    Edit Product
-                </a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
 
 <script>
-
     // Check if button pressed
     $(document).on('click', '#add-cart', function (e) {
         e.preventDefault();
@@ -128,7 +134,5 @@
 
 
     })
-
-  
 </script>
 {% endblock %}
