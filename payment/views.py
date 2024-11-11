@@ -15,37 +15,10 @@ import uuid # unique user id for duplictate orders
 from .forms import PaymentForm  # Ensure you are importing the form
 
 
-def show_payment_info(request):
-    if request.user.is_authenticated:
-        current_user = request.user
-        
-        # Try to get the existing PaymentOfPayPal record for the current user
-        try:
-            pay_user = PaymentOfPayPal.objects.get(user_paypal_id=current_user.id)  # Ensure user_paypal_id is set correctly
-        except PaymentOfPayPal.DoesNotExist:
-            pay_user = None  # No payment info found for this user
-        
-        if pay_user:
-            # If payment info exists, show the information
-            payment_form = PaymentForm(instance=pay_user)
-            return render(request, "payment/show_payment_info.html", {'payment_form': payment_form})
-        else:
-            # If no payment info exists, show a message
-            messages.info(request, "No payment information found.")
-            return render(request, "payment/show_payment_info.html", {'payment_form': None})
-    else:
-        # If the user is not logged in, redirect to the homepage with a warning
-        messages.warning(request, "You must be logged in to view your payment information.")
-        return redirect('home')
-
-
-
 def update_payment_paypal(request):
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
-        print(current_user)
-        
-
+		
         # Try to get existing PaymentOfPayPal record for the current user
         try:
             pay_user = PaymentOfPayPal.objects.get(user_paypal_id=request.user.id)  # Ensure user_paypal_id is set correctly

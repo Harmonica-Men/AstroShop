@@ -10,7 +10,6 @@ urlpatterns = [
     path('shipped_dash', views.shipped_dash, name="shipped_dash"),
     path('not_shipped_dash', views.not_shipped_dash, name="not_shipped_dash"),
     path('update_payment_paypal', views.update_payment_paypal, name='update_payment_paypal'),
-    path('show_payment_info', views.show_payment_info, name='show_payment_info'),
     path('orders/<int:pk>', views.orders, name='orders'),
     path('paypal', include("paypal.standard.ipn.urls")),
 ]
