@@ -18,12 +18,13 @@
         {% if cart_products %}
         <table class="table no-border-table">
             <thead>
-                <tr class="text-center">
+                <tr class="text-center fw-bold h4">
                     <th style="width: 15%;">Image</th>
                     <th style="width: 75%;">Product Details</th>
                     <th style="width: 5%;">Quantity</th>
                     <th style="width: 15%;">Price</th>
                 </tr>
+                
             </thead>
             <tbody>
                 {% for product in cart_products %}
@@ -78,6 +79,12 @@
 
       </tbody>
     </table>
+    <hr>
+    <div class="card-body d-flex justify-content-md-end align-items-center">
+        <a href="{% url 'products'%}" class="btn btn-secondary mr-3">Back To Products</a>
+        <a href="{% url 'checkout' %}" class="btn btn-success mr-3">Checkout</a>
+        <h2 class="text-black mr-3"><strong>Total: €{{ totals }}</strong></h2>
+    </div>
     {% else %}
     <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(42vh);">
       <div class="p-5 shadow-lg" style="width: 100%; max-width: 567px;">
@@ -89,14 +96,7 @@
     {% endif %}
   </div>
 
-    <!-- Total and Checkout Section -->
-    <div class="card shadow-lg rounded-0 mb-3">
-        <div class="card-body d-flex justify-content-md-end align-items-center">
-            <a href="{% url 'products'%}" class="btn btn-secondary me-3">Back To Products</a>
-            <a href="{% url 'checkout' %}" class="btn btn-success me-3">Checkout</a>
-            <h2 class="text-black"><strong>Total: €{{ totals }}</strong></h2>
-        </div>
-    </div>
+    
 </div>
 
 <script>
