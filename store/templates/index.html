@@ -33,34 +33,24 @@
             </div>
         </div>
     </div>
-    <div class="d-flex flex-wrap justify-content-around product-name">
-        <a href="{% url 'category' 'Sales' %}" class="py-2 mx-2">
+
+    <div class="d-flex flex-wrap justify-content-center mb-2 me-5" style="font-size: medium;">
+        <a href="{% url 'category' 'Sales' %}" class="py-2 mx-2 text-white">
             <span class="fa-regular fa-star"></span>
             <strong class="mx-2">Sale!</strong>
             <span class="fa-regular fa-star"></span>
         </a>
-    
-        <a href="{% url 'category' 'Books' %}" class="py-2 mx-2">Books</a>
-    
-        <a href="{% url 'category' 'Toys' %}" class="py-2 mx-2">Toys</a>
-    
-        <a href="{% url 'category' 'Telescopes' %}" class="py-2 mx-2">Telescopes</a>
-    
-        <a href="{% url 'category' 'Globes' %}" class="py-2 mx-2">Globes</a>
-    
-        <a href="{% url 'category' 'Binoculars' %}" class="py-2 mx-2">Binoculars</a>
-    
-        <a href="{% url 'category' 'Weather Stations' %}" class="py-2 mx-2">Weather Stations</a>
-           
+        <a href="{% url 'category' 'Books' %}" class="py-2 mx-2 text-white">Books</a>
+        <a href="{% url 'category' 'Toys' %}" class="py-2 mx-2 text-white">Toys</a>
+        <a href="{% url 'category' 'Telescopes' %}" class="py-2 mx-2 text-white">Telescopes</a>
+        <a href="{% url 'category' 'Globes' %}" class="py-2 mx-2 text-white">Globes</a>
+        <a href="{% url 'category' 'Binoculars' %}" class="py-2 mx-2 text-white">Binoculars</a>
+        <a href="{% url 'category' 'Weather Stations' %}" class="py-2 mx-2 text-white">Weather Stations</a>
     </div>
-    
-        
 </header>
 
 <body>
-    <div class="container h-100 mt-3">
-        
-
+    <div class="container  mt-4" style="min-height: calc(98vh - 295px);">
         <div class="row justify-content-around">
             <!-- Info section and Image section -->
             <div class="astroshop-container">
@@ -70,10 +60,12 @@
                         <p>Welcome to the Astroshop Urania website. In our Astroshop, you'll find the largest range of
                             astronomical products in Belgium at very favorable prices.</p>
                         <br>
-                        <p><strong>Opening Hours:</strong> Tuesday and Friday from 19:30 to 22:00, and Wednesday from 14:00
+                        <p><strong>Opening Hours:</strong> Tuesday and Friday from 19:30 to 22:00, and Wednesday from
+                            14:00
                             to 16:00.</p>
-                            <br>
-                        <p>Visits to the Astroshop are by appointment during opening hours, or at another time by contacting
+                        <br>
+                        <p>Visits to the Astroshop are by appointment during opening hours, or at another time by
+                            contacting
                             us at GSM 0999/99.55.99</p>
                     </div>
                 </div>
@@ -86,21 +78,80 @@
                 class="shop-now-button btn btn-outline-dark btn-lg rounded-0 text-uppercase py-3"
                 style="font-size: xx-large; width: 100%;">Shop Now</a>
         </div>
+
     </div>
 
-    <footer class="py-3 bg-dark mt-3" style="background-color: rgba(0, 0, 0, 0.5);">
-        <div class="d-flex justify-content-between align-items-center py-4 mx-4">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="me-2 text-muted text-decoration-none">
-                    <p class="ml-5 text-center icon-white" style="font-size: larger">Copyright &copy; Vanelslande.com
-                        2024</p>
-                </a>
+    <footer class="py-1 bg-dark" style="background-color: rgba(0, 0, 0, 0.5);">
+
+        <div class="d-flex align-items-center justify-content-between py-1 mx-4">
+
+            <div class="container my-1">
+
+
+                <h5 class="text-white"><strong> Astroshop.com</strong></h5>
+
+
+                <i class="fa-solid fa-phone text-white"><span style="font-family: 'Lato';">&nbsp;0499 99 11 99
+                    </span></i>
+                <br>
+                <i class="fa-solid fa-envelope text-white"><span
+                        style="font-family: 'Lato';">&nbsp;info@astroshop.com</span>
+                </i>
+
             </div>
+
+
+
+
+            <div class="container text-white p-2" style="font-size: small">
+                <div class="row">
+
+                    <!-- Client Service Column -->
+                    <div class="col-md-4 mb-2">
+                        <div class="ml-2">
+                            <h6><strong>Client&nbsp;Service</strong></h6>
+                            <a href="{% url 'about' %}" class="text-white" style="font-size: small">About</a><br>
+                            <a href="{% url 'about' %}" class="text-white" style="font-size: small">General
+                                conditions</a><br>
+                            <a href="{% url 'about' %}" class="text-white" style="font-size: small">Disclaimer</a><br>
+                            <a href="{% url 'about' %}" class="text-white" style="font-size: small">Privacy
+                                Policy</a><br>
+                            <a href="{% url 'about' %}" class="text-white" style="font-size: small">Payment</a><br>
+                            <a href="{% url 'about' %}" class="text-white" style="font-size: small">Retour</a><br>
+                        </div>
+                    </div>
+
+                    <!-- Products Column -->
+                    <div class="col-md-4 mb-2">
+                        <div class="ml-2">
+                            <h6><strong>Products</strong></h6>
+                            <a href="{% url 'about' %}" class="text-white" style="font-size: small">All Products</a><br>
+                            <a href="{% url 'about' %}" class="text-white" style="font-size: small">Sales</a><br>
+                            
+                        </div>
+                    </div>
+
+                    <!-- User Account Column -->
+                    <div class="col-md-4 mb-2">
+                        <div class="ml-2">
+                            <h6><strong>User&nbsp;Account</strong></h6>
+                            <a href="{% url 'shopcart_summary' %}" class="text-white" style="font-size: small">Shopping
+                                Cart</a><br>
+                            <a href="{% url 'login' %}" class="text-white" style="font-size: small">Login</a><br>
+                            <a href="{% url 'register' %}" class="text-white" style="font-size: small">Register</a><br>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
                 <li class="ms-4"><a class="color-hyperlink" href="https://x.com/?lang=en" aria-label="Twitter"><i
                             class="fab fa-twitter fa-2x p-2 icon-white"></i></a></li>
                 <li class="ms-4"><a class="color-hyperlink" href="https://www.instagram.com/" aria-label="Instagram"><i
-                            class="fab fa-instagram fa-2x p-2 icon-white"></i></a></li>
+                            class="fab fa-instagram fa-2x p-2 icon-white"></i></a>
+                </li>
                 <li class="ms-4"><a class="color-hyperlink" href="https://www.facebook.com/" aria-label="Facebook"><i
                             class="fab fa-facebook fa-2x p-2 icon-white"></i></a></li>
                 <li class="ms-4"><a class="color-hyperlink" href="https://codeinstitute.net/global/"
@@ -108,6 +159,7 @@
             </ul>
         </div>
     </footer>
+
 
 </body>
 

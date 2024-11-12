@@ -5,12 +5,10 @@ html {
 body {
 
     background-size: cover;
-    height: calc(100vh - 164px);
+    /* height: calc(100vh - 164px); */
     color: #555;
     font-family: 'Lato';
 }
-
-
 
 .astroshop-container {
     position: relative;
@@ -20,7 +18,7 @@ body {
 .astroshop-image {
     position: relative;
     width: 100%;
-    height: 500px; /* Set a specific height for the image */
+    height: 600px; /* Set a specific height for the image */
     overflow: hidden;
 }
 
