@@ -46,6 +46,23 @@ body {
     /* Light gray on hover */
 }
 
+/* Inverse hover effect for navigation links and Shop Now button */
+.navbar-nav .nav-link:hover,
+.navbar-nav .dropdown-item:hover,
+.navbar .btn:hover,
+.shop-now-button:hover {
+    background-color: black;     /* Dark background on hover */
+    color: white !important;     /* White text on hover */
+}
+
+/* Optional: Smooth transition */
+.navbar-nav .nav-link,
+.navbar .btn,
+.navbar-nav .dropdown-item,
+.shop-now-button {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .strike-through {
     text-decoration: line-through;
 }
@@ -76,20 +93,20 @@ body {
     width: fit-content;
 }
 
-.shop-now-button {
+/* .shop-now-button {
     background: black;
     color: white;
     min-width: 260px;
-}
+} */
 
 .btn-black {
     background: black;
     color: white;
 }
-
+/* 
 .shop-now-button:hover,
 .shop-now-button:active,
-.shop-now-button:focus,
+.shop-now-button:focus, */
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
