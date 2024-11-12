@@ -21,11 +21,45 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 </head>
 
-<body>
-    <div class="container h-100">
-        <div class="col-12 col-md-8 my-auto text-center">
-            <h1 class="display-4 logo-font text-black">Astro Shop</h1>
+<!-- Header-->
+<header class="bg-dark py-1">
+    <div class="container px-4 px-lg-2 my-2">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">
+                {{ category }}
+            </h1>
+            <div>
+                <h1 class="display-4 logo-font text-white">Astro Shop</h1>
+            </div>
         </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-around product-name">
+        <a href="{% url 'category' 'Sales' %}" class="py-2 mx-2">
+            <span class="fa-regular fa-star"></span>
+            <strong class="mx-2">Sale!</strong>
+            <span class="fa-regular fa-star"></span>
+        </a>
+    
+        <a href="{% url 'category' 'Books' %}" class="py-2 mx-2">Books</a>
+    
+        <a href="{% url 'category' 'Toys' %}" class="py-2 mx-2">Toys</a>
+    
+        <a href="{% url 'category' 'Telescopes' %}" class="py-2 mx-2">Telescopes</a>
+    
+        <a href="{% url 'category' 'Globes' %}" class="py-2 mx-2">Globes</a>
+    
+        <a href="{% url 'category' 'Binoculars' %}" class="py-2 mx-2">Binoculars</a>
+    
+        <a href="{% url 'category' 'Weather Stations' %}" class="py-2 mx-2">Weather Stations</a>
+           
+    </div>
+    
+        
+</header>
+
+<body>
+    <div class="container h-100 mt-3">
+        
 
         <div class="row justify-content-around">
             <!-- Info section and Image section -->
@@ -53,6 +87,28 @@
                 style="font-size: xx-large; width: 100%;">Shop Now</a>
         </div>
     </div>
+
+    <footer class="py-3 bg-dark mt-3" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="d-flex justify-content-between align-items-center py-4 mx-4">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="me-2 text-muted text-decoration-none">
+                    <p class="ml-5 text-center icon-white" style="font-size: larger">Copyright &copy; Vanelslande.com
+                        2024</p>
+                </a>
+            </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-4"><a class="color-hyperlink" href="https://x.com/?lang=en" aria-label="Twitter"><i
+                            class="fab fa-twitter fa-2x p-2 icon-white"></i></a></li>
+                <li class="ms-4"><a class="color-hyperlink" href="https://www.instagram.com/" aria-label="Instagram"><i
+                            class="fab fa-instagram fa-2x p-2 icon-white"></i></a></li>
+                <li class="ms-4"><a class="color-hyperlink" href="https://www.facebook.com/" aria-label="Facebook"><i
+                            class="fab fa-facebook fa-2x p-2 icon-white"></i></a></li>
+                <li class="ms-4"><a class="color-hyperlink" href="https://codeinstitute.net/global/"
+                        aria-label="Website"><i class="fa-solid fa-globe fa-2x p-2 icon-white"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
 </body>
 
 </html>
