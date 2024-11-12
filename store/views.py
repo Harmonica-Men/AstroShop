@@ -249,18 +249,32 @@ def category_summary(request):
 	categories = Category.objects.all()
 	return render(request, 'category_summary.html', {"categories":categories})	
 
+
 def category(request, foo):
-	# Replace Hyphens with Spaces
-	foo = foo.replace('-', ' ')
-	# Grab the category from the url
-	try:
-		# Look Up The Category
-		category = Category.objects.get(name=foo)
-		products = Product.objects.filter(category=category)
-		return render(request, 'category.html', {'products':products, 'category':category})
-	except:
-		messages.success(request, ("That Category Doesn't Exist..."))
-		return redirect('home')
+    # Replace hyphens with spaces
+    foo = foo.replace('-', ' ')
+    
+    # Check if the requested category is "Sales"
+    if foo.lower() == "sales":
+        # Filter for products on sale
+        products = Product.objects.filter(is_sale=True)  # Using is_sale field
+        category_name = "Sales"  # Set category name for display
+    else:
+        # Regular category handling
+        try:
+            category = Category.objects.get(name=foo)
+            products = Product.objects.filter(category=category)
+            category_name = category.name
+        except Category.DoesNotExist:
+            messages.success(request, "That Category Doesn't Exist...")
+            return redirect('home')
+    
+    # Render the category page with the list of products and category name
+    return render(request, 'category.html', {
+        'products': products,
+        'category': category_name,
+        'is_sales': (foo.lower() == "sales")  # Pass is_sales as True if it's the "Sales" category
+    })
 
 
 def product(request,pk):
