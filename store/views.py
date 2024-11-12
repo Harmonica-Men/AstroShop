@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UserInfoForm, UpdateProductForm, ProfileForm
+from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UpdateProductForm, ProfileForm
 from django.db.models.functions import Lower
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress, PaymentOfPayPal
@@ -139,13 +139,13 @@ def update_user_profile(request):
         
         # Get Current User's profile Info with error handling
         try:
-            print(current_user)
+            
             user_profile = Profile.objects.get(user__id=request.user.id)
         except Profile.DoesNotExist:
             user_profile = None  # Optional: handle missing profile here
             
         # Get original User Form
-        form = UserInfoForm(request.POST or None, instance=current_user)
+        form = ProfileForm(request.POST or None, instance=current_user)
         
         # Initialize profile form using the existing profile or None
         profile_form = ProfileForm(request.POST or None, instance=user_profile)
@@ -159,21 +159,19 @@ def update_user_profile(request):
                 new_profile = profile_form.save(commit=False)
                 new_profile.user = request.user
                 new_profile.save()
-
-            print("Your profile has been updated!!")
+          
             return redirect('products')
         
         return render(request, "update_user_profile.html", {'form': form, 'profile_form': profile_form})
     
     else:
-        print("You must be logged in to access that page!!")
+
         return redirect('home')
 
 
 def update_ship_profile(request):
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
-        print(current_user)
         
         # Get Current User's Shipping Info with error handling
         try:
@@ -182,7 +180,7 @@ def update_ship_profile(request):
             shipping_user = None  # Optional: handle missing shipping address here
             
         # Get original User Form
-        form = UserInfoForm(request.POST or None, instance=current_user)
+        form = ProfileForm(request.POST or None, instance=current_user)
         
         # Get User's Shipping Form (use an empty instance if shipping_user is None)
         shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
@@ -197,13 +195,11 @@ def update_ship_profile(request):
                 shipping_user.user = request.user
                 shipping_user.save()
 
-            print("Your profile Has Been Updated!!")
             return redirect('products')
         
         return render(request, "update_ship_profile.html", {'form': form, 'shipping_form': shipping_form})
     
     else:
-        messages.warning(request, "You Must Be Logged In To Access That Page!!")
         return redirect('home')
 
 def update_password(request):
@@ -220,13 +216,13 @@ def update_password(request):
 				return redirect('update_user')
 			else:
 				for error in list(form.errors.values()):
-					messages.error(request, error)
+
 					return redirect('update_password')
 		else:
 			form = ChangePasswordForm(current_user)
 			return render(request, "update_password.html", {'form':form})
 	else:
-		messages.success(request, "You Must Be Logged In To View That Page...")
+
 		return redirect('home')
 
 def update_user(request):
@@ -238,11 +234,11 @@ def update_user(request):
 			user_form.save()
 
 			login(request, current_user)
-			messages.success(request, "User Has Been Updated!!")
+
 			return redirect('home')
 		return render(request, "update_user.html", {'user_form':user_form})
 	else:
-		messages.success(request, "You Must Be Logged In To Access That Page!!")
+
 		return redirect('home')
 
 def category_summary(request):

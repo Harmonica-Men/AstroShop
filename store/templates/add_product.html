@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <!-- Header-->
 <header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
+    <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Add New Product</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Administrator Update Page ...</p>
+            <br>
+            <h1 class="display-4 fw-bolder mt-5">Add New Product</h1>          
+            <p class="lead fw-normal text-white-40 mb-2">Administrator Update Page</p>
         </div>
     </div>
 </header>
@@ -58,10 +58,11 @@
             </div>
 
 
-            <div class="mt-3 mb-3 text-center">
+            <div class="d-flex justify-content-around mt-3 mb-3">
                 <button type="submit" class="btn btn-success">Add Product</button>
-                <a href="{% url 'products' %}" class="btn btn-secondary ml-5 add">Cancel</a>
+                <a href="{% url 'products' %}" class="btn btn-secondary">Cancel</a>
             </div>
+            
         </form>
     </div>
 </div>

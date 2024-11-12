@@ -1,40 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 <!-- Header-->
 <header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
+    <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">About Us ...</h1>
             <br>
-            <p class="lead fw-normal text-white-40 mb-2">Welcome To Astro Shop E-commerce ...</p>
+            <h1 class="display-4 fw-bolder mt-5">About Us</h1>          
+            <p class="lead fw-normal text-white-40 mb-2">It's all about Astronomy</p>
         </div>
     </div>
 </header>
 
-
-
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
-    <div class="card shadow-lg rounded-0 mb-3 p-3">
+    <div class="card shadow-lg rounded-0 mb-3 p-3" style="width: 500px;">
         
-            <p><strong>About Us</strong></p>
-            
-            
-            <p>Welcome to the Astroshop Urania. In our Astroshop, you will find the largest range of astronomical products in Belgium at very competitive prices. The range consists of more than 1000 items.</p>
-            
-            <p>Whether it is a book, atlas, globe, weather station, or toy, we have it all. For optical material, we are a distributor of the brands Omegon, Meade, Bresser, Celestron, and Sky-Watcher. This allows us to also offer telescopes, binoculars, eyepieces, and other accessories, for children, beginners, and advanced users.</p>
-            
-            <p>Can't find what you are looking for on our website? The complete range of optics from the different brands that we distribute are available to order.</p>
-            
-            <p>Our physical store is located at Volkssterrenwacht Urania in the reception area.</p>
-            
-            <p>Enjoy free shipping from 200 euros in Belgium and the Netherlands.</p>
-            
-        <div class="d-flex justify-content-center mb-4">
+        <p class="text-center"><strong>About Us</strong></p>
+        
+        <p>Welcome to the Astroshop. In our Astroshop, you will find the largest range of astronomical products in Belgium at very competitive prices. The range consists of more than 1000 items.</p>
+        
+        <p>Whether it is a book, atlas, globe, weather station, or toy, we have it all. For optical material, we are a distributor of the brands Omegon, Meade, Bresser, Celestron, and Sky-Watcher. This allows us to also offer telescopes, binoculars, eyepieces, and other accessories, for children, beginners, and advanced users.</p>
+        
+        <p>Can't find what you are looking for on our website? The complete range of optics from the different brands that we distribute are available to order.</p>
+        
+        <p>Our physical store is located at 'Volkssterrenwacht' in the reception area.</p>
+        
+        <p>Enjoy free shipping from 200 euros in Belgium and the Netherlands.</p>
+        
+        <div class="d-flex justify-content-center mt-3">
             <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
         </div>
     </div>
-
 </div>
 
 

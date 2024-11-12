@@ -83,14 +83,10 @@ def orders(request, pk):
 			messages.success(request, "Shipping Status Updated")
 			return redirect('home')
 
-
+		print(ShippingAddress)
 		return render(request, 'payment/orders.html', {"order":order, "items":items})
-
-
-
-
 	else:
-		messages.success(request, "Access Denied")
+		
 		return redirect('home')
 
 
