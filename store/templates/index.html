@@ -23,15 +23,26 @@
 
 <!-- Header-->
 <header class="bg-dark py-1">
-    <div class="container px-4 px-lg-2 my-2">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">
-                {{ category }}
-            </h1>
-            <div>
-                <h1 class="display-4 logo-font text-white">Astro Shop</h1>
-            </div>
+    <div class="container text-center text-white px-2 px-lg-2 my-2">
+        <div style="position: absolute; top: 0; right: 0; z-index: 1000;">
+
+            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
+                href="{% url 'shopcart_summary' %}">
+                <div class="text-center">
+                    <div><i class="fas fa-cart-shopping fa-lg text-white"></i></div>
+                    <p class="my-0 text-white">Shop Cart Items
+                        <span class="badge bg-white text-black ms-1 rounded-pill"
+                            id="cart_quantity">{{ cart|length }}</span>
+                    </p>
+                </div>
+            </a>
         </div>
+
+
+
+
+        <h1 class="display-4 logo-font text-white">Astro Shop</h1>
+
     </div>
 
     <div class="d-flex flex-wrap justify-content-center mb-2 me-5" style="font-size: medium;">
@@ -46,6 +57,7 @@
         <a href="{% url 'category' 'Globes' %}" class="py-2 mx-2 text-white">Globes</a>
         <a href="{% url 'category' 'Binoculars' %}" class="py-2 mx-2 text-white">Binoculars</a>
         <a href="{% url 'category' 'Weather Stations' %}" class="py-2 mx-2 text-white">Weather Stations</a>
+        <a href="{% url 'products' %}" class="py-2 mx-2 text-white">All Products</a>
     </div>
 </header>
 
@@ -56,8 +68,8 @@
             <div class="astroshop-container">
                 <div class="astroshop-image">
                     <img src="/static/images/image_shop.webp" class="img-fluid rounded-0" alt="our store...">
-                    <div class="image-text-overlay">
-                        <p>Welcome to the Astroshop Urania website. In our Astroshop, you'll find the largest range of
+                    <div class="image-text-overlay rounded-0">
+                        <p>Welcome to the Astroshop website. In our Astroshop, you'll find the largest range of
                             astronomical products in Belgium at very favorable prices.</p>
                         <br>
                         <p><strong>Opening Hours:</strong> Tuesday and Friday from 19:30 to 22:00, and Wednesday from
@@ -125,9 +137,9 @@
                     <div class="col-md-4 mb-2">
                         <div class="ml-2">
                             <h6><strong>Products</strong></h6>
-                            <a href="{% url 'about' %}" class="text-white" style="font-size: small">All Products</a><br>
-                            <a href="{% url 'about' %}" class="text-white" style="font-size: small">Sales</a><br>
-                            
+                            <a href="{% url 'products' %}" class="text-white" style="font-size: small">All Products</a><br>
+                            <a href="{% url 'category' 'Sales' %}" class="text-white" style="font-size: small">Sales</a><br>
+
                         </div>
                     </div>
 
@@ -138,6 +150,7 @@
                             <a href="{% url 'shopcart_summary' %}" class="text-white" style="font-size: small">Shopping
                                 Cart</a><br>
                             <a href="{% url 'login' %}" class="text-white" style="font-size: small">Login</a><br>
+                            
                             <a href="{% url 'register' %}" class="text-white" style="font-size: small">Register</a><br>
                         </div>
                     </div>
