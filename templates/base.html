@@ -76,71 +76,83 @@
                         <ul class="list-inline list-unstyled text-lg-right my-0 d-flex justify-content-end">
 
                             <li class="list-inline-item">
-                                <button class="text-black nav-link btn" id="user-options"
-                                    onclick="window.location.href=aboutUrl" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <div class="text-center">
-                                        <div><i class="fas fa-question fa-lg"></i></div>
-                                        <p class="my-0">About</p>
-                                    </div>
-                                </button>
+                                <div class="cart-box">
+                                    <button class="text-black nav-link btn" id="user-options"
+                                        onclick="window.location.href=aboutUrl" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <div class="text-center">
+                                            <div><i class="fas fa-question fa-lg"></i></div>
+                                            <p class="my-0">About</p>
+                                        </div>
+                                    </button>
+                                </div>
                             </li>
 
+
                             <li class="list-inline-item">
-                                <button class="text-black nav-link btn" id="user-options"
-                                    onclick="window.location.href=searchUrl" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <div class="text-center">
-                                        <div><i class="fas fa-search fa-lg"></i></div>
-                                        <p class="my-0">Search</p>
-                                    </div>
-                                </button>
+                                <div class="cart-box">
+
+
+                                    <button class="text-black nav-link btn" id="user-options"
+                                        onclick="window.location.href=searchUrl" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <div class="text-center">
+                                            <div><i class="fas fa-search fa-lg"></i></div>
+                                            <p class="my-0">Search</p>
+                                        </div>
+                                    </button>
+                                </div>
                             </li>
 
                             <li class="list-inline-item dropdown">
-                                <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    <div class="text-center">
-                                        <div><i class="fas fa-user fa-lg"></i></div>
-                                        <p class="my-0">My Account</p>
+                                <div class="cart-box">
+                                    <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <div class="text-center">
+                                            <div><i class="fas fa-user fa-lg"></i></div>
+                                            <p class="my-0">My Account</p>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu border-1" aria-labelledby="user-options">
+
+                                        {% if request.user.is_authenticated %}
+                                        <a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a>
+                                        <a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a>
+                                        <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
+
+                                        <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
+
+                                        <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
+
+                                        <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                                        {% if request.user.is_superuser %}
+                                        <hr class="dropdown-divider" />
+                                        <a href="{% url 'add_product' %}" class="dropdown-item">Add a New Product</a>
+                                        <hr class="dropdown-divider" />
+                                        <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
+                                        <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">UnShipped
+                                            Orders</a>
+                                        {% endif %}
+                                        {% else %}
+                                        <a href="{% url 'register' %}" class="dropdown-item">Register</a>
+                                        <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                                        {% endif %}
                                     </div>
-                                </a>
-                                <div class="dropdown-menu border-1" aria-labelledby="user-options">
-
-                                    {% if request.user.is_authenticated %}
-                                    <a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a>
-                                    <a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a>
-                                    <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
-
-                                    <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
-
-                                    <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
-
-                                    <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
-                                    {% if request.user.is_superuser %}
-                                    <hr class="dropdown-divider" />
-                                    <a href="{% url 'add_product' %}" class="dropdown-item">Add a New Product</a>
-                                    <hr class="dropdown-divider" />
-                                    <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
-                                    <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">UnShipped Orders</a>
-                                    {% endif %}
-                                    {% else %}
-                                    <a href="{% url 'register' %}" class="dropdown-item">Register</a>
-                                    <a href="{% url 'login' %}" class="dropdown-item">Login</a>
-                                    {% endif %}
                                 </div>
                             </li>
-                            <li class="list-inline-item">
-                                <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
-                                    href="{% url 'shopcart_summary' %}">
-                                    <div class="text-center">
-                                        <div><i class="fas fa-cart-shopping fa-lg"></i></div>
-                                        <p class="my-0">Shop Cart Items
-                                            <span class="badge bg-dark text-white ms-1 rounded-pill"
-                                                id="cart_quantity">{{ cart|length }}</span>
-                                        </p>
-                                    </div>
-                                </a>
+                            <li class="list-inline-item mb-2">
+                                <div class="cart-box">
+                                    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
+                                        href="{% url 'shopcart_summary' %}">
+                                        <div class="text-center">
+                                            <div><i class="fas fa-cart-shopping fa-lg"></i></div>
+                                            <p class="my-0">Shop Cart Items
+                                                <span class="badge bg-dark text-white ms-1 rounded-pill"
+                                                    id="cart_quantity">{{ cart|length }}</span>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
                             </li>
                         </ul>
                     </div>

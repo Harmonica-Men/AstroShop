@@ -10,6 +10,46 @@ body {
     font-family: 'Lato';
 }
 
+ /* Style the box around the link */
+ .cart-box {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc; /* Box border color */
+    border-radius: 0px; 
+    background-color: #f8f9fa; /* Background color */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Hover effect */
+.cart-box:hover {
+    background-color: #e9ecef; /* Darker background on hover */
+    border-color: #aaa; /* Darker border on hover */
+}
+
+.cart-box .nav-link {
+    color: inherit;
+}
+
+/* Styling to invert colors on hover */
+.cart-link {
+    color: white;
+}
+
+.cart-link:hover {
+    color: black;
+}
+
+.cart-link .badge {
+    background-color: white;
+    color: black;
+}
+
+.cart-link:hover .badge {
+    background-color: black;
+    color: white;
+}
+
+
 .astroshop-container {
     position: relative;
     width: 100%;

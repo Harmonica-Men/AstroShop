@@ -24,20 +24,19 @@
 <!-- Header-->
 <header class="bg-dark py-1">
     <div class="container text-center text-white px-2 px-lg-2 my-2">
-        <div style="position: absolute; top: 0; right: 0; z-index: 1000;">
 
-            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
-                href="{% url 'shopcart_summary' %}">
+        <div style="position: absolute; top: 0; right: 0; z-index: 1000;">
+            <a class="cart-link nav-link {% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %}"
+               href="{% url 'shopcart_summary' %}">
                 <div class="text-center">
-                    <div><i class="fas fa-cart-shopping fa-lg text-white"></i></div>
-                    <p class="my-0 text-white">Shop Cart Items
-                        <span class="badge bg-white text-black ms-1 rounded-pill"
-                            id="cart_quantity">{{ cart|length }}</span>
+                    <div><i class="fas fa-cart-shopping fa-lg"></i></div>
+                    <p class="my-0">Shop Cart Items
+                        <span class="badge ms-1 rounded-pill"
+                              id="cart_quantity">{{ cart|length }}</span>
                     </p>
                 </div>
             </a>
         </div>
-
 
 
 
@@ -137,8 +136,10 @@
                     <div class="col-md-4 mb-2">
                         <div class="ml-2">
                             <h6><strong>Products</strong></h6>
-                            <a href="{% url 'products' %}" class="text-white" style="font-size: small">All Products</a><br>
-                            <a href="{% url 'category' 'Sales' %}" class="text-white" style="font-size: small">Sales</a><br>
+                            <a href="{% url 'products' %}" class="text-white" style="font-size: small">All
+                                Products</a><br>
+                            <a href="{% url 'category' 'Sales' %}" class="text-white"
+                                style="font-size: small">Sales</a><br>
 
                         </div>
                     </div>
@@ -150,7 +151,7 @@
                             <a href="{% url 'shopcart_summary' %}" class="text-white" style="font-size: small">Shopping
                                 Cart</a><br>
                             <a href="{% url 'login' %}" class="text-white" style="font-size: small">Login</a><br>
-                            
+
                             <a href="{% url 'register' %}" class="text-white" style="font-size: small">Register</a><br>
                         </div>
                     </div>
