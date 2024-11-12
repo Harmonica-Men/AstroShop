@@ -75,7 +75,7 @@
                         <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
                         <strong>€{{ product.sale_price }}</strong>
                         {% else %}
-                        <strong class="text-black">€{{ product.price }}</strong>
+                        <strong class="product-price text-black">€{{ product|calculate_subtotal:quantities|floatformat:2 }}</strong>
                         {% endif %}
                     </td>
                 </tr>
