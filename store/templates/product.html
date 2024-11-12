@@ -16,12 +16,6 @@
 <!-- Item card -->
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(48vh);">
     <div class="col shadow-lg" style="width: 100%; max-width: 1600px;">
-
-
-
-
-
-
         {% if product.category %}
         <p class="large mt-1 mb-0 ml-4">
             <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
@@ -62,6 +56,7 @@
 
             </div>
         </div>
+        <hr>
         <!-- Price tag -->
         <div class="container d-flex justify-content-end align-items-center mt-3">
 

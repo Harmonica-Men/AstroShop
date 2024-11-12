@@ -22,10 +22,6 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 def add_to_cart(request, product_id):
-    # Your logic to add the product to the cart here
-
-    # Set a success message
-    messages.success(request, "Product has been added to your cart!")
     return redirect('cart')  # Redirect to a relevant page after adding to the cart
 
 
