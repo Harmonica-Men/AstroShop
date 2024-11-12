@@ -10,6 +10,66 @@ body {
     font-family: 'Lato';
 }
 
+
+
+.astroshop-container {
+    position: relative;
+    width: 100%;
+}
+
+.astroshop-image {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Set a specific height for the image */
+    overflow: hidden;
+}
+
+.astroshop-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+.image-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the text inside the image */
+    color: white;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;  /* Optional: Limit the width of the text */
+}
+
+.image-text-overlay p {
+    text-align: left;
+    margin: 0;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+/* Shop Now button styling */
+.shop-now-button {
+    font-size: 1.25rem;
+    width: auto;
+    max-width: 500px;
+    margin: 0 auto;   /* Center the button */
+}
+
+@media (max-width: 768px) {
+    .image-text-overlay p {
+        font-size: 0.8rem; /* Smaller font size for mobile devices */
+    }
+    
+    .shop-now-button {
+        width: 100%; /* Full width for the button on smaller screens */
+    }
+}
+
+
+
 /* from Bulma */
 .icon {
     align-items: center;

@@ -2,76 +2,57 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
 
-        {% block meta %}
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        {% endblock %}
-    
-        {% block extra_meta %}
-        {% endblock %}
-    
-        {% block corecss %}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-            integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
-        {% endblock %}
-    
-        {% block extra_css %}
-        {% endblock %}
-    
-        {% block corejs %}
-        <!-- <script src="https://kit.fontawesome.com/a90cb4361a.js" crossorigin="anonymous"></script> -->
-    
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
-        </script>
-        <script>
-            const searchUrl = "{% url 'search' %}";
-            const aboutUrl = "{% url 'about' %}";
-        </script>
-    
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-        </script>
-    
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        {% endblock %}
-    
-        {% block extra_js %}
-        {% endblock %}
-    
-        <title>Astro Shop {% block extra_title %}{% endblock %}</title>
-    </head>
-    <body>
-        <!-- Navigation-->
-       
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-8 col-md-4 my-auto">
-                    <h1 class="display-4 logo-font text-black">
-                        Astro Shop
-                    </h1>
-                    <div class="my-5">
-                        <h4>
-                            <a href="{% url 'products' %}" class="shop-now-button btn btn-outline-dark btn-lg btn-block rounded-0 text-uppercase py-3" style="font-size: xx-large;">Shop Now</a>
-                        </h4>
+    {% block corecss %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+    <title>Astro Shop {% block extra_title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+</head>
+
+<body>
+    <div class="container h-100">
+        <div class="col-12 col-md-8 my-auto text-center">
+            <h1 class="display-4 logo-font text-black">Astro Shop</h1>
+        </div>
+
+        <div class="row justify-content-around">
+            <!-- Info section and Image section -->
+            <div class="astroshop-container">
+                <div class="astroshop-image">
+                    <img src="/static/images/image_shop.webp" class="img-fluid rounded-0" alt="our store...">
+                    <div class="image-text-overlay">
+                        <p>Welcome to the Astroshop Urania website. In our Astroshop, you'll find the largest range of
+                            astronomical products in Belgium at very favorable prices.</p>
+                        <br>
+                        <p><strong>Opening Hours:</strong> Tuesday and Friday from 19:30 to 22:00, and Wednesday from 14:00
+                            to 16:00.</p>
+                            <br>
+                        <p>Visits to the Astroshop are by appointment during opening hours, or at another time by contacting
+                            us at GSM 0999/99.55.99</p>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Shop Now button centered under the image -->
+        <div class="my-5">
+            <a href="{% url 'products' %}"
+                class="shop-now-button btn btn-outline-dark btn-lg rounded-0 text-uppercase py-3"
+                style="font-size: xx-large; width: 100%;">Shop Now</a>
+        </div>
+    </div>
+</body>
 
-    </body>
 </html>
