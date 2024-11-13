@@ -82,3 +82,17 @@ class Order(models.Model):
 
 	def __str__(self):
 		return self.product
+
+
+class Subscriber(models.Model):
+    """
+    Represents a subscriber to the blog, identified by their email.
+    Subscribers receive blog updates and must confirm their subscription.
+    """
+    email = models.EmailField(unique=True)
+    is_confirmed = models.BooleanField(default=False)
+    confirmation_code = models.CharField(max_length=50)
+
+    def __str__(self):
+        # Returns the email of the subscriber
+        return self.email
