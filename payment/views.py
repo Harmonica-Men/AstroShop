@@ -46,7 +46,7 @@ def update_payment_paypal(request):
                 pay_user.user_paypal_id = request.user.id  # Assign the user ID as the PayPal ID
                 pay_user.save()  # Save the new payment record
 
-            print("Your Info Has Been Updated!!")
+           
             return redirect('products')  # Redirect after saving
 
         # If forms are not valid, return the same page with the forms
@@ -58,21 +58,36 @@ def update_payment_paypal(request):
         return redirect('home')
 
 
+def shipped_dash(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        orders = Order.objects.filter(shipped=True)
+        if request.POST:
+            num = request.POST['num']
+            # Set the order to unshipped and remove the date_shipped
+            order = Order.objects.filter(id=num)
+            order.update(shipped=False, date_shipped=None)
+            messages.success(request, "Order marked as not shipped.")
+            # Reload with updated data for unshipped orders
+            return redirect('not_shipped_dash')
+        return render(request, "payment/shipped_dash.html", {"orders": orders})
+    else:
+        return redirect('products')
+
+
 def not_shipped_dash(request):
     if request.user.is_authenticated and request.user.is_superuser:
         orders = Order.objects.filter(shipped=False)
         if request.POST:
-            status = request.POST['shipping_status']
             num = request.POST['num']
-            # Get the order
+            # Set the order to shipped and add the current timestamp
             order = Order.objects.filter(id=num)
-            # Update order with timezone-aware datetime
             order.update(shipped=True, date_shipped=timezone.now())
-            return redirect('products')
+            messages.success(request, "Order marked as shipped.")
+            # Reload with updated data for shipped orders
+            return redirect('shipped_dash')
         return render(request, "payment/not_shipped_dash.html", {"orders": orders})
     else:
         return redirect('products')
-
 
 def orders(request, pk):
     if request.user.is_authenticated and request.user.is_superuser:
@@ -88,24 +103,6 @@ def orders(request, pk):
         return render(request, 'payment/orders.html', {"order": order, "items": items})
     else:
         return redirect('home')
-
-
-def shipped_dash(request):
-    if request.user.is_authenticated and request.user.is_superuser:
-        orders = Order.objects.filter(shipped=True)
-        if request.POST:
-            status = request.POST['shipping_status']
-            num = request.POST['num']
-            order = Order.objects.filter(id=num)
-            order.update(shipped=False)
-            messages.success(request, "Shipping Status Updated")
-            return redirect('products')
-        return render(request, "payment/shipped_dash.html", {"orders": orders})
-    else:
-        messages.success(request, "Access Denied")
-        return redirect('home')
-
-
 
 def billing_info(request):
     billing_form = PaymentForm()

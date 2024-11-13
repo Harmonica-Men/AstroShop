@@ -5,15 +5,15 @@
     <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
             <br>
-            <h1 class="display-4 fw-bolder mt-5">Shipped Items</h1>          
+            <h1 class="display-4 fw-bolder mt-5">Shipped Items</h1>
             <p class="lead fw-normal text-white-40 mb-2">Dash board shipping</p>
         </div>
     </div>
 </header>
 
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
-    <div class="row shadow-lg" style="width: 100%; max-width: 500px;">
-        <div class="text-center col-md-12 mt-3">
+    <div class="row shadow-lg" style="width: 100%; max-width: 850px;">
+        <div class="col-12 mt-3">
             <table class="table table-striped table-hover table-bordered">
                 <thead class="table-dark">
                     <tr>
@@ -28,26 +28,34 @@
                     {% for item in orders %}
                     <tr>
                         <td><a href="{% url 'orders' item.id %}">{{ item.id }}</a></td>
-                        <td>${{ item.amount_paid }}</td>
+                        <td>€{{ item.amount_paid }}</td>
                         <td>{{ item.email }}</td>
                         <td>{{ item.date_shipped }}</td>
                         <td>
-                            <form method="POST">
+                            <form method="POST" action="{% url 'shipped_dash' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="shipping_status" value="false">
                                 <input type="hidden" name="num" value={{item.id}}>
-                                <button type="Submit" class="btn btn-danger btn-sm">Mark UnShipped</button>
+                                <button type="Submit" class="btn btn-danger">Mark UnShipped</button>
                             </form>
                         </td>
                     </tr>
                     {% endfor %}
 
 
+
+
                 </tbody>
             </table>
+            <div class="d-flex justify-content-around mt-3 mb-3">
+                <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
+
+                <a href="{% url 'not_shipped_dash' %}" class="btn btn-secondary">Unshipped Orders</a>
+
+            </div>
         </div>
     </div>
 </div>
 
 
-    {% endblock %}
+{% endblock %}

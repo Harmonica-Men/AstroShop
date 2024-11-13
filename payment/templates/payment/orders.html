@@ -19,47 +19,57 @@
         <div class="col-md-12 mt-3">
             <div class="card mb-3">
                 <div class="card-header">
-                    Check Order {{ order.id}} - <strong>€{{order.amount_paid}}</strong>  
+                    Check Order {{ order.id}} - <strong>€{{order.amount_paid}}</strong>
                 </div>
                 <div class="card-body">
-                   
                     <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">
                         <div class="card shadow-sm p-3">
                             <div class="card-body">
-                                <h5 class="card-title text-lg-left">Order Details</h5>
-                                
-                                <p class="card-text">
-                                    {% if order.date_shipped %}
-                                        <strong>Date Shipped:</strong> {{ order.date_shipped }}
-                                    {% else %}
-                                        <strong>Date Ordered:</strong> {{ order.date_ordered }}
-                                    {% endif %}
-                                </p>
-                    
-                                <p class="card-text">
-                                    <strong>Email:</strong> {{ order.email }}
-                                </p>
+                                <h5 class="card-title">Order Details</h5>
+
+                                <table class="table table-bordered mt-3">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Date</th>
+                                            <td>
+                                                {% if order.date_shipped %}
+                                                <strong>Date Shipped:</strong> {{ order.date_shipped }}
+                                                {% else %}
+                                                <strong>Date Ordered:</strong> {{ order.date_ordered }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Email</th>
+                                            <td>{{ order.email }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
+
                     <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">
-                        <div class="card shadow-sm p-3" style="width: 18rem;">
+                        <div class="card shadow-sm p-3" style="width: 100%;">
                             <div class="card-body">
-                                <h5 class="card-title text-center">Shipping Information</h5>
-                                
-                                <p class="card-text">
-                                    <strong>Name:</strong> {{ order.full_name }}
-                                </p>
-                                
-                                <p class="card-text">
-                                    <strong>Address:</strong> 
-                                    <small>{{ order.shipping_address }}</small>
-                                    
-                                </p>
+                                <h5 class="card-title">Shipping Information</h5>
+
+                                <table class="table table-bordered mt-3">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Name</th>
+                                            <td>{{ order.full_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Address</th>
+                                            <td>{{ order.shipping_address }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    
+
                     <table class="table table-bordered table-striped text-center mt-3">
                         <thead>
                             <tr>
@@ -78,28 +88,27 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                    
-                    <br /><br />
-                    {% if not order.shipped %}
                     <form method="POST">
                         {% csrf_token %}
-                        <input type="hidden" name="shipping_status" value="true">
-                        <button type="Submit" class="btn btn-success">Mark As Shipped</button>
-                        </from>
-
-                        {% else %}
-                        <form method="POST">
-                            {% csrf_token %}
+                        <div class="d-flex justify-content-around">
+                            {% if not order.shipped %}
+                            <input type="hidden" name="shipping_status" value="true">
+                            <button type="submit" class="btn btn-success">Mark As Shipped</button>
+                            {% else %}
                             <input type="hidden" name="shipping_status" value="false">
-                            <button type="Submit" class="btn btn-danger">Mark As Not Shipped</button>
-                            </from>
-
+                            <button type="submit" class="btn btn-danger">Mark As Not Shipped</button>
                             {% endif %}
 
+
+                            <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
+
+
+                        </div>
+                    </form>
                 </div>
+
             </div>
-            <br>
-            <br />
+
         </div>
     </div>
 </div>
