@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Product, Category, Profile
+from .models import Product, Category, Profile, Subscriber
 from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UpdateProductForm, ProfileForm
+from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UpdateProductForm, ProfileForm, SubscriptionForm
 from django.db.models.functions import Lower
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress, PaymentOfPayPal
@@ -16,10 +15,12 @@ from .models import Product
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-
-
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import (
+    TemplateView,
+    FormView
+)
 
 def add_to_cart(request, product_id):
     return redirect('cart')  # Redirect to a relevant page after adding to the cart
@@ -340,3 +341,76 @@ def register_user(request):
 			return redirect('register')
 	else:
 		return render(request, 'register.html', {'form':form})
+
+
+
+
+
+
+
+
+
+
+class SubscribeView(FormView):
+    """
+    View to handle user subscriptions to the blog via email.
+    """
+    form_class = SubscriptionForm
+    template_name = 'homepage.html'
+
+    def form_valid(self, form):
+        """
+        Process the subscription form and send a confirmation email.
+        """
+        login = form.cleaned_data['login']
+        email = form.cleaned_data['email']
+        confirmation_code = str(uuid.uuid4())
+        subscriber, created = Subscriber.objects.get_or_create(email=email)
+        subscriber.confirmation_code = confirmation_code
+        subscriber.is_confirmed = False
+        subscriber.save()
+        confirmation_link = (
+            f"{self.request.scheme}://{self.request.get_host()}"
+            f"/blogger/confirm/?code={confirmation_code}"
+        )
+        subject = 'Confirm your subscription'
+        message = (
+            f"Hello {login},\n\n"
+            f"Click the link to confirm your subscription: {confirmation_link}"
+        )
+        from_email = settings.DEFAULT_FROM_EMAIL
+        try:
+            send_mail(subject, message, from_email, [email])
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+        except Exception as e:
+            logger.error(f'Error sending email: {e}')
+            return HttpResponse(f'Error sending email: {e}')
+
+        return HttpResponseRedirect(reverse_lazy('check-email'))
+
+
+
+class CheckEmailView(TemplateView):
+    """
+    View to display a page asking the user to check their email,
+    for a subscription confirmation link.
+    """
+    template_name = 'registration/check_email.html'
+
+
+def confirm_subscription(request):
+    """
+    View to confirm the user's subscription
+    using the provided confirmation code.
+    """
+    code = request.GET.get('code')
+
+    if not code:
+        return HttpResponse('Confirmation code is required.', status=400)
+
+    subscriber = get_object_or_404(Subscriber, confirmation_code=code)
+    subscriber.is_confirmed = True
+    subscriber.save()
+
+    return render(request, 'registration/confirm_subscription.html')

@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import update_product, add_product
+from .views import update_product, add_product, SubscribeView, CheckEmailView, confirm_subscription
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -22,5 +22,11 @@ urlpatterns = [
     path('product/update/<int:pk>/', update_product, name='update_product'),
     path('product/add/', add_product, name='add_product'),
     path('products/', views.all_products, name='products'),
+     # Subscribe to a newsletter or service
+    path('subscribe/', SubscribeView.as_view(), name='subscribe'),
+    # Check email view
+    path('check-email/', CheckEmailView.as_view(), name='check_email'),
+    # Confirm subscription
+    path('confirm/', confirm_subscription, name='confirm_subscription'),
 
 ]

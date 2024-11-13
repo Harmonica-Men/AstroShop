@@ -104,3 +104,25 @@ class SignUpForm(UserCreationForm):
 		self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
 		self.fields['password2'].label = ''
 		self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
+
+
+class SubscriptionForm(forms.Form):
+    """
+    A simple subscription form that collects a user's login and email.
+    """
+    login = forms.CharField(
+        max_length=100,
+        label='Login',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'your name'
+        })
+    )
+    email = forms.EmailField(
+        label='Email',
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'name@example.com',
+            'required': True
+        })
+    )
