@@ -25,7 +25,7 @@ urlpatterns = [
      # Subscribe to a newsletter or service
     path('subscribe/', SubscribeView.as_view(), name='subscribe'),
     # Check email view
-    path('check-email/', CheckEmailView.as_view(), name='check_email'),
+    path('check-email/', CheckEmailView.as_view(), name='check-email'),
     # Confirm subscription
     path('confirm/', confirm_subscription, name='confirm_subscription'),
 

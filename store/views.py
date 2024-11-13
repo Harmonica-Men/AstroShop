@@ -9,14 +9,21 @@ from payment.forms import ShippingForm
 from payment.models import ShippingAddress, PaymentOfPayPal
 from django import forms
 from django.db.models import Q
-import json
+# import json
+import uuid
+from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.conf import settings
 from shopcart.cart import Cart
 from .models import Product
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+# from django.http import JsonResponse
+# from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import send_mail, BadHeaderError
+
+
 from django.views.generic import (
     TemplateView,
     FormView
@@ -371,7 +378,7 @@ class SubscribeView(FormView):
         subscriber.save()
         confirmation_link = (
             f"{self.request.scheme}://{self.request.get_host()}"
-            f"/blogger/confirm/?code={confirmation_code}"
+            f"/shopper/confirm/?code={confirmation_code}"
         )
         subject = 'Confirm your subscription'
         message = (
@@ -396,7 +403,7 @@ class CheckEmailView(TemplateView):
     View to display a page asking the user to check their email,
     for a subscription confirmation link.
     """
-    template_name = 'registration/check_email.html'
+    template_name = 'check_email.html'
 
 
 def confirm_subscription(request):
@@ -413,4 +420,4 @@ def confirm_subscription(request):
     subscriber.is_confirmed = True
     subscriber.save()
 
-    return render(request, 'registration/confirm_subscription.html')
+    return render(request, 'confirm_subscription.html')

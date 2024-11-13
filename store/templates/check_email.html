@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}TY for Subscription{% endblock %}
+{% block content %}
+<section class="container-sub" style="background: url('{% static image_url %}') no-repeat fixed top right / cover;">
+    <div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 130px);">
+        <div class="steps--background-white rounded p-4 text-center" style="max-width: 600px; width: 100%;">
+            <h1 class="mb-4">Please check your email</h1>
+            <img src="{% static 'images/email-confirm.webp' %}" class="img-thumbnail mb-4" alt="check-email"
+                style="max-width: 100%; height: auto;">
+            <div>
+                <strong><a href="/" class="btn btn-secondary">Return to homepage</a></strong>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
