@@ -356,7 +356,7 @@ class SubscribeView(FormView):
     View to handle user subscriptions to the blog via email.
     """
     form_class = SubscriptionForm
-    template_name = 'homepage.html'
+    template_name = 'index.html'
 
     def form_valid(self, form):
         """
