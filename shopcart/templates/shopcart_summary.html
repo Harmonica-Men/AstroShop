@@ -69,13 +69,15 @@
                     <!-- Price Cell -->
                     <td class="text-center align-middle">
                         {% if product.is_sale %}
-                        <div class="d-flex justify-content-center justify-content-md-start small text-warning mb-2">
+                        <div class="text-muted">Unit</div>
+                        <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
+                        <div class="d-flex justify-content-center justify-content-md-start small text-danger product-name mb-2">
                             <span class="fa-regular fa-star"></span>
                             <strong class="mx-2">Sale!</strong>
                             <span class="fa-regular fa-star"></span>
                         </div>
-                        <div class="text-muted" style="text-decoration: line-through;">€{{ product.price }}</div>
-                        <strong>€{{ product.sale_price }}</strong>
+                       
+                        <strong>€{{ product|calculate_subtotal:quantities|floatformat:2 }}</strong>
                         {% else %}
                         <strong class="product-price text-black">€{{ product|calculate_subtotal:quantities|floatformat:2 }}</strong>
                         {% endif %}
