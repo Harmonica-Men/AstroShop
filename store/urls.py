@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-from .views import update_product, add_product, SubscribeView, CheckEmailView
+from .views import update_product, add_product, SubscribeView, CheckEmailView, confirm_subscription
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -27,6 +27,9 @@ urlpatterns = [
     path('subscribe/', SubscribeView.as_view(), name='subscribe'),
     # Check email view
     path('check-email/', views.CheckEmailView.as_view(), name='check-email'),
+
+    path('shopper/confirm/', views.confirm_subscription, name='confirm_subscription'),
+
 
 
     path('test_email/', views.send_mail_page, name='test_email')

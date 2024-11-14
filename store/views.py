@@ -10,6 +10,7 @@ from payment.models import ShippingAddress, PaymentOfPayPal
 from django import forms
 from django.db.models import Q
 # import json
+import logging
 import uuid
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -350,39 +351,76 @@ def register_user(request):
 	else:
 		return render(request, 'register.html', {'form':form})
 
+logger = logging.getLogger(__name__)
+
 
 class SubscribeView(FormView):
-    template_name = 'store/subscribe.html'
     form_class = SubscribeForm
-    success_url = reverse_lazy('check-email')  # Redirect to a page after successful submission
+    template_name = 'index.html'
+    success_url = reverse_lazy('check-email')  # Adjust this if needed
 
     def form_valid(self, form):
-        # If not using ModelForm, save the data manually
         email = form.cleaned_data['email']
-        # Optionally save the email to the database here manually
 
-        # Send the email
-        subject = "Thank you for subscribing!"
-        message = "You have successfully subscribed to our newsletter."
+        # Attempt to create or retrieve the subscription
+        subscription, created = Subscription.objects.get_or_create(email=email)
+
+        # If new subscription, generate a confirmation code and save
+        if created:
+            confirmation_code = str(uuid.uuid4())
+            subscription.confirmation_code = confirmation_code
+            subscription.is_confirmed = False
+            subscription.save()
+
+            confirmation_link = f"{self.request.scheme}://{self.request.get_host()}/shopper/confirm/?code={confirmation_code}"
+
+            subject = 'Confirm your subscription'
+            message = f"Hello,\n\nClick the link to confirm your subscription: {confirmation_link}"
+        else:
+            subject = "Thank you for subscribing!"
+            message = "You have successfully subscribed to our newsletter."
+
         from_email = settings.EMAIL_HOST_USER
         to_email = email
 
         try:
+            logger.info(f"Sending email to {to_email} from {from_email}")
             send_mail(subject, message, from_email, [to_email])
-            print(from_email)
-            print(to_email)
+            logger.info(f"Email sent successfully to {to_email}")
         except BadHeaderError:
+            logger.error("Invalid header found.")
             return HttpResponse("Invalid header found.")
+        except Exception as e:
+            logger.error(f"Error sending email: {e}")
+            return HttpResponse(f"Error sending email: {e}")
 
-        # Redirect to a success page or confirmation page
+        # Redirect to the success page or confirmation page
         return HttpResponseRedirect(self.success_url)
-
-
 
 class CheckEmailView(TemplateView):
     template_name = 'check_email.html'
 
 
+
+
+def confirm_subscription(request):
+    """
+    View to confirm the user's subscription
+    using the provided confirmation code.
+    """
+    code = request.GET.get('code')
+
+    if not code:
+        return HttpResponse('Confirmation code is required.', status=400)
+
+    # Corrected variable name to match the model name 'Subscription'
+    subscription = get_object_or_404(Subscription, confirmation_code=code)
+    subscription.is_confirmed = True
+    subscription.save()
+
+    return render(request, 'confirm_subscription.html')
+
+    
 def send_mail_page(request):
     context = {}
 
