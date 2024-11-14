@@ -1,158 +1,47 @@
 {% extends 'base.html' %}
-{% load custom_filters %}
 {% block content %}
 
-<!-- Header-->
+
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
             <br>
-            <h1 class="display-4 fw-bolder mt-5">Check Out </Details></h1>          
-            <p class="lead fw-normal text-white-40 mb-2">Review your Order</p>
+            <h1 class="display-4 fw-bolder mt-5">Login</h1>          
+            <p class="lead fw-normal text-white-40 mb-2">Log in whit your credentials</p>
         </div>
     </div>
 </header>
 
-<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
-    <div class="row shadow-lg" style="width: 100%; max-width: 850px;">
-        <div class="col-12 mt-3 mb-3">
-            <!-- Order Summary Card -->
-            <div class="card">
-                <div class="card-header product-name">
-                    Order Summary
+<div class="container d-flex justify-content-center align-items-center" style="min-height: calc(60vh);">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="p-5 shadow-lg" style="width: 100%; max-width: 400px;">
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <!-- Username field -->
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Enter Your Username      .">
+
+                    
                 </div>
-                <div class="card-body">
-                    <table class="table table-striped table-hover table-bordered">
-                        <thead class="table-secondary">
-                            <tr>
-                                <th scope="col" style="text-align: left;">Product</th>
-                                <th scope="col" style="text-align: right;">Price</th>
-                                <th scope="col" style="text-align: right;">Qty</th>
-                                <th scope="col" style="text-align: right;">Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for product in cart_products %}
-                            <tr>
-                                <td>
-                                    <p style="text-align: left;">{{ product.name }}</p>
-                                </td>
-                                <td>
-                                    {% if product.is_sale %}
-                                    <p style="text-align: right;">
-                                        <span class="fa-solid fa-star" title="Sale!"></span> €{{ product.sale_price }}
-                                    </p> {% else %}
-                                    <p style="text-align: right;">€{{ product.price }}</p>
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {% for key, value in quantities.items %}
-                                    {% if key == product.id|slugify %}
-                                    <p style="text-align: right;">{{ value }}</p>
-                                    {% endif %}
-                                    {% endfor %}
-                                </td>
-                                <td>
-                                    <p style="text-align: right;">
-                                        €{{ product|calculate_subtotal:quantities|floatformat:2 }}</p>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                        <tfoot>
+                <!-- Password field -->
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
 
-                            <tr class="product-price">
-                                <th style="text-align: left;">
-                                    <a href="{% url 'shopcart_summary' %}"
-                                        class="btn btn-md btn-outline-secondary">Update Chart</a>
-                                </th>
-                                <th colspan="2" style="text-align: right;">Total:</th>
-                                <th style="text-align: right;">€{{ totals }}</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    <input type="password" class="form-control" name="password" placeholder="Enter Your Password      .">
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card-header mb-3">
-                                Shipping Info
-                            </div>
-
-                            <form method="POST" action="{% url 'billing_info' %}">
-                                {% csrf_token %}
-                            
-                                <div class="mb-3 ml-1 row">
-                                    <label for="{{ shipping_form.shipping_full_name.id_for_label }}" class="col-sm-4 col-form-label">Name</label>
-                                    <div class="col-sm-8">
-                                        {{ shipping_form.shipping_full_name }}
-                                    </div>
-                                </div>
-                            
-                                <div class="mb-3 ml-1 row">
-                                    <label for="{{ shipping_form.shipping_email.id_for_label }}" class="col-sm-4 col-form-label">Email</label>
-                                    <div class="col-sm-8">
-                                        {{ shipping_form.shipping_email }}
-                                    </div>
-                                </div>
-                            
-                                <div class="mb-3 ml-1 row">
-                                    <label for="{{ shipping_form.shipping_address1.id_for_label }}" class="col-sm-4 col-form-label">Address 1</label>
-                                    <div class="col-sm-8">
-                                        {{ shipping_form.shipping_address1 }}
-                                    </div>
-                                </div>
-                            
-                                <div class="mb-3 ml-1 row">
-                                    <label for="{{ shipping_form.shipping_address2.id_for_label }}" class="col-sm-4 col-form-label">Address 2</label>
-                                    <div class="col-sm-8">
-                                        {{ shipping_form.shipping_address2 }}
-                                    </div>
-                                </div>
-                            
-                                <div class="mb-3 ml-1 row">
-                                    <label for="{{ shipping_form.shipping_city.id_for_label }}" class="col-sm-4 col-form-label">City</label>
-                                    <div class="col-sm-8">
-                                        {{ shipping_form.shipping_city }}
-                                    </div>
-                                </div>
-                            
-                                <div class="mb-3 ml-1 row">
-                                    <label for="{{ shipping_form.shipping_state.id_for_label }}" class="col-sm-4 col-form-label">State</label>
-                                    <div class="col-sm-8">
-                                        {{ shipping_form.shipping_state }}
-                                    </div>
-                                </div>
-                            
-                                <div class="mb-3 ml-1 row">
-                                    <label for="{{ shipping_form.shipping_zipcode.id_for_label }}" class="col-sm-4 col-form-label">Zip Code</label>
-                                    <div class="col-sm-8">
-                                        {{ shipping_form.shipping_zipcode }}
-                                    </div>
-                                </div>
-                            
-                                <div class="mb-3 ml-1 row">
-                                    <label for="{{ shipping_form.shipping_country.id_for_label }}" class="col-sm-4 col-form-label">Country</label>
-                                    <div class="col-sm-8">
-                                        {{ shipping_form.shipping_country }}
-                                    </div>
-                                </div>
-                            
-                                <div class="d-flex justify-content-center mt-5">
-                                    <button type="submit" class="btn btn-secondary">
-                                        Make Order
-                                    </button>
-                                </div>
-                            
-                            </form>
-                            
-
-                         
-                        </div>
-                    </div>
-
+                    
                 </div>
-            </div>
+                <!-- Submit button -->
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-secondary">Login</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+
+
+
 {% endblock %}
