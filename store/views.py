@@ -9,7 +9,7 @@ from payment.forms import ShippingForm
 from payment.models import ShippingAddress, PaymentOfPayPal
 from django import forms
 from django.db.models import Q
-# import json
+import json
 import logging
 import uuid
 from django.urls import reverse_lazy
@@ -20,7 +20,7 @@ from shopcart.cart import Cart
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-# from django.http import JsonResponse
+from django.http import JsonResponse
 # from django.views.decorators.csrf import csrf_exempt
 
 from django.core.mail import send_mail, BadHeaderError
@@ -316,7 +316,7 @@ def login_user(request):
 					cart.db_add(product=key, quantity=value)
 
 			messages.success(request, ("You Have Been Logged In!"))
-			return redirect('home')
+			return redirect('products')
 		else:
 			messages.success(request, ("There was an error, please try again..."))
 			return redirect('login')

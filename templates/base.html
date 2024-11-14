@@ -56,13 +56,22 @@
 </head>
 
 <body>
+
+    <!-- Container for alert messages -->
+
+
+
     <header class="container-fluid fixed-top">
+
+
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex justify-content-between">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
                     <h2 class="logo-font text-black my-0"><strong>Astro Shop</strong></h2>
                 </a>
             </div>
+
+
 
             <div class="row bg-white">
                 <nav class="navbar navbar-expand-lg navbar-light w-100">
@@ -71,7 +80,6 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     {% include 'includes/main-nav.html' %}
-                    
 
                     <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                         <ul class="list-inline list-unstyled text-lg-right my-0 d-flex justify-content-end">
@@ -161,17 +169,27 @@
             </div>
         </div>
 
-        {% if request.user.is_superuser %}
-        <div id="superuser-banner" class="row text-center mt-2">
-            <div class="col bg-black text-white me-2">
-                <h4>!!! Superuser Active: {{ request.user.username }} !!!</h4>
+
+        <!-- Loop through messages to display alerts -->
+        {% for message in messages %}
+        <div id="message-banner" class="row text-center mt-3">
+            <div class="col bg-black text-white y-2">
+                <!-- Display the message safely -->
+                <h5>{{ message | safe }}
+                    <span class="xmark" onclick="this.parentElement.style.display='none';">
+                        <i class="fas fa-xmark"></i>
+                    </span></h5>
             </div>
         </div>
-        {% endif %}
+        {% endfor %}
 
     </header>
 
+
+
+
     {% block page_header %}
+
     {% endblock %}
 
     {% block content %}

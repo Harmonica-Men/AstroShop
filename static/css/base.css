@@ -96,6 +96,7 @@ body {
     margin: 0 auto;   /* Center the button */
 }
 
+
 @media (max-width: 768px) {
     .image-text-overlay p {
         font-size: 0.8rem; /* Smaller font size for mobile devices */
@@ -251,7 +252,7 @@ a.category-badge>span.badge:hover {
     cursor: pointer;
 }
 
-#superuser-banner .col {
+#message-banner .col {
     opacity: 0.5;
 }
 
