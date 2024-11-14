@@ -330,28 +330,47 @@ def logout_user(request):
 	messages.success(request, ("You have been logged out...Thanks for stopping by..."))
 	return redirect('home')
 
-
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
 
 def register_user(request):
-	form = SignUpForm()
-	if request.method == "POST":
-		form = SignUpForm(request.POST)
-		if form.is_valid():
-			form.save()
-			username = form.cleaned_data['username']
-			password = form.cleaned_data['password1']
-			# log in user
-			user = authenticate(username=username, password=password)
-			login(request, user)
-			messages.success(request, ("Username Created - Please Fill Out Your User Info Below..."))
-			return redirect('home')
-		else:
-			messages.success(request, ("Whoops! There was a problem Registering, please try again..."))
-			return redirect('register')
-	else:
-		return render(request, 'register.html', {'form':form})
+    form = SignUpForm()
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            
+            # Log in user
+            user = authenticate(username=username, password=password)
+            login(request, user)
 
-logger = logging.getLogger(__name__)
+            # Send confirmation email
+            subject = 'Welcome to Our Site!'
+            message = render_to_string('confirmation_emails/confirmation_email_registration.txt', {
+                'user': user,
+                'domain': get_current_site(request).domain,
+                'uid': user.pk,  # If you're sending a confirmation link, you can add uid
+                'token': 'dummy_token'  # For confirmation token, replace with actual token logic
+            })
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                fail_silently=False,
+            )
+
+            return redirect('home')
+        else:
+            messages.success(request, ("Whoops! There was a problem Registering, please try again..."))
+            return redirect('register')
+    else:
+        return render(request, 'register.html', {'form':form})
+
 
 
 class SubscribeView(FormView):
@@ -384,14 +403,14 @@ class SubscribeView(FormView):
         to_email = email
 
         try:
-            logger.info(f"Sending email to {to_email} from {from_email}")
+            
             send_mail(subject, message, from_email, [to_email])
-            logger.info(f"Email sent successfully to {to_email}")
+            
         except BadHeaderError:
-            logger.error("Invalid header found.")
+            
             return HttpResponse("Invalid header found.")
         except Exception as e:
-            logger.error(f"Error sending email: {e}")
+            
             return HttpResponse(f"Error sending email: {e}")
 
         # Redirect to the success page or confirmation page
