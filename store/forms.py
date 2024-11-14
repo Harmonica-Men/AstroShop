@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from django import forms
-from .models import Profile
-from .models import Product
+from .models import Product, Profile, Subscription
+
 
 class UpdateProductForm(forms.ModelForm):
     class Meta:
@@ -106,23 +106,8 @@ class SignUpForm(UserCreationForm):
 		self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
 
-class SubscriptionForm(forms.Form):
-    """
-    A simple subscription form that collects a user's login and email.
-    """
-    login = forms.CharField(
-        max_length=100,
-        label='Login',
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'your name'
-        })
-    )
-    email = forms.EmailField(
-        label='Email',
-        widget=forms.EmailInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'name@example.com',
-            'required': True
-        })
-    )
+
+class SubscribeForm(forms.ModelForm):
+    class Meta:
+        model = Subscription
+        fields = ['email']  # Add other fields if necessary

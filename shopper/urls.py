@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+# from mailsender import views
 from . import settings
 from django.conf.urls.static import static
 
