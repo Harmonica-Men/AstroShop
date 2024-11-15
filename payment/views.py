@@ -274,36 +274,16 @@ def checkout(request):
 		shipping_form = ShippingForm(request.POST or None)
 		return render(request, "payment/checkout.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_form":shipping_form})
 
-	
-
-def payment_success(request):
-
-    # delete cookie session
-
-    for key in list(request.session.keys()):
-        if key == "session_key":
-            # Delete the key
-            del request.session[key]
-
-    # the email order procedure
-
-    user = request.user
-    # Ensure user is authenticated
-    if not user.is_authenticated:
-        return render(request, 'error.html', {'message': 'User not authenticated.'})
-
-    # Prepare email context
-    subject = 'order placed Success'
-    message = render_to_string('confirmation_emails/confirmation_email_order.txt', {
-
-    # message = render_to_string('confirmation_emails/confirmation_email_body.txt', {
-        'user': user,
+def send_paymentOK(request, user, order_id):
+    # Send confirmation email
+    subject = 'Payment OK - Astro Shop'
+    message = render_to_string('confirmation_emails/confirmation_paymentOK.txt', {
+        'user': user.get_full_name() if user.first_name and user.last_name else user.username,
+        'order_id': order_id,
         'domain': get_current_site(request).domain,
-        'uid': user.pk,  # Include user ID if necessary
-        'token': 'dummy_token',  # Replace with actual token logic if needed
     })
 
-    # Send the email
+    # Send the email when payment is successful
     send_mail(
         subject,
         message,
@@ -311,16 +291,37 @@ def payment_success(request):
         [user.email],
         fail_silently=False,
     )
-    
-    messages.success(request, ("Email send for Order"))
 
-    return redirect('products')
+    # Add success message for the user
+    messages.success(request, "A confirmation email has been sent for your successful payment.")
 
-    
-    
-    # return render(request, "payment/payment_success.html", {})
 
-	
+def payment_success(request):
+    if request.user.is_authenticated:
+        user = request.user
+
+        # Get the last order for the user
+        last_order = Order.objects.filter(user=user).order_by('-id').first()
+        if last_order:
+            order_id = last_order.id
+
+            # Send email for payment success
+            send_paymentOK(request, user, order_id)
+
+            # Delete all session keys
+            for key in list(request.session.keys()):
+                del request.session[key]
+
+            # Redirect to success page
+            return render(request, "payment/payment_success.html", {"order_id": order_id})
+        else:
+            # Handle case where no orders exist
+            messages.error(request, "No order found to confirm payment.")
+            return redirect("home")
+    else:
+        # If the user is not authenticated, redirect to login
+        messages.error(request, "You need to be logged in to complete payment.")
+        return redirect("login")
 
 
 def payment_failed(request):
