@@ -133,6 +133,12 @@ def send_bill(request, user, shipping_address1, total_price, order_id):
         fail_silently=False,
     )
 
+    #empty shopping cart
+    for key in list(request.session.keys()):
+       if key == "session_key":
+           # Delete the key
+           del request.session[key]
+
 def billing_info(request):
     billing_form = PaymentForm()
     payment_form = PaymentForm()
@@ -308,9 +314,11 @@ def payment_success(request):
             # Send email for payment success
             send_paymentOK(request, user, order_id)
 
-            # Delete all session keys
-            for key in list(request.session.keys()):
-                del request.session[key]
+            # Remove specific session keys, but keep the user logged in
+            session_keys_to_remove = ['cart', 'my_shipping']  # Add keys to delete
+            for key in session_keys_to_remove:
+                if key in request.session:
+                    del request.session[key]
 
             # Redirect to success page
             return render(request, "payment/payment_success.html", {"order_id": order_id})
@@ -322,7 +330,6 @@ def payment_success(request):
         # If the user is not authenticated, redirect to login
         messages.error(request, "You need to be logged in to complete payment.")
         return redirect("login")
-
 
 def payment_failed(request):
 	return render(request, "payment/payment_failed.html", {})
