@@ -10,10 +10,54 @@ import datetime
 from django.urls import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import send_mail
+
+
 
 import uuid # unique user id for duplictate orders
 
 from .forms import PaymentForm  # Ensure you are importing the form
+
+from django.shortcuts import render
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.conf import settings
+
+def send_mail_update(request):
+    user = request.user
+    # Ensure user is authenticated
+    if not user.is_authenticated:
+        return render(request, 'error.html', {'message': 'User not authenticated.'})
+
+    # Prepare email context
+    subject = 'order placed Success'
+    message = render_to_string('confirmation_emails/confirmation_email_order.txt', {
+
+    # message = render_to_string('confirmation_emails/confirmation_email_body.txt', {
+        'user': user,
+        'domain': get_current_site(request).domain,
+        'uid': user.pk,  # Include user ID if necessary
+        'token': 'dummy_token',  # Replace with actual token logic if needed
+    })
+
+    # Send the email
+    send_mail(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        [user.email],
+        fail_silently=False,
+    )
+    
+    messages.success(request, ("Email send for Order"))
+
+    return redirect('home')
+
+
+    # messages.success(request, ("Email send order"))
 
 
 def update_payment_paypal(request):
@@ -232,12 +276,47 @@ def checkout(request):
 
 def payment_success(request):
 
-	for key in list(request.session.keys()):
-				if key == "session_key":
-					# Delete the key
-					del request.session[key]
+    # delete cookie session
 
-	return render(request, "payment/payment_success.html", {})
+    for key in list(request.session.keys()):
+        if key == "session_key":
+            # Delete the key
+            del request.session[key]
+
+    # the email order procedure
+
+    user = request.user
+    # Ensure user is authenticated
+    if not user.is_authenticated:
+        return render(request, 'error.html', {'message': 'User not authenticated.'})
+
+    # Prepare email context
+    subject = 'order placed Success'
+    message = render_to_string('confirmation_emails/confirmation_email_order.txt', {
+
+    # message = render_to_string('confirmation_emails/confirmation_email_body.txt', {
+        'user': user,
+        'domain': get_current_site(request).domain,
+        'uid': user.pk,  # Include user ID if necessary
+        'token': 'dummy_token',  # Replace with actual token logic if needed
+    })
+
+    # Send the email
+    send_mail(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        [user.email],
+        fail_silently=False,
+    )
+    
+    messages.success(request, ("Email send for Order"))
+
+    return redirect('products')
+
+    
+    
+    # return render(request, "payment/payment_success.html", {})
 
 	
 

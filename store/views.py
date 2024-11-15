@@ -330,10 +330,6 @@ def logout_user(request):
 	messages.success(request, ("You have been logged out...Thanks for stopping by..."))
 	return redirect('home')
 
-from django.core.mail import send_mail
-from django.conf import settings
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
 
 def register_user(request):
     form = SignUpForm()
@@ -369,7 +365,7 @@ def register_user(request):
             messages.success(request, ("Whoops! There was a problem Registering, please try again..."))
             return redirect('register')
     else:
-        return render(request, 'register.html', {'form':form})
+        return render(request, 'index.html', {'form':form})
 
 
 
