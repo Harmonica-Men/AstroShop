@@ -167,16 +167,18 @@
 
         <!-- Loop through messages to display alerts -->
         {% for message in messages %}
-        <div id="message-banner" class="row text-center mt-3">
-            <div class="col bg-black text-white y-2">
+        <div class="row text-center fixed-top" style="top: 275px;">
+            <div class="col" style="background-color: rgba(192, 192, 192, 0.5);">
                 <!-- Display the message safely -->
-                <h5>{{ message | safe }}
-                    <span class="xmark" onclick="this.parentElement.style.display='none';">
+                <h5 class="text-white">{{ message | safe }}
+                    <span class="xmark" onclick="this.parentElement.parentElement.style.display='none';">
                         <i class="fas fa-xmark"></i>
-                    </span></h5>
+                    </span>
+                </h5>
             </div>
         </div>
         {% endfor %}
+
 
     </header>
 

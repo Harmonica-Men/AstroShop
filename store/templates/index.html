@@ -114,17 +114,17 @@
 <body>
 <!-- Loop through messages to display alerts -->
 {% for message in messages %}
-<div id="message-banner" class="row text-center">
-    <div class="col bg-black text-white y-2">
+<div class="row text-center fixed-top" style="top: 10px;">
+    <div class="col" style="background-color: rgba(255, 193, 7, 0.421);" role="alert">
         <!-- Display the message safely -->
-        <h5>{{ message | safe }}
-            <span class="xmark" onclick="this.parentElement.style.display='none';">
+        <h5 class="text-white">{{ message | safe }}
+            <span class="xmark" onclick="this.parentElement.parentElement.style.display='none';">
                 <i class="fas fa-xmark"></i>
-            </span></h5>
+            </span>
+        </h5>
     </div>
 </div>
 {% endfor %}
-
 
 
     <div class="row justify-content-around">

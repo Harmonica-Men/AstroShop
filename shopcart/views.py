@@ -35,7 +35,7 @@ def shopcart_add(request):
 		# Return resonse
 		# response = JsonResponse({'Product Name: ': product.name})
 		response = JsonResponse({'qty': cart_quantity})
-		messages.success(request, ("Product Added To Cart ..."))
+		
 		return response
 
 
