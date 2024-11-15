@@ -1,6 +1,7 @@
-Hello {{ order.full_name }}!
+Dear Customer,
 
-This is a confirmation of your order at Astro Shop. Your order information is below:
+This is a confirmation of your order at Astro Shop. 
+Your order information is below:
 
 Order Number: {{ order.order_number }}
 Order Date: {{ order.date }}
