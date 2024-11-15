@@ -115,11 +115,29 @@ def orders(request, pk):
     else:
         return redirect('home')
 
+def send_bill(request, user, shipping_address1, total_price, order_id):
+    # Send confirmation email
+    subject = 'Order Confirmation - Astro Shop'
+    message = render_to_string('confirmation_emails/confirmation_email_order.txt', {
+        'user': user.get_full_name() if user.first_name and user.last_name else user.username,
+        'shipping_address1': shipping_address1,
+        'total_price': f"{total_price:.2f} EUR",  # Format the price to two decimal places
+        'order_id': order_id,
+        'domain': get_current_site(request).domain,
+    })
+    send_mail(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        [user.email],
+        fail_silently=False,
+    )
+
 def billing_info(request):
     billing_form = PaymentForm()
     payment_form = PaymentForm()
 
-    if request.POST:
+    if request.method == "POST":
         # Store shipping info in session
         my_shipping = {
             'shipping_full_name': request.POST.get('shipping_full_name'),
@@ -129,7 +147,7 @@ def billing_info(request):
             'shipping_city': request.POST.get('shipping_city'),
             'shipping_state': request.POST.get('shipping_state'),
             'shipping_zipcode': request.POST.get('shipping_zipcode'),
-            'shipping_country': request.POST.get('shipping_country')
+            'shipping_country': request.POST.get('shipping_country'),
         }
         request.session['my_shipping'] = my_shipping
 
@@ -147,7 +165,7 @@ def billing_info(request):
             'item_name': 'Book Order',
             'no_shipping': '2',
             'invoice': str(uuid.uuid4()),  # Generate invoice UUID
-            'currency_code': 'EUR', 
+            'currency_code': 'EUR',
             'notify_url': f'https://{host}{reverse("paypal-ipn")}',
             'return_url': f'https://{host}{reverse("payment_success")}',
             'cancel_return': f'https://{host}{reverse("payment_failed")}',
@@ -164,9 +182,18 @@ def billing_info(request):
                 user=user,
                 full_name=my_shipping['shipping_full_name'],
                 email=my_shipping['shipping_email'],
-                shipping_address="\n".join([my_shipping[key] for key in ['shipping_address1', 'shipping_address2', 'shipping_city', 'shipping_state', 'shipping_zipcode', 'shipping_country']]),
+                shipping_address="\n".join([
+                    my_shipping[key] for key in [
+                        'shipping_address1', 
+                        'shipping_address2', 
+                        'shipping_city', 
+                        'shipping_state', 
+                        'shipping_zipcode', 
+                        'shipping_country',
+                    ]
+                ]),
                 amount_paid=totals,
-                invoice=paypal_dict['invoice']  # Use invoice from PayPal dict
+                invoice=paypal_dict['invoice'],  # Use invoice from PayPal dict
             )
             create_order.save()
 
@@ -178,9 +205,18 @@ def billing_info(request):
                     product_id=product.id,
                     user=user,
                     quantity=quantity,
-                    price=product.sale_price if product.is_sale else product.price
+                    price=product.sale_price if product.is_sale else product.price,
                 )
                 create_order_item.save()
+
+            # Send order confirmation email
+            send_bill(
+                request,
+                user,
+                my_shipping['shipping_address1'],
+                totals,
+                create_order.id,
+            )
 
             # Payment info
             try:
@@ -189,6 +225,7 @@ def billing_info(request):
             except PaymentOfPayPal.DoesNotExist:
                 payment_form = PaymentForm()  # Empty form for new user
 
+            # Render response
             return render(
                 request,
                 "payment/billing_info.html",
@@ -197,27 +234,25 @@ def billing_info(request):
                     "cart_products": cart_products,
                     "quantities": quantities,
                     "totals": totals,
-                    "invoice": paypal_dict['invoice'],  # Pass the generated invoice
-                    "shipping_info": request.session['my_shipping'],
+                    "invoice": paypal_dict['invoice'],
+                    "shipping_info": my_shipping,
                     "billing_form": billing_form,
                     "payment_form": payment_form,
-                }
+                },
             )
-        else:
-            return render(
-                request,
-                "payment/billing_info.html",
-                {
-                    "paypal_form": paypal_form,
-                    "cart_products": cart_products,
-                    "quantities": quantities,
-                    "totals": totals,
-                    "invoice": paypal_dict['invoice'],  # Pass the generated invoice
-                    "shipping_info": request.session['my_shipping'],
-                    "billing_form": billing_form,
-                    "payment_form": payment_form,
-                }
-            )
+
+        # If the user is not authenticated, redirect to login
+        return redirect("login")
+
+    # Handle non-POST requests
+    return render(
+        request,
+        "payment/billing_info.html",
+        {
+            "billing_form": billing_form,
+            "payment_form": payment_form,
+        },
+    )
 
 
 def checkout(request):
