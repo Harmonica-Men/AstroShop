@@ -29,9 +29,10 @@
 
 <!-- Header-->
 <header class="bg-dark">
-    
+
     <div class="ml-3">
-        <ul class="list-inline list-unstyled d-flex justify-content-end my-0"> <!-- Use d-flex and justify-content-end for right alignment -->
+        <ul class="list-inline list-unstyled d-flex justify-content-end my-0">
+            <!-- Use d-flex and justify-content-end for right alignment -->
             <li class="list-inline-item dropdown">
                 <div class="bg-dark">
                     <a class="text-white nav-link" href="#" id="user-options" data-bs-toggle="dropdown"
@@ -50,7 +51,7 @@
                         <a href="{% url 'update_user' %}" class="dropdown-item small">User Account</a>
                         <a href="{% url 'update_password' %}" class="dropdown-item small">Change Password</a>
                         <a href="{% url 'logout' %}" class="dropdown-item small">Logout</a>
-    
+
                         {% if request.user.is_superuser %}
                         <hr class="dropdown-divider my-1" /> <!-- Smaller divider margin -->
                         <a href="{% url 'add_product' %}" class="dropdown-item small">Add a New Product</a>
@@ -79,8 +80,8 @@
             </li>
         </ul>
     </div>
-    
-    
+
+
 
     <div class="container text-center text-white px-2 px-lg-2 my-2">
         <div>
@@ -90,21 +91,35 @@
         <div class="d-flex flex-wrap justify-content-center mb-2 me-5" style="font-size: medium;">
             <a href="{% url 'category' 'Sales' %}" class="py-2 mx-2 text-white">
                 <h4>
-                <span class="fa-regular fa-star"></span>
-                <strong class="mx-2">Sale!</strong>
-                <span class="fa-regular fa-star"></span>
-            </h4>
+                    <span class="fa-regular fa-star"></span>
+                    <strong class="mx-2">Sale!</strong>
+                    <span class="fa-regular fa-star"></span>
+                </h4>
             </a>
-            <a href="{% url 'category' 'Books' %}" class="py-2 mx-2 text-white"><h4>Books</h4></a>
-            <a href="{% url 'category' 'Toys' %}" class="py-2 mx-2 text-white"><h4>Toys</h4></a>
-            <a href="{% url 'category' 'Telescopes' %}" class="py-2 mx-2 text-white"><h4>Telescopes</h4></a>
-            <a href="{% url 'category' 'Globes' %}" class="py-2 mx-2 text-white"><h4>Globes</h4></a>
-            <a href="{% url 'category' 'Binoculars' %}" class="py-2 mx-2 text-white"><h4>Binoculars</h4></a>
-            <a href="{% url 'category' 'Weather Stations' %}" class="py-2 mx-2 text-white"><h4>Weather Stations</h4></a>
-            <a href="{% url 'products' %}" class="py-2 mx-2 text-white"><h4>All Products</h4></a>
+            <a href="{% url 'category' 'Books' %}" class="py-2 mx-2 text-white">
+                <h4>Books</h4>
+            </a>
+            <a href="{% url 'category' 'Toys' %}" class="py-2 mx-2 text-white">
+                <h4>Toys</h4>
+            </a>
+            <a href="{% url 'category' 'Telescopes' %}" class="py-2 mx-2 text-white">
+                <h4>Telescopes</h4>
+            </a>
+            <a href="{% url 'category' 'Globes' %}" class="py-2 mx-2 text-white">
+                <h4>Globes</h4>
+            </a>
+            <a href="{% url 'category' 'Binoculars' %}" class="py-2 mx-2 text-white">
+                <h4>Binoculars</h4>
+            </a>
+            <a href="{% url 'category' 'Weather Stations' %}" class="py-2 mx-2 text-white">
+                <h4>Weather Stations</h4>
+            </a>
+            <a href="{% url 'products' %}" class="py-2 mx-2 text-white">
+                <h4>All Products</h4>
+            </a>
         </div>
 
-        
+
 
 
 
@@ -112,19 +127,19 @@
 </header>
 
 <body>
-<!-- Loop through messages to display alerts -->
-{% for message in messages %}
-<div class="row text-center fixed-top" style="top: 10px;">
-    <div class="col" style="background-color: rgba(255, 193, 7, 0.421);" role="alert">
-        <!-- Display the message safely -->
-        <h5 class="text-white">{{ message | safe }}
-            <span class="xmark" onclick="this.parentElement.parentElement.style.display='none';">
-                <i class="fas fa-xmark"></i>
-            </span>
-        </h5>
+    <!-- Loop through messages to display alerts -->
+    {% for message in messages %}
+    <div class="row text-center fixed-top" style="top: 10px;">
+        <div class="col" style="background-color: rgba(255, 193, 7, 0.421);" role="alert">
+            <!-- Display the message safely -->
+            <h5 class="text-white">{{ message | safe }}
+                <span class="xmark" onclick="this.parentElement.parentElement.style.display='none';">
+                    <i class="fas fa-xmark"></i>
+                </span>
+            </h5>
+        </div>
     </div>
-</div>
-{% endfor %}
+    {% endfor %}
 
 
     <div class="row justify-content-around">
@@ -179,22 +194,23 @@
 
 
     <div class="d-flex row justify-content-center mb-2">
-        <form method="POST" action="{% url 'subscribe' %}"
-            class="col-12 d-flex align-items-center justify-content-center">
-            <label class="mr-3">Subscribe&nbsp;to&nbsp;our&nbsp;Newsletter</label>
+        <div class="col-12 text-center">
+            <label for="id_email" class="font-weight-bold">Subscribe to our Newsletter</label>
+        </div>
+        <form method="POST" action="{% url 'subscribe' %}" class="col-12 d-flex align-items-center justify-content-center">
             {% csrf_token %}
-
             <input type="email" class="form-control" id="id_email" name="email" placeholder="name@example.com" required
-                style="max-width: 350px;">
-            <button type="submit" value="Submit" class="btn-sm btn-light ml-3" title="Subscribe">
+                style="max-width: 300px;">
+            <button type="submit" value="Submit" class="btn-sm btn-light" title="Subscribe">
                 <span>Subscribe</span>
             </button>
         </form>
     </div>
+    
 
 
 
-    </div>
+   
 
 
 

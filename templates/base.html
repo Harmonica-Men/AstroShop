@@ -56,113 +56,93 @@
 </head>
 
 <body>
-    <header class="container-fluid fixed-top">
-
+    <header class="container-fluid bg-white fixed-top">
+        
 
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex justify-content-between">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-black my-0"><strong>Astro Shop</strong></h2>
+                    <h2 class="logo-font bg-white text-black my-0"><strong>Astro Shop</strong></h2>
                 </a>
             </div>
-
-
-
+        
             <div class="row bg-white">
                 <nav class="navbar navbar-expand-lg navbar-light w-100">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
                         aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    {% include 'includes/main-nav.html' %}
-
-                    <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+        
+                    <div class="collapse navbar-collapse" id="main-nav">
                         <ul class="list-inline list-unstyled text-lg-right my-0 d-flex justify-content-end">
-
                             <li class="list-inline-item">
-                                <div class="cart-box">
-                                    <button class="text-black nav-link btn" id="user-options"
-                                        onclick="window.location.href=aboutUrl" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        <div class="text-center">
-                                            <div><i class="fas fa-question fa-lg"></i></div>
-                                            <p class="my-0">About</p>
-                                        </div>
-                                    </button>
-                                </div>
+                                <a href="{{ about_url }}" class="text-black nav-link btn cart-box">
+                                    <div class="text-center">
+                                        <i class="fas fa-question fa-lg"></i>
+                                        <p class="my-0">About</p>
+                                    </div>
+                                </a>
                             </li>
-
-
+        
                             <li class="list-inline-item">
-                                <div class="cart-box">
-
-
-                                    <button class="text-black nav-link btn" id="user-options"
-                                        onclick="window.location.href=searchUrl" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        <div class="text-center">
-                                            <div><i class="fas fa-search fa-lg"></i></div>
-                                            <p class="my-0">Search</p>
-                                        </div>
-                                    </button>
-                                </div>
+                                <a href="{{ search_url }}" class="text-black nav-link btn cart-box">
+                                    <div class="text-center">
+                                        <i class="fas fa-search fa-lg"></i>
+                                        <p class="my-0">Search</p>
+                                    </div>
+                                </a>
                             </li>
-
+        
                             <li class="list-inline-item dropdown">
-                                <div class="cart-box">
-                                    <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        <div class="text-center">
-                                            <div><i class="fas fa-user fa-lg"></i></div>
-                                            <p class="my-0">My Account</p>
-                                        </div>
-                                    </a>
-                                    <div class="dropdown-menu border-1" aria-labelledby="user-options">
-
-                                        {% if request.user.is_authenticated %}
+                                <a class="text-black nav-link cart-box" href="#" id="account-options" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <div class="text-center">
+                                        <i class="fas fa-user fa-lg"></i>
+                                        <p class="my-0">My&nbsp;Account</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
+                                    {% if request.user.is_authenticated %}
                                         <a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a>
                                         <a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a>
                                         <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
-
                                         <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
-
                                         <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
-
                                         <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
                                         {% if request.user.is_superuser %}
-                                        <hr class="dropdown-divider" />
-                                        <a href="{% url 'add_product' %}" class="dropdown-item">Add a New Product</a>
-                                        <hr class="dropdown-divider" />
-                                        <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
-                                        <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">UnShipped
-                                            Orders</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
+                                            <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
+                                            <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
                                         {% endif %}
-                                        {% else %}
+                                    {% else %}
                                         <a href="{% url 'register' %}" class="dropdown-item">Register</a>
                                         <a href="{% url 'login' %}" class="dropdown-item">Login</a>
-                                        {% endif %}
-                                    </div>
+                                    {% endif %}
                                 </div>
                             </li>
-                            <li class="list-inline-item mb-2">
-                                <div class="cart-box">
-                                    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
-                                        href="{% url 'shopcart_summary' %}">
-                                        <div class="text-center">
-                                            <div><i class="fas fa-cart-shopping fa-lg"></i></div>
-                                            <p class="my-0">Shop Cart Items
-                                                <span class="badge bg-dark text-white ms-1 rounded-pill"
-                                                    id="cart_quantity">{{ cart|length }}</span>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
+        
+                            <li class="list-inline-item">
+                                <a href="{% url 'shopcart_summary' %}" class="nav-link cart-box {% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}">
+                                    <div class="text-center">
+                                        <i class="fas fa-cart-shopping fa-lg"></i>
+                                        <p class="my-0">Shop&nbsp;Cart&nbsp;Items
+                                            <span class="badge bg-dark text-white rounded-pill" id="cart_quantity">
+                                                {{ cart|length|default:0 }}
+                                            </span>
+                                        </p>
+                                    </div>
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </nav>
             </div>
         </div>
+        
+
+
+
 
 
         <!-- Loop through messages to display alerts -->

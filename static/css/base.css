@@ -88,13 +88,7 @@ body {
     color: #fff;
 }
 
-/* Shop Now button styling */
-.shop-now-button {
-    font-size: 1.25rem;
-    width: auto;
-    max-width: 500px;
-    margin: 0 auto;   /* Center the button */
-}
+
 
 
 @media (max-width: 768px) {
@@ -192,11 +186,11 @@ body {
     width: fit-content;
 }
 
-/* .shop-now-button {
+.shop-now-button {
     background: black;
     color: white;
     min-width: 260px;
-} */
+}
 
 .btn-black {
     background: black;
