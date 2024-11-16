@@ -362,10 +362,10 @@ def register_user(request):
 
             return redirect('home')
         else:
-            messages.success(request, ("Whoops! There was a problem Registering, please try again..."))
+           
             return redirect('register')
     else:
-        return render(request, 'index.html', {'form':form})
+        return render(request, 'register.html', {'form':form})
 
 
 
