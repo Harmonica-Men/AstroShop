@@ -253,53 +253,182 @@ a.category-badge>span.badge:hover {
 }
 
 
+/* Hamburger menu */
 
-/* -------------------------------- Media Queries */
-
-/* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 80%;
-    }
+#menu__toggle {
+    opacity: 0;
+  }
+  #menu__toggle:checked + .menu__btn > span {
+    transform: rotate(45deg);
+  }
+  #menu__toggle:checked + .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0deg);
+  }
+  #menu__toggle:checked + .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+  #menu__toggle:checked ~ .menu__box {
+    left: 0 !important;
+  }
+  .menu__btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 1;
+  }
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #616161;
+    transition-duration: .25s;
+  }
+  .menu__btn > span::before {
+    content: '';
+    top: -8px;
+  }
+  .menu__btn > span::after {
+    content: '';
+    top: 8px;
+  }
+  .menu__box {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    background-color: #ECEFF1;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+    transition-duration: .25s;
+  }
+  .menu__item {
+    display: block;
+    padding: 12px 24px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: .25s;
+  }
+  .menu__item:hover {
+    background-color: #CFD8DC;
+  }
+  
+  .font-head {
+    color: white;
+    font-size: 75px;
 }
 
-/* fixed top navbar only on medium and up */
-@media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    }
 
-    .header-container {
-        padding-top: 164px;
-    }
-}
 
+/* Media query for screens smaller than or equal to 991px */
 @media (max-width: 991px) {
-    /* Stack navbar items vertically */
-    #main-nav .navbar-nav {
-        transition: max-height 0.3s ease-in-out;
-        overflow: hidden;
-        flex-direction: column;
+
+    .banner-head {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .font-head {
+        font-size: 35px;
+    }
+
+    
+    .main-logo-link h2.logo-font {
+        margin-left: 25px;
+        font-size: 1.5rem;
         text-align: center;
     }
 
-    /* Remove unnecessary padding/margin from links */
-    #main-nav .nav-item {
-        margin: 10px 0;
+    /* Hide the navbar on small screens */
+    .navbar {
+        display: none; /* Hide the default navbar */
     }
 
-    /* Adjust badge display for smaller screens */
-    #main-nav .badge {
-        display: inline-block;
-        margin-left: 5px;
+    /* Show hamburger menu button */
+    .hamburger-menu {
+        display: block;
     }
 
-    /* Hide cart-box elements on smaller screens */
-    #main-nav .cart-box {
-        display: none !important;
+    /* Hide main navigation by default */
+    #main-nav {
+        display: none;
+        transition: max-height 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+    /* Show the navbar when the hamburger menu is checked */
+    #menu__toggle:checked ~ .menu__box {
+        left: 0;
+    }
+
+    /* Make the menu appear when hovering over hamburger */
+    .hamburger-menu:hover + .menu__box {
+        left: 0;
+    }
+
+    .menu__box {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: -100%; /* Hide menu off-screen */
+        width: 300px;
+        height: 100%;
+        margin: 0;
+        padding: 80px 0;
+        list-style: none;
+        background-color: #ECEFF1;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+        transition: left 0.25s ease; /* Smooth transition */
+    }
+
+    .menu__item {
+        display: block;
+        padding: 12px 24px;
+        color: #333;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        text-decoration: none;
+        transition-duration: .25s;
+    }
+
+    .menu__item:hover {
+        background-color: #CFD8DC;
+    }
+}
+
+/* Media query for screens larger than 992px */
+@media (min-width: 992px) {
+    /* Hide hamburger menu on larger screens */
+    .hamburger-menu {
+        display: none;
+    }
+
+    /* Show the navbar on larger screens */
+    .navbar {
+        display: block;
+    }
+
+    /* Ensure the menu is visible (you can customize this if needed) */
+    #main-nav {
+        display: flex; /* Or any other display style depending on your layout */
+    }
+
+    .menu__box {
+        display: none; /* Hide hamburger menu by default */
     }
 }
