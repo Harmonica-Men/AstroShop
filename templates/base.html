@@ -62,9 +62,10 @@
         <div id="topnav" class="row bg-white pt-lg-2 justify-content-between">
 
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-                <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font bg-white text-black my-0"><strong>Astro Shop</strong></h2>
-                </a>
+                <h2 class="nav-link main-logo-link">
+                    <strong class="logo-font bg-white text-black">Astro Shop</strong>
+                </h2>
+                
             </div>
         
             <div class="row bg-white">
@@ -149,13 +150,40 @@
                 <span></span>
             </label>
 
+         
             <ul class="menu__box">
-                <li><a class="menu__item" href="#">Home</a></li>
-                <li><a class="menu__item" href="#">About</a></li>
-                <li><a class="menu__item" href="#">Team</a></li>
-                <li><a class="menu__item" href="#">Contact</a></li>
-                <li><a class="menu__item" href="#">Twitter</a></li>
+                <li><a class="menu__item" href="{% url 'home' %}">Home Page</a></li>
+                <li><a class="menu__item" href="{% url 'about' %}">About</a></li>
+                {% if request.user.is_authenticated %}
+                    <li class="dropdown">
+                        <a class="menu__item dropdown-toggle" href="#" id="account-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            My&nbsp;Account
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
+                            <ul class="no-bullets">
+                                <li><a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a></li>
+                                <li><a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a></li>
+                                <li><a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a></li>
+                                <li><a href="{% url 'update_user' %}" class="dropdown-item">User Account</a></li>
+                                <li><a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a></li>
+                                <li><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></li>
+                                {% if request.user.is_superuser %}
+                                    <div class="dropdown-divider"></div>
+                                    <li><a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a></li>
+                                    <li><a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a></li>
+                                    <li><a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'register' %}" class="dropdown-item">Register</a></li>
+                    <li><a href="{% url 'login' %}" class="dropdown-item">Login</a></li>
+                {% endif %}
             </ul>
+            
+
+
         </div>
 
         <!-- Loop through messages to display alerts -->
