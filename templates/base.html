@@ -57,33 +57,75 @@
 
 <body>
     <header class="container-fluid bg-dark">
-        <div class="account-cart bg-white">
-            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %} nav-link"
-                href="{% url 'shopcart_summary' %}">
-                <div class="text-center text-black" style="font-size: 0.8rem;">
-                    <!-- Smaller font size -->
-                    <div><i class="fas fa-cart-shopping fa-sm"></i></div> <!-- Smaller icon -->
-                    <p class="small mr-3">Shopping Cart</p> <!-- Bootstrap small text class -->
+        <div class="account-cart">
+            <li class="list-inline-item">
+                <!-- Trigger for dropdown -->
+                <a href="#" class="text-black nav-link btn mt-1 hover-effect" 
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="text-center">
+                        <i class="fas fa-user fa-lg"></i>
+                    </div>
+                </a>
+
+
+                <!-- Dropdown menu -->
+                <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
+                    {% if request.user.is_authenticated %}
+                    <!-- Links for authenticated users -->
+                    <a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a>
+                    <a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a>
+                    <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
+                    <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
+                    <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
+                    <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+
+                    <!-- Admin-specific links -->
+                    {% if request.user.is_superuser %}
+                    <div class="dropdown-divider"></div>
+                    <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
+                    <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
+                    <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
+                    {% endif %}
+                    {% else %}
+                    <!-- Links for unauthenticated users -->
+                    <a href="{% url 'register' %}" class="dropdown-item">Register</a>
+                    <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                    {% endif %}
                 </div>
-            </a>
+            </li>
+
+
+
+            <li class="list-inline-item">
+                <a href="{% url 'shopcart_summary' %}" class="text-black nav-link btn mt-1 mr-2 hover-effect">
+                    <div class="text-center">
+                        <i class="fas fa-cart-shopping fa-lg"></i>
+                        <span class="badge bg-dark text-white rounded-pill" id="cart_quantity">
+                            {{ cart|length|default:0 }}
+                        </span>
+                    </div>
+                </a>
+                
+            </li>
+
         </div>
         <!-- section navbar -->
         <div id="topnav" class="row bg-white pt-lg-2 justify-content-between">
 
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-                <h2 class="nav-link main-logo-link">
-                    <strong class="logo-font bg-white text-black">Astro Shop</strong>
+                <h2 class="nav-link">
+                    <strong class="logo-font bg-white text-black">ASTRO&nbsp;SHOP</strong>
                 </h2>
-                
+
             </div>
-        
+
             <div class="row bg-white">
                 <nav class="navbar navbar-expand-lg navbar-light w-100">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
                         aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-        
+
                     <div class="collapse navbar-collapse" id="main-nav">
                         <ul class="list-inline list-unstyled text-lg-right my-0 d-flex justify-content-end">
                             <li class="list-inline-item">
@@ -94,7 +136,7 @@
                                     </div>
                                 </a>
                             </li>
-                            
+
                             <li class="list-inline-item">
                                 <a href="{{ search_url }}" class="text-black nav-link btn cart-box">
                                     <div class="text-center">
@@ -103,40 +145,42 @@
                                     </div>
                                 </a>
                             </li>
-        
-                            <li class="list-inline-item dropdown">
-                                <a class="text-black nav-link cart-box" href="#" id="account-options" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
+
+                            <li class="list-inline-item">
+                                <a href="#" class="text-black nav-link btn cart-box" id="account-options"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="text-center">
                                         <i class="fas fa-user fa-lg"></i>
                                         <p class="my-0">My&nbsp;Account</p>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
+                                <div class="dropdown-menu dropdown-menu-right border-1"
+                                    aria-labelledby="account-options">
                                     {% if request.user.is_authenticated %}
-                                        <a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a>
-                                        <a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a>
-                                        <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
-                                        <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
-                                        <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
-                                        <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
-                                        {% if request.user.is_superuser %}
-                                            <div class="dropdown-divider"></div>
-                                            <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
-                                            <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
-                                            <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
-                                        {% endif %}
+                                    <a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a>
+                                    <a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a>
+                                    <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
+                                    <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
+                                    <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
+                                    <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                                    {% if request.user.is_superuser %}
+                                    <div class="dropdown-divider"></div>
+                                    <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
+                                    <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
+                                    <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
+                                    {% endif %}
                                     {% else %}
-                                        <a href="{% url 'register' %}" class="dropdown-item">Register</a>
-                                        <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                                    <a href="{% url 'register' %}" class="dropdown-item">Register</a>
+                                    <a href="{% url 'login' %}" class="dropdown-item">Login</a>
                                     {% endif %}
                                 </div>
                             </li>
-        
+
                             <li class="list-inline-item">
-                                <a href="{% url 'shopcart_summary' %}" class="nav-link cart-box {% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}">
+                                <a href="{% url 'shopcart_summary' %}" class="text-black nav-link btn cart-box  ">
                                     <div class="text-center">
                                         <i class="fas fa-cart-shopping fa-lg"></i>
+
                                         <p class="my-0">Shop&nbsp;Cart&nbsp;Items
                                             <span class="badge bg-dark text-white rounded-pill" id="cart_quantity">
                                                 {{ cart|length|default:0 }}
@@ -152,54 +196,63 @@
         </div>
 
 
-        
+
 
         <!-- section navbar -->
         <div class="hamburger-menu bg-dark">
 
-            
-                
-            
+
+
+
             <input id="menu__toggle" type="checkbox" />
             <label class="menu__btn" for="menu__toggle">
                 <span></span>
             </label>
 
-            
-         
+
+
             <ul class="menu__box">
                 <li><a class="menu__item" href="{% url 'home' %}">Home Page</a></li>
                 <li><a class="menu__item" href="{% url 'about' %}">About</a></li>
                 {% if request.user.is_authenticated %}
-                    <li class="dropdown">
-                        <a class="menu__item dropdown-toggle" href="#" id="account-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            My&nbsp;Account
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
-                            <ul class="no-bullets">
-                                <li><a class="menu__item" href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a></li>
-                                <li><a class="menu__item" href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a></li>
-                                <li><a class="menu__item" href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a></li>
-                                <li><a class="menu__item" href="{% url 'update_user' %}" class="dropdown-item">User Account</a></li>
-                                <li><a class="menu__item" href="{% url 'update_password' %}" class="dropdown-item">Change Password</a></li>
-                                <div class="dropdown-divider"></div>
-                                <li><a class="menu__item" href="{% url 'logout' %}" class="dropdown-item">Logout</a></li>
-                                {% if request.user.is_superuser %}
-                                    <div class="dropdown-divider"></div>
-                                    <li><a class="menu__item" href="{% url 'add_product' %}" class="dropdown-item">Add Product</a></li>
-                                    <div class="dropdown-divider"></div>
-                                    <li><a class="menu__item" href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a></li>
-                                    <li><a class="menu__item" href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a></li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                    </li>
+                <li class="dropdown">
+                    <a class="menu__item dropdown-toggle" href="#" id="account-options" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        My&nbsp;Account
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
+                        <ul class="no-bullets">
+                            <li><a class="menu__item" href="{% url 'update_user_profile' %}" class="dropdown-item">My
+                                    Profile</a></li>
+                            <li><a class="menu__item" href="{% url 'update_ship_profile' %}" class="dropdown-item">My
+                                    Shipping</a></li>
+                            <li><a class="menu__item" href="{% url 'update_payment_paypal' %}" class="dropdown-item">My
+                                    Payment</a></li>
+                            <li><a class="menu__item" href="{% url 'update_user' %}" class="dropdown-item">User
+                                    Account</a></li>
+                            <li><a class="menu__item" href="{% url 'update_password' %}" class="dropdown-item">Change
+                                    Password</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a class="menu__item" href="{% url 'logout' %}" class="dropdown-item">Logout</a></li>
+                            {% if request.user.is_superuser %}
+                            <div class="dropdown-divider"></div>
+                            <li><a class="menu__item" href="{% url 'add_product' %}" class="dropdown-item">Add
+                                    Product</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a class="menu__item" href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped
+                                    Orders</a></li>
+                            <li><a class="menu__item" href="{% url 'not_shipped_dash' %}"
+                                    class="dropdown-item">Unshipped Orders</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </li>
                 {% else %}
-                    <li><a href="{% url 'register' %}" class="dropdown-item">Register</a></li>
-                    <li><a href="{% url 'login' %}" class="dropdown-item">Login</a></li>
+                <li><a href="{% url 'register' %}" class="dropdown-item">Register</a></li>
+                <li><a href="{% url 'login' %}" class="dropdown-item">Login</a></li>
                 {% endif %}
             </ul>
-            
+
 
 
         </div>
