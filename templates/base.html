@@ -60,8 +60,8 @@
         <div class="account-cart">
             <li class="list-inline-item">
                 <!-- Trigger for dropdown -->
-                <a href="#" class="text-black nav-link btn mt-1 hover-effect" 
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="text-black nav-link btn mt-1 hover-effect" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     <div class="text-center">
                         <i class="fas fa-user fa-lg"></i>
                     </div>
@@ -77,12 +77,14 @@
                     <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
                     <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
                     <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
+                    <div class="dropdown-divider"></div>
                     <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
 
                     <!-- Admin-specific links -->
                     {% if request.user.is_superuser %}
                     <div class="dropdown-divider"></div>
                     <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
+                    <div class="dropdown-divider"></div>
                     <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
                     <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
                     {% endif %}
@@ -105,19 +107,17 @@
                         </span>
                     </div>
                 </a>
-                
+
             </li>
 
         </div>
         <!-- section navbar -->
-        <div id="topnav" class="row bg-white pt-lg-2 justify-content-between">
-
+        
+        <div id="topnav" class="row bg-white justify-content-between">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-                <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-black my-0"><strong>ASTRO&nbsp;SHOP</strong></h2>
+                <a href="{% url 'home' %}" class="cart-box nav-link hover-bg">
+                    <h2><strong>ASTRO&nbsp;SHOP</strong></h2>
                 </a>
-                
-
             </div>
 
             <div class="row bg-white">
@@ -126,11 +126,14 @@
                         aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    
+                    
+                    
 
-                    <div class="collapse navbar-collapse" id="main-nav">
+                    <!-- <div class="collapse navbar-collapse" id="main-nav"> -->
                         <ul class="list-inline list-unstyled text-lg-right my-0 d-flex justify-content-end">
                             <li class="list-inline-item">
-                                <a href="{{ about_url }}" class="text-black nav-link btn cart-box">
+                                <a href="{% url 'about' %}" class="text-black nav-link btn cart-box">
                                     <div class="text-center">
                                         <i class="fas fa-question fa-lg d-none d-lg-inline"></i>
                                         <p class="my-0">About</p>
@@ -139,7 +142,7 @@
                             </li>
 
                             <li class="list-inline-item">
-                                <a href="{{ search_url }}" class="text-black nav-link btn cart-box">
+                                <a href="{% url 'search' %}" class="text-black nav-link btn cart-box">
                                     <div class="text-center">
                                         <i class="fas fa-search fa-lg d-none d-lg-inline"></i>
                                         <p class="my-0">Search</p>
@@ -148,17 +151,14 @@
                             </li>
 
                             <li class="list-inline-item dropdown">
-                                <div>
-                                <a href="#" class="text-black nav-link btn cart-box" id="account-options"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a href="#" class="text-black nav-link btn cart-box" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
                                     <div class="text-center">
                                         <i class="fas fa-user fa-lg"></i>
                                         <p class="my-0">My&nbsp;Account</p>
                                     </div>
                                 </a>
-                                
-                                <div class="dropdown-menu dropdown-menu-right border-1"
-                                    aria-labelledby="account-options">
+                                <div class="dropdown-menu dropdown-menu-right border-1">
                                     {% if request.user.is_authenticated %}
                                     <a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a>
                                     <a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a>
@@ -180,12 +180,10 @@
                             </li>
 
                             <li class="list-inline-item">
-                                <a href="{% url 'shopcart_summary' %}" class="text-black nav-link btn cart-box  ">
+                                <a href="{% url 'shopcart_summary' %}" class="text-black nav-link btn cart-box">
                                     <div class="text-center">
                                         <i class="fas fa-cart-shopping fa-lg"></i>
-
                                         <p class="my-0">Shop&nbsp;Cart&nbsp;Items
-                                            
                                             <span class="badge bg-dark text-white rounded-pill" id="cart_quantity">
                                                 {{ cart|length|default:0 }}
                                             </span>
@@ -194,9 +192,12 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                        {% include 'includes/main-nav.html' %}
+                    <!-- </div> -->
                 </nav>
+                
             </div>
+            
         </div>
 
 
@@ -252,8 +253,11 @@
                     </div>
                 </li>
                 {% else %}
-                <li><a href="{% url 'register' %}" class="dropdown-item">Register</a></li>
-                <li><a href="{% url 'login' %}" class="dropdown-item">Login</a></li>
+                <li><a class="menu__item" href="{% url 'search' %}" class="dropdown-item">Search</a></li>
+
+                
+                <li><a class="menu__item" href="{% url 'register' %}" class="dropdown-item">Register</a></li>
+                <li><a class="menu__item" href="{% url 'login' %}" class="dropdown-item">Login</a></li>
                 {% endif %}
             </ul>
 
@@ -263,7 +267,7 @@
 
         <!-- Loop through messages to display alerts -->
         {% for message in messages %}
-        <div class="row text-center fixed-top" style="top: 275px;">
+        <div class="row text-center fixed-top" style="top: 100px;">
             <div class="col" style="background-color: rgba(192, 192, 192, 0.5);">
                 <!-- Display the message safely -->
                 <h5 class="text-white">{{ message | safe }}

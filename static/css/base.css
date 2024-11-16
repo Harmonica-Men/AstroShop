@@ -371,6 +371,18 @@ a.category-badge>span.badge:hover {
 
 
 
+.hover-bg {
+    background-color: white; /* Default background color */
+    color: black; /* Default text color */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.hover-bg:hover {
+    background-color: black; /* Background color on hover */
+    color: white; /* Text color on hover */
+}
+
+
 .account-cart {
     display: none;
     z-index: 999;
