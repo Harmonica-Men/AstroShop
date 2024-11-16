@@ -58,8 +58,9 @@
 <body>
     <header class="container-fluid bg-white fixed-top">
         
+<!-- section navbar -->
+        <div id="topnav" class="row bg-white pt-lg-2 justify-content-between">
 
-        <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex justify-content-between">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
                     <h2 class="logo-font bg-white text-black my-0"><strong>Astro Shop</strong></h2>
@@ -78,16 +79,16 @@
                             <li class="list-inline-item">
                                 <a href="{{ about_url }}" class="text-black nav-link btn cart-box">
                                     <div class="text-center">
-                                        <i class="fas fa-question fa-lg"></i>
+                                        <i class="fas fa-question fa-lg d-none d-lg-inline"></i>
                                         <p class="my-0">About</p>
                                     </div>
                                 </a>
                             </li>
-        
+                            
                             <li class="list-inline-item">
                                 <a href="{{ search_url }}" class="text-black nav-link btn cart-box">
                                     <div class="text-center">
-                                        <i class="fas fa-search fa-lg"></i>
+                                        <i class="fas fa-search fa-lg d-none d-lg-inline"></i>
                                         <p class="my-0">Search</p>
                                     </div>
                                 </a>

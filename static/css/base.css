@@ -88,7 +88,13 @@ body {
     color: #fff;
 }
 
-
+/* Shop Now button styling */
+.shop-now-button {
+    font-size: 1.25rem;
+    /* width: auto; */
+    max-width: 200px;
+    margin: 0 auto;   /* Center the button */
+}
 
 
 @media (max-width: 768px) {
@@ -186,11 +192,11 @@ body {
     width: fit-content;
 }
 
-.shop-now-button {
+/* .shop-now-button {
     background: black;
     color: white;
     min-width: 260px;
-}
+} */
 
 .btn-black {
     background: black;
@@ -272,13 +278,28 @@ a.category-badge>span.badge:hover {
     }
 }
 
-/* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
-    .header-container {
-        padding-top: 116px;
+    /* Stack navbar items vertically */
+    #main-nav .navbar-nav {
+        transition: max-height 0.3s ease-in-out;
+        overflow: hidden;
+        flex-direction: column;
+        text-align: center;
     }
 
-    body {
-        height: calc(100vh - 116px);
+    /* Remove unnecessary padding/margin from links */
+    #main-nav .nav-item {
+        margin: 10px 0;
+    }
+
+    /* Adjust badge display for smaller screens */
+    #main-nav .badge {
+        display: inline-block;
+        margin-left: 5px;
+    }
+
+    /* Hide cart-box elements on smaller screens */
+    #main-nav .cart-box {
+        display: none !important;
     }
 }
