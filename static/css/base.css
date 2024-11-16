@@ -310,6 +310,8 @@ a.category-badge>span.badge:hover {
     top: 8px;
 }
 
+
+
 .menu__box {
     display: block;
     position: fixed;
@@ -356,8 +358,21 @@ a.category-badge>span.badge:hover {
     margin-bottom: 0;
 }
 
+.account-cart {
+    display: block;
+}
+
 /* Media query for screens smaller than or equal to 991px */
 @media (max-width: 991px) {
+
+    .account-cart {
+        display: block;
+        position: fixed;
+        
+        top: 0;
+        right: 0;
+    }
+    
 
     .banner-head {
         margin-top: 10px;

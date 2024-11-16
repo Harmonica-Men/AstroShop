@@ -57,7 +57,16 @@
 
 <body>
     <header class="container-fluid bg-dark">
-
+        <div class="account-cart bg-white">
+            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %} nav-link"
+                href="{% url 'shopcart_summary' %}">
+                <div class="text-center text-black" style="font-size: 0.8rem;">
+                    <!-- Smaller font size -->
+                    <div><i class="fas fa-cart-shopping fa-sm"></i></div> <!-- Smaller icon -->
+                    <p class="small mr-3">Shopping Cart</p> <!-- Bootstrap small text class -->
+                </div>
+            </a>
+        </div>
         <!-- section navbar -->
         <div id="topnav" class="row bg-white pt-lg-2 justify-content-between">
 
@@ -143,13 +152,20 @@
         </div>
 
 
+        
+
         <!-- section navbar -->
         <div class="hamburger-menu bg-dark">
+
+            
+                
+            
             <input id="menu__toggle" type="checkbox" />
             <label class="menu__btn" for="menu__toggle">
                 <span></span>
             </label>
 
+            
          
             <ul class="menu__box">
                 <li><a class="menu__item" href="{% url 'home' %}">Home Page</a></li>
@@ -161,17 +177,19 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
                             <ul class="no-bullets">
-                                <li><a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a></li>
-                                <li><a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a></li>
-                                <li><a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a></li>
-                                <li><a href="{% url 'update_user' %}" class="dropdown-item">User Account</a></li>
-                                <li><a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a></li>
-                                <li><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></li>
+                                <li><a class="menu__item" href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a></li>
+                                <li><a class="menu__item" href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a></li>
+                                <li><a class="menu__item" href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a></li>
+                                <li><a class="menu__item" href="{% url 'update_user' %}" class="dropdown-item">User Account</a></li>
+                                <li><a class="menu__item" href="{% url 'update_password' %}" class="dropdown-item">Change Password</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li><a class="menu__item" href="{% url 'logout' %}" class="dropdown-item">Logout</a></li>
                                 {% if request.user.is_superuser %}
                                     <div class="dropdown-divider"></div>
-                                    <li><a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a></li>
-                                    <li><a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a></li>
-                                    <li><a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a></li>
+                                    <li><a class="menu__item" href="{% url 'add_product' %}" class="dropdown-item">Add Product</a></li>
+                                    <div class="dropdown-divider"></div>
+                                    <li><a class="menu__item" href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a></li>
+                                    <li><a class="menu__item" href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a></li>
                                 {% endif %}
                             </ul>
                         </div>
