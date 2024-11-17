@@ -1,4 +1,4 @@
-Hello {{ user }},
+Hello {{ username }},
 
 This is a confirmation of your registration at Astro Shop.
 

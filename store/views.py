@@ -141,76 +141,53 @@ def search(request):
 		return render(request, "search.html", {})	
 
 
-def update_user_profile(request):
-    if request.user.is_authenticated:
-        current_user = Profile.objects.get(user__id=request.user.id)
-        
-        
-        # Get Current User's profile Info with error handling
-        try:
-            
-            user_profile = Profile.objects.get(user__id=request.user.id)
-        except Profile.DoesNotExist:
-            user_profile = None  # Optional: handle missing profile here
-            
-        # Get original User Form
-        form = ProfileForm(request.POST or None, instance=current_user)
-        
-        # Initialize profile form using the existing profile or None
-        profile_form = ProfileForm(request.POST or None, instance=user_profile)
-        
-        if form.is_valid() and profile_form.is_valid():
-            # Save forms if valid
-            form.save()            
-            if user_profile:  # If profile exists, update it
-                profile_form.save()
-            else:  # If profile doesn't exist, create a new one
-                new_profile = profile_form.save(commit=False)
-                new_profile.user = request.user
-                new_profile.save()
-          
-            return redirect('products')
-        
-        return render(request, "update_user_profile.html", {'form': form, 'profile_form': profile_form})
+
+def update_user_and_shipping(request):
+    try:
+        user_profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        user_profile = None  # Optional: handle missing profile
+
+    try:
+        shipping_address = ShippingAddress.objects.get(user=request.user)
+    except ShippingAddress.DoesNotExist:
+        shipping_address = None  # Optional: handle missing shipping address
+
+    # Profile form (handles user profile updates)
+    profile_form = ProfileForm(request.POST or None, instance=user_profile)
+
+    # Shipping form (handles shipping address updates)
+    shipping_form = ShippingForm(request.POST or None, instance=shipping_address)
+
+    if profile_form.is_valid() and shipping_form.is_valid():
+        # Save Profile
+        if user_profile:
+            profile_form.save()
+        else:
+            new_profile = profile_form.save(commit=False)
+            new_profile.user = request.user
+            new_profile.save()
+
+        # Save Shipping Address
+        if shipping_address:
+            shipping_form.save()
+        else:
+            new_shipping = shipping_form.save(commit=False)
+            new_shipping.user = request.user
+            new_shipping.shipping_full_name = request.user.first_name
+            new_shipping.shipping_email = request.user.email
+            new_shipping.save()
+
+        messages.success(request, "Your profile and shipping address have been updated successfully.")
+        return redirect('products')
+
+    return render(
+        request,
+        "update_user_and_shipping.html",
+        {"profile_form": profile_form, "shipping_form": shipping_form},
+    )
+
     
-    else:
-
-        return redirect('home')
-
-
-def update_ship_profile(request):
-    if request.user.is_authenticated:
-        current_user = User.objects.get(id=request.user.id)
-        
-        # Get Current User's Shipping Info with error handling
-        try:
-            shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
-        except ShippingAddress.DoesNotExist:
-            shipping_user = None  # Optional: handle missing shipping address here
-            
-        # Get original User Form
-        form = ProfileForm(request.POST or None, instance=current_user)
-        
-        # Get User's Shipping Form (use an empty instance if shipping_user is None)
-        shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
-        
-        if form.is_valid() and shipping_form.is_valid():
-            # Save forms if valid
-            form.save()
-            if shipping_user:
-                shipping_form.save()
-            else:               
-                shipping_user = shipping_form.save(commit=False)
-                shipping_user.user = request.user
-                shipping_user.save()
-
-            return redirect('products')
-        
-        return render(request, "update_ship_profile.html", {'form': form, 'shipping_form': shipping_form})
-    
-    else:
-        return redirect('home')
-
 def update_password(request):
 	if request.user.is_authenticated:
 		current_user = request.user
@@ -225,6 +202,8 @@ def update_password(request):
 				return redirect('update_user')
 			else:
 				for error in list(form.errors.values()):
+
+                    
 
 					return redirect('update_password')
 		else:
@@ -350,7 +329,7 @@ def register_user(request):
             # Send confirmation email
             subject = 'Welcome to Astro Shop!'
             message = render_to_string('confirmation_emails/confirmation_email_registration.txt', {
-                'user': user.username,  # Pass the username to the template
+                'username': user.username,  # Pass the username to the template
                 'domain': get_current_site(request).domain,
                 'uid': user.pk,  # Optional, can be used for confirmation link
                 'token': 'dummy_token'  # Replace with actual token logic if needed
@@ -364,7 +343,7 @@ def register_user(request):
             )
 
             messages.success(request, "Username Created - Registration Email has send - Please Fill Out Your User Info Below...")
-            return redirect('update_user_profile')
+            return redirect('update_user_and_shipping')
         else:
             messages.error(request, "Whoops! There was a problem registering, please try again...")
             return redirect('register')

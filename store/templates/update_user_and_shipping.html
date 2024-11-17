@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Header -->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-4">
+        <div class="text-center text-white">
+            <br>
+            <h1 class="display-4 fw-bolder mt-5">Update Profile and Shipping Info</h1>
+            <p class="lead fw-normal text-white-40 mb-2">Update your user information and shipping details</p>
+        </div>
+    </div>
+</header>
+
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
+    <div class="row shadow-lg" style="width: 100%; max-width: 800px;">
+
+        <!-- User Information Section -->
+        <div class="col-md-6 p-4">
+            <h3 class="text-center">User Information</h3>
+            <form method="POST" action="{% url 'update_user_and_shipping' %}" class="mt-2">
+                {% csrf_token %}
+                {{ profile_form.as_p }}
+                <div class="d-flex justify-content-between mb-4">
+                    <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Shipping Information Section -->
+        <div class="col-md-6 p-4">
+            <h3 class="text-center">Shipping Information</h3>
+            <form method="POST" action="{% url 'update_user_and_shipping' %}" class="mt-2">
+                {% csrf_token %}
+                {{ shipping_form.as_p }}
+                <div class="d-flex justify-content-between mb-4">
+                    <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
+                    <button type="submit" class="btn btn-secondary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

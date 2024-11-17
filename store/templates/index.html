@@ -45,8 +45,8 @@
                     </a>
                     <div class="dropdown-menu rounded-0 border-1 p-1" aria-labelledby="user-options">
                         {% if request.user.is_authenticated %}
-                        <a href="{% url 'update_user_profile' %}" class="dropdown-item small">My Profile</a>
-                        <a href="{% url 'update_ship_profile' %}" class="dropdown-item small">My Shipping</a>
+                        <a href="{% url 'update_user_and_shipping' %}" class="dropdown-item small">My Profile</a>
+                        
                         <a href="{% url 'update_payment_paypal' %}" class="dropdown-item small">My Payment</a>
                         <a href="{% url 'update_user' %}" class="dropdown-item small">User Account</a>
                         <a href="{% url 'update_password' %}" class="dropdown-item small">Change Password</a>
