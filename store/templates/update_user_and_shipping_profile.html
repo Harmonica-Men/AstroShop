@@ -18,7 +18,7 @@
         <!-- User Information Section -->
         <div class="col-md-6 p-4">
             <h3 class="text-center">User Information</h3>
-            <form method="POST" action="{% url 'update_user_and_shipping' %}" class="mt-2">
+            <form method="POST" action="{% url 'update_user_and_shipping_profile' %}" class="mt-2">
                 {% csrf_token %}
                 {{ profile_form.as_p }}
                 <div class="d-flex justify-content-between mb-4">
@@ -30,7 +30,7 @@
         <!-- Shipping Information Section -->
         <div class="col-md-6 p-4">
             <h3 class="text-center">Shipping Information</h3>
-            <form method="POST" action="{% url 'update_user_and_shipping' %}" class="mt-2">
+            <form method="POST" action="{% url 'update_user_and_shipping_profile' %}" class="mt-2">
                 {% csrf_token %}
                 {{ shipping_form.as_p }}
                 <div class="d-flex justify-content-between mb-4">

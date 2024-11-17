@@ -11,13 +11,13 @@ urlpatterns = [
     path('register/', views.register_user, name='register'),
     path('update_password/', views.update_password, name='update_password'),
     path('update_user/', views.update_user, name='update_user'),
-<<<<<<< HEAD
+
     path('update_ship_profile/', views.update_ship_profile, name='update_ship_profile'),
     path('update_user_profile/', views.update_user_profile, name='update_user_profile'),
-=======
-    path('update_user_and_shipping/', views.update_user_and_ship_profile, name='update_user_and_shipping'),
+
+    path('update_user_and_shipping_profile/', views.update_user_and_shipping_profile, name='update_user_and_shipping_profile'),
     # path('update_user_profile/', views.update_user_profile, name='update_user_profile'),
->>>>>>> 48b1ea9187be469d8eb49c91f2ad3545d8ff89db
+
     path('product/<int:pk>', views.product, name='product'),
     path('category/<str:foo>', views.category, name='category'),
     path('category_summary/', views.category_summary, name='category_summary'),
