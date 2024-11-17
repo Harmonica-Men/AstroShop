@@ -131,7 +131,7 @@
                     
 
                     <!-- <div class="collapse navbar-collapse" id="main-nav"> -->
-                        <ul class="list-inline list-unstyled text-lg-right my-0 d-flex justify-content-end">
+                        <ul class="list-inline list-unstyled text-lg-right my-0 d-flex justify-content-end mb-2">
                             <li class="list-inline-item">
                                 <a href="{% url 'about' %}" class="text-black nav-link btn cart-box">
                                     <div class="text-center">
@@ -165,10 +165,12 @@
                                     <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
                                     <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
                                     <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
+                                    <div class="dropdown-divider"></div>
                                     <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
                                     {% if request.user.is_superuser %}
                                     <div class="dropdown-divider"></div>
                                     <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
+                                    <div class="dropdown-divider"></div>
                                     <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
                                     <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
                                     {% endif %}
@@ -267,7 +269,7 @@
 
         <!-- Loop through messages to display alerts -->
         {% for message in messages %}
-        <div class="row text-center fixed-top" style="top: 100px;">
+        <div class="row text-center fixed-top" style="top: 200px;">
             <div class="col" style="background-color: rgba(192, 192, 192, 0.5);">
                 <!-- Display the message safely -->
                 <h5 class="text-white">{{ message | safe }}

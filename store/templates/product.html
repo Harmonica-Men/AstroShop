@@ -95,17 +95,10 @@
     </div>
 </div>
 
-
-
 <script>
     // Check if button pressed
     $(document).on('click', '#add-cart', function (e) {
         e.preventDefault();
-
-        // Show the popup message
-        alert('Added to Cart');
-
-        // Perform the AJAX request
         $.ajax({
             type: 'POST',
             url: "{% url 'shopcart_add' %}",
@@ -115,17 +108,14 @@
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 action: 'post'
             },
-
             success: function (json) {
-                // Update cart quantity display
-                document.getElementById("cart_quantity").textContent = json.qty;
+                document.getElementById("cart_quantity").textContent = json.qty
+                location.reload();
             },
-
             error: function (xhr, errmsg, err) {
-                // Handle errors if necessary
+                // Handle error
             }
         });
-    });
+    })
 </script>
-
 {% endblock %}

@@ -79,7 +79,7 @@ def index(request):
     return render(request, 'index.html')
 
 
-@user_passes_test(lambda u: u.is_superuser)
+# @user_passes_test(lambda u: u.is_superuser)
 def add_product(request):
     if request.method == "POST":
         form = UpdateProductForm(request.POST, request.FILES)  # We use UpdateProductForm to add new products as well
@@ -109,6 +109,7 @@ def update_product(request, pk):
 
 def delete_product_confirmation(request, pk):
     product = get_object_or_404(Product, pk=pk)
+    # messages.success(request, "Product deleted.")
     return render(request, 'delete_product_confirm.html', {'product': product})
 
 
@@ -331,41 +332,28 @@ def logout_user(request):
 	return redirect('home')
 
 
+
 def register_user(request):
-    form = SignUpForm()
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            
-            # Log in user
-            user = authenticate(username=username, password=password)
-            login(request, user)
+	form = SignUpForm()
+	if request.method == "POST":
+		form = SignUpForm(request.POST)
+		if form.is_valid():
+			form.save()
+			username = form.cleaned_data['username']
+			password = form.cleaned_data['password1']
+			# log in user
+			user = authenticate(username=username, password=password)
+			login(request, user)
+                
+        
 
-            # Send confirmation email
-            subject = 'Welcome to Our Site!'
-            message = render_to_string('confirmation_emails/confirmation_email_registration.txt', {
-                'user': user,
-                'domain': get_current_site(request).domain,
-                'uid': user.pk,  # If you're sending a confirmation link, you can add uid
-                'token': 'dummy_token'  # For confirmation token, replace with actual token logic
-            })
-            send_mail(
-                subject,
-                message,
-                settings.DEFAULT_FROM_EMAIL,
-                [user.email],
-                fail_silently=False,
-            )
-
-            return redirect('home')
-        else:
-           
-            return redirect('register')
-    else:
-        return render(request, 'register.html', {'form':form})
+			messages.success(request, ("Username Created - Please Fill Out Your User Info Below..."))
+			return redirect('update_user_profile')
+		else:
+			messages.success(request, ("Whoops! There was a problem Registering, please try again..."))
+			return redirect('register')
+	else:
+		return render(request, 'register.html', {'form':form})
 
 
 

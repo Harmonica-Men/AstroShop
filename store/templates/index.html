@@ -50,8 +50,8 @@
                         <a href="{% url 'update_payment_paypal' %}" class="dropdown-item small">My Payment</a>
                         <a href="{% url 'update_user' %}" class="dropdown-item small">User Account</a>
                         <a href="{% url 'update_password' %}" class="dropdown-item small">Change Password</a>
+                        <hr class="dropdown-divider my-1" /> <!-- Smaller divider margin -->
                         <a href="{% url 'logout' %}" class="dropdown-item small">Logout</a>
-
                         {% if request.user.is_superuser %}
                         <hr class="dropdown-divider my-1" /> <!-- Smaller divider margin -->
                         <a href="{% url 'add_product' %}" class="dropdown-item small">Add a New Product</a>
