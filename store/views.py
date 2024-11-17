@@ -331,29 +331,60 @@ def logout_user(request):
 	messages.success(request, ("You have been logged out...Thanks for stopping by..."))
 	return redirect('home')
 
+def send_mail_register(request):
+    # Send confirmation email
+            subject = 'Welcome to Our Site!'
+            message = render_to_string('confirmation_emails/confirmation_email_registration.txt', {
+                'user': user,
+                'domain': get_current_site(request).domain,
+                'uid': user.pk,  # If you're sending a confirmation link, you can add uid
+                'token': 'dummy_token'  # For confirmation token, replace with actual token logic
+            })
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                fail_silently=False,
+            )
+
 
 
 def register_user(request):
-	form = SignUpForm()
-	if request.method == "POST":
-		form = SignUpForm(request.POST)
-		if form.is_valid():
-			form.save()
-			username = form.cleaned_data['username']
-			password = form.cleaned_data['password1']
-			# log in user
-			user = authenticate(username=username, password=password)
-			login(request, user)
-                
-        
+    form = SignUpForm()
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']            
+            user = authenticate(username=username, password=password)
 
-			messages.success(request, ("Username Created - Please Fill Out Your User Info Below..."))
-			return redirect('update_user_profile')
-		else:
-			messages.success(request, ("Whoops! There was a problem Registering, please try again..."))
-			return redirect('register')
-	else:
-		return render(request, 'register.html', {'form':form})
+            login(request, user)
+
+            # Send confirmation email
+            subject = 'Welcome to Our Site!'
+            message = render_to_string('confirmation_emails/confirmation_email_registration.txt', {
+                'user': user,
+                'domain': get_current_site(request).domain,
+                'uid': user.pk,  # If you're sending a confirmation link, you can add uid
+                'token': 'dummy_token'  # For confirmation token, replace with actual token logic
+            })
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                fail_silently=False,
+            )
+
+            messages.success(request, ("Username Created - Please Fill Out Your User Info Below..."))
+            return redirect('update_user_profile')
+        else:
+            messages.success(request, ("Whoops! There was a problem Registering, please try again..."))
+            return redirect('register')
+    else:
+        return render(request, 'register.html', {'form':form})
 
 
 
