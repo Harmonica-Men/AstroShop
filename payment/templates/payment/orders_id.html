@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-4">
+        <div class="text-center text-white">
+            <br>
+            <h1 class="display-4 fw-bolder mt-5">Product Details</Details>
+            </h1>
+            <p class="lead fw-normal text-white-40 mb-2">Details ...</p>
+        </div>
+    </div>
+</header>
+
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
+    <div class="row shadow-lg" style="width: 100%; max-width: 600px;">
+
+        <div class="col-md-12 mt-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Check Order {{ order.id}} - <strong>€{{order.amount_paid}}</strong>
+                </div>
+                <div class="card-body">
+                    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">
+                        <div class="card shadow-sm p-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Order Details</h5>
+
+                                <table class="table table-bordered mt-3">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Date</th>
+                                            <td>
+                                                {% if order.date_shipped %}
+                                                <strong>Date Shipped:</strong> {{ order.date_shipped }}
+                                                {% else %}
+                                                <strong>Date Ordered:</strong> {{ order.date_ordered }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Email</th>
+                                            <td>{{ order.email }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">
+                        <div class="card shadow-sm p-3" style="width: 100%;">
+                            <div class="card-body">
+                                <h5 class="card-title">Shipping Information</h5>
+
+                                <table class="table table-bordered mt-3">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Name</th>
+                                            <td>{{ order.full_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Address</th>
+                                            <td>{{ order.shipping_address }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered table-striped text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                <td>{{ item.product }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>${{ item.price }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-around">
+                            {% if not order.shipped %}
+                            <input type="hidden" name="shipping_status" value="true">
+                            <button type="submit" class="btn btn-success">Mark As Shipped</button>
+                            {% else %}
+                            <input type="hidden" name="shipping_status" value="false">
+                            <button type="submit" class="btn btn-danger">Mark As Not Shipped</button>
+                            {% endif %}
+
+
+                            <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
+
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

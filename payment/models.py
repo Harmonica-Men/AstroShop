@@ -41,7 +41,8 @@ class ShippingAddress(models.Model):
 		verbose_name_plural = "Shipping Address"
 
 	def __str__(self):
-		return f'Shipping Address - {str(self.id)}'
+
+		return f'Shipping Address - {str(self.user)}'
 
 # Create a user Shipping Address by default when user signs up
 def create_shipping(sender, instance, created, **kwargs):
@@ -70,7 +71,7 @@ class Order(models.Model):
 	paid = models.BooleanField(default=False)
 	
 	def __str__(self):
-		return f'Order - {str(self.id)}'
+		return f'Order # {str(self.id)} from {str(self.user)}'
 
 # Auto Add shipping Date
 @receiver(pre_save, sender=Order)

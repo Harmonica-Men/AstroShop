@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <!-- Header-->
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-4">
@@ -20,55 +19,42 @@
                     Order #{{ order.id }} - <strong>€{{ order.amount_paid }}</strong>
                 </div>
                 <div class="card-body">
-                    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">
-                        <div class="card shadow-sm p-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Order Details</h5>
+                    <!-- Combined Table for Order Details and Shipping Information -->
+                    <table class="table table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th colspan="2" class="text-center">Order Details & Shipping Information</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Date</th>
+                                <td>
+                                    {% if order.date_shipped %}
+                                    <strong>Date Shipped:</strong> {{ order.date_shipped }}
+                                    {% else %}
+                                    <strong>Date Ordered:</strong> {{ order.date_ordered }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td>{{ order.email }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Name</th>
+                                <td>{{ order.full_name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Address</th>
+                                <td>{{ order.shipping_address }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                                <table class="table table-bordered mt-3">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Date</th>
-                                            <td>
-                                                {% if order.date_shipped %}
-                                                <strong>Date Shipped:</strong> {{ order.date_shipped }}
-                                                {% else %}
-                                                <strong>Date Ordered:</strong> {{ order.date_ordered }}
-                                                {% endif %}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Email</th>
-                                            <td>{{ order.email }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">
-                        <div class="card shadow-sm p-3" style="width: 100%;">
-                            <div class="card-body">
-                                <h5 class="card-title">Shipping Information</h5>
-
-                                <table class="table table-bordered mt-3">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Name</th>
-                                            <td>{{ order.full_name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Address</th>
-                                            <td>{{ order.shipping_address }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <table class="table table-bordered table-striped text-center mt-3">
+                    <!-- Order Items Table -->
+                    <h5 class="mt-4">Order Items</h5>
+                    <table class="table table-bordered table-striped text-center">
                         <thead>
                             <tr>
                                 <th>Product</th>
@@ -87,10 +73,12 @@
                         </tbody>
                     </table>
 
+                    <!-- Actions -->
                     <form method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="order_id" value="{{ order.id }}">
-                        <div class="d-flex justify-content-around">
+                        <div class="d-flex justify-content-around mt-4">
+                            {% if request.user.is_superuser %}
                             {% if not order.shipped %}
                             <input type="hidden" name="shipping_status" value="true">
                             <button type="submit" class="btn btn-success">Mark As Shipped</button>
@@ -98,11 +86,13 @@
                             <input type="hidden" name="shipping_status" value="false">
                             <button type="submit" class="btn btn-danger">Mark As Not Shipped</button>
                             {% endif %}
+                            {% endif %}
                             <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
 
-                            <!-- Delete Order Button -->
+                            {% if request.user.is_superuser %}
                             <input type="hidden" name="delete_order" value="true">
                             <button type="submit" class="btn btn-danger">Delete Order</button>
+                            {% endif %}
                         </div>
                     </form>
                 </div>

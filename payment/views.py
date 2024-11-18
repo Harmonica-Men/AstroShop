@@ -112,9 +112,43 @@ def order_delete_confirmation(request, order_id):
 
     return render(request, 'payment/order_delete_confirmation.html', {'order': order})
 
-def orders(request):
+
+from django.shortcuts import render
+
+def no_orders_found(request):
+    return render(request, 'payment/no_orders_found.html')
+
+
+def orders_id(request, pk):
     if request.user.is_authenticated and request.user.is_superuser:
-        orders = Order.objects.all()
+        order = Order.objects.get(id=pk)
+        items = OrderItem.objects.filter(order=pk)
+        if request.POST:
+            status = request.POST['shipping_status']
+            if status == "true":
+                Order.objects.filter(id=pk).update(shipped=True, date_shipped=timezone.now())
+            else:
+                Order.objects.filter(id=pk).update(shipped=False)
+            return redirect('not_shipped_dash')
+        return render(request, 'payment/orders_id.html', {"order": order, "items": items})
+    else:
+        return redirect('home')
+
+
+
+def orders(request):
+    if request.user.is_authenticated:
+        # Check if the user is a superuser
+        if request.user.is_superuser:
+            # Superusers see all orders
+            orders = Order.objects.all()
+        else:
+            # Regular users see only their own orders
+            orders = Order.objects.filter(user=request.user)
+
+        # Check if no orders found, and redirect to a "No orders found" page
+        if not orders.exists():
+            return redirect('no_orders_found')  # Redirect to the No Orders Found page
 
         if request.POST:
             pk = request.POST.get('order_id')
@@ -135,7 +169,7 @@ def orders(request):
         return render(request, 'payment/orders.html', {"orders": orders})
 
     else:
-        return redirect('home')
+        return redirect('home')  # Redirect unauthenticated users to the home page
 
 
 def send_bill(request, user, shipping_address1, total_price, order_id):
