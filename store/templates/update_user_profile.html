@@ -6,27 +6,30 @@
     <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
             <br>
-            <h1 class="display-4 fw-bolder mt-5">Update Info</Details>
-            </h1>
+            <h1 class="display-4 fw-bolder mt-5">Update Info</h1>
             <p class="lead fw-normal text-white-40 mb-2">Update User Info</p>
         </div>
     </div>
 </header>
 
-
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
     <div class="row shadow-lg" style="width: 100%; max-width: 500px;">
         <div class="text-md-left col-md-12 mt-3">
-
             <form method="POST" action="{% url 'update_user_profile' %}" class="mt-2">
                 {% csrf_token %}
+                
+                <strong class="product-name text-black" style="text-align: center;">
+                    {{ request.user.first_name }} {{ request.user.last_name }}
+                </strong>
 
-                <strong class="product-name text-black" style="text-align: center;">User Information</strong>
+
+
+                
+                
                 {{ profile_form.as_p }}
                 <div class="d-flex justify-content-between mb-4">
                     <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
-                    <button type="submit" class="btn btn-secondary"> Update Profile
-                    </button>
+                    <button type="submit" class="btn btn-secondary"> Update Profile</button>
                 </div>
             </form>
         </div>

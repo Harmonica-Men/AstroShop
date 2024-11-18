@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from shopcart.cart import Cart
 from payment.forms import ShippingForm, PaymentForm
 from payment.models import ShippingAddress, Order, OrderItem, PaymentOfPayPal
+from django.db.models import Q
 
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -139,6 +140,11 @@ def send_bill(request, user, shipping_address1, total_price, order_id):
            # Delete the key
            del request.session[key]
 
+
+
+
+
+
 def billing_info(request):
     billing_form = PaymentForm()
     payment_form = PaymentForm()
@@ -147,7 +153,6 @@ def billing_info(request):
         # Store shipping info in session
         my_shipping = {
             'shipping_full_name': request.POST.get('shipping_full_name'),
-            'shipping_email': request.POST.get('shipping_email'),
             'shipping_address1': request.POST.get('shipping_address1'),
             'shipping_address2': request.POST.get('shipping_address2'),
             'shipping_city': request.POST.get('shipping_city'),
@@ -183,11 +188,34 @@ def billing_info(request):
         if request.user.is_authenticated:
             user = request.user
 
+            # Retrieve existing shipping info or create new
+            shipping_address, created = ShippingAddress.objects.get_or_create(user=user)
+
+            # Check if shipping information has changed
+            if (
+                shipping_address.shipping_full_name != my_shipping['shipping_full_name']
+                or shipping_address.shipping_address1 != my_shipping['shipping_address1']
+                or shipping_address.shipping_address2 != my_shipping['shipping_address2']
+                or shipping_address.shipping_city != my_shipping['shipping_city']
+                or shipping_address.shipping_state != my_shipping['shipping_state']
+                or shipping_address.shipping_zipcode != my_shipping['shipping_zipcode']
+                or shipping_address.shipping_country != my_shipping['shipping_country']
+            ):
+                # Update the shipping address in the database
+                shipping_address.shipping_full_name = my_shipping['shipping_full_name']
+                shipping_address.shipping_address1 = my_shipping['shipping_address1']
+                shipping_address.shipping_address2 = my_shipping['shipping_address2']
+                shipping_address.shipping_city = my_shipping['shipping_city']
+                shipping_address.shipping_state = my_shipping['shipping_state']
+                shipping_address.shipping_zipcode = my_shipping['shipping_zipcode']
+                shipping_address.shipping_country = my_shipping['shipping_country']
+                shipping_address.save()
+
             # Create Order
             create_order = Order(
                 user=user,
                 full_name=my_shipping['shipping_full_name'],
-                email=my_shipping['shipping_email'],
+                email=user.email,  # Use the authenticated user's email
                 shipping_address="\n".join([
                     my_shipping[key] for key in [
                         'shipping_address1', 
@@ -259,6 +287,13 @@ def billing_info(request):
             "payment_form": payment_form,
         },
     )
+
+
+
+
+
+
+
 
 
 def checkout(request):

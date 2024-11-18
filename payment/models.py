@@ -28,7 +28,6 @@ class PaymentOfPayPal(models.Model):
 class ShippingAddress(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 	shipping_full_name = models.CharField(max_length=200)
-	shipping_email = models.CharField(max_length=200)
 	shipping_address1 = models.CharField(max_length=200)
 	shipping_address2 = models.CharField(max_length=200, null=True, blank=True)
 	shipping_city = models.CharField(max_length=200)

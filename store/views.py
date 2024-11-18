@@ -141,6 +141,7 @@ def search(request):
 		return render(request, "search.html", {})	
 
 
+
 def update_user_and_shipping_profile(request):
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
@@ -150,18 +151,21 @@ def update_user_and_shipping_profile(request):
             user_profile = Profile.objects.get(user__id=request.user.id)
         except Profile.DoesNotExist:
             user_profile = None  # Optional: handle missing profile here
-        
+
         try:
             shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
         except ShippingAddress.DoesNotExist:
             shipping_user = None  # Optional: handle missing shipping address here
 
-        # Get original User Form
+        # Initialize forms
         form = ProfileForm(request.POST or None, instance=current_user)
-        
-        # Initialize Profile and Shipping Forms using the existing data or None
         profile_form = ProfileForm(request.POST or None, instance=user_profile)
         shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
+
+        # Prefill Full Name field in ShippingForm if empty
+        if not shipping_user and request.method != "POST":
+            full_name = f"{current_user.first_name} {current_user.last_name}".strip()
+            shipping_form.initial['full_name'] = full_name
 
         if form.is_valid() and profile_form.is_valid() and shipping_form.is_valid():
             # Save forms if valid
@@ -182,15 +186,16 @@ def update_user_and_shipping_profile(request):
                 new_shipping.save()
 
             return redirect('products')
-        
+
         return render(request, "update_user_and_shipping_profile.html", {
             'form': form,
             'profile_form': profile_form,
             'shipping_form': shipping_form
         })
-    
+
     else:
         return redirect('home')
+
 
 
 def update_user_profile(request):

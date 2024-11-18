@@ -75,7 +75,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card-header mb-3">
-                                Shipping Info
+                                Shipping Info {{ request.user.first_name }} {{ request.user.last_name }} 
                             </div>
 
                             <form method="POST" action="{% url 'billing_info' %}">
@@ -86,14 +86,7 @@
                                     <div class="col-sm-8">
                                         {{ shipping_form.shipping_full_name }}
                                     </div>
-                                </div>
-                            
-                                <div class="mb-3 ml-1 row">
-                                    <label for="{{ shipping_form.shipping_email.id_for_label }}" class="col-sm-4 col-form-label">Email</label>
-                                    <div class="col-sm-8">
-                                        {{ shipping_form.shipping_email }}
-                                    </div>
-                                </div>
+                                </div>                                                          
                             
                                 <div class="mb-3 ml-1 row">
                                     <label for="{{ shipping_form.shipping_address1.id_for_label }}" class="col-sm-4 col-form-label">Address 1</label>

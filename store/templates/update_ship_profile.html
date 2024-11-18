@@ -21,7 +21,11 @@
             <form method="POST" action="{% url 'update_ship_profile' %}" class="mt-2">
                 {% csrf_token %}
 
-                <strong class="product-name text-black" style="text-align: center;">Shipping Information</strong>
+                <strong class="product-name text-black" style="text-align: center;">Shipping Information of 
+                {{ request.user.first_name }} {{ request.user.last_name }} </strong>
+
+                
+
                 {{ shipping_form.as_p }}
                 <div class="d-flex justify-content-between mb-4">
                     <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
