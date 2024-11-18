@@ -15,31 +15,33 @@
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
     <div class="row shadow-lg" style="width: 100%; max-width: 800px;">
 
-        <!-- User Information Section -->
-        <div class="col-md-6 p-4">
-            <h3 class="text-center">User Information</h3>
+        <!-- Combined User and Shipping Information Form -->
+        <div class="col-md-12 p-4">
+            <h3 class="text-center">User and Shipping Information</h3>
             <form method="POST" action="{% url 'update_user_and_shipping_profile' %}" class="mt-2">
                 {% csrf_token %}
-                {{ profile_form.as_p }}
-                <div class="d-flex justify-content-between mb-4">
-                    <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
-                </div>
-            </form>
-        </div>
+                
+                <div class="row">
+                    <!-- User Information Column -->
+                    <div class="col-md-6">
+                        <h4>User Information</h4>
+                        {{ profile_form.as_p }}
+                    </div>
 
-        <!-- Shipping Information Section -->
-        <div class="col-md-6 p-4">
-            <h3 class="text-center">Shipping Information</h3>
-            <form method="POST" action="{% url 'update_user_and_shipping_profile' %}" class="mt-2">
-                {% csrf_token %}
-                {{ shipping_form.as_p }}
+                    <!-- Shipping Information Column -->
+                    <div class="col-md-6">
+                        <h4>Shipping Information</h4>
+                        {{ shipping_form.as_p }}
+                    </div>
+                </div>
+
                 <div class="d-flex justify-content-between mb-4">
-                    <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
                     <button type="submit" class="btn btn-secondary">Save Changes</button>
                 </div>
             </form>
         </div>
         
+        <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
     </div>
 </div>
 

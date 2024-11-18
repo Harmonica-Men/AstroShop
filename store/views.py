@@ -140,6 +140,7 @@ def search(request):
 	else:
 		return render(request, "search.html", {})	
 
+
 def update_user_and_shipping_profile(request):
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
