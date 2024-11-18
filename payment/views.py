@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render, get_object_or_404, redirect
 from shopcart.cart import Cart
 from payment.forms import ShippingForm, PaymentForm
 from payment.models import ShippingAddress, Order, OrderItem, PaymentOfPayPal
@@ -101,20 +101,42 @@ def not_shipped_dash(request):
     else:
         return redirect('products')
 
-def orders(request, pk):
+
+def order_delete_confirmation(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+
+    if request.method == 'POST' and 'delete_order' in request.POST:
+        # Proceed with deletion
+        order.delete()
+        return redirect('orders')  # Redirect back to the orders list after deletion
+
+    return render(request, 'payment/order_delete_confirmation.html', {'order': order})
+
+def orders(request):
     if request.user.is_authenticated and request.user.is_superuser:
-        order = Order.objects.get(id=pk)
-        items = OrderItem.objects.filter(order=pk)
+        orders = Order.objects.all()
+
         if request.POST:
-            status = request.POST['shipping_status']
+            pk = request.POST.get('order_id')
+            status = request.POST.get('shipping_status')
+            
+            # Handling marking as shipped
             if status == "true":
                 Order.objects.filter(id=pk).update(shipped=True, date_shipped=timezone.now())
             else:
                 Order.objects.filter(id=pk).update(shipped=False)
-            return redirect('not_shipped_dash')
-        return render(request, 'payment/orders.html', {"order": order, "items": items})
+
+            # Handling delete order request
+            if request.POST.get('delete_order'):
+                return redirect('order_delete_confirmation', order_id=pk)  # Redirect to confirmation page
+            
+            return redirect('orders')  # Redirect to the orders page after update
+
+        return render(request, 'payment/orders.html', {"orders": orders})
+
     else:
         return redirect('home')
+
 
 def send_bill(request, user, shipping_address1, total_price, order_id):
     # Send confirmation email

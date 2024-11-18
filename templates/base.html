@@ -84,6 +84,7 @@
                     {% if request.user.is_superuser %}
                     <div class="dropdown-divider"></div>
                     <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
+                    <a href="{% url 'orders' %}" class="dropdown-item">View Orders</a>
                     <div class="dropdown-divider"></div>
                     <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
                     <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
@@ -126,9 +127,6 @@
                         aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    
-                    
-                    
 
                     <!-- <div class="collapse navbar-collapse" id="main-nav"> -->
                         <ul class="list-inline list-unstyled text-lg-right my-0 d-flex justify-content-end mb-2">
@@ -170,6 +168,7 @@
                                     {% if request.user.is_superuser %}
                                     <div class="dropdown-divider"></div>
                                     <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
+                                    <a href="{% url 'orders' %}" class="dropdown-item">View Orders</a>
                                     <div class="dropdown-divider"></div>
                                     <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
                                     <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
@@ -245,6 +244,7 @@
                             <div class="dropdown-divider"></div>
                             <li><a class="menu__item" href="{% url 'add_product' %}" class="dropdown-item">Add
                                     Product</a></li>
+                            <li> <a href="{% url 'orders' %}" class="dropdown-item">View Orders</a>
                             <div class="dropdown-divider"></div>
                             <li><a class="menu__item" href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped
                                     Orders</a></li>
