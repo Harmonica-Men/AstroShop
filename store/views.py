@@ -523,3 +523,12 @@ def suppliers_list(request):
 def supplier_detail(request, supplier_id):
     supplier = get_object_or_404(Supplier, id=supplier_id)
     return render(request, 'supplier_detail.html', {'supplier': supplier})
+
+
+def delete_supplier(request, supplier_id):
+    supplier = get_object_or_404(Supplier, id=supplier_id)
+    if request.method == 'POST':
+        supplier.delete()
+        messages.success(request, 'Supplier deleted successfully!')
+        return redirect('suppliers_list')
+    return redirect('supplier_detail', supplier_id=supplier.id)

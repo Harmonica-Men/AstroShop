@@ -10,12 +10,23 @@
             margin: 20px;
             line-height: 1.6;
         }
-        a {
+        a, button {
             text-decoration: none;
-            color: blue;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        a:hover {
-            text-decoration: underline;
+        a:hover, button:hover {
+            background-color: #0056b3;
+        }
+        .danger {
+            background-color: #dc3545;
+        }
+        .danger:hover {
+            background-color: #a71d2a;
         }
         .container {
             max-width: 600px;
@@ -42,6 +53,10 @@
         </p>
 
         <a href="{% url 'suppliers_list' %}">Back to Suppliers</a>
+        <form method="POST" action="{% url 'supplier_delete' supplier.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="danger">Delete Supplier</button>
+        </form>
     </div>
 </body>
 </html>

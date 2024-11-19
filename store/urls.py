@@ -34,6 +34,8 @@ urlpatterns = [
     path('check-email/', views.CheckEmailView.as_view(), name='check-email'),
     path('suppliers/', suppliers_list, name='suppliers_list'),
     path('supplier/<int:supplier_id>/', supplier_detail, name='supplier_detail'),
+    path('supplier/<int:supplier_id>/delete/', delete_supplier, name='supplier_delete'),
+
 
 
 
