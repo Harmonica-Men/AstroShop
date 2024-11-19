@@ -1,62 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supplier Detail</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            line-height: 1.6;
-        }
-        a, button {
-            text-decoration: none;
-            color: white;
-            background-color: #007BFF;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        a:hover, button:hover {
-            background-color: #0056b3;
-        }
-        .danger {
-            background-color: #dc3545;
-        }
-        .danger:hover {
-            background-color: #a71d2a;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Supplier: {{ supplier.supplier_company_name }}</h1>
+{% extends 'base.html' %}
+{% block content %}
 
-        <p><strong>Address:</strong> {{ supplier.supplier_address1 }}{% if supplier.supplier_address2 %}, {{ supplier.supplier_address2 }}{% endif %}</p>
-        <p><strong>City:</strong> {{ supplier.supplier_city }}</p>
-        <p><strong>State:</strong> {{ supplier.supplier_state }}</p>
-        <p><strong>Country:</strong> {{ supplier.supplier_country }}</p>
-        <p><strong>Zip Code:</strong> {{ supplier.supplier_zipcode }}</p>
-        <p>
-            <strong>Product:</strong>
-            {% if supplier.supplier_product %}
-                {{ supplier.supplier_product.name }}
-            {% else %}
-                No Product Assigned
-            {% endif %}
-        </p>
-
-        <a href="{% url 'suppliers_list' %}">Back to Suppliers</a>
-        <form method="POST" action="{% url 'supplier_delete' supplier.id %}" style="display: inline;">
-            {% csrf_token %}
-            <button type="submit" class="danger">Delete Supplier</button>
-        </form>
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-4">
+        <div class="text-center text-white">
+            <br>
+            <h1 class="display-4 fw-bolder mt-5">Suppliers</Details>
+            </h1>
+            <p class="lead fw-normal text-white-40 mb-2">Suppliers List Info ...</p>
+        </div>
     </div>
-</body>
-</html>
+</header>
+
+
+<div class="container">
+    <h1>Supplier: {{ supplier.supplier_company_name }}</h1>
+
+    <p><strong>Address:</strong> {{ supplier.supplier_address1 }}{% if supplier.supplier_address2 %},
+        {{ supplier.supplier_address2 }}{% endif %}</p>
+    <p><strong>City:</strong> {{ supplier.supplier_city }}</p>
+    <p><strong>State:</strong> {{ supplier.supplier_state }}</p>
+    <p><strong>Country:</strong> {{ supplier.supplier_country }}</p>
+    <p><strong>Zip Code:</strong> {{ supplier.supplier_zipcode }}</p>
+    <p>
+        <strong>Product:</strong>
+        {% if supplier.supplier_product %}
+        {{ supplier.supplier_product.name }}
+        {% else %}
+        No Product Assigned
+        {% endif %}
+    </p>
+
+    <a href="{% url 'suppliers_list' %}">Back to Suppliers</a>
+    <form method="POST" action="{% url 'supplier_confirm_delete' supplier.id %}" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="danger">Delete Supplier</button>
+    </form>
+</div>
+
+{% endblock %}

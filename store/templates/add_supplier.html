@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-4">
+        <div class="text-center text-white">
+            <br>
+            <h1 class="display-4 fw-bolder mt-5">Add New Product</h1>          
+            <p class="lead fw-normal text-white-40 mb-2">Administrator Update Page</p>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-5">
+    <h1>Add New Supplier</h1>
+    <form method="POST" class="mt-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save Supplier</button>
+        <a href="{% url 'suppliers_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}
+

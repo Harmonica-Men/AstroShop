@@ -53,6 +53,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class Supplier(models.Model):
     supplier_company_name = models.CharField(max_length=100)
     supplier_address1 = models.CharField(max_length=200, null=True, blank=True)

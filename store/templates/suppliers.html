@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- Header-->
+<!-- Header -->
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
             <br>
-            <h1 class="display-4 fw-bolder mt-5">Suppliers</Details>
-            </h1>
+            <h1 class="display-4 fw-bolder mt-5">Suppliers</h1>
             <p class="lead fw-normal text-white-40 mb-2">Suppliers List Info ...</p>
         </div>
     </div>
 </header>
 
-
+<div class="container d-flex justify-content-between align-items-center mt-3">
+    <h2 class="text-dark">Supplier List</h2>
+    <!-- Add Supplier Button -->
+    <a href="{% url 'add_supplier' %}" class="btn btn-primary">Add Supplier</a>
+</div>
 
 {% if suppliers %}
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
@@ -36,9 +39,8 @@
                     <td>
                         <a href="{% url 'supplier_detail' supplier.id %}">
                             {{ supplier.supplier_company_name }}
-                        </a>                    
+                        </a>
                     </td>
-
                     <td>
                         {{ supplier.supplier_address1 }}
                         {% if supplier.supplier_address2 %}&nbsp;
@@ -60,12 +62,12 @@
                 {% endfor %}
             </tbody>
         </table>
-        {% else %}
-        <p>No suppliers found.</p>
-        {% endif %}
-        </body>
-
-       
     </div>
 </div>
+{% else %}
+<div class="container mt-5">
+    <p>No suppliers found.</p>
+</div>
+{% endif %}
+
 {% endblock %}

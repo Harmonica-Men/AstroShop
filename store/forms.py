@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from django import forms
-from .models import Product, Profile, Subscription
+from .models import Product, Profile, Subscription, Supplier
 
 
 class UpdateProductForm(forms.ModelForm):
@@ -96,4 +96,19 @@ class SignUpForm(UserCreationForm):
 class SubscribeForm(forms.ModelForm):
     class Meta:
         model = Subscription
-        fields = ['email']  # Add other fields if necessary
+        fields = ['email']  
+
+
+class SupplierForm(forms.ModelForm):
+    class Meta:
+        model = Supplier
+        fields = [
+            'supplier_company_name',
+            'supplier_address1',
+            'supplier_address2',
+            'supplier_city',
+            'supplier_state',
+            'supplier_country',
+            'supplier_zipcode',
+            'supplier_product',
+        ]

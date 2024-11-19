@@ -3,7 +3,7 @@ from .models import Product, Category, Profile, Subscription, Supplier
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UpdateProductForm, ProfileForm, SubscribeForm
+from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UpdateProductForm, ProfileForm, SubscribeForm, SupplierForm
 from django.db.models.functions import Lower
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress, PaymentOfPayPal
@@ -532,3 +532,21 @@ def delete_supplier(request, supplier_id):
         messages.success(request, 'Supplier deleted successfully!')
         return redirect('suppliers_list')
     return redirect('supplier_detail', supplier_id=supplier.id)
+
+
+def supplier_confirm_delete(request, supplier_id):
+    supplier = get_object_or_404(Supplier, id=supplier_id)
+    return render(request, 'supplier_confirm_delete.html', {'supplier': supplier})
+
+
+def add_supplier(request):
+    if request.method == "POST":
+        form = SupplierForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Supplier added successfully!")
+            return redirect('suppliers_list')
+    else:
+        form = SupplierForm()
+
+    return render(request, 'add_supplier.html', {'form': form})

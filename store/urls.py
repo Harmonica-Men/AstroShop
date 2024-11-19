@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-from .views import update_product, add_product, SubscribeView, CheckEmailView, confirm_subscription, suppliers_list, supplier_detail
+from .views import update_product, add_product, SubscribeView, CheckEmailView, confirm_subscription, suppliers_list, supplier_detail, delete_supplier, supplier_confirm_delete, add_supplier
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -35,6 +35,10 @@ urlpatterns = [
     path('suppliers/', suppliers_list, name='suppliers_list'),
     path('supplier/<int:supplier_id>/', supplier_detail, name='supplier_detail'),
     path('supplier/<int:supplier_id>/delete/', delete_supplier, name='supplier_delete'),
+    path('supplier/<int:supplier_id>/confirm_delete/', supplier_confirm_delete, name='supplier_confirm_delete'),
+    path('supplier/add/', add_supplier, name='add_supplier'),
+
+
 
 
 
