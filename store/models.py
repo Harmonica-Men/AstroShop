@@ -41,22 +41,31 @@ class Category(models.Model):
 
 
 
-
-# All of our Products
 class Product(models.Model):
-	name = models.CharField(max_length=100)
-	price = models.DecimalField(max_digits=10, decimal_places=2)
-	# category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
-	category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
-	description = models.TextField(default='', blank=True, null=True)
-	image = models.ImageField(upload_to='uploads/product/')
-	# Add Sale Stuff
-	is_sale = models.BooleanField(default=False)	
-	sale_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
+    description = models.TextField(default='', blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/product/')
+    is_sale = models.BooleanField(default=False)    
+    sale_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
-	def __str__(self):
-		return self.name		
-	
+    def __str__(self):
+        return self.name
+
+class Supplier(models.Model):
+    supplier_company_name = models.CharField(max_length=100)
+    supplier_address1 = models.CharField(max_length=200, null=True, blank=True)
+    supplier_address2 = models.CharField(max_length=200, null=True, blank=True)
+    supplier_city = models.CharField(max_length=200, null=True, blank=True)
+    supplier_state = models.CharField(max_length=200, null=True, blank=True)
+    supplier_zipcode = models.CharField(max_length=200, null=True, blank=True)
+    supplier_country = models.CharField(max_length=200, null=True, blank=True)
+    supplier_product = models.OneToOneField(Product, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.supplier_company_name
+
 
 class Subscription(models.Model):
     email = models.EmailField(unique=True)

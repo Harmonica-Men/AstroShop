@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppliers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Suppliers</h1>
+
+    {% if suppliers %}
+    <table>
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Zip Code</th>
+                <th>Product Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliers %}
+            <tr>
+                <td>{{ supplier.supplier_company_name }}</td>
+                <td>
+                    {{ supplier.supplier_address1 }}
+                    {% if supplier.supplier_address2 %}
+                        <br>{{ supplier.supplier_address2 }}
+                    {% endif %}
+                </td>
+                <td>{{ supplier.supplier_city }}</td>
+                <td>{{ supplier.supplier_state }}</td>
+                <td>{{ supplier.supplier_country }}</td>
+                <td>{{ supplier.supplier_zipcode }}</td>
+                <td>
+                    {% if supplier.supplier_product %}
+                        {{ supplier.supplier_product.name }}
+                    {% else %}
+                        No Product Assigned
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No suppliers found.</p>
+    {% endif %}
+</body>
+</html>

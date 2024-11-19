@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Product, Category, Profile, Subscription
+from .models import Product, Category, Profile, Subscription, Supplier
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -430,8 +430,6 @@ def register_user(request):
     else:
         return render(request, 'register.html', {'form': form})
 
-
-
 class SubscribeView(FormView):
     form_class = SubscribeForm
     template_name = 'index.html'
@@ -517,3 +515,7 @@ def send_mail_page(request):
             context['result'] = 'All fields are required'
     
     return render(request, "test_email.html", context)
+
+def suppliers_list(request):
+    suppliers = Supplier.objects.all()
+    return render(request, 'suppliers.html', {'suppliers': suppliers})
