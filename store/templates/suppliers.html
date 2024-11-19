@@ -33,7 +33,11 @@
             <tbody>
                 {% for supplier in suppliers %}
                 <tr>
-                    <td>{{ supplier.supplier_company_name }}</td>
+                    <td>
+                        <a href="{% url 'supplier_detail' supplier.id %}">
+                            {{ supplier.supplier_company_name }}
+                        </a>                    
+                    </td>
 
                     <td>
                         {{ supplier.supplier_address1 }}

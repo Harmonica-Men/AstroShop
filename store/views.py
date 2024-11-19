@@ -519,3 +519,7 @@ def send_mail_page(request):
 def suppliers_list(request):
     suppliers = Supplier.objects.all()
     return render(request, 'suppliers.html', {'suppliers': suppliers})
+
+def supplier_detail(request, supplier_id):
+    supplier = get_object_or_404(Supplier, id=supplier_id)
+    return render(request, 'supplier_detail.html', {'supplier': supplier})

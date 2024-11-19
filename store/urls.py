@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-from .views import update_product, add_product, SubscribeView, CheckEmailView, confirm_subscription, suppliers_list
+from .views import update_product, add_product, SubscribeView, CheckEmailView, confirm_subscription, suppliers_list, supplier_detail
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -33,6 +33,8 @@ urlpatterns = [
     # Check email view
     path('check-email/', views.CheckEmailView.as_view(), name='check-email'),
     path('suppliers/', suppliers_list, name='suppliers_list'),
+    path('supplier/<int:supplier_id>/', supplier_detail, name='supplier_detail'),
+
 
 
     path('shopper/confirm/', views.confirm_subscription, name='confirm_subscription'),

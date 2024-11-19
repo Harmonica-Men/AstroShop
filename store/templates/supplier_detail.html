@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Supplier: {{ supplier.supplier_company_name }}</h1>
+
+        <p><strong>Address:</strong> {{ supplier.supplier_address1 }}{% if supplier.supplier_address2 %}, {{ supplier.supplier_address2 }}{% endif %}</p>
+        <p><strong>City:</strong> {{ supplier.supplier_city }}</p>
+        <p><strong>State:</strong> {{ supplier.supplier_state }}</p>
+        <p><strong>Country:</strong> {{ supplier.supplier_country }}</p>
+        <p><strong>Zip Code:</strong> {{ supplier.supplier_zipcode }}</p>
+        <p>
+            <strong>Product:</strong>
+            {% if supplier.supplier_product %}
+                {{ supplier.supplier_product.name }}
+            {% else %}
+                No Product Assigned
+            {% endif %}
+        </p>
+
+        <a href="{% url 'suppliers_list' %}">Back to Suppliers</a>
+    </div>
+</body>
+</html>
