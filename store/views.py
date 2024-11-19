@@ -526,20 +526,30 @@ def supplier_detail(request, supplier_id):
 
 
 def delete_supplier(request, supplier_id):
+    if not request.user.is_superuser:
+        messages.error(request, "You do not have permission to delete suppliers.")
+        return redirect('suppliers_list')
+
     supplier = get_object_or_404(Supplier, id=supplier_id)
+
     if request.method == 'POST':
         supplier.delete()
         messages.success(request, 'Supplier deleted successfully!')
         return redirect('suppliers_list')
-    return redirect('supplier_detail', supplier_id=supplier.id)
 
+    return redirect('supplier_detail', supplier_id=supplier.id)
 
 def supplier_confirm_delete(request, supplier_id):
     supplier = get_object_or_404(Supplier, id=supplier_id)
     return render(request, 'supplier_confirm_delete.html', {'supplier': supplier})
 
 
+
 def add_supplier(request):
+    if not request.user.is_superuser:
+        messages.error(request, "You do not have permission to access this page.")
+        return redirect('suppliers_list')
+
     if request.method == "POST":
         form = SupplierForm(request.POST)
         if form.is_valid():

@@ -54,12 +54,15 @@
                         <a href="{% url 'update_user' %}" class="dropdown-item small">User Account</a>
                         <a href="{% url 'update_password' %}" class="dropdown-item small">Change Password</a>
                         
+                        
                         <hr class="dropdown-divider my-1" /> <!-- Smaller divider margin -->
                         <a href="{% url 'logout' %}" class="dropdown-item small">Logout</a>
                         {% if request.user.is_superuser %}
                         <hr class="dropdown-divider my-1" /> <!-- Smaller divider margin -->
                         <a href="{% url 'add_product' %}" class="dropdown-item small">Add a New Product</a>
                         <hr class="dropdown-divider my-1" />
+                        
+                        <a href="{% url 'suppliers_list' %}" class="dropdown-item small">Suppliers List</a>
                         <a href="{% url 'orders' %}" class="dropdown-item small">View Orders</a>
                         <a href="{% url 'shipped_dash' %}" class="dropdown-item small">Shipped Orders</a>
                         <a href="{% url 'not_shipped_dash' %}" class="dropdown-item small">UnShipped Orders</a>
@@ -216,12 +219,6 @@
 
 
 
-
-
-
-
-
-
     <footer class="py-1 bg-dark" style="background-color: rgba(0, 0, 0, 0.5);">
         <div class="d-flex align-items-center justify-content-between py-1 mx-4">
             <div class="container my-1">
@@ -236,9 +233,6 @@
 
             <div class="container text-white p-2" style="font-size: small">
                 <div class="row">
-
-
-
                     <!-- Client Service Column -->
                     <div class="col-md-4 mb-2">
                         <div class="ml-2">
@@ -252,7 +246,7 @@
                             <a href="{% url 'about' %}" class="text-white" style="font-size: small">Payment</a><br>
                             <a href="{% url 'test_email' %}" class="text-white" style="font-size: small">test
                                 email</a><br>
-                            <a href="{% url 'suppliers_list' %}" class="text-white" style="font-size: small">Suppliers List</a><br>
+                            
                         </div>
                     </div>
 
