@@ -113,8 +113,6 @@ def order_delete_confirmation(request, order_id):
     return render(request, 'payment/order_delete_confirmation.html', {'order': order})
 
 
-from django.shortcuts import render
-
 def no_orders_found(request):
     return render(request, 'payment/no_orders_found.html')
 
