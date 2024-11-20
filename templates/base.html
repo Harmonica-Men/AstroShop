@@ -87,9 +87,11 @@
                     <!-- Admin-specific links -->
                     {% if request.user.is_superuser %}
                     <div class="dropdown-divider"></div>
+                    <a href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers List</a>
                     <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
 
                     <div class="dropdown-divider"></div>
+                    <a href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers List</a>
 
                     <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
                     <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
@@ -108,7 +110,7 @@
                 <a href="{% url 'shopcart_summary' %}" class="text-black nav-link btn mt-1 mr-2 hover-effect">
                     <div class="text-center">
                         <i class="fas fa-cart-shopping fa-lg"></i>
-                        <span class="badge bg-dark text-white rounded-pill" id="cart_quantity">
+                        <span class="badge bg-black text-white rounded-pill" id="cart_quantity">
                             {{ cart|length|default:0 }}
                         </span>
                     </div>
@@ -179,6 +181,7 @@
                                 <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
 
                                 <div class="dropdown-divider"></div>
+                                <a href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers List</a>
                                 <a href="{% url 'orders' %}" class="dropdown-item">View Orders</a>
                                 <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
                                 <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
@@ -238,6 +241,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
                         <ul class="no-bullets">
+
                             <li><a class="menu__item" href="{% url 'update_user_profile' %}" class="dropdown-item">My
                                     Profile</a></li>
                             <li><a class="menu__item" href="{% url 'update_ship_profile' %}" class="dropdown-item">My
@@ -246,7 +250,7 @@
                                     Payment</a></li>
                             <li><a class="menu__item" href="{% url 'update_user' %}" class="dropdown-item">User
                                     Account</a></li>
-                            <li> <a href="{% url 'orders' %}" class="dropdown-item">View Orders</a>
+                            <li> <a class="menu__item" href="{% url 'orders' %}" class="dropdown-item">View Orders</a>
 
                             <li><a class="menu__item" href="{% url 'update_password' %}" class="dropdown-item">Change
                                     Password</a></li>
@@ -256,8 +260,11 @@
                             <div class="dropdown-divider"></div>
                             <li><a class="menu__item" href="{% url 'add_product' %}" class="dropdown-item">Add
                                     Product</a></li>
-
                             <div class="dropdown-divider"></div>
+                            <li><a class="menu__item" href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers
+                                    List</a></li>
+
+
                             <li><a class="menu__item" href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped
                                     Orders</a></li>
                             <li><a class="menu__item" href="{% url 'not_shipped_dash' %}"
