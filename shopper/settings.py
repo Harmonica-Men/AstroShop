@@ -10,6 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 from pathlib import Path
 
 
@@ -31,6 +35,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
+# CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
+CLOUDINARY_URL = 'cloudinary://555555948157323:cLY3URO_imRS3iZMiNoOh3O-4oc@dtbji5cfz'
 
 # DEBUG = True
 DEBUG = 'DEVELOPMENT' in os.environ
@@ -38,8 +44,8 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['8000-harmonicamen-astroshop-37z6o1iwvkr.ws.codeinstitute-ide.net',
                 '.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net',
-                        'https://astroshop-1fc783ba013f.herokuapp.com']
+                
+CSRF_TRUSTED_ORIGINS = ['https://8000-harmonicamen-astroshop-37z6o1iwvkr.ws.codeinstitute-ide.net']
 
 
 # Application definition
