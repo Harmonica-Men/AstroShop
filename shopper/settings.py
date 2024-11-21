@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import environ
 import os
 import cloudinary
 import cloudinary.uploader
@@ -18,8 +19,9 @@ from pathlib import Path
 
 
 import dj_database_url
-if os.path.isfile('env.py'):
-    import env
+
+env = environ.Env()
+environ.Env.read_env() 
 
 
 # settings.py
@@ -201,12 +203,12 @@ PAYPAL_TEST = True
 
 PAYPAL_RECEIVER_EMAIL = 'test-business-paypal@vanelslande.com' # Business Sandbox test account
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST = 'smtp.gmail.com'
+# Email settings
+EMAIL_BACKEND = env('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
+EMAIL_PORT = env.int('EMAIL_PORT', default=587)
+EMAIL_HOST = env('EMAIL_HOST', default='smtp.gmail.com')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-DEFAULT_FORM_EMAIL = env('EMAIL_HOST_USER')
-
-
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default=EMAIL_HOST_USER)
+ADMIN_USER_EMAIL = env('ADMIN_USER_EMAIL', default=EMAIL_HOST_USER)
