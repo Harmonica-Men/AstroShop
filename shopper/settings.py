@@ -196,14 +196,11 @@ PAYPAL_TEST = True
 PAYPAL_RECEIVER_EMAIL = 'test-business-paypal@vanelslande.com' # Business Sandbox test account
 
 
-if 'DEVELOPMENT' in os.environ:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_USE_TLS = True
-    EMAIL_PORT = 587
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-    DEFAULT_FORM_EMAIL = os.getenv('EMAIL_HOST_USER')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'filip.vanelslande@gmail.com'
+EMAIL_HOST_PASSWORD = 'auhb luzi lizg caqx '
+DEFAULT_FROM_EMAIL = 'filip.vanelslande@gmail.com'
+# DEFAULT_FORM_EMAIL = os.getenv('EMAIL_HOST_USER')
