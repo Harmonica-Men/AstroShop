@@ -208,5 +208,5 @@ EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'filip.vanelslande@gmail.com'
 EMAIL_HOST_PASSWORD = 'auhb luzi lizg caqx '
-DEFAULT_FROM_EMAIL = 'filip.vanelslande@gmail.com'
-# DEFAULT_FORM_EMAIL = os.getenv('EMAIL_HOST_USER')
+# DEFAULT_FROM_EMAIL = 'filip.vanelslande@gmail.com'
+DEFAULT_FORM_EMAIL = os.getenv('EMAIL_HOST_USER')
