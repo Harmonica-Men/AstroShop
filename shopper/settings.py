@@ -38,7 +38,7 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['8000-harmonicamen-astroshop-37z6o1iwvkr.ws.codeinstitute-ide.net',
                 '.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['https://8000-harmonicamen-astroshop-37z6o1iwvkr.ws.codeinstitute-ide.net',
+CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net',
                         'https://astroshop-1fc783ba013f.herokuapp.com']
 
 
@@ -197,7 +197,7 @@ PAYPAL_RECEIVER_EMAIL = 'test-business-paypal@vanelslande.com' # Business Sandbo
 
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
