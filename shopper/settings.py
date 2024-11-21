@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-import environ
 import os
 import cloudinary
 import cloudinary.uploader
@@ -20,8 +19,9 @@ from pathlib import Path
 
 import dj_database_url
 
-env = environ.Env()
-environ.Env.read_env() 
+
+if os.path.isfile('env.py'):
+    import env
 
 
 # settings.py
@@ -173,9 +173,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# SECURITY WARNING: don't run with debug turned on in production!
 # AWS settings
 if 'USE_AWS' in os.environ:
     print('using aws')
+
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = 'astroshop-aws-bucket'
     AWS_S3_REGION_NAME = 'eu-north-1'
@@ -195,6 +198,7 @@ if 'USE_AWS' in os.environ:
 
 
 
+
 # Add basic paypal settings
 # Set paypal test sandbox to true
 PAYPAL_URL = "https://www.sandbox.paypal.com/cgi-bin/webscr"
@@ -203,12 +207,14 @@ PAYPAL_TEST = True
 
 PAYPAL_RECEIVER_EMAIL = 'test-business-paypal@vanelslande.com' # Business Sandbox test account
 
-# Email settings
-EMAIL_BACKEND = env('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
-EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
-EMAIL_PORT = env.int('EMAIL_PORT', default=587)
-EMAIL_HOST = env('EMAIL_HOST', default='smtp.gmail.com')
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default=EMAIL_HOST_USER)
-ADMIN_USER_EMAIL = env('ADMIN_USER_EMAIL', default=EMAIL_HOST_USER)
+# email config
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
