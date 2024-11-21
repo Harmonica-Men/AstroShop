@@ -210,4 +210,4 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD = 'auhb luzi lizg caqx '
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 # DEFAULT_FROM_EMAIL = 'filip.vanelslande@gmail.com'
-DEFAULT_FORM_EMAIL = os.getenv('EMAIL_HOST_USER')
+DEFAULT_FORM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
