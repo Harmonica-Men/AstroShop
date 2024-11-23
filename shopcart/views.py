@@ -24,6 +24,8 @@ def shopcart_add(request):
 		# Get stuff
 		product_id = int(request.POST.get('product_id'))
 		product_qty = int(request.POST.get('product_qty'))
+		# redirect_url = request.POST.get('redirect_url')
+
 
 		# lookup product in DB
 		product = get_object_or_404(Product, id=product_id)
@@ -35,14 +37,19 @@ def shopcart_add(request):
 		cart_quantity = cart.__len__()
 
 
-		# toast messages
-		messages.succes(request, f'Added { product.name } to your bag ')
+		# toast messages		messages.success(request, f'Added { product.name } to your bag ')
+
+		messages.success(request, f'Added { product.name } to your bag ')
+
+
 
 		# Return resonse
 		# response = JsonResponse({'Product Name: ': product.name})
 		response = JsonResponse({'qty': cart_quantity})
 		
 		return response
+		# return redirect(redirect_url)
+
 
 
 def shopcart_delete(request):
