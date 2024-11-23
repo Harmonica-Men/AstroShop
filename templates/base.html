@@ -29,31 +29,45 @@
 
     {% block corejs %}
     <!-- <script src="https://kit.fontawesome.com/a90cb4361a.js" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    </script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
-    </script>
-    <script>
-        const searchUrl = "{% url 'search' %}";
-        const aboutUrl = "{% url 'about' %}";
-    </script>
+    </script> -->
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+
+
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script>
+        const searchUrl = "{% url 'search' %}";
+        const aboutUrl = "{% url 'about' %}";
+    </script>
+
+
+
     {% endblock %}
 
     {% block extra_js %}
     {% endblock %}
 
     <title>Astro Shop {% block extra_title %}{% endblock %}</title>
-    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732213214/favicon_dingdt.ico" />
+    <link rel="icon" type="image/x-icon"
+        href="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732213214/favicon_dingdt.ico" />
 </head>
 
 <body>
@@ -287,33 +301,30 @@
 
         </div>
 
-        <!-- Loop through messages to display alerts -->
-        {% if messages %}
-        <div class="message-container">
-            {% for message in messages %}
-                {% with message.level as level %}
-                    {% if level == 40 %}
-                        {% include 'includes/toasts/toast_error.html' %}
-                    {% elif level == 30 %}
-                        {% include 'includes/toasts/toast_warning.html' %}
-                    {% elif level == 25 %}
-                        {% include 'includes/toasts/toast_success.html' %}
-                    {% else %}
-                        {% include 'includes/toasts/toast_info.html' %}
-                    {% endif %}
-                {% endwith %}
-            {% endfor %}
-        </div>
-    {% endif %}
+
+
 
 
     </header>
-
-
-
+    {% if messages %}
+    <div class="message-container">
+        {% for message in messages %}
+            {% with message.level as level %}
+                {% if level == 40 %}
+                    {% include 'toasts/toast_error.html' %}
+                {% elif level == 30 %}
+                    {% include 'toasts/toast_warning.html' %}
+                {% elif level == 25 %}
+                    {% include 'toasts/toast_success.html' %}
+                {% else %}
+                    {% include 'toasts/toast_info.html' %}
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
+    </div>
+    {% endif %}
 
     {% block page_header %}
-
     {% endblock %}
 
     {% block content %}
@@ -324,28 +335,5 @@
         $('.toast').toast('show');
     </script>
     {% endblock %}
-    
-    <footer class="py-3 bg-dark mt-3" style="background-color: rgba(0, 0, 0, 0.5);">
-        <div class="d-flex justify-content-between align-items-center py-4 mx-4">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="me-2 text-muted text-decoration-none">
-                    <p class="ml-5 text-center icon-white" style="font-size: larger">Copyright &copy; Vanelslande.com
-                        2024</p>
-                </a>
-            </div>
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-4"><a class="color-hyperlink" href="https://x.com/?lang=en" aria-label="Twitter"><i
-                            class="fab fa-twitter fa-2x p-2 icon-white"></i></a></li>
-                <li class="ms-4"><a class="color-hyperlink" href="https://www.instagram.com/" aria-label="Instagram"><i
-                            class="fab fa-instagram fa-2x p-2 icon-white"></i></a></li>
-                <li class="ms-4"><a class="color-hyperlink" href="https://www.facebook.com/" aria-label="Facebook"><i
-                            class="fab fa-facebook fa-2x p-2 icon-white"></i></a></li>
-                <li class="ms-4"><a class="color-hyperlink" href="https://codeinstitute.net/global/"
-                        aria-label="Website"><i class="fa-solid fa-globe fa-2x p-2 icon-white"></i></a></li>
-            </ul>
-        </div>
-    </footer>
-
 </body>
-
 </html>
