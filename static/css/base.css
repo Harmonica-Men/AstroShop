@@ -96,6 +96,23 @@ body {
     margin: 0 auto;   /* Center the button */
 }
 
+/* ------------------------------- bootstrap toasts */
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
 
 @media (max-width: 768px) {
     .image-text-overlay p {
