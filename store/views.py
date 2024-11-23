@@ -133,7 +133,7 @@ def search(request):
 		searched = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
 		# Test for null
 		if not searched:
-			messages.success(request, "That Product Does Not Exist...Please try Again.")
+			messages.error(request, "That Product Does Not Exist...Please try Again.")
 			return render(request, "search.html", {})
 		else:
 			return render(request, "search.html", {'searched':searched})

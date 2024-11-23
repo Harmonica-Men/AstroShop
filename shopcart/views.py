@@ -37,11 +37,8 @@ def shopcart_add(request):
 		cart_quantity = cart.__len__()
 
 
-		# toast messages		messages.success(request, f'Added { product.name } to your bag ')
-
-		messages.success(request, f'Added { product.name } to your bag ')
-
-
+		# toasts 
+		messages.succes(request, f'Added { product.name } to your bag ')
 
 		# Return resonse
 		# response = JsonResponse({'Product Name: ': product.name})
@@ -62,7 +59,7 @@ def shopcart_delete(request):
 
 		response = JsonResponse({'product':product_id})
 		#return redirect('cart_summary')
-		messages.success(request, ("Item Deleted From Shopping Cart..."))
+		messages.warning(request, f'Item Deleted From Shopping Cart')
 		return response
 
 
@@ -77,5 +74,5 @@ def shopcart_update(request):
 
 		response = JsonResponse({'qty':product_qty})
 		#return redirect('cart_summary')
-		messages.success(request, ("Your Cart Has Been Updated..."))
+		messages.success(request, f'Your Cart Has Been Updated')
 		return response
