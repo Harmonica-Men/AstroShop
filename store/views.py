@@ -13,7 +13,7 @@ import json
 import logging
 import uuid
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
 from shopcart.cart import Cart
 from django.template.loader import render_to_string
@@ -314,6 +314,9 @@ def category_summary(request):
 	return render(request, 'category_summary.html', {"categories":categories})	
 
 
+
+
+
 def category(request, foo):
     # Replace hyphens with spaces
     foo = foo.replace('-', ' ')
@@ -339,6 +342,10 @@ def category(request, foo):
         'category': category_name,
         'is_sales': (foo.lower() == "sales")  # Pass is_sales as True if it's the "Sales" category
     })
+
+
+
+
 
 
 def product(request,pk):
@@ -430,10 +437,14 @@ def register_user(request):
     else:
         return render(request, 'register.html', {'form': form})
 
+class CheckEmailView(TemplateView):
+    template_name = 'check_email.html'
+
+
 class SubscribeView(FormView):
     form_class = SubscribeForm
     template_name = 'index.html'
-    success_url = reverse_lazy('check-email')  # Adjust this if needed
+    success_url = reverse_lazy('check_email')     
 
     def form_valid(self, form):
         email = form.cleaned_data['email']
@@ -473,48 +484,27 @@ class SubscribeView(FormView):
         # Redirect to the success page or confirmation page
         return HttpResponseRedirect(self.success_url)
 
-class CheckEmailView(TemplateView):
-    template_name = 'check_email.html'
-
-
-
-
-def confirm_subscription(request):
-    """
-    View to confirm the user's subscription
-    using the provided confirmation code.
-    """
-    code = request.GET.get('code')
-
-    if not code:
-        return HttpResponse('Confirmation code is required.', status=400)
-
-    # Corrected variable name to match the model name 'Subscription'
-    subscription = get_object_or_404(Subscription, confirmation_code=code)
-    subscription.is_confirmed = True
-    subscription.save()
-
-    return render(request, 'confirm_subscription.html')
+    
 
     
-def send_mail_page(request):
-    context = {}
+# def send_mail_page(request):
+#     context = {}
 
-    if request.method == 'POST':
-        address = request.POST.get('address')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
+#     if request.method == 'POST':
+#         address = request.POST.get('address')
+#         subject = request.POST.get('subject')
+#         message = request.POST.get('message')
 
-        if address and subject and message:
-            try:
-                send_mail(subject, message, settings.EMAIL_HOST_USER, [address])
-                context['result'] = 'Email sent successfully'
-            except Exception as e:
-                context['result'] = f'Error sending email: {e}'
-        else:
-            context['result'] = 'All fields are required'
+#         if address and subject and message:
+#             try:
+#                 send_mail(subject, message, settings.EMAIL_HOST_USER, [address])
+#                 context['result'] = 'Email sent successfully'
+#             except Exception as e:
+#                 context['result'] = f'Error sending email: {e}'
+#         else:
+#             context['result'] = 'All fields are required'
     
-    return render(request, "test_email.html", context)
+#     return render(request, "test_email.html", context)
 
 def suppliers_list(request):
     suppliers = Supplier.objects.all()

@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-from .views import update_product, add_product, SubscribeView, CheckEmailView, confirm_subscription, suppliers_list, supplier_detail, delete_supplier, supplier_confirm_delete, add_supplier
+from .views import update_product, add_product, SubscribeView, suppliers_list, supplier_detail, delete_supplier, supplier_confirm_delete, add_supplier
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -31,7 +31,7 @@ urlpatterns = [
      # Subscribe to a newsletter or service
     path('subscribe/', SubscribeView.as_view(), name='subscribe'),
     # Check email view
-    path('check-email/', views.CheckEmailView.as_view(), name='check-email'),
+    path('check_email/', views.CheckEmailView.as_view(), name='check_email'),
     path('suppliers/', suppliers_list, name='suppliers_list'),
     path('supplier/<int:supplier_id>/', supplier_detail, name='supplier_detail'),
     path('supplier/<int:supplier_id>/delete/', delete_supplier, name='supplier_delete'),
@@ -43,7 +43,7 @@ urlpatterns = [
 
 
 
-    path('shopper/confirm/', views.confirm_subscription, name='confirm_subscription'),
+    # path('shopper/confirm/', views.confirm_subscription, name='confirm_subscription'),
 
 
 
