@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 from .views import update_product, add_product, SubscribeView, suppliers_list, supplier_detail, delete_supplier, supplier_confirm_delete, add_supplier
+from .views import general_conditions, disclaimer, privacy, payment
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -38,16 +39,11 @@ urlpatterns = [
     path('supplier/<int:supplier_id>/confirm_delete/', supplier_confirm_delete, name='supplier_confirm_delete'),
     path('supplier/add/', add_supplier, name='add_supplier'),
 
+    path('general_conditions/', views.general_conditions, name='general_conditions'),
+    path('disclaimer/', disclaimer, name='disclaimer'),
+    path('privacy/', privacy, name='privacy'),
+    path('payment/', payment, name='payment'),
 
-
-
-
-
-    # path('shopper/confirm/', views.confirm_subscription, name='confirm_subscription'),
-
-
-
-    path('test_email/', views.send_mail_page, name='test_email')
 
    
 ]

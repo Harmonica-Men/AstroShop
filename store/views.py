@@ -486,25 +486,6 @@ class SubscribeView(FormView):
 
     
 
-    
-# def send_mail_page(request):
-#     context = {}
-
-#     if request.method == 'POST':
-#         address = request.POST.get('address')
-#         subject = request.POST.get('subject')
-#         message = request.POST.get('message')
-
-#         if address and subject and message:
-#             try:
-#                 send_mail(subject, message, settings.EMAIL_HOST_USER, [address])
-#                 context['result'] = 'Email sent successfully'
-#             except Exception as e:
-#                 context['result'] = f'Error sending email: {e}'
-#         else:
-#             context['result'] = 'All fields are required'
-    
-#     return render(request, "test_email.html", context)
 
 def suppliers_list(request):
     suppliers = Supplier.objects.all()
@@ -550,3 +531,18 @@ def add_supplier(request):
         form = SupplierForm()
 
     return render(request, 'add_supplier.html', {'form': form})
+
+
+
+def general_conditions(request):
+    return render(request, 'general_conditions.html')
+
+def disclaimer(request):
+    return render(request, 'disclaimer.html')
+
+
+def payment(request):
+    return render(request, 'payment.html')
+
+def privacy(request):
+    return render(request, 'privacy.html')
