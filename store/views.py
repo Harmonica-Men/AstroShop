@@ -111,7 +111,7 @@ def update_product(request, pk):
 
 def delete_product_confirmation(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    # messages.success(request, "Product deleted.")
+    messages.info(request, "Product deleted.")
     return render(request, 'delete_product_confirm.html', {'product': product})
 
 
@@ -119,7 +119,7 @@ def delete_product(request, pk):
     if request.user.is_superuser:
         product = get_object_or_404(Product, pk=pk)
         product.delete()
-        messages.success(request, "Product has been deleted successfully.")
+        messages.warning(request, "Product has been deleted successfully.")
         return redirect('products')  # Redirect to home or any other page after deletion
     else:
         messages.error(request, "You do not have permission to delete this product.")
@@ -330,7 +330,7 @@ def category(request, foo):
             products = Product.objects.filter(category=category)
             category_name = category.name
         except Category.DoesNotExist:
-            messages.success(request, "That Category Doesn't Exist...")
+            messages.info(request, "That Category Doesn't Exist...")
             return redirect('home')
     
     # Render the category page with the list of products and category name
@@ -380,7 +380,7 @@ def login_user(request):
 			messages.success(request, ("You Have Been Logged In!"))
 			return redirect('products')
 		else:
-			messages.success(request, ("There was an error, please try again..."))
+			messages.error(request, ("There was an error, please try again..."))
 			return redirect('login')
 
 	else:
@@ -534,7 +534,7 @@ def delete_supplier(request, supplier_id):
 
     if request.method == 'POST':
         supplier.delete()
-        messages.success(request, 'Supplier deleted successfully!')
+        messages.warning(request, 'Supplier deleted successfully!')
         return redirect('suppliers_list')
 
     return redirect('supplier_detail', supplier_id=supplier.id)

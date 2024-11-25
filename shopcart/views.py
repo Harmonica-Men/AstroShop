@@ -38,7 +38,7 @@ def shopcart_add(request):
 
 
 		# toasts 
-		messages.succes(request, f'Added { product.name } to your bag ')
+		messages.success(request, f'Added { product.name } to your bag ')
 
 		# Return resonse
 		# response = JsonResponse({'Product Name: ': product.name})
