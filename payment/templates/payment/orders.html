@@ -80,6 +80,7 @@
                             <div class="d-flex justify-content-around mt-4">
                                 {% if request.user.is_superuser %}
                                 {% if not order.shipped %}
+
                                 <input type="hidden" name="shipping_status" value="true">
                                 <button type="submit" class="btn btn-success btn-sm">Mark As Shipped</button>
                                 {% else %}
@@ -87,14 +88,17 @@
                                 <button type="submit" class="btn btn-danger btn-sm">Mark As Not Shipped</button>
                                 {% endif %}
                                 {% endif %}
-                                <a href="{% url 'products' %}" class="btn btn-secondary btn-sm mr-2 ml-2">Back To Products</a>
-
-                                {% if request.user.is_superuser %}
-                                <input type="hidden" name="delete_order" value="true">
-                                <button type="submit" class="btn btn-danger btn-sm">Delete Order</button>
-                                {% endif %}
-                            </div>
+                                <a href="{% url 'products' %}" class="btn btn-secondary btn-sm mr-2 ml-2">Back To
+                                    Products</a>
+                            </div>                           
                         </form>
+
+                        <form method="POST" action="{% url 'order_delete_confirmation' order.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Delete Order</button>
+                        </form>
+
+
                     </div>
                 </div>
             </div>

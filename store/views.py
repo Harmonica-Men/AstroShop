@@ -111,7 +111,7 @@ def update_product(request, pk):
 
 def delete_product_confirmation(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    messages.info(request, "Product deleted.")
+    # messages.info(request, "Product deleted.")
     return render(request, 'delete_product_confirm.html', {'product': product})
 
 

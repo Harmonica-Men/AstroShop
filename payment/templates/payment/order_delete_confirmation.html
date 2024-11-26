@@ -9,21 +9,24 @@
     </div>
 </header>
 
-<div class="container mt-3">
-    <div class="card shadow-lg mb-3" style="width: 100%; max-width: 600px;">
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
+    <div class="card shadow-lg rounded-0 mb-3 p-3" style="width: 500px;">
         <div class="card-header">
             Order #{{ order.id }} - <strong>€{{ order.amount_paid }}</strong>
         </div>
         <div class="card-body">
             <p>Order details for Order #{{ order.id }} will be deleted. This action cannot be undone.</p>
-            <div class="d-flex justify-content-around">
-                <form method="POST">
+
+            <form method="POST">
+                <div class="d-flex justify-content-between">
                     {% csrf_token %}
                     <input type="hidden" name="order_id" value="{{ order.id }}">
-                    <button type="submit" class="btn btn-danger" name="delete_order" value="true">Confirm Delete</button>
+                    <button type="submit" class="btn btn-danger" name="delete_order" value="true">Confirm
+                        Delete</button>
                     <a href="{% url 'orders' %}" class="btn btn-secondary">Cancel</a>
-                </form>
-            </div>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

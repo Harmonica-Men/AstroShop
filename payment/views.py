@@ -155,12 +155,11 @@ def orders(request):
             # Handling marking as shipped
             if status == "true":
                 Order.objects.filter(id=pk).update(shipped=True, date_shipped=timezone.now())
+                return redirect('orders')
             else:
                 Order.objects.filter(id=pk).update(shipped=False)
+                
 
-            # Handling delete order request
-            if request.POST.get('delete_order'):
-                return redirect('order_delete_confirmation', order_id=pk)  # Redirect to confirmation page
             
             return redirect('orders')  # Redirect to the orders page after update
 
@@ -168,6 +167,18 @@ def orders(request):
 
     else:
         return redirect('home')  # Redirect unauthenticated users to the home page
+
+
+
+def delete_order(request, order_id):
+    if not request.user.is_superuser:
+        messages.error(request, "You are not authorized to delete orders.")
+        return redirect('orders')  # Replace 'orders' with your orders page URL name
+
+    order = get_object_or_404(Order, id=order_id)
+    order.delete()
+    messages.success(request, f"Order #{order_id} has been successfully deleted.")
+    return redirect('orders')  # Replace 'orders' with your orders page URL name
 
 
 def send_bill(request, user, shipping_address1, total_price, order_id):
@@ -193,10 +204,6 @@ def send_bill(request, user, shipping_address1, total_price, order_id):
        if key == "session_key":
            # Delete the key
            del request.session[key]
-
-
-
-
 
 
 def billing_info(request):
