@@ -13,30 +13,70 @@
     </div>
 </header>
 
+<div class="container text-center d-flex justify-content-center align-items-center" style="min-height: calc(60vh);">
 
-<div class="container">
-    <h1>Supplier: {{ supplier.supplier_company_name }}</h1>
+    <div class="shadow-lg" style="width: 100%; max-width: 578px;">
+        <div class="container mt-2"><h1>Supplier: {{ supplier.supplier_company_name }}</h1></div>
+        
+        <div class="container row justify-content-start align-items-center ml-1">
+            <table class="table table-bordered mt-2">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Field</th>
+                        <th style="text-align: left;">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: left;"><strong>Address</strong></td>
+                        <td style="text-align: left;">
+                            {{ supplier.supplier_address1 }}
+                            {% if supplier.supplier_address2 %}, {{ supplier.supplier_address2 }}{% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>City</strong></td>
+                        <td style="text-align: left;">{{ supplier.supplier_city }}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>State</strong></td>
+                        <td style="text-align: left;">{{ supplier.supplier_state }}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Country</strong></td>
+                        <td style="text-align: left;">{{ supplier.supplier_country }}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Zip Code</strong></td>
+                        <td style="text-align: left;">{{ supplier.supplier_zipcode }}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Product</strong></td>
+                        <td style="text-align: left;">
+                            {% if supplier.supplier_product %}
+                            {{ supplier.supplier_product.name }}
+                            {% else %}
+                            No Product Assigned
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        
+        
 
-    <p><strong>Address:</strong> {{ supplier.supplier_address1 }}{% if supplier.supplier_address2 %},
-        {{ supplier.supplier_address2 }}{% endif %}</p>
-    <p><strong>City:</strong> {{ supplier.supplier_city }}</p>
-    <p><strong>State:</strong> {{ supplier.supplier_state }}</p>
-    <p><strong>Country:</strong> {{ supplier.supplier_country }}</p>
-    <p><strong>Zip Code:</strong> {{ supplier.supplier_zipcode }}</p>
-    <p>
-        <strong>Product:</strong>
-        {% if supplier.supplier_product %}
-        {{ supplier.supplier_product.name }}
-        {% else %}
-        No Product Assigned
-        {% endif %}
-    </p>
+        <div class="container text-center d-flex justify-content-between align-items-center mb-3">
 
-    <a href="{% url 'suppliers_list' %}">Back to Suppliers</a>
-    <form method="POST" action="{% url 'supplier_confirm_delete' supplier.id %}" style="display: inline;">
-        {% csrf_token %}
-        <button type="submit" class="danger">Delete Supplier</button>
-    </form>
+
+            <a href="{% url 'suppliers_list' %}" class="btn btn-secondary">Back to Suppliers</a>
+            <form method="POST" action="{% url 'supplier_confirm_delete' supplier.id %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger mr-3">Delete Supplier</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
