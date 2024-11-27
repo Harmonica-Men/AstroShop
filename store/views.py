@@ -526,7 +526,7 @@ def add_supplier(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Supplier added successfully!")
-            return redirect('suppliers_list')
+            return redirect('products')
     else:
         form = SupplierForm()
 

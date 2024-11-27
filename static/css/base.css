@@ -408,10 +408,20 @@ a.category-badge>span.badge:hover {
 
 /* For screens smaller than 500px */
 @media (max-width: 500px) {
-    .logo-font {
-        font-size: 0.6rem;         
-        text-align: center;
+    table {
+        font-size: 12px; /* Adjust font size for smaller screens */
     }
+    th, td {
+        white-space: nowrap; /* Prevent content wrapping */
+    }
+
+    .cart-box h2,
+    .cart-box.nav-link,
+    .cart-box.nav-link.hover-bg {
+        display: none; /* Hide the h2, nav-link, and hover-bg */
+    }
+    
+   
 }
 
 /* Media query for screens smaller than or equal to 991px */
