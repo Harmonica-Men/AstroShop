@@ -386,8 +386,6 @@ a.category-badge>span.badge:hover {
     color: #0056b3; /* Optional: Change icon color on hover */
 }
 
-
-
 .hover-bg {
     background-color: white; /* Default background color */
     color: black; /* Default text color */
@@ -399,11 +397,11 @@ a.category-badge>span.badge:hover {
     color: white; /* Text color on hover */
 }
 
-
 .account-cart {
     display: none;
     z-index: 999;
 }
+
 /* For screens smaller than 500px */
 @media (max-width: 500px) {
     .logo-font {
