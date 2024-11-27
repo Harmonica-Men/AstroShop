@@ -15,9 +15,19 @@
         <div class="col-lg-4 col-lg-6 col-sm-12 text-center">
             <div class="mt-3">
                 <div class="card mb-3">
-                    <div class="card-header">
-                        Order #{{ order.id }} - <strong>€{{ order.amount_paid }}</strong>
+
+                    <div class="card-header text-center">
+                        <form method="POST" action="{% url 'order_delete_confirmation' order.id %}">
+
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                style="float: left; margin-right: 10px;">Delete Order</button>
+
+                            Order #{{ order.id }} - <strong>€{{ order.amount_paid }}</strong>
+                        </form>
+
                     </div>
+
                     <div class="card-body">
                         <!-- Combined Table for Order Details and Shipping Information -->
                         <table class="table table-bordered">
@@ -90,13 +100,13 @@
                                 {% endif %}
                                 <a href="{% url 'products' %}" class="btn btn-secondary btn-sm mr-2 ml-2">Back To
                                     Products</a>
-                            </div>                           
+
+
+                            </div>
                         </form>
 
-                        <form method="POST" action="{% url 'order_delete_confirmation' order.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">Delete Order</button>
-                        </form>
+
+
 
 
                     </div>
