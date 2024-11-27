@@ -371,43 +371,133 @@ a.category-badge>span.badge:hover {
 .no-bullets li {
     margin-bottom: 0;
 }
+@media (max-width: 500px) {
+    /* Add a hover effect for <span> similar to the hamburger menu */
+    span.hover-effect {
+        display: inline-block; /* Ensure proper rendering for inline elements */
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.3s ease, color 0.3s ease; /* Smooth scaling and color change */
+    }
 
-/* Add hover effect for the entire link */
-.hover-effect:hover {
-    color: #007bff; /* Change text/icon color */
-    background-color: rgba(0, 123, 255, 0.1); /* Subtle background change */
-    border-radius: 8px; /* Add rounded corners if needed */
-    transition: background-color 0.3s, color 0.3s; /* Smooth hover transition */
+    /* Default style */
+    span.hover-effect {
+        color: #616161; /* Neutral color */
+    }
+
+    /* Hover effect */
+    span.hover-effect:hover {
+        color: #007bff; /* Change text/icon color */
+        transform: rotate(15deg) scale(1.2); /* Slight rotation and enlargement */
+    }
+
+    /* Add a subtle background hover effect for consistency */
+    span.hover-effect:hover::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120%; /* Larger than the span for a halo effect */
+        height: 120%;
+        background-color: rgba(0, 123, 255, 0.1); /* Subtle blue background */
+        border-radius: 50%; /* Circular hover effect */
+        z-index: -1; /* Position it behind the text */
+        transition: opacity 0.3s ease; /* Smooth appearance */
+        opacity: 1;
+    }
+
+    /* Hide the effect initially */
+    span.hover-effect::after {
+        opacity: 0;
+    }
+
+    /* Additional styles for account-cart to display */
+    .account-cart {
+        display: block; /* Show the account/cart icon */
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #f8f9fa; /* Light background */
+        padding: 10px;
+        border-radius: 50%;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    /* Add hover effect for account-cart */
+    .account-cart:hover {
+        background: #007bff; /* Change to blue */
+        transform: scale(1.2); /* Slightly enlarge */
+    }
+
+    /* For icons inside account-cart */
+    .account-cart i {
+        color: #333; /* Neutral icon color */
+        transition: color 0.3s ease;
+    }
+
+    .account-cart:hover i {
+        color: white; /* White icon on hover */
+    }
 }
 
-/* Specific hover effect for the icon */
-.hover-effect i {
-    transition: transform 0.3s; /* Smooth scaling effect */
-}
-
-.hover-effect:hover i {
-    transform: scale(1.2); /* Slightly enlarge the icon on hover */
-    color: #0056b3; /* Optional: Change icon color on hover */
-}
-
-.hover-bg {
-    background-color: white; /* Default background color */
-    color: black; /* Default text color */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
-}
-
-.hover-bg:hover {
-    background-color: black; /* Background color on hover */
-    color: white; /* Text color on hover */
-}
-
-.account-cart {
-    display: none;
-    z-index: 999;
-}
 
 /* For screens smaller than 500px */
 @media (max-width: 500px) {
+    .menu__btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        width: 26px;
+        height: 26px;
+        z-index: 1000;
+        background-color: white;
+        border-radius: 5px;
+        padding-top: 10px;
+    }
+
+    .menu__box {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 300px;
+        height: 100%;
+        background-color: white;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+        z-index: 999;
+        transition: left 0.25s ease-in-out;
+    }
+
+    .menu__item {
+        padding: 12px 24px;
+        font-size: 20px;
+        color: #333;
+        font-weight: 600;
+        text-decoration: none;
+        transition-duration: .25s;
+    }
+
+    .menu__item:hover {
+        background-color: #CFD8DC;
+    }
+
+    #menu__toggle:checked ~ .menu__box {
+        left: 0;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    #main-nav {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
     table {
         font-size: 12px; /* Adjust font size for smaller screens */
     }
@@ -420,9 +510,8 @@ a.category-badge>span.badge:hover {
     .cart-box.nav-link.hover-bg {
         display: none; /* Hide the h2, nav-link, and hover-bg */
     }
-    
-   
 }
+
 
 /* Media query for screens smaller than or equal to 991px */
 @media (max-width: 991px) {
