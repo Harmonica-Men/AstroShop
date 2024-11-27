@@ -1,26 +1,89 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- Header-->
+<!-- Header -->
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
             <br>
-            <h1 class="display-4 fw-bolder mt-5">Add New Product</h1>          
-            <p class="lead fw-normal text-white-40 mb-2">Administrator Update Page</p>
+            <h1 class="display-4 fw-bolder mt-5">Add New Supplier</h1>
+            <p class="lead fw-normal text-white-40 mb-2">Enter a New Supplier</p>
         </div>
     </div>
 </header>
 
-<div class="container mt-5">
-    <h1>Add New Supplier</h1>
-    <form method="POST" class="mt-4">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save Supplier</button>
-        <a href="{% url 'suppliers_list' %}" class="btn btn-secondary">Cancel</a>
-    </form>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: calc(60vh);">
+    <div class="p-4 mt-3 shadow-lg" style="width: 100%; max-width: 850px;">
+        
+
+            <form method="POST" class="mt-4 text-start" enctype="multipart/form-data">
+                <!-- Align text to the left -->
+                {% csrf_token %}
+
+                <!-- Supplier Company Name -->
+                <div class="mb-3">
+                    <label for="id_supplier_company_name" class="form-label">Company Name</label>
+                    <input type="text" class="form-control" id="id_supplier_company_name" name="supplier_company_name"
+                        value="{{ form.supplier_company_name.value }}" placeholder="Enter company name">
+                </div>
+
+                <!-- Supplier Address 1 -->
+                <div class="mb-3">
+                    <label for="id_supplier_address1" class="form-label">Address Line 1</label>
+                    <input type="text" class="form-control" id="id_supplier_address1" name="supplier_address1"
+                        value="{{ form.supplier_address1.value }}" placeholder="Enter address line 1">
+                </div>
+
+                <!-- Supplier Address 2 -->
+                <div class="mb-3">
+                    <label for="id_supplier_address2" class="form-label">Address Line 2</label>
+                    <input type="text" class="form-control" id="id_supplier_address2" name="supplier_address2"
+                        value="{{ form.supplier_address2.value }}" placeholder="Enter address line 2 (optional)">
+                </div>
+
+                <!-- Supplier City -->
+                <div class="mb-3">
+                    <label for="id_supplier_city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="id_supplier_city" name="supplier_city"
+                        value="{{ form.supplier_city.value }}" placeholder="Enter city">
+                </div>
+
+                <!-- Supplier State -->
+                <div class="mb-3">
+                    <label for="id_supplier_state" class="form-label">State</label>
+                    <input type="text" class="form-control" id="id_supplier_state" name="supplier_state"
+                        value="{{ form.supplier_state.value }}" placeholder="Enter state">
+                </div>
+
+                <!-- Supplier Country -->
+                <div class="mb-3">
+                    <label for="id_supplier_country" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="id_supplier_country" name="supplier_country"
+                        value="{{ form.supplier_country.value }}" placeholder="Enter country">
+                </div>
+
+                <!-- Supplier Zip Code -->
+                <div class="mb-3">
+                    <label for="id_supplier_zipcode" class="form-label">Zip Code</label>
+                    <input type="text" class="form-control" id="id_supplier_zipcode" name="supplier_zipcode"
+                        value="{{ form.supplier_zipcode.value }}" placeholder="Enter zip code">
+                </div>
+
+                <!-- Supplier Product -->
+                <div class="mb-3">
+                    <label for="id_supplier_product" class="form-label">Product</label>
+                    <input type="text" class="form-control" id="id_supplier_product" name="supplier_product"
+                        value="{{ form.supplier_product.value }}" placeholder="Enter product supplied">
+                </div>
+
+                <div class="d-flex justify-content-around mt-3 mb-3">
+
+                    <button type="submit" class="btn btn-success">Save Supplier</button>
+                    <a href="{% url 'suppliers_list' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
-

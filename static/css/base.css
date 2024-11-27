@@ -409,9 +409,8 @@ a.category-badge>span.badge:hover {
 /* For screens smaller than 500px */
 @media (max-width: 500px) {
     .logo-font {
-        font-size: 1rem; /* Set font size to 0.8rem */
-        
-        text-align: center; /* Center text */
+        font-size: 0.6rem;         
+        text-align: center;
     }
 }
 
