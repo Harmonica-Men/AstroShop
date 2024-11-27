@@ -371,91 +371,78 @@ a.category-badge>span.badge:hover {
 .no-bullets li {
     margin-bottom: 0;
 }
-@media (max-width: 500px) {
-    /* Add a hover effect for <span> similar to the hamburger menu */
-    span.hover-effect {
-        display: inline-block; /* Ensure proper rendering for inline elements */
-        position: relative;
-        cursor: pointer;
-        transition: transform 0.3s ease, color 0.3s ease; /* Smooth scaling and color change */
-    }
 
-    /* Default style */
-    span.hover-effect {
-        color: #616161; /* Neutral color */
-    }
-
-    /* Hover effect */
-    span.hover-effect:hover {
-        color: #007bff; /* Change text/icon color */
-        transform: rotate(15deg) scale(1.2); /* Slight rotation and enlargement */
-    }
-
-    /* Add a subtle background hover effect for consistency */
-    span.hover-effect:hover::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 120%; /* Larger than the span for a halo effect */
-        height: 120%;
-        background-color: rgba(0, 123, 255, 0.1); /* Subtle blue background */
-        border-radius: 50%; /* Circular hover effect */
-        z-index: -1; /* Position it behind the text */
-        transition: opacity 0.3s ease; /* Smooth appearance */
-        opacity: 1;
-    }
-
-    /* Hide the effect initially */
-    span.hover-effect::after {
-        opacity: 0;
-    }
-
-    /* Additional styles for account-cart to display */
-    .account-cart {
-        display: block; /* Show the account/cart icon */
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: #f8f9fa; /* Light background */
-        padding: 10px;
-        border-radius: 50%;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    /* Add hover effect for account-cart */
-    .account-cart:hover {
-        background: #007bff; /* Change to blue */
-        transform: scale(1.2); /* Slightly enlarge */
-    }
-
-    /* For icons inside account-cart */
-    .account-cart i {
-        color: #333; /* Neutral icon color */
-        transition: color 0.3s ease;
-    }
-
-    .account-cart:hover i {
-        color: white; /* White icon on hover */
-    }
+/* Add hover effect for the entire link */
+.hover-effect:hover {
+    color: #007bff; /* Change text/icon color */
+    background-color: rgba(0, 123, 255, 0.1); /* Subtle background change */
+    border-radius: 8px; /* Add rounded corners if needed */
+    transition: background-color 0.3s, color 0.3s; /* Smooth hover transition */
 }
 
+/* Specific hover effect for the icon */
+.hover-effect i {
+    transition: transform 0.3s; /* Smooth scaling effect */
+}
+
+.hover-effect:hover i {
+    transform: scale(1.2); /* Slightly enlarge the icon on hover */
+    color: #0056b3; /* Optional: Change icon color on hover */
+}
+
+.hover-bg {
+    background-color: white; /* Default background color */
+    color: black; /* Default text color */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.hover-bg:hover {
+    background-color: black; /* Background color on hover */
+    color: white; /* Text color on hover */
+}
+
+.account-cart {
+    display: none;
+    z-index: 999;
+}
 
 /* For screens smaller than 500px */
 @media (max-width: 500px) {
-    .menu__btn {
+    /* Fixed banner styles */
+    .fixed-banner {
         position: fixed;
-        top: 20px;
-        left: 20px;
-        width: 26px;
-        height: 26px;
-        z-index: 1000;
-        background-color: white;
-        border-radius: 5px;
-        padding-top: 10px;
+        top: 0;
+        left: 0;
+        width: 100%; /* Full width of the screen */
+        height: 50px; /* Fixed height */
+        background-color: white; /* Banner background color */
+        z-index: 1000; /* Ensure it appears above other elements */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        display: flex; /* Use flexbox for content alignment */
+        align-items: center; /* Vertically center items */
+        justify-content: center; /* Horizontally center items */
+        padding: 10px; /* Optional: Add padding around the content */
+        border-bottom: 1px solid #ccc; /* Optional: Add a border below the banner */
     }
+
+    /* Banner text or logo */
+    .fixed-banner h2 {
+        font-size: 1.5rem; /* Adjust text size */
+        color: #333; /* Text color */
+        margin: 0; /* Remove default margins */
+    }
+
+    /* Additional styles for the content inside the banner */
+    .fixed-banner img {
+        max-height: 100%; /* Ensure the image doesn't exceed the banner height */
+        max-width: 90%; /* Ensure the image scales properly */
+    }
+
+    /* Adjust page content below the fixed banner */
+    body {
+        padding-top: 50px; /* Add padding equal to the banner height */
+    }
+
 
     .menu__box {
         position: fixed;
@@ -498,18 +485,19 @@ a.category-badge>span.badge:hover {
         display: block;
     }
 
-    table {
+     table {
         font-size: 12px; /* Adjust font size for smaller screens */
     }
     th, td {
         white-space: nowrap; /* Prevent content wrapping */
     }
-
+    
     .cart-box h2,
     .cart-box.nav-link,
     .cart-box.nav-link.hover-bg {
         display: none; /* Hide the h2, nav-link, and hover-bg */
     }
+
 }
 
 
