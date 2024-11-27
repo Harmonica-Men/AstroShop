@@ -295,35 +295,61 @@ a.category-badge>span.badge:hover {
 
 .menu__btn {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 26px;
-    height: 26px;
-    cursor: pointer;
-    z-index: 1000; /* Ensure button is above other content */
+    top: 15px;
+    left: 25px;
+    width: 20px; 
+    height: 20px; 
+    z-index: 1000;
+    background-color: white;     
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover transition */
 }
 
-.menu__btn > span,
-.menu__btn > span::before,
-.menu__btn > span::after {
+.menu__btn:hover {
+    background-color: #adadad; /* Light gray background on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    
+}
+
+.menu__btn span {
     display: block;
-    position: absolute;
-    width: 100%;
+    width: 20px;
     height: 2px;
-    background-color: #616161;
-    transition-duration: .25s;
+    background-color: #333; /* Default bar color */
+    position: relative;
+    transition: background-color 0.3s ease; /* Smooth color transition */
 }
 
-.menu__btn > span::before {
+.menu__btn span::before,
+.menu__btn span::after {
     content: '';
-    top: -8px;
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background-color: #333; /* Default bar color */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover transition */
 }
 
-.menu__btn > span::after {
-    content: '';
-    top: 8px;
+.menu__btn span::before {
+    top: -6px; /* Position the top bar */
 }
 
+.menu__btn span::after {
+    top: 6px; /* Position the bottom bar */
+}
+
+.menu__btn:hover span,
+.menu__btn:hover span::before,
+.menu__btn:hover span::after {
+    background-color: #007bff; /* Change bar color on hover */
+}
+
+/* Optional: Animation effect for a more dynamic hover */
+.menu__btn:hover span::before {
+    transform: translateY(2px); /* Slight movement for top bar */
+}
 
 
 .menu__box {
@@ -414,7 +440,7 @@ a.category-badge>span.badge:hover {
         top: 0;
         left: 0;
         width: 100%; /* Full width of the screen */
-        height: 50px; /* Fixed height */
+        height: 40px; /* Fixed height */
         background-color: white; /* Banner background color */
         z-index: 1000; /* Ensure it appears above other elements */
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
@@ -432,15 +458,9 @@ a.category-badge>span.badge:hover {
         margin: 0; /* Remove default margins */
     }
 
-    /* Additional styles for the content inside the banner */
-    .fixed-banner img {
-        max-height: 100%; /* Ensure the image doesn't exceed the banner height */
-        max-width: 90%; /* Ensure the image scales properly */
-    }
-
     /* Adjust page content below the fixed banner */
     body {
-        padding-top: 50px; /* Add padding equal to the banner height */
+        padding-top: 40px; /* Add padding equal to the banner height */
     }
 
 
