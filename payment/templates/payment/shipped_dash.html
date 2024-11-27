@@ -14,44 +14,48 @@
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
     <div class="row shadow-lg" style="width: 100%; max-width: 850px;">
         <div class="col-12 mt-3">
-            <table class="table table-striped table-hover table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Order</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Customer Email</th>
-                        <th scope="col">Date Shipped</th>
-                        <th scope="col">Shipped</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in orders %}
-                    <tr>
-                        <td><a href="{% url 'orders_id' item.id %}">{{ item.id }}</a></td>
-                        <td>€{{ item.amount_paid }}</td>
-                        <td>{{ item.email }}</td>
-                        <td>{{ item.date_shipped }}</td>
-                        <td>
-                            <form method="POST" action="{% url 'shipped_dash' %}">
-                                {% csrf_token %}
-                                <input type="hidden" name="shipping_status" value="false">
-                                <input type="hidden" name="num" value={{item.id}}>
-                                <button type="Submit" class="btn btn-danger">Mark UnShipped</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
+            <div class="table-responsive">
+
+
+                <table class="table table-striped table-hover table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Order</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Customer Email</th>
+                            <th scope="col">Date Shipped</th>
+                            <th scope="col">Shipped</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in orders %}
+                        <tr>
+                            <td><a href="{% url 'orders_id' item.id %}">{{ item.id }}</a></td>
+                            <td>€{{ item.amount_paid }}</td>
+                            <td>{{ item.email }}</td>
+                            <td>{{ item.date_shipped }}</td>
+                            <td>
+                                <form method="POST" action="{% url 'shipped_dash' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="shipping_status" value="false">
+                                    <input type="hidden" name="num" value={{item.id}}>
+                                    <button type="Submit" class="btn btn-danger">Mark UnShipped</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
 
 
 
 
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-around mt-3 mb-3">
-                <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-around mt-3 mb-3">
+                    <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
 
-                <a href="{% url 'not_shipped_dash' %}" class="btn btn-secondary">Unshipped Orders</a>
+                    <a href="{% url 'not_shipped_dash' %}" class="btn btn-secondary">Unshipped Orders</a>
 
+                </div>
             </div>
         </div>
     </div>

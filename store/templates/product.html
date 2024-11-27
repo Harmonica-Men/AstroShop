@@ -24,10 +24,10 @@
         </p>
         {% endif %}
 
-        <div class="d-flex flex-column flex-md-row align-items-start mt-3">
+        <div class="d-flex flex-column flex-md-row align-items-center mt-3">
             <div class="flex-shrink-0 mb-3 mb-md-0" style="width: 30%;">
-                <img src="{{ product.image.url }}" class="img-fluid rounded-0" alt="{{ product.name }}"
-                    style="width: 100%; height: auto;">
+                <img src="{{ product.image.url }}" class="img-fluid rounded-0 product-image"
+                                alt="{{ product.name }}" style="max-width: 200px; height: auto;">
 
                 <!-- Product price or sale price -->
                 <div class="text-center mt-3">
@@ -43,7 +43,7 @@
             <div class="text-md-left ml-md-5" style="width: 70%;">
                 <div class="card-body">
                     <h5 class="product-name card-title">{{ product.name }}</h5>
-                    <p class="card-text">{{ product.description }}</p>
+                    <!-- <p class="card-text">{{ product.description }}</p> -->
 
                     {% if product.is_sale %}
                     <div class="d-flex justify-content-center justify-content-md-start small text-danger mb-2">

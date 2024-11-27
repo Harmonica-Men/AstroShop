@@ -505,11 +505,28 @@ a.category-badge>span.badge:hover {
         display: block;
     }
 
-     table {
-        font-size: 12px; /* Adjust font size for smaller screens */
+    .table-responsive {
+        overflow-x: auto; /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+        border: 1px solid #ddd; /* Optional: Add border for better visibility */
     }
+
+    table {
+        min-width: 700px; /* Ensure the table is wider than the viewport */
+        white-space: nowrap; /* Prevent text from wrapping */
+    }
+
     th, td {
-        white-space: nowrap; /* Prevent content wrapping */
+        font-size: 14px; /* Adjust font size for smaller screens */
+        padding: 8px; /* Reduce padding */
+    }
+
+    .container {
+        padding: 0 10px; /* Adjust container padding */
+    }
+
+    h1, h2 {
+        font-size: 1.5rem; /* Adjust heading sizes */
     }
     
     .cart-box h2,
