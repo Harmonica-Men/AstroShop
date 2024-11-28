@@ -13,8 +13,21 @@ body {
     overflow-x: hidden; 
 }
 
+
 p {
     margin-bottom: 1rem;
+}
+
+.category-links a {
+    text-decoration: none; 
+    color: white; 
+    transition: color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+}
+
+.category-links a:hover {
+    color: #FFD700; /* Change color on hover (golden) */
+    text-decoration: underline; 
+    transform: scale(1.10); /* Slightly enlarge the text on hover */
 }
 
 .product-image {
@@ -26,6 +39,19 @@ p {
     /* Center the image horizontally */
     display: block;
     /* Ensure proper layout */
+}
+
+.nav-link-index:hover {
+    color: #FFD700 !important; /* Change text color to gold */
+    text-decoration: underline; /* Add underline */
+    transform: scale(1.1); /* Slightly enlarge the item */
+    transition: color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+.nav-link-index {
+    text-decoration: none; 
+
+    transition: color 0.3s ease, transform 0.2s ease; /* Add smooth effect to normal state */
 }
 
 /* Style the box around the link */
@@ -580,10 +606,7 @@ a.category-badge>span.badge:hover {
         /* Reduce padding */
     }
 
-    .container {
-        padding: 0 10px;
-        /* Adjust container padding */
-    }
+    
 
     h1,
     h2 {

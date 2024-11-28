@@ -30,102 +30,103 @@
 
 <!-- Header-->
 <header class="bg-dark">
-    <div class="ml-3">
-        <ul class="list-inline list-unstyled d-flex justify-content-end my-0">
-            <!-- Use d-flex and justify-content-end for right alignment -->
-            <li class="list-inline-item dropdown">
-                <div class="bg-dark">
-                    <a class="text-white nav-link" href="#" id="user-options" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <div class="text-center" style="font-size: 0.8rem;">
-                            <!-- Smaller font size -->
-                            <div><i class="fas fa-user fa-sm"></i></div> <!-- Smaller icon -->
-                            <p class="my-0 small">My Account</p> <!-- Bootstrap small text class -->
-                        </div>
-                    </a>
-                    <div class="dropdown-menu rounded-0 border-1 p-1" aria-labelledby="user-options">
-                        {% if request.user.is_authenticated %}
-                        <a href="{% url 'update_user_profile' %}" class="dropdown-item small">My Profile</a>
-                        <a href="{% url 'update_ship_profile' %}" class="dropdown-item small">My Shipping</a>
-                        <a href="{% url 'update_payment_paypal' %}" class="dropdown-item small">My Payment</a>
-                        {% if not request.user.is_superuser %}
-                        <a href="{% url 'orders' %}" class="dropdown-item small">My Orders</a>
-                        {% endif %}
-                        <a href="{% url 'update_user' %}" class="dropdown-item small">User Account</a>
-                        <a href="{% url 'update_password' %}" class="dropdown-item small">Change Password</a>
-
-
-                        <hr class="dropdown-divider my-1" /> <!-- Smaller divider margin -->
-                        <a href="{% url 'logout' %}" class="dropdown-item small">Logout</a>
-                        {% if request.user.is_superuser %}
-                        <hr class="dropdown-divider my-1" /> <!-- Smaller divider margin -->
-                        <a href="{% url 'add_product' %}" class="dropdown-item small">Add a New Product</a>
-                        <hr class="dropdown-divider my-1" />
-
-                        <a href="{% url 'suppliers_list' %}" class="dropdown-item small">Suppliers List</a>
-                        <a href="{% url 'orders' %}" class="dropdown-item small">View Orders</a>
-                        <a href="{% url 'shipped_dash' %}" class="dropdown-item small">Shipped Orders</a>
-                        <a href="{% url 'not_shipped_dash' %}" class="dropdown-item small">UnShipped Orders</a>
-                        {% endif %}
-                        {% else %}
-                        <a href="{% url 'register' %}" class="dropdown-item small">Register</a>
-                        <a href="{% url 'login' %}" class="dropdown-item small">Login</a>
-                        {% endif %}
+   
+<div class="ml-3">
+    <ul class="list-inline list-unstyled d-flex justify-content-end my-0">
+        <!-- Use d-flex and justify-content-end for right alignment -->
+        <li class="list-inline-item dropdown">
+            <div class="bg-dark">
+                <a class="text-white nav-link-index" href="#" id="user-options" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <div class="text-center" style="font-size: 0.8rem;">
+                        <!-- Smaller font size -->
+                        <div><i class="fas fa-user fa-sm"></i></div> <!-- Smaller icon -->
+                        <p class="my-0 small">My Account</p> <!-- Bootstrap small text class -->
                     </div>
-                </div>
-            </li>
-            <li class="list-inline-item">
-                <div class="bg-dark mr-3">
-                    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %} nav-link"
-                        href="{% url 'shopcart_summary' %}">
-                        <div class="text-center" style="font-size: 0.8rem;">
-                            <!-- Smaller font size -->
-                            <div><i class="fas fa-cart-shopping fa-sm"></i></div> <!-- Smaller icon -->
-                            <p class="small mr-3">Shopping Cart</p> <!-- Bootstrap small text class -->
-                        </div>
-                    </a>
-                </div>
-            </li>
-        </ul>
+                </a>
+                <div class="dropdown-menu rounded-0 border-1 p-1" aria-labelledby="user-options">
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'update_user_profile' %}" class="dropdown-item small">My Profile</a>
+                    <a href="{% url 'update_ship_profile' %}" class="dropdown-item small">My Shipping</a>
+                    <a href="{% url 'update_payment_paypal' %}" class="dropdown-item small">My Payment</a>
+                    {% if not request.user.is_superuser %}
+                    <a href="{% url 'orders' %}" class="dropdown-item small">My Orders</a>
+                    {% endif %}
+                    <a href="{% url 'update_user' %}" class="dropdown-item small">User Account</a>
+                    <a href="{% url 'update_password' %}" class="dropdown-item small">Change Password</a>
 
+                    <hr class="dropdown-divider my-1" /> <!-- Smaller divider margin -->
+                    <a href="{% url 'logout' %}" class="dropdown-item small">Logout</a>
+                    {% if request.user.is_superuser %}
+                    <hr class="dropdown-divider my-1" /> <!-- Smaller divider margin -->
+                    <a href="{% url 'add_product' %}" class="dropdown-item small">Add a New Product</a>
+                    <hr class="dropdown-divider my-1" />
+
+                    <a href="{% url 'suppliers_list' %}" class="dropdown-item small">Suppliers List</a>
+                    <a href="{% url 'orders' %}" class="dropdown-item small">View Orders</a>
+                    <a href="{% url 'shipped_dash' %}" class="dropdown-item small">Shipped Orders</a>
+                    <a href="{% url 'not_shipped_dash' %}" class="dropdown-item small">UnShipped Orders</a>
+                    {% endif %}
+                    {% else %}
+                    <a href="{% url 'register' %}" class="dropdown-item small">Register</a>
+                    <a href="{% url 'login' %}" class="dropdown-item small">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </li>
+        <li class="list-inline-item">
+            <div class="bg-dark mr-3">
+                <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %} nav-link-index"
+                    href="{% url 'shopcart_summary' %}">
+                    <div class="text-center" style="font-size: 0.8rem;">
+                        <!-- Smaller font size -->
+                        <div><i class="fas fa-cart-shopping fa-sm"></i></div> <!-- Smaller icon -->
+                        <p class="small mr-3">Shopping Cart</p> <!-- Bootstrap small text class -->
+                    </div>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+    
+<div class="container text-center text-white px-2 px-lg-2 my-2">
+    <div>
+        <h1 class="display-4 logo-font text-white mb-5">ASTRO&nbsp;SHOP</h1>
     </div>
 
-
-    <div class="container text-center text-white px-2 px-lg-2 my-2">
-        <div>
-            <h1 class="display-4 logo-font text-white mb-5">ASTRO&nbsp;SHOP</h1>
-        </div>
-
-        <div class="d-flex flex-wrap justify-content-center mb-2 me-5" style="font-size: medium;">
-            <a href="{% url 'category' 'Sales' %}" class="py-2 mx-2 text-white">
-                <h4>
-                    <span class="fa-regular fa-star"></span>
-                    <strong class="mx-2">Sale!</strong>
-                    <span class="fa-regular fa-star"></span>
-                </h4>
-            </a>
-            <a href="{% url 'category' 'Books' %}" class="py-2 mx-2 text-white">
-                <h4>Books</h4>
-            </a>
-            <a href="{% url 'category' 'Toys' %}" class="py-2 mx-2 text-white">
-                <h4>Toys</h4>
-            </a>
-            <a href="{% url 'category' 'Telescopes' %}" class="py-2 mx-2 text-white">
-                <h4>Telescopes</h4>
-            </a>
-            <a href="{% url 'category' 'Globes' %}" class="py-2 mx-2 text-white">
-                <h4>Globes</h4>
-            </a>
-            <a href="{% url 'category' 'Binoculars' %}" class="py-2 mx-2 text-white">
-                <h4>Binoculars</h4>
-            </a>
-            <a href="{% url 'category' 'Weather Stations' %}" class="py-2 mx-2 text-white">
-                <h4>Weather Stations</h4>
-            </a>
-            <a href="{% url 'products' %}" class="py-2 mx-2 text-white">
-                <h4>All Products</h4>
-            </a>
-        </div>
+    <div class="category-links d-flex flex-wrap justify-content-center mb-2 me-5" style="font-size: medium;">
+        <a href="{% url 'category' 'Sales' %}" class="py-2 mx-2">
+            <h4>
+                <span class="fa-regular fa-star"></span>
+                <strong class="mx-2">Sale!</strong>
+                <span class="fa-regular fa-star"></span>
+            </h4>
+        </a>
+        <a href="{% url 'category' 'Books' %}" class="py-2 mx-2">
+            <h4>Books</h4>
+        </a>
+        <a href="{% url 'category' 'Toys' %}" class="py-2 mx-2">
+            <h4>Toys</h4>
+        </a>
+        <a href="{% url 'category' 'Telescopes' %}" class="py-2 mx-2">
+            <h4>Telescopes</h4>
+        </a>
+        <a href="{% url 'category' 'Globes' %}" class="py-2 mx-2">
+            <h4>Globes</h4>
+        </a>
+        <a href="{% url 'category' 'Binoculars' %}" class="py-2 mx-2">
+            <h4>Binoculars</h4>
+        </a>
+        <a href="{% url 'category' 'Weather Stations' %}" class="py-2 mx-2">
+            <h4>Weather Stations</h4>
+        </a>
+        <a href="{% url 'products' %}" class="py-2 mx-2">
+            <h4>All Products</h4>
+        </a>
+    </div>
+</div>
 
 
 
@@ -234,13 +235,13 @@
                     <div class="col-md-4 mb-2">
                         <div class="ml-2">
                             <h6><strong>Client&nbsp;Service</strong></h6>
-                            <a href="{% url 'about' %}" class="text-white" style="font-size: small">About</a><br>
-                            <a href="{% url 'general_conditions' %}" class="text-white" style="font-size: small">General
+                            <a href="{% url 'about' %}" class="nav-link-index text-white " style="font-size: small">About</a><br>
+                            <a href="{% url 'general_conditions' %}" class="nav-link-index text-white" style="font-size: small">General
                                 conditions</a><br>
-                            <a href="{% url 'disclaimer' %}" class="text-white" style="font-size: small">Disclaimer</a><br>
-                            <a href="{% url 'privacy' %}" class="text-white" style="font-size: small">Privacy
+                            <a href="{% url 'disclaimer' %}" class="nav-link-index text-white" style="font-size: small">Disclaimer</a><br>
+                            <a href="{% url 'privacy' %}" class="nav-link-index text-white" style="font-size: small">Privacy
                                 Policy</a><br>
-                            <a href="{% url 'payment' %}" class="text-white" style="font-size: small">Payment</a><br>
+                            <a href="{% url 'payment' %}" class="nav-link-index text-white" style="font-size: small">Payment</a><br>
                         </div>
                     </div>
 
@@ -248,9 +249,9 @@
                     <div class="col-md-4 mb-2">
                         <div class="ml-2">
                             <h6><strong>Products</strong></h6>
-                            <a href="{% url 'products' %}" class="text-white" style="font-size: small">All
+                            <a href="{% url 'products' %}" class="nav-link-index text-white" style="font-size: small">All
                                 Products</a><br>
-                            <a href="{% url 'category' 'Sales' %}" class="text-white"
+                            <a href="{% url 'category' 'Sales' %}" class="nav-link-index text-white"
                                 style="font-size: small">Sales</a><br>
 
                         </div>
@@ -260,11 +261,11 @@
                     <div class="col-md-4 mb-2">
                         <div class="ml-2">
                             <h6><strong>User&nbsp;Account</strong></h6>
-                            <a href="{% url 'shopcart_summary' %}" class="text-white" style="font-size: small">Shopping
+                            <a href="{% url 'shopcart_summary' %}" class="nav-link-index text-white" style="font-size: small">Shopping
                                 Cart</a><br>
-                            <a href="{% url 'login' %}" class="text-white" style="font-size: small">Login</a><br>
+                            <a href="{% url 'login' %}" class="nav-link-index text-white" style="font-size: small">Login</a><br>
 
-                            <a href="{% url 'register' %}" class="text-white" style="font-size: small">Register</a><br>
+                            <a href="{% url 'register' %}" class="nav-link-index text-white" style="font-size: small">Register</a><br>
                         </div>
                     </div>
 
@@ -278,23 +279,23 @@
 
 
                 <li class="ms-4">
-                    <a class="color-hyperlink" href="https://x.com/?lang=en" aria-label="Twitter" target="_blank">
-                        <i class="fab fa-twitter fa-2x p-2 icon-white"></i>
+                    <a href="https://x.com/?lang=en" aria-label="Twitter" target="_blank">
+                        <i class="fab fa-twitter fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
                     </a>
                 </li>
                 <li class="ms-4">
-                    <a class="color-hyperlink" href="https://www.instagram.com/" aria-label="Instagram" target="_blank">
-                        <i class="fab fa-instagram fa-2x p-2 icon-white"></i>
+                    <a href="https://www.instagram.com/" aria-label="Instagram" target="_blank">
+                        <i class="fab fa-instagram fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
                     </a>
                 </li>
                 <li class="ms-4">
-                    <a class="color-hyperlink" href="https://www.facebook.com/" aria-label="Facebook" target="_blank">
-                        <i class="fab fa-facebook fa-2x p-2 icon-white"></i>
+                    <a href="https://www.facebook.com/" aria-label="Facebook" target="_blank">
+                        <i class="fab fa-facebook fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
                     </a>
                 </li>
                 <li class="ms-4">
-                    <a class="color-hyperlink" href="https://codeinstitute.net/global/" aria-label="Website" target="_blank">
-                        <i class="fa-solid fa-globe fa-2x p-2 icon-white"></i>
+                    <a href="https://codeinstitute.net/global/" aria-label="Website" target="_blank">
+                        <i class="fa-solid fa-globe fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
                     </a>
                 </li>
                 
