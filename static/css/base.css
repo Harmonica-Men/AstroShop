@@ -13,7 +13,6 @@ body {
     overflow-x: hidden; 
 }
 
-
 p {
     margin-bottom: 1rem;
 }
@@ -497,50 +496,6 @@ a.category-badge>span.badge:hover {
 
 /* For screens smaller than 500px */
 @media (max-width: 500px) {
-
-    /* Fixed banner styles */
-    .fixed-banner {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        /* Full width of the screen */
-        height: 40px;
-        /* Fixed height */
-        background-color: white;
-        /* Banner background color */
-        z-index: 1000;
-        /* Ensure it appears above other elements */
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        /* Subtle shadow for depth */
-        display: flex;
-        /* Use flexbox for content alignment */
-        align-items: center;
-        /* Vertically center items */
-        justify-content: center;
-        /* Horizontally center items */
-        padding: 10px;
-        /* Optional: Add padding around the content */
-        border-bottom: 1px solid #ccc;
-        /* Optional: Add a border below the banner */
-    }
-
-    /* Banner text or logo */
-    .fixed-banner h2 {
-        font-size: 1.5rem;
-        /* Adjust text size */
-        color: #333;
-        /* Text color */
-        margin: 0;
-        /* Remove default margins */
-    }
-
-    /* Adjust page content below the fixed banner */
-    body {
-        padding-top: 40px;
-        /* Add padding equal to the banner height */
-    }
-
     .menu__box {
         position: fixed;
         top: 0;
@@ -580,6 +535,8 @@ a.category-badge>span.badge:hover {
 
     .hamburger-menu {
         display: block;
+        padding: 5px;
+        background-color: white;
     }
 
     .table-responsive {

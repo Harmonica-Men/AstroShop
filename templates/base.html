@@ -88,7 +88,7 @@
 </head>
 
 <body>
-    <header class="container-fluid bg-dark">
+    <header class="bg-dark">
         <div class="account-cart">
             <li class="list-inline-item">
                 <!-- Trigger for dropdown -->
@@ -155,16 +155,16 @@
 
         <div id="topnav" class="row bg-white justify-content-between">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-                <a href="{% url 'home' %}" class="cart-box nav-link hover-bg">
-                    <div class="fixed-banner">
+                <a href="{% url 'home' %}" class="cart-box nav-link hover-bg ml-5">
+                  
 
                         <h2><strong>ASTRO&nbsp;SHOP</strong></h2>
-                    </div>
+                  
                 </a>
             </div>
 
             <div class="row bg-white">
-                <nav class="navbar navbar-expand-lg navbar-light w-100">
+                <nav class="navbar navbar-expand-lg navbar-light w-100 mr-3">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
                         aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -253,17 +253,12 @@
 
 
         <!-- section navbar -->
-        <div class="hamburger-menu bg-dark">
-
-
-
+        <div class="hamburger-menu">
 
             <input id="menu__toggle" type="checkbox" />
             <label class="menu__btn" for="menu__toggle">
                 <span></span>
             </label>
-
-
 
             <ul class="menu__box">
                 <li><a class="menu__item" href="{% url 'home' %}">Home Page</a></li>
