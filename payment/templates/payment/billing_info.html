@@ -7,9 +7,10 @@
     <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
             <br>
-            <h1 class="display-4 fw-bolder mt-5">Pay whit PayPal</Details></h1>          
+            <h1 class="display-4 fw-bolder mt-5">Pay whit PayPal</Details>
+            </h1>
             <p class="lead fw-normal text-white-40 mb-2">All most there ...</p>
-        
+
         </div>
     </div>
 </header>
@@ -88,13 +89,13 @@
                         </div>
                     </div>
                 </div>
-            
+
                 <!-- Payment Info Column -->
                 {% if request.user.is_authenticated %}
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            Payment Information 
+                            <a href="{% url 'update_payment_paypal' %}" class="btn btn-outline-secondary">Update Pay-Pal Payment Profile </a>                            
                         </div>
                         <div class="card-body">
                             Name on Card: {{ payment_form.card_name.value }}<br />
@@ -112,13 +113,13 @@
                 </div>
                 {% endif %}
             </div>
-            
+
             <div>
                 <button class="btn btn-outline-secondary btn-lg ml-5 mt-3 mb-3">
                     {{ paypal_form.render }}
                 </button>
             </div>
-            
+
         </div>
     </div>
 </div>

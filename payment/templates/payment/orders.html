@@ -17,6 +17,7 @@
                 <div class="card mb-3">
 
                     <div class="card-header text-center">
+                        
                         <form method="POST" action="{% url 'order_delete_confirmation' order.id %}">
 
                             {% csrf_token %}
@@ -25,11 +26,13 @@
 
                             Order #{{ order.id }} - <strong>€{{ order.amount_paid }}</strong>
                         </form>
+                    
 
                     </div>
 
                     <div class="card-body">
                         <!-- Combined Table for Order Details and Shipping Information -->
+                        <div class="table-responsive"> 
                         <table class="table table-bordered">
                             <thead class="table-dark">
                                 <tr>
@@ -61,9 +64,11 @@
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
 
                         <!-- Order Items Table -->
                         <h5 class="mt-4">Order Items</h5>
+                        <div class="table-responsive"> 
                         <table class="table table-bordered table-striped text-center">
                             <thead>
                                 <tr>
@@ -82,6 +87,7 @@
                                 {% endfor %}
                             </tbody>
                         </table>
+                        </div>
 
                         <!-- Actions -->
                         <form method="POST">

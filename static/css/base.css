@@ -3,15 +3,22 @@ html {
 }
 
 body {
-    /* background: url('/media/uploads/product/bg-image.webp') no-repeat center center fixed; */
+    
     background-size: cover;
-    /* height: calc(100vh - 164px); */
+    
     color: #555;
     font-family: 'Lato';
 }
 
 p {
     margin-bottom: 1rem; 
+}
+
+.product-image {
+    max-width: 400px; /* Cap the image width */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the image horizontally */
+    display: block; /* Ensure proper layout */
 }
 
  /* Style the box around the link */
@@ -117,7 +124,6 @@ p {
     height: 2px;
 }
 
-
 @media (max-width: 768px) {
     .image-text-overlay p {
         font-size: 0.8rem; /* Smaller font size for mobile devices */
@@ -126,9 +132,12 @@ p {
     .shop-now-button {
         width: 100%; /* Full width for the button on smaller screens */
     }
+
+    .product-image {
+       max-width: 200px; /* Cap the image width */
+    
+    }
 }
-
-
 
 /* from Bulma */
 .icon {
@@ -138,7 +147,6 @@ p {
     height: 1.5rem;
     width: 1.5rem;
 }
-
 
 /* Set consistent font size for product name */
 .product-name {
@@ -153,7 +161,6 @@ p {
     /* Adjust as needed */
     color: black;
 }
-
 
 .icon-white {
     color: white;
@@ -196,7 +203,6 @@ p {
     width: auto;
 }
 
-
 .transparent-gray-bg {
     background-color: rgba(128, 128, 128, 0.75);
 }
@@ -205,23 +211,20 @@ p {
     transform: scale(0.9);
 }
 
-
-
-
-/* .shop-now-button {
+.shop-now-button {
     background: black;
     color: white;
     min-width: 260px;
-} */
+}
 
 .btn-black {
     background: black;
     color: white;
 }
-/* 
+
 .shop-now-button:hover,
 .shop-now-button:active,
-.shop-now-button:focus, */
+.shop-now-button:focus,
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
@@ -267,8 +270,6 @@ a.category-badge>span.badge:hover {
 .btt-link {
     cursor: pointer;
 }
-
-
 
 /* Hamburger menu */
 #menu__toggle {
@@ -463,7 +464,6 @@ a.category-badge>span.badge:hover {
         padding-top: 40px; /* Add padding equal to the banner height */
     }
 
-
     .menu__box {
         position: fixed;
         top: 0;
@@ -533,6 +533,11 @@ a.category-badge>span.badge:hover {
     .cart-box.nav-link,
     .cart-box.nav-link.hover-bg {
         display: none; /* Hide the h2, nav-link, and hover-bg */
+    }
+
+    .product-image {
+        max-width: 150px; /* Cap the image width */
+
     }
 
 }

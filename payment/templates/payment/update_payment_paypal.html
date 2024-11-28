@@ -22,7 +22,8 @@
                 <strong class="product-name text-black">Pay Pal - Payment Information</strong>
                 {{ payment_form.as_p }}
                 <div class="d-flex justify-content-between mb-4">
-                    <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
+                    <a href="{% url 'products' %}" class="btn btn-secondary mr-2">Back To Products</a>
+                    <a href="{% url 'checkout' %}" class="btn btn-success mr-2">Checkout</a>
                     <button type="submit" class="btn btn-secondary"> Update Profile
                     </button>
                 </div>
