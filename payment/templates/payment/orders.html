@@ -17,7 +17,7 @@
                 <div class="card mb-3">
 
                     <div class="card-header text-center">
-                        
+
                         <form method="POST" action="{% url 'order_delete_confirmation' order.id %}">
 
                             {% csrf_token %}
@@ -26,67 +26,67 @@
 
                             Order #{{ order.id }} - <strong>€{{ order.amount_paid }}</strong>
                         </form>
-                    
+
 
                     </div>
 
                     <div class="card-body">
                         <!-- Combined Table for Order Details and Shipping Information -->
-                        <div class="table-responsive"> 
-                        <table class="table table-bordered">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th colspan="2" class="text-center">Order Details & Shipping Information</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Date</th>
-                                    <td>
-                                        {% if order.date_shipped %}
-                                        <strong>Date Shipped:</strong> {{ order.date_shipped }}
-                                        {% else %}
-                                        <strong>Date Ordered:</strong> {{ order.date_ordered }}
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Email</th>
-                                    <td>{{ order.email }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Name</th>
-                                    <td>{{ order.full_name }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Address</th>
-                                    <td>{{ order.shipping_address }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th colspan="2" class="text-center">Order Details & Shipping Information</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Date</th>
+                                        <td>
+                                            {% if order.date_shipped %}
+                                            <strong>Date Shipped:</strong> {{ order.date_shipped }}
+                                            {% else %}
+                                            <strong>Date Ordered:</strong> {{ order.date_ordered }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Email</th>
+                                        <td>{{ order.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Name</th>
+                                        <td>{{ order.full_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Address</th>
+                                        <td>{{ order.shipping_address }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
                         <!-- Order Items Table -->
                         <h5 class="mt-4">Order Items</h5>
-                        <div class="table-responsive"> 
-                        <table class="table table-bordered table-striped text-center">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in order.orderitem_set.all %}
-                                <tr>
-                                    <td>{{ item.product }}</td>
-                                    <td>{{ item.quantity }}</td>
-                                    <td>${{ item.price }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.orderitem_set.all %}
+                                    <tr>
+                                        <td>{{ item.product }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>${{ item.price }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
 
                         <!-- Actions -->
