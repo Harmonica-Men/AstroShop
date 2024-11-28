@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 CLOUDINARY_URL = 'cloudinary://555555948157323:cLY3URO_imRS3iZMiNoOh3O-4oc@dtbji5cfz'
 
-DEBUG = False
+DEBUG = True
 # DEBUG = 'DEVELOPMENT' in os.environ
 
 
