@@ -3,38 +3,46 @@ html {
 }
 
 body {
-    
+
     background-size: cover;
-    
+
     color: #555;
     font-family: 'Lato';
 }
 
 p {
-    margin-bottom: 1rem; 
+    margin-bottom: 1rem;
 }
 
 .product-image {
-    max-width: 400px; /* Cap the image width */
-    height: auto; /* Maintain aspect ratio */
-    margin: 0 auto; /* Center the image horizontally */
-    display: block; /* Ensure proper layout */
+    max-width: 400px;
+    /* Cap the image width */
+    height: auto;
+    /* Maintain aspect ratio */
+    margin: 0 auto;
+    /* Center the image horizontally */
+    display: block;
+    /* Ensure proper layout */
 }
 
- /* Style the box around the link */
- .cart-box {
+/* Style the box around the link */
+.cart-box {
     display: inline-block;
     padding: 10px;
-    border: 1px solid #ccc; /* Box border color */
-    border-radius: 0px; 
-    background-color: #f8f9fa; /* Background color */
+    border: 1px solid #ccc;
+    /* Box border color */
+    border-radius: 0px;
+    background-color: #f8f9fa;
+    /* Background color */
     transition: background-color 0.3s, border-color 0.3s;
 }
 
 /* Hover effect */
 .cart-box:hover {
-    background-color: #e9ecef; /* Darker background on hover */
-    border-color: #aaa; /* Darker border on hover */
+    background-color: #e9ecef;
+    /* Darker background on hover */
+    border-color: #aaa;
+    /* Darker border on hover */
 }
 
 .cart-box .nav-link {
@@ -69,27 +77,32 @@ p {
 .astroshop-image {
     position: relative;
     width: 100%;
-    height: 600px; /* Set a specific height for the image */
+    height: 600px;
+    /* Set a specific height for the image */
     overflow: hidden;
 }
 
 .astroshop-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the area without distortion */
+    object-fit: cover;
+    /* Ensures the image covers the area without distortion */
 }
 
 .image-text-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Center the text inside the image */
+    transform: translate(-50%, -50%);
+    /* Center the text inside the image */
     color: white;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
     padding: 20px;
     border-radius: 8px;
-    width: 80%;  /* Optional: Limit the width of the text */
+    width: 80%;
+    /* Optional: Limit the width of the text */
 }
 
 .image-text-overlay p {
@@ -101,10 +114,12 @@ p {
 
 /* Shop Now button styling */
 .shop-now-button {
-    font-size: 1.25rem;
-    /* width: auto; */
-    max-width: 200px;
-    margin: 0 auto;   /* Center the button */
+    font-size: 1.25rem;    
+    max-width: 333px;
+    min-width: 260px;
+    margin: 0 auto;
+    background: white;
+    color: black;    
 }
 
 /* ------------------------------- bootstrap toasts */
@@ -126,16 +141,15 @@ p {
 
 @media (max-width: 768px) {
     .image-text-overlay p {
-        font-size: 0.8rem; /* Smaller font size for mobile devices */
-    }
-    
-    .shop-now-button {
-        width: 100%; /* Full width for the button on smaller screens */
+        font-size: 0.8rem;
+        /* Smaller font size for mobile devices */
     }
 
+
     .product-image {
-       max-width: 200px; /* Cap the image width */
-    
+        max-width: 200px;
+        /* Cap the image width */
+
     }
 }
 
@@ -178,8 +192,8 @@ p {
 .navbar-nav .dropdown-item:hover,
 .navbar .btn:hover,
 .shop-now-button:hover {
-    background-color: black;     /* Dark background on hover */
-    color: white !important;     /* White text on hover */
+    background-color: black !important;
+    color: white !important;
 }
 
 /* Optional: Smooth transition */
@@ -211,11 +225,6 @@ p {
     transform: scale(0.9);
 }
 
-.shop-now-button {
-    background: black;
-    color: white;
-    min-width: 260px;
-}
 
 .btn-black {
     background: black;
@@ -228,7 +237,7 @@ p {
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
-    background: #222;
+    background: black;
     color: white;
 }
 
@@ -276,21 +285,21 @@ a.category-badge>span.badge:hover {
     opacity: 0;
 }
 
-#menu__toggle:checked + .menu__btn > span {
+#menu__toggle:checked+.menu__btn>span {
     transform: rotate(45deg);
 }
 
-#menu__toggle:checked + .menu__btn > span::before {
+#menu__toggle:checked+.menu__btn>span::before {
     top: 0;
     transform: rotate(0deg);
 }
 
-#menu__toggle:checked + .menu__btn > span::after {
+#menu__toggle:checked+.menu__btn>span::after {
     top: 0;
     transform: rotate(90deg);
 }
 
-#menu__toggle:checked ~ .menu__box {
+#menu__toggle:checked~.menu__box {
     left: 0 !important;
 }
 
@@ -298,29 +307,34 @@ a.category-badge>span.badge:hover {
     position: fixed;
     top: 15px;
     left: 25px;
-    width: 20px; 
-    height: 20px; 
+    width: 20px;
+    height: 20px;
     z-index: 1000;
-    background-color: white;     
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-     transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover transition */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Smooth hover transition */
 }
 
 .menu__btn:hover {
-    background-color: #adadad; /* Light gray background on hover */
-    transform: scale(1.1); /* Slightly enlarge on hover */
-    
+    background-color: #adadad;
+    /* Light gray background on hover */
+    transform: scale(1.1);
+    /* Slightly enlarge on hover */
+
 }
 
 .menu__btn span {
     display: block;
     width: 20px;
     height: 2px;
-    background-color: #333; /* Default bar color */
+    background-color: #333;
+    /* Default bar color */
     position: relative;
-    transition: background-color 0.3s ease; /* Smooth color transition */
+    transition: background-color 0.3s ease;
+    /* Smooth color transition */
 }
 
 .menu__btn span::before,
@@ -329,27 +343,33 @@ a.category-badge>span.badge:hover {
     position: absolute;
     width: 20px;
     height: 2px;
-    background-color: #333; /* Default bar color */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover transition */
+    background-color: #333;
+    /* Default bar color */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Smooth hover transition */
 }
 
 .menu__btn span::before {
-    top: -6px; /* Position the top bar */
+    top: -6px;
+    /* Position the top bar */
 }
 
 .menu__btn span::after {
-    top: 6px; /* Position the bottom bar */
+    top: 6px;
+    /* Position the bottom bar */
 }
 
 .menu__btn:hover span,
 .menu__btn:hover span::before,
 .menu__btn:hover span::after {
-    background-color: #007bff; /* Change bar color on hover */
+    background-color: #007bff;
+    /* Change bar color on hover */
 }
 
 /* Optional: Animation effect for a more dynamic hover */
 .menu__btn:hover span::before {
-    transform: translateY(2px); /* Slight movement for top bar */
+    transform: translateY(2px);
+    /* Slight movement for top bar */
 }
 
 
@@ -366,7 +386,8 @@ a.category-badge>span.badge:hover {
     background-color: #ECEFF1;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
     transition-duration: .25s;
-    z-index: 999; /* Ensure menu appears above other content */
+    z-index: 999;
+    /* Ensure menu appears above other content */
 }
 
 .menu__item {
@@ -401,31 +422,43 @@ a.category-badge>span.badge:hover {
 
 /* Add hover effect for the entire link */
 .hover-effect:hover {
-    color: #007bff; /* Change text/icon color */
-    background-color: rgba(0, 123, 255, 0.1); /* Subtle background change */
-    border-radius: 8px; /* Add rounded corners if needed */
-    transition: background-color 0.3s, color 0.3s; /* Smooth hover transition */
+    color: #007bff;
+    /* Change text/icon color */
+    background-color: rgba(0, 123, 255, 0.1);
+    /* Subtle background change */
+    border-radius: 8px;
+    /* Add rounded corners if needed */
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth hover transition */
 }
 
 /* Specific hover effect for the icon */
 .hover-effect i {
-    transition: transform 0.3s; /* Smooth scaling effect */
+    transition: transform 0.3s;
+    /* Smooth scaling effect */
 }
 
 .hover-effect:hover i {
-    transform: scale(1.2); /* Slightly enlarge the icon on hover */
-    color: #0056b3; /* Optional: Change icon color on hover */
+    transform: scale(1.2);
+    /* Slightly enlarge the icon on hover */
+    color: #0056b3;
+    /* Optional: Change icon color on hover */
 }
 
 .hover-bg {
-    background-color: white; /* Default background color */
-    color: black; /* Default text color */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    background-color: white;
+    /* Default background color */
+    color: black;
+    /* Default text color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Smooth transition */
 }
 
 .hover-bg:hover {
-    background-color: black; /* Background color on hover */
-    color: white; /* Text color on hover */
+    background-color: black;
+    /* Background color on hover */
+    color: white;
+    /* Text color on hover */
 }
 
 .account-cart {
@@ -435,33 +468,48 @@ a.category-badge>span.badge:hover {
 
 /* For screens smaller than 500px */
 @media (max-width: 500px) {
+
     /* Fixed banner styles */
     .fixed-banner {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%; /* Full width of the screen */
-        height: 40px; /* Fixed height */
-        background-color: white; /* Banner background color */
-        z-index: 1000; /* Ensure it appears above other elements */
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-        display: flex; /* Use flexbox for content alignment */
-        align-items: center; /* Vertically center items */
-        justify-content: center; /* Horizontally center items */
-        padding: 10px; /* Optional: Add padding around the content */
-        border-bottom: 1px solid #ccc; /* Optional: Add a border below the banner */
+        width: 100%;
+        /* Full width of the screen */
+        height: 40px;
+        /* Fixed height */
+        background-color: white;
+        /* Banner background color */
+        z-index: 1000;
+        /* Ensure it appears above other elements */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        /* Subtle shadow for depth */
+        display: flex;
+        /* Use flexbox for content alignment */
+        align-items: center;
+        /* Vertically center items */
+        justify-content: center;
+        /* Horizontally center items */
+        padding: 10px;
+        /* Optional: Add padding around the content */
+        border-bottom: 1px solid #ccc;
+        /* Optional: Add a border below the banner */
     }
 
     /* Banner text or logo */
     .fixed-banner h2 {
-        font-size: 1.5rem; /* Adjust text size */
-        color: #333; /* Text color */
-        margin: 0; /* Remove default margins */
+        font-size: 1.5rem;
+        /* Adjust text size */
+        color: #333;
+        /* Text color */
+        margin: 0;
+        /* Remove default margins */
     }
 
     /* Adjust page content below the fixed banner */
     body {
-        padding-top: 40px; /* Add padding equal to the banner height */
+        padding-top: 40px;
+        /* Add padding equal to the banner height */
     }
 
     .menu__box {
@@ -489,7 +537,7 @@ a.category-badge>span.badge:hover {
         background-color: #CFD8DC;
     }
 
-    #menu__toggle:checked ~ .menu__box {
+    #menu__toggle:checked~.menu__box {
         left: 0;
     }
 
@@ -506,37 +554,50 @@ a.category-badge>span.badge:hover {
     }
 
     .table-responsive {
-        overflow-x: auto; /* Enable horizontal scrolling */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
-        border: 1px solid #ddd; /* Optional: Add border for better visibility */
+        overflow-x: auto;
+        /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch;
+        /* Smooth scrolling on touch devices */
+        border: 1px solid #ddd;
+        /* Optional: Add border for better visibility */
     }
 
     table {
-        min-width: 700px; /* Ensure the table is wider than the viewport */
-        white-space: nowrap; /* Prevent text from wrapping */
+        min-width: 700px;
+        /* Ensure the table is wider than the viewport */
+        white-space: nowrap;
+        /* Prevent text from wrapping */
     }
 
-    th, td {
-        font-size: 14px; /* Adjust font size for smaller screens */
-        padding: 8px; /* Reduce padding */
+    th,
+    td {
+        font-size: 14px;
+        /* Adjust font size for smaller screens */
+        padding: 8px;
+        /* Reduce padding */
     }
 
     .container {
-        padding: 0 10px; /* Adjust container padding */
+        padding: 0 10px;
+        /* Adjust container padding */
     }
 
-    h1, h2 {
-        font-size: 1.5rem; /* Adjust heading sizes */
+    h1,
+    h2 {
+        font-size: 1.5rem;
+        /* Adjust heading sizes */
     }
-    
+
     .cart-box h2,
     .cart-box.nav-link,
     .cart-box.nav-link.hover-bg {
-        display: none; /* Hide the h2, nav-link, and hover-bg */
+        display: none;
+        /* Hide the h2, nav-link, and hover-bg */
     }
 
     .product-image {
-        max-width: 150px; /* Cap the image width */
+        max-width: 150px;
+        /* Cap the image width */
 
     }
 
@@ -548,7 +609,7 @@ a.category-badge>span.badge:hover {
     .account-cart {
         display: block;
         position: fixed;
-        
+
         top: 0;
         right: 0;
     }
@@ -563,13 +624,15 @@ a.category-badge>span.badge:hover {
     }
 
     .logo-font {
-        font-size: 1.85rem; /* Font size for screens up to 991px */
+        font-size: 1.85rem;
+        /* Font size for screens up to 991px */
         text-align: center;
     }
 
     /* Hide the navbar on small screens */
     .navbar {
-        display: none; /* Hide the default navbar */
+        display: none;
+        /* Hide the default navbar */
     }
 
     /* Show hamburger menu button */
@@ -585,12 +648,12 @@ a.category-badge>span.badge:hover {
     }
 
     /* Show the navbar when the hamburger menu is checked */
-    #menu__toggle:checked ~ .menu__box {
+    #menu__toggle:checked~.menu__box {
         left: 0;
     }
 
     /* Make the menu appear when hovering over hamburger */
-    .hamburger-menu:hover + .menu__box {
+    .hamburger-menu:hover+.menu__box {
         left: 0;
     }
 
@@ -598,7 +661,8 @@ a.category-badge>span.badge:hover {
         display: block;
         position: fixed;
         top: 0;
-        left: -100%; /* Hide menu off-screen */
+        left: -100%;
+        /* Hide menu off-screen */
         width: 300px;
         height: 100%;
         margin: 0;
@@ -606,8 +670,10 @@ a.category-badge>span.badge:hover {
         list-style: none;
         background-color: #ECEFF1;
         box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
-        transition: left 0.25s ease; /* Smooth transition */
-        z-index: 999; /* Ensure menu overlays all other elements */
+        transition: left 0.25s ease;
+        /* Smooth transition */
+        z-index: 999;
+        /* Ensure menu overlays all other elements */
     }
 
     .menu__item {
@@ -628,6 +694,7 @@ a.category-badge>span.badge:hover {
 
 /* Media query for screens larger than 992px */
 @media (min-width: 992px) {
+
     /* Hide hamburger menu on larger screens */
     .hamburger-menu {
         display: none;
@@ -640,10 +707,12 @@ a.category-badge>span.badge:hover {
 
     /* Ensure the menu is visible (you can customize this if needed) */
     #main-nav {
-        display: flex; /* Or any other display style depending on your layout */
+        display: flex;
+        /* Or any other display style depending on your layout */
     }
 
     .menu__box {
-        display: none; /* Hide hamburger menu by default */
+        display: none;
+        /* Hide hamburger menu by default */
     }
 }
