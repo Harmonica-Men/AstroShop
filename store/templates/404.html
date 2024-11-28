@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Page Not Found</h1>
+            <p class="lead fw-normal text-white-40 mb-2">404</p>
+        </div>
+    </div>
+</header>
+
+<div class="container text-center d-flex justify-content-center align-items-center" style="min-height: calc(45vh);">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="p-4 shadow-lg" style="width: 100%; max-width: 578px;">
+          <h4>The requested page was not found</h4>
+          <p>Please try again</p>
+            
+          <a href="{% url 'products'%}" class="btn btn-secondary mt-3">Back To Products</a>
+
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}

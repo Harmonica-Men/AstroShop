@@ -21,11 +21,6 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
-
-# settings.py
-
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,7 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 CLOUDINARY_URL = 'cloudinary://555555948157323:cLY3URO_imRS3iZMiNoOh3O-4oc@dtbji5cfz'
 
-DEBUG = True
+DEBUG = False
 # DEBUG = 'DEVELOPMENT' in os.environ
 
 
