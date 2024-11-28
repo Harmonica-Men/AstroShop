@@ -18,14 +18,19 @@
 
                     <div class="card-header text-center">
 
+                        {% if request.user.is_superuser %}
+
                         <form method="POST" action="{% url 'order_delete_confirmation' order.id %}">
 
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger btn-sm"
                                 style="float: left; margin-right: 10px;">Delete Order</button>
 
-                            Order #{{ order.id }} - <strong>€{{ order.amount_paid }}</strong>
+                            
                         </form>
+                        {% endif %}
+
+                        Order #{{ order.id }} - <strong>€{{ order.amount_paid }}</strong>
 
 
                     </div>
