@@ -4,6 +4,7 @@ from django import forms
 from .models import Product, Profile, Subscription, Supplier
 
 
+
 class UpdateProductForm(forms.ModelForm):
     class Meta:
         model = Product
@@ -112,3 +113,5 @@ class SupplierForm(forms.ModelForm):
             'supplier_zipcode',
             'supplier_product',
         ]
+
+

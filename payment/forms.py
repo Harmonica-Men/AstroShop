@@ -1,6 +1,32 @@
 from django import forms
 from .models import ShippingAddress, PaymentOfPayPal
 
+
+class PaymentOfPayPalForm(forms.ModelForm):
+    class Meta:
+        model = PaymentOfPayPal
+        fields = [
+            'card_name', 'card_number', 'card_exp_date', 'card_cvv_number', 
+            'card_address1', 'card_address2', 'card_city', 'card_state', 
+            'card_zipcode', 'card_country'
+        ]
+        widgets = {
+            'card_number': forms.TextInput(attrs={'type': 'password'}),
+            'card_cvv_number': forms.TextInput(attrs={'type': 'password'}),
+        }
+        labels = {
+            'card_name': 'Cardholder Name',
+            'card_number': 'Card Number',
+            'card_exp_date': 'Expiration Date',
+            'card_cvv_number': 'CVV',
+            'card_address1': 'Address Line 1',
+            'card_address2': 'Address Line 2',
+            'card_city': 'City',
+            'card_state': 'State',
+            'card_zipcode': 'Zip Code',
+            'card_country': 'Country',
+        }
+
 class ShippingForm(forms.ModelForm):
 	shipping_full_name = forms.CharField(label="Name", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Full Name'}), required=False)
 	shipping_address1 = forms.CharField(label="Address 1", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Address1'}), required=False)

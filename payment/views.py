@@ -20,55 +20,34 @@ from django.core.mail import send_mail
 
 import uuid # unique user id for duplictate orders
 
-from .forms import PaymentForm  # Ensure you are importing the form
+# from .forms import PaymentForm 
 
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
+from .forms import PaymentOfPayPalForm
 
 def update_payment_paypal(request):
-    if request.user.is_authenticated:
-        current_user = User.objects.get(id=request.user.id)
-		
-        # Try to get existing PaymentOfPayPal record for the current user
-        try:
-            pay_user = PaymentOfPayPal.objects.get(user_paypal_id=request.user.id)  # Ensure user_paypal_id is set correctly
-        except PaymentOfPayPal.DoesNotExist:
-            pay_user = None  # No existing payment info for this user
-        
-        # Get original User Form for payment info
-        pay_form = PaymentForm(request.POST or None, instance=current_user)
-        
-        # Get or create the payment form for the user’s PayPal info
-        payment_form = PaymentForm(request.POST or None, instance=pay_user)
-        
-        if pay_form.is_valid() and payment_form.is_valid():
-            # Save the user info form (this might be related to billing info)
-            pay_form.save()
+    # Get or create the PaymentOfPayPal instance for the logged-in user
+    try:
+        payment_instance = PaymentOfPayPal.objects.get(user_paypal=request.user)
+    except PaymentOfPayPal.DoesNotExist:
+        payment_instance = None
 
-            if pay_user:  # If payment_user exists, update
-                payment_form.save()  # Save the payment form (if updating existing record)
-            else:
-                # If no payment info exists, create a new record
-                pay_user = payment_form.save(commit=False)
-                pay_user.user = request.user
-                # Ensure user_paypal_id is set before saving
-                pay_user.user_paypal_id = request.user.id  # Assign the user ID as the PayPal ID
-                pay_user.save()  # Save the new payment record
-
-           
-            return redirect('products')  # Redirect after saving
-
-        # If forms are not valid, return the same page with the forms
-        return render(request, "payment/update_payment_paypal.html", {'pay_form': pay_form, 'payment_form': payment_form})
-
+    if request.method == "POST":
+        payment_form = PaymentOfPayPalForm(request.POST, instance=payment_instance)
+        if payment_form.is_valid():
+            # Set the user_paypal field explicitly
+            payment = payment_form.save(commit=False)
+            payment.user_paypal = request.user
+            payment.save()
+            return redirect("products")  # Redirect to the checkout page
     else:
-        # If the user is not logged in, redirect to the homepage with a warning
-        messages.warning(request, "You Must Be Logged In To Access That Page!!")
-        return redirect('home')
+        payment_form = PaymentOfPayPalForm(instance=payment_instance)
 
+    return render(request, "payment/update_payment_paypal.html", {"payment_form": payment_form})
 
 def shipped_dash(request):
     if request.user.is_authenticated and request.user.is_superuser:
