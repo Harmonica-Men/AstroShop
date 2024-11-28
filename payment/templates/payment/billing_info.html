@@ -26,48 +26,50 @@
                 </div>
                 <div class="card-body">
                     <p><strong>Invoice UUID:</strong> {{ invoice }}</p> <!-- Display invoice number -->
+                    <div class="table-responsive">
 
-                    <!-- Order Summary Table -->
-                    <table class="table table-striped table-hover table-bordered">
-                        <thead class="table-secondary">
-                            <tr>
-                                <th scope="col" style="text-align: left;">Product</th>
-                                <th scope="col" style="text-align: right;">Price</th>
-                                <th scope="col" style="text-align: right;">Qty</th>
-                                <th scope="col" style="text-align: right;">Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for product in cart_products %}
-                            <tr>
-                                <td>{{ product.name }}</td>
-                                <td style="text-align: right;">
-                                    {% if product.is_sale %}
-                                    <span class="fa-solid fa-star" title="Sale!"></span> €{{ product.sale_price }}
-                                    {% else %}
-                                    €{{ product.price }}
-                                    {% endif %}
-                                </td>
-                                <td style="text-align: right;">
-                                    {% for key, value in quantities.items %}
-                                    {% if key == product.id|slugify %}
-                                    {{ value }}
-                                    {% endif %}
-                                    {% endfor %}
-                                </td>
-                                <td style="text-align: right;">
-                                    €{{ product|calculate_subtotal:quantities|floatformat:2 }}
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                        <tfoot>
-                            <tr class="product-price">
-                                <th style="text-align: left;" colspan="3">Total:</th>
-                                <th style="text-align: right;">€{{ totals }}</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                        <!-- Order Summary Table -->
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead class="table-secondary">
+                                <tr>
+                                    <th scope="col" style="text-align: left;">Product</th>
+                                    <th scope="col" style="text-align: right;">Price</th>
+                                    <th scope="col" style="text-align: right;">Qty</th>
+                                    <th scope="col" style="text-align: right;">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in cart_products %}
+                                <tr>
+                                    <td>{{ product.name }}</td>
+                                    <td style="text-align: right;">
+                                        {% if product.is_sale %}
+                                        <span class="fa-solid fa-star" title="Sale!"></span> €{{ product.sale_price }}
+                                        {% else %}
+                                        €{{ product.price }}
+                                        {% endif %}
+                                    </td>
+                                    <td style="text-align: right;">
+                                        {% for key, value in quantities.items %}
+                                        {% if key == product.id|slugify %}
+                                        {{ value }}
+                                        {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td style="text-align: right;">
+                                        €{{ product|calculate_subtotal:quantities|floatformat:2 }}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr class="product-price">
+                                    <th style="text-align: left;" colspan="3">Total:</th>
+                                    <th style="text-align: right;">€{{ totals }}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -95,7 +97,8 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{% url 'update_payment_paypal' %}" class="btn btn-outline-secondary">Update Pay-Pal Payment Profile </a>                            
+                            <a href="{% url 'update_payment_paypal' %}" class="btn btn-outline-secondary">Update Pay-Pal
+                                Payment Profile </a>
                         </div>
                         <div class="card-body">
                             Name on Card: {{ payment_form.card_name.value }}<br />
