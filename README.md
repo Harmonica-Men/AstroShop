@@ -1,3 +1,220 @@
+# Astro Shop
+
+Explore the universe with AstroShop, the ultimate e-commerce destination for all your astronomical needs. From high-quality telescopes and astrophotography equipment to star charts and celestial decor, we have everything to fuel your passion for the stars. Whether you're an amateur stargazer or a seasoned astronomer, AstroShop brings the cosmos closer to home with premium products, expert advice, and a seamless shopping experience. 🌌✨
+
+"Unlock the wonders of the universe—shop AstroShop today!"
+
+A live version of the project can be accessed here: [AstroShop](https://https://astroshop-1fc783ba013f.herokuapp.com/)
+
+![alt text](static/images/readme-images/amiresponsive.webp)
+
+
+# Table Of Contents
+  - [Astro Shop](#astro-shop)
+  - [Development Tools](#development-tools)
+  - [CSS Management for Project Structure](#css-management-for-project-structure)
+    - [Index Page Overview](#index-page-overview)
+    - [Front Page Overview](#front-page-overview)
+    - [Mobile first design](#mobile-first-design)
+  - [Colors](#colors)
+    - [Color Customization Process](#color-customization-process)  
+  - [Fonts](#fonts)
+  - [Icons](#icons)      
+  - [Technologies Used](#technologies-used)
+    - [Wireframes](#wireframes)
+      - [Wireframes for Homepage & Frontpage](#wireframes-for-homepage--frontpage)
+    - [Favicon](#favicon)
+    - [Languages](#languages)
+    - [Frameworks & Software](#frameworks--software)
+    - [NASA API 'Astronomy Picture Of The Day'](#nasa-api-astronomy-picture-of-the-day)
+    - [NASA ISS 'International Space Station' API](#iss-api-international-space-station)
+    - [Newsletter Gmail API](#newsletter-gmail-api)
+    - [The Structure Plane - Site maps](#the-structure-plane---site-maps)
+    - [The Structure Plane - Database](#the-structure-plane---database)
+      - [Database](#database)
+  - [UX & Agile](#ux--agile)
+  - [Testing](#testing)
+    - [HTML Validation](#html-validation)
+    - [CSS Validation](#css-validation)
+    - [Accessibility](#accessibility)
+    - [Wave Validation](#wave-validation) 
+    - [Lighthouse Validation](#lighthouse-validation)
+    - [JSHint Validation](#jshint-validation)
+    - [Device Testing](#device-testing)
+    - [Browser Compatibility](#browser-compatibility)
+    - [PEP8](#pep8)
+    - [Device Test](#device-testing)
+    - [User Stories Testing](#user-story-testing)
+  - [Deployment](#deployment)
+    - [Heroku Deployment](#heroku-deployment)
+    - [Local deployment](#local-deployment)
+    - [Forking this GitHub repository](#forking-this-github-repository)
+    - [Clone this repository](#clone-this-repository)
+    - [Cloudinary](#cloudinary)
+    - [Create PostgreSQL using Code Institute Database](#create-a-new-postgresql-code-institute-database)
+    - [Gmail](#gmail)
+  - [Bugs & Fixes](#bugs--fixes)
+  - [License](#license)
+  - [Credits](#credits)
+
+## Development Tools
+
+- **Bootstrap:** Bootstrap is a popular front-end development framework that helps developers create responsive, mobile-first websites quickly and efficiently. It provides a collection of pre-designed HTML, CSS, and JavaScript components like buttons, forms, navigation bars, and grid layouts. By using Bootstrap, developers can build modern, visually consistent web pages without writing extensive custom code. It's widely appreciated for its ease of use, customization options, and ability to adapt to various screen sizes, making it a go-to tool for fast web development.
+- **Modular Design:** Modular design is a system design approach that divides a system into independent, interchangeable modules. Each module performs a specific function, enabling flexibility, easy maintenance, scalability, and reusability.
+- **Consistent Aesthetic:** To maintaining a unified and cohesive visual style across all elements of a design. This includes consistent use of colors, fonts, shapes, and layout, ensuring that all components appear harmonious. It enhances user experience by creating familiarity and brand identity, making designs more professional and visually appealing.
+
+[Table Of Contents](#table-of-contents)
+
+## CSS Management for Project Structure
+
+In my project, I decided to use a single CSS file, styles.css, to manage all the styling across the application.
+These variables are defined within styles.css, and ensuring they work correctly is crucial for applying themes consistently across the site.
+
+By consolidating all the styles into one file, I make managing themes straightforward. If I need to switch themes or make adjustments, I only need to modify this single CSS file, which allows for a seamless transition to a new look and feel across the entire application. This approach not only simplifies maintenance but also reinforces my focus on code reuse and consistency.
+
+Additionally, having a single CSS file helps me avoid complications related to injecting styles through Bootstrap, ensuring that the CSS variables function as intended throughout the application.
+
+
+### Index Page Overview
+
+The homepage starts with a 'hero section' featuring an embedded video stream in replay, along with a parallax effect designed to captivate visitors. This section offers users the option to engage with the Blog Post.
+
+Following this, the AstroBlog section provides a brief introduction to the purpose of the site, helping visitors quickly understand what the site is about.
+
+To build more interest, I have incorporated an 'Astronomy Picture of the Day' (APOD) section where users and visitors always have a new astronomical item to explore, providing an easy and quick overview of the latest posts.
+
+In a zigzag pattern, the most popular categories are displayed on the homepage. To encourage further engagement with the blog, a 'Latest Contributors' section is also included.
+
+For astronomical enthusiasts, a nice widget is incorporated that tracks the current position of the International Space Station (ISS). When clicking on the 'Go To the ISS' button, a new page appears with an independently generated world map showing the ISS’s location.
+
+At the bottom of the page, I have included a subscription section where users can join the mailing list to receive newsletters, information, and relevant benefits.
+
+Finally, the page concludes with a footer that reinforces credibility and includes essential links, such as the social media links for the blog.
+
+### Front Page Overview
+The **Front Page** is designed to give a quick overview of a list of 5 blog posts ranked by the date added, with the most recent post at the top of the page.
+
+1. **NavBar**: The 'navbar' has a dual function and can be used by both visitors and authenticated users.
+   - **For Visitors & Users**: can quickly navigate back to the "homepage" by clicking the home icon or to the 'front page blog posts' by clicking the left arrow icon.
+   - **For Visitors**: Visitors can always read posts but cannot participate. They have the option to view posts by category or to join Astro Share Blog by registering.
+   - **For Users**: Users have full CRUD (Create, Read, Update, Delete) functionality for their own posts. The 'Add Post' option appears, and they see 'Logged in as,' giving them the ability to change their profile settings and details.
+
+2. **Blog Post Snippets**: Each blog post is presented as a snippet along with a corresponding image.
+   - **For Visitors**: The `[read more]` link redirects to the article detail page where the full post can be read.
+   - **For Users**: Users have the same functionality as visitors, but on the redirected page, they have full control over their posts.
+
+3. **Detailed Article Posts**: On this page, each post is treated individually.
+   - **For Visitors**: Visitors can read the full blog post and any comments (if available). They cannot like or comment on posts. Visitors can click on the author's name to view the author’s profile page.
+   - **For Users**: Users can read the post, comment, and 'Like' the posts. They can only 'Dislike' posts they have already liked.  
+     The option to dislike posts outright is not part of the blog’s policy.
+
+### Mobile first design
+To ensure a seamless experience across devices, Bootstrap is used to make the Home- & Frontpage fully responsive. On mobile devices, the table features horizontal scrolling to prevent content compression, maintaining clarity and usability. Additionally, each table row highlights with a colour change on hover, making it easier for users to track their interactions as they navigate.
+
+[Table Of Contents](#table-of-contents)
+
+
+
+
+## Colors
+
+The color palette for this project has been carefully selected to ensure a professional and clean aesthetic, aligning with the brand identity and enhancing user experience. Below is a breakdown of the primary colors used across the application:
+
+![Color Palette](static/images/readme-images/colorpalette.webp)
+
+As for colors I decided to use Color-Hunt. https://colorhunt.co
+
+- **Primary Color:** `#222831` -  is a dark charcoal gray with subtle blue-green undertones, perfect for sleek and modern designs.
+- <img src="static/images/readme-images/222831.webp" width="500px" height="50px">
+
+
+- **Secondary Color:** `#393E46` - (also atrribute color) s a dark plum or eggplant shade with a mix of deep purple and gray tones, ideal for rich and moody designs.
+- <img src="static/images/readme-images/393E46.webp" width="500px" height="50px">
+
+
+- **Primary Color Highlight:** `#222831` - is a vibrant teal with cool blue and green tones, evoking a fresh, modern, and energetic feel.
+- <img src="static/images/readme-images/222831.webp" width="500px" height="50px">
+
+
+- **Background Color:** `#EEEEEE` - is a very light gray, almost white, offering a clean, soft, and neutral appearance.
+- <img src="static/images/readme-images/EEEEEE.webp" width="500px" height="50px">
+
+
+- **Accent Color:** `#00ADB5` - is a vibrant teal with cool blue and green tones, evoking a fresh, modern, and energetic feel.
+
+- <img src="static/images/readme-images/00ADB5.webp" width="500px" height="50px">
+
+
+- **Main Text Color:** `#FFFFFF` - Tis pure white, the brightest and most neutral color, representing simplicity, cleanliness, and clarity.
+- <img src="static/images/readme-images/FFFFFF.webp" width="500px" height="50px">
+- **Secondary Text Color:** `#000000` - (--main-text-color-invers) Is pure black, the darkest color, symbolizing elegance, power, and sophistication.
+- <img src="static/images/readme-images/000000.webp" width="500px" height="50px">
+
+
+- **Highlight Hover Color:** `#FFC400` -  is a bold, vibrant yellow-gold, exuding warmth, energy, and a sense of luxury.
+- <img src="static/images/readme-images/FFC400.webp" width="500px" height="50px">
+
+
+- **Dark Text Shadow:** `2px 2px 4px rgba(0, 0, 0, 0.5)` - A bolder text shadow used on white backgrounds, ensuring 
+that text stands out clearly.
+- <img src="static/images/readme-images/000005.webp" width="500px" height="50px">
+
+
+***
+
+
+
+
+### Colors
+
+As for colors I decided to use Color-Hunt. https://colorhunt.co
+
+I will explain the uses of the various colors below, starting from top to bottom.
+
+![Alt text](assets/wireframes/color-hunt.png) 
+
+* #EEEEEE : This is the main background color.
+* #686D76 : This is the border color.
+* #373A40 : This is the accent color.
+* #19D3DA : This is the seconary text color. (give a slide)
+* #FFFFFF : This is the main text color.
+* #000000 : This is the main text color.
+* #FFD700 : (Gold) hover effect. index page
+  
+
+
+
+
+
+
+***
+
+This color palette was chosen not only for its visual appeal but also for its contribution to a cohesive and user-friendly interface, reinforcing the professional and serious tone of the application.
+
+### Color Customization Process
+
+The colour customization process in this project was designed to offer flexibility and personalisation. I have implemented a series of **CSS Variables** to define various colour palettes.
+
+Key elements of the colour customization process include:
+
+- **Multiple Colour Palettes**: I have created several distinct colour palettes, each with its unique style—ranging from more traditional to modern and alternative designs. The default palette, known as the **root palette**, is the primary theme that all users see upon first visiting the site.
+
+- **CSS Variables**: The different colour palettes are implemented using CSS Variables, which allows for dynamic and flexible styling of various elements across the site. This ensures a consistent and responsive design while providing a personalised experience for each user.
+
+### Fonts
+
+I used a combination of classic and modern fonts to diversify myself, I've integrated [Google Fonts](https://fonts.google.com/ "Google Fonts") to find a typeface that complements the website's aesthetic. For the main text, I've opted for [Montserrat](https://fonts.google.com/?query=+Montserrat "Montserrat") due to its classic appearance. Its make it easy to read long sentences.
+
+### Icons
+
+
+
+
+
+
+
+
+
 
 
 
@@ -270,17 +487,17 @@ To ensure a seamless experience across devices, Bootstrap is used to make the Ho
 
 
 
-![alt text](static/images/Tablet_Index.png)
+![alt text](static/images/readme-images/Tablet_Index.png)
 
-![alt text](static/images/Desktop_Products.png)
+![alt text](static/images/readme-images/Desktop_Products.png)
 
-![alt text](static/images/SmartPhone_Index.png)
+![alt text](static/images/readme-images/SmartPhone_Index.png)
 
-![alt text](static/images/SmartPhone_Products.png)
+![alt text](static/images/readme-images/SmartPhone_Products.png)
 
-![alt text](static/images/Tablet_Index.png)
+![alt text](static/images/readme-images/Tablet_Index.png)
 
-![alt text](static/images/Tablet_Products.png)
+![alt text](static/images/readme-images/Tablet_Products.png)
 
 
 ## Bootstrap themes
@@ -296,102 +513,6 @@ It's recommend to use a front-end bootstrap template, so that easier to start th
 
 
 
-
-
-
-
-
-
-## Colors
-
-The color palette for this project has been carefully selected to ensure a professional and clean aesthetic, aligning with the brand identity and enhancing user experience. Below is a breakdown of the primary colors used across the application:
-
-![Color Palette](static/images/colorpalette.webp)
-
-As for colors I decided to use Color-Hunt. https://colorhunt.co
-
-- **Primary Color:** `#222831` -  is a dark charcoal gray with subtle blue-green undertones, perfect for sleek and modern designs.
-- <img src="static/images/222831.webp" width="500px" height="50px">
-
-
-- **Secondary Color:** `#393E46` - (also atrribute color) s a dark plum or eggplant shade with a mix of deep purple and gray tones, ideal for rich and moody designs.
-- <img src="static/images/393E46.webp" width="500px" height="50px">
-
-
-- **Primary Color Highlight:** `#222831` - is a vibrant teal with cool blue and green tones, evoking a fresh, modern, and energetic feel.
-- <img src="static/images/222831.webp" width="500px" height="50px">
-
-
-- **Background Color:** `#EEEEEE` - is a very light gray, almost white, offering a clean, soft, and neutral appearance.
-- <img src="static/images/EEEEEE.webp" width="500px" height="50px">
-
-
-- **Accent Color:** `#00ADB5` - is a vibrant teal with cool blue and green tones, evoking a fresh, modern, and energetic feel.
-
-- <img src="static/images/00ADB5.webp" width="500px" height="50px">
-
-
-- **Main Text Color:** `#FFFFFF` - Tis pure white, the brightest and most neutral color, representing simplicity, cleanliness, and clarity.
-- <img src="static/images/FFFFFF.webp" width="500px" height="50px">
-- **Secondary Text Color:** `#000000` - (--main-text-color-invers) Is pure black, the darkest color, symbolizing elegance, power, and sophistication.
-- <img src="static/images/000000.webp" width="500px" height="50px">
-
-
-- **Highlight Hover Color:** `#FFC400` -  is a bold, vibrant yellow-gold, exuding warmth, energy, and a sense of luxury.
-- <img src="static/images/FFC400.webp" width="500px" height="50px">
-
-
-- **Dark Text Shadow:** `2px 2px 4px rgba(0, 0, 0, 0.5)` - A bolder text shadow used on white backgrounds, ensuring 
-that text stands out clearly.
-- <img src="static/images/000005.webp" width="500px" height="50px">
-
-
-***
-
-
-
-
-### Colors
-
-As for colors I decided to use Color-Hunt. https://colorhunt.co
-
-I will explain the uses of the various colors below, starting from top to bottom.
-
-![Alt text](assets/wireframes/color-hunt.png) 
-
-* #EEEEEE : This is the main background color.
-* #686D76 : This is the border color.
-* #373A40 : This is the accent color.
-* #19D3DA : This is the seconary text color. (give a slide)
-* #FFFFFF : This is the main text color.
-* #000000 : This is the main text color.
-* #FFD700 : (Gold) hover effect. index page
-  
-
-
-
-
-
-
-***
-
-This color palette was chosen not only for its visual appeal but also for its contribution to a cohesive and user-friendly interface, reinforcing the professional and serious tone of the application.
-
-### Color Customization Process
-
-The colour customization process in this project was designed to offer flexibility and personalisation. I have implemented a series of **CSS Variables** to define various colour palettes.
-
-Key elements of the colour customization process include:
-
-- **Multiple Colour Palettes**: I have created several distinct colour palettes, each with its unique style—ranging from more traditional to modern and alternative designs. The default palette, known as the **root palette**, is the primary theme that all users see upon first visiting the site.
-
-- **CSS Variables**: The different colour palettes are implemented using CSS Variables, which allows for dynamic and flexible styling of various elements across the site. This ensures a consistent and responsive design while providing a personalised experience for each user.
-
-### Fonts
-
-I used a combination of classic and modern fonts to diversify myself, I've integrated [Google Fonts](https://fonts.google.com/ "Google Fonts") to find a typeface that complements the website's aesthetic. For the main text, I've opted for [Montserrat](https://fonts.google.com/?query=+Montserrat "Montserrat") due to its classic appearance. Its make it easy to read long sentences.
-
-### Icons
 
 
 
