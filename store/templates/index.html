@@ -12,9 +12,6 @@
     {% block corecss %}
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" -->
-    <!-- integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
@@ -30,120 +27,112 @@
 
 <!-- Header-->
 <header class="bg-dark">
-   
-<div class="ml-3">
-    <ul class="list-inline list-unstyled d-flex justify-content-end my-0">
-        <!-- Use d-flex and justify-content-end for right alignment -->
-        <li class="list-inline-item dropdown">
-            <div class="bg-dark">
-                <a class="text-white nav-link-index" href="#" id="user-options" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <div class="text-center" style="font-size: 0.8rem;">
-                        <!-- Smaller font size -->
-                        <div><i class="fas fa-user fa-sm"></i></div> <!-- Smaller icon -->
-                        <p class="my-0 small">My Account</p> <!-- Bootstrap small text class -->
+
+    <div class="ml-3">
+        <ul class="list-inline list-unstyled d-flex justify-content-end my-0">
+
+            <li class="list-inline-item dropdown">
+                <div class="bg-dark">
+                    <a class="text-white nav-link-index" href="#" id="user-options" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <div class="text-center" style="font-size: 0.8rem;">
+
+                            <div><i class="fas fa-user fa-sm"></i></div>
+                            <p class="my-0 small">My Account</p>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu rounded-0 border-1 p-1" aria-labelledby="user-options">
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'update_user_profile' %}" class="dropdown-item small">My Profile</a>
+                        <a href="{% url 'update_ship_profile' %}" class="dropdown-item small">My Shipping</a>
+                        <a href="{% url 'update_payment_paypal' %}" class="dropdown-item small">My Payment</a>
+                        {% if not request.user.is_superuser %}
+                        <a href="{% url 'orders' %}" class="dropdown-item small">My Orders</a>
+                        {% endif %}
+                        <a href="{% url 'update_user' %}" class="dropdown-item small">User Account</a>
+                        <a href="{% url 'update_password' %}" class="dropdown-item small">Change Password</a>
+
+                        <hr class="dropdown-divider my-1" />
+                        <a href="{% url 'logout' %}" class="dropdown-item small">Logout</a>
+                        {% if request.user.is_superuser %}
+                        <hr class="dropdown-divider my-1" />
+                        <a href="{% url 'add_product' %}" class="dropdown-item small">Add a New Product</a>
+                        <hr class="dropdown-divider my-1" />
+
+                        <a href="{% url 'suppliers_list' %}" class="dropdown-item small">Suppliers List</a>
+                        <a href="{% url 'orders' %}" class="dropdown-item small">View Orders</a>
+                        <a href="{% url 'shipped_dash' %}" class="dropdown-item small">Shipped Orders</a>
+                        <a href="{% url 'not_shipped_dash' %}" class="dropdown-item small">UnShipped Orders</a>
+                        {% endif %}
+                        {% else %}
+                        <a href="{% url 'register' %}" class="dropdown-item small">Register</a>
+                        <a href="{% url 'login' %}" class="dropdown-item small">Login</a>
+                        {% endif %}
                     </div>
-                </a>
-                <div class="dropdown-menu rounded-0 border-1 p-1" aria-labelledby="user-options">
-                    {% if request.user.is_authenticated %}
-                    <a href="{% url 'update_user_profile' %}" class="dropdown-item small">My Profile</a>
-                    <a href="{% url 'update_ship_profile' %}" class="dropdown-item small">My Shipping</a>
-                    <a href="{% url 'update_payment_paypal' %}" class="dropdown-item small">My Payment</a>
-                    {% if not request.user.is_superuser %}
-                    <a href="{% url 'orders' %}" class="dropdown-item small">My Orders</a>
-                    {% endif %}
-                    <a href="{% url 'update_user' %}" class="dropdown-item small">User Account</a>
-                    <a href="{% url 'update_password' %}" class="dropdown-item small">Change Password</a>
-
-                    <hr class="dropdown-divider my-1" /> <!-- Smaller divider margin -->
-                    <a href="{% url 'logout' %}" class="dropdown-item small">Logout</a>
-                    {% if request.user.is_superuser %}
-                    <hr class="dropdown-divider my-1" /> <!-- Smaller divider margin -->
-                    <a href="{% url 'add_product' %}" class="dropdown-item small">Add a New Product</a>
-                    <hr class="dropdown-divider my-1" />
-
-                    <a href="{% url 'suppliers_list' %}" class="dropdown-item small">Suppliers List</a>
-                    <a href="{% url 'orders' %}" class="dropdown-item small">View Orders</a>
-                    <a href="{% url 'shipped_dash' %}" class="dropdown-item small">Shipped Orders</a>
-                    <a href="{% url 'not_shipped_dash' %}" class="dropdown-item small">UnShipped Orders</a>
-                    {% endif %}
-                    {% else %}
-                    <a href="{% url 'register' %}" class="dropdown-item small">Register</a>
-                    <a href="{% url 'login' %}" class="dropdown-item small">Login</a>
-                    {% endif %}
                 </div>
-            </div>
-        </li>
-        <li class="list-inline-item">
-            <div class="bg-dark mr-3">
-                <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %} nav-link-index"
-                    href="{% url 'shopcart_summary' %}">
-                    <div class="text-center" style="font-size: 0.8rem;">
-                        <!-- Smaller font size -->
-                        <div><i class="fas fa-cart-shopping fa-sm"></i></div> <!-- Smaller icon -->
-                        <p class="small mr-3">Shopping Cart</p> <!-- Bootstrap small text class -->
-                    </div>
-                </a>
-            </div>
-        </li>
-    </ul>
-</div>
-
-
-    
-<div class="container text-center text-white px-2 px-lg-2 my-2">
-    <div>
-        <h1 class="display-4 logo-font text-white mb-5">ASTRO&nbsp;SHOP</h1>
+            </li>
+            <li class="list-inline-item">
+                <div class="bg-dark mr-3">
+                    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %} nav-link-index"
+                        href="{% url 'shopcart_summary' %}">
+                        <div class="text-center" style="font-size: 0.8rem;">
+                            <div><i class="fas fa-cart-shopping fa-sm"></i></div>
+                            <p class="small mr-3">Shopping Cart</p>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
     </div>
 
-    <div class="category-links d-flex flex-wrap justify-content-center mb-2 me-5" style="font-size: medium;">
-        <a href="{% url 'category' 'Sales' %}" class="py-2 mx-2">
-            <h4>
-                <span class="fa-regular fa-star"></span>
-                <strong class="mx-2">Sale!</strong>
-                <span class="fa-regular fa-star"></span>
-            </h4>
-        </a>
-        <a href="{% url 'category' 'Books' %}" class="py-2 mx-2">
-            <h4>Books</h4>
-        </a>
-        <a href="{% url 'category' 'Toys' %}" class="py-2 mx-2">
-            <h4>Toys</h4>
-        </a>
-        <a href="{% url 'category' 'Telescopes' %}" class="py-2 mx-2">
-            <h4>Telescopes</h4>
-        </a>
-        <a href="{% url 'category' 'Globes' %}" class="py-2 mx-2">
-            <h4>Globes</h4>
-        </a>
-        <a href="{% url 'category' 'Binoculars' %}" class="py-2 mx-2">
-            <h4>Binoculars</h4>
-        </a>
-        <a href="{% url 'category' 'Weather Stations' %}" class="py-2 mx-2">
-            <h4>Weather Stations</h4>
-        </a>
-        <a href="{% url 'products' %}" class="py-2 mx-2">
-            <h4>All Products</h4>
-        </a>
+
+
+    <div class="container text-center text-white px-2 px-lg-2 my-2">
+        <div>
+            <h1 class="display-4 logo-font text-white mb-5">ASTRO&nbsp;SHOP</h1>
+        </div>
+
+        <div class="category-links d-flex flex-wrap justify-content-center mb-2 me-5" style="font-size: medium;">
+            <a href="{% url 'category' 'Sales' %}" class="py-2 mx-2">
+                <h4>
+                    <span class="fa-regular fa-star"></span>
+                    <strong class="mx-2">Sale!</strong>
+                    <span class="fa-regular fa-star"></span>
+                </h4>
+            </a>
+            <a href="{% url 'category' 'Books' %}" class="py-2 mx-2">
+                <h4>Books</h4>
+            </a>
+            <a href="{% url 'category' 'Toys' %}" class="py-2 mx-2">
+                <h4>Toys</h4>
+            </a>
+            <a href="{% url 'category' 'Telescopes' %}" class="py-2 mx-2">
+                <h4>Telescopes</h4>
+            </a>
+            <a href="{% url 'category' 'Globes' %}" class="py-2 mx-2">
+                <h4>Globes</h4>
+            </a>
+            <a href="{% url 'category' 'Binoculars' %}" class="py-2 mx-2">
+                <h4>Binoculars</h4>
+            </a>
+            <a href="{% url 'category' 'Weather Stations' %}" class="py-2 mx-2">
+                <h4>Weather Stations</h4>
+            </a>
+            <a href="{% url 'products' %}" class="py-2 mx-2">
+                <h4>All Products</h4>
+            </a>
+        </div>
     </div>
-</div>
 
 </header>
 
 <body>
-
-
-
     <div class="row justify-content-around">
-        <!-- Info section and Image section -->
         <div class="astroshop-container">
-
-
-
             <div class="astroshop-image">
                 <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1732211978/image_shop_uuurk0.webp"
                     class="img-fluid rounded-0" alt="this is our store ...">
-                <!-- <img src="/static/assets/images/image_shop.webp" class="img-fluid rounded-0" alt="our store..."> -->
+
                 <div class="image-text-overlay rounded-0">
                     <p>Welcome to the Astroshop website. In our Astroshop, you'll find the largest range of
                         astronomical products in Belgium at very favorable prices.</p>
@@ -191,10 +180,6 @@
         </div>
     </div>
 
-
-
-
-
     <div class="d-flex row justify-content-center mb-2">
         <div class="col-12 text-center">
             <label for="id_email" class="font-weight-bold">Subscribe to our Newsletter</label>
@@ -210,8 +195,6 @@
         </form>
     </div>
 
-
-
     <footer class="py-1 bg-dark" style="background-color: rgba(0, 0, 0, 0.5);">
         <div class="d-flex align-items-center justify-content-between py-1 mx-4">
             <div class="container my-1">
@@ -226,25 +209,29 @@
 
             <div class="container text-white p-2" style="font-size: small">
                 <div class="row">
-                    <!-- Client Service Column -->
                     <div class="col-md-4 mb-2">
                         <div class="ml-2">
                             <h6><strong>Client&nbsp;Service</strong></h6>
-                            <a href="{% url 'about' %}" class="nav-link-index text-white " style="font-size: small">About</a><br>
-                            <a href="{% url 'general_conditions' %}" class="nav-link-index text-white" style="font-size: small">General
+                            <a href="{% url 'about' %}" class="nav-link-index text-white "
+                                style="font-size: small">About</a><br>
+                            <a href="{% url 'general_conditions' %}" class="nav-link-index text-white"
+                                style="font-size: small">General
                                 conditions</a><br>
-                            <a href="{% url 'disclaimer' %}" class="nav-link-index text-white" style="font-size: small">Disclaimer</a><br>
-                            <a href="{% url 'privacy' %}" class="nav-link-index text-white" style="font-size: small">Privacy
+                            <a href="{% url 'disclaimer' %}" class="nav-link-index text-white"
+                                style="font-size: small">Disclaimer</a><br>
+                            <a href="{% url 'privacy' %}" class="nav-link-index text-white"
+                                style="font-size: small">Privacy
                                 Policy</a><br>
-                            <a href="{% url 'payment' %}" class="nav-link-index text-white" style="font-size: small">Payment</a><br>
+                            <a href="{% url 'payment' %}" class="nav-link-index text-white"
+                                style="font-size: small">Payment</a><br>
                         </div>
                     </div>
 
-                    <!-- Products Column -->
                     <div class="col-md-4 mb-2">
                         <div class="ml-2">
                             <h6><strong>Products</strong></h6>
-                            <a href="{% url 'products' %}" class="nav-link-index text-white" style="font-size: small">All
+                            <a href="{% url 'products' %}" class="nav-link-index text-white"
+                                style="font-size: small">All
                                 Products</a><br>
                             <a href="{% url 'category' 'Sales' %}" class="nav-link-index text-white"
                                 style="font-size: small">Sales</a><br>
@@ -252,55 +239,51 @@
                         </div>
                     </div>
 
-                    <!-- User Account Column -->
                     <div class="col-md-4 mb-2">
                         <div class="ml-2">
                             <h6><strong>User&nbsp;Account</strong></h6>
-                            <a href="{% url 'shopcart_summary' %}" class="nav-link-index text-white" style="font-size: small">Shopping
+                            <a href="{% url 'shopcart_summary' %}" class="nav-link-index text-white"
+                                style="font-size: small">Shopping
                                 Cart</a><br>
-                            <a href="{% url 'login' %}" class="nav-link-index text-white" style="font-size: small">Login</a><br>
+                            <a href="{% url 'login' %}" class="nav-link-index text-white"
+                                style="font-size: small">Login</a><br>
 
-                            <a href="{% url 'register' %}" class="nav-link-index text-white" style="font-size: small">Register</a><br>
+                            <a href="{% url 'register' %}" class="nav-link-index text-white"
+                                style="font-size: small">Register</a><br>
                         </div>
                     </div>
 
                 </div>
             </div>
 
-
-
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-
-
-
                 <li class="ms-4">
                     <a href="https://x.com/?lang=en" aria-label="Twitter" target="_blank">
-                        <i class="fab fa-twitter fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
+                        <i class="fab fa-twitter fa-2x p-2 icon-white nav-link-index"
+                            style="text-decoration: none;"></i>
                     </a>
                 </li>
                 <li class="ms-4">
                     <a href="https://www.instagram.com/" aria-label="Instagram" target="_blank">
-                        <i class="fab fa-instagram fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
+                        <i class="fab fa-instagram fa-2x p-2 icon-white nav-link-index"
+                            style="text-decoration: none;"></i>
                     </a>
                 </li>
                 <li class="ms-4">
                     <a href="https://www.facebook.com/" aria-label="Facebook" target="_blank">
-                        <i class="fab fa-facebook fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
+                        <i class="fab fa-facebook fa-2x p-2 icon-white nav-link-index"
+                            style="text-decoration: none;"></i>
                     </a>
                 </li>
                 <li class="ms-4">
                     <a href="https://codeinstitute.net/global/" aria-label="Website" target="_blank">
-                        <i class="fa-solid fa-globe fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
+                        <i class="fa-solid fa-globe fa-2x p-2 icon-white nav-link-index"
+                            style="text-decoration: none;"></i>
                     </a>
                 </li>
-                
-
             </ul>
-
         </div>
     </footer>
-
-
 </body>
 
 </html>
