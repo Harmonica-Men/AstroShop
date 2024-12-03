@@ -253,12 +253,12 @@ p {
     transform: scale(0.9);
 }
 
-.fa-beat {
-    animation-delay: var(--fa-animation-delay, 0s); /* Add 's' for seconds */
+/* .fa-beat {
+    animation-delay: var(--fa-animation-delay, 0s);
 }
 .fa-rotate-by {
-    transform: rotate(var(--fa-rotate-angle, 0deg)); /* Add fallback angle */
-}
+    transform: rotate(var(--fa-rotate-angle, 0deg)); 
+} */
 
 .btn-black {
     background: black;
