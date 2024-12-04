@@ -769,4 +769,4 @@ For more information about the Creative Commons Attribution-NonCommercial-ShareA
 
 # FaceBook
 
-![alt text](static/images/readme-images/AstroShopFacebookMockup.png)
+![alt text](static/images/readme-images/AstroShopFacebookMockup4.png)
