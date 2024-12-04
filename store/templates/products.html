@@ -7,7 +7,7 @@
     <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
             <br>
-            <h1 class="display-4 fw-bolder mt-5">Product Details</Details></h1>          
+            <h1 class="display-4 fw-bolder mt-5">Product Details</h1>
             <p class="lead fw-normal text-white-40 mb-2">Details ...</p>
         </div>
     </div>
@@ -23,21 +23,16 @@
                     <div class="sort-select-wrapper w-30">
                         <select id="sort-selector"
                             class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort
-                                by...
-                            </option>
-
-                            <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name
-                                (A-Z)</option>
-                            <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>
-                                Name
-                                (Z-A)</option>
-                            <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>
-                                Price
-                                (low to high)</option>
-                            <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>
-                                Price
-                                (high to low)</option>
+                            <option value="reset" {% if current_sorting == 'None_None' %}selected="selected"
+                                {% endif %}>Sort by...</option>
+                            <option value="name_asc" {% if current_sorting == 'name_asc' %}selected="selected"
+                                {% endif %}>Name (A-Z)</option>
+                            <option value="name_desc" {% if current_sorting == 'name_desc' %}selected="selected"
+                                {% endif %}>Name (Z-A)</option>
+                            <option value="price_asc" {% if current_sorting == 'price_asc' %}selected="selected"
+                                {% endif %}>Price (low to high)</option>
+                            <option value="price_desc" {% if current_sorting == 'price_desc' %}selected="selected"
+                                {% endif %}>Price: High to Low</option>
                         </select>
                     </div>
                 </div>
@@ -107,7 +102,7 @@
                 <!-- Responsive divider rows for different screen sizes -->
                 {% if forloop.counter|divisibleby:1 %}
                 <div class="col-12 d-sm-none mb-1">
-                    <hr> 
+                    <hr>
                 </div>
                 {% endif %}
                 {% if forloop.counter|divisibleby:2 %}
@@ -144,13 +139,13 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<script type="text/javascript">
+<script>
     $('.btt-link').click(function (e) {
         window.scrollTo(0, 0)
     })
 </script>
 
-<script type="text/javascript">
+<script>
     $('#sort-selector').change(function () {
         var selector = $(this);
         var currentUrl = new URL(window.location);
