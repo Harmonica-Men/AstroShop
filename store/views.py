@@ -1,38 +1,47 @@
-from django.shortcuts import render, redirect
-from .models import Product, Category, Profile, Subscription, Supplier
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, UpdateUserForm, ChangePasswordForm, UpdateProductForm, ProfileForm, SubscribeForm, SupplierForm
-from django.db.models.functions import Lower
-from payment.forms import ShippingForm
-from payment.models import ShippingAddress, PaymentOfPayPal
-from django import forms
-from django.db.models import Q
 import json
 import logging
 import uuid
-from django.urls import reverse_lazy
-from django.http import HttpResponse, HttpResponseRedirect
-from django.conf import settings
-from shopcart.cart import Cart
-from django.template.loader import render_to_string
-from django.contrib.sites.shortcuts import get_current_site
-from django.contrib.auth.decorators import user_passes_test
+
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
-from django.http import JsonResponse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import user_passes_test
+from django.db.models import Q
+from django.db.models.functions import Lower
+from django.urls import reverse_lazy
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.template.loader import render_to_string
 from django.core.mail import send_mail, BadHeaderError
+from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
+from django.contrib import messages
+from django import forms
 
+from .models import Product, Category, Profile, Subscription, Supplier
+from .forms import (
+    SignUpForm,
+    UpdateUserForm,
+    ChangePasswordForm,
+    UpdateProductForm,
+    ProfileForm,
+    SubscribeForm,
+    SupplierForm,
+)
 
+from payment.forms import ShippingForm
+from payment.models import ShippingAddress, PaymentOfPayPal
+from shopcart.cart import Cart
 from django.views.generic import (
     TemplateView,
     FormView
 )
 
+
 def add_to_cart(request, product_id):
     """Add a product to the shopping cart and redirect to the cart page."""
-    return redirect('cart')  # Redirect to a relevant page after adding to the cart
+    return redirect('cart')
+    # Redirect to a relevant page after adding to the cart
 
 
 def all_products(request):
@@ -58,19 +67,17 @@ def all_products(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
-            
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
-        
     current_sorting = f'{sort}_{direction}'
 
     context = {
         'products': products,
         'current_categories': categories,
-        'current_sorting': current_sorting,
-	  }
+        'current_sorting': current_sorting
+    }
     return render(request, 'products.html', context)
 
 
@@ -84,14 +91,15 @@ def add_product(request):
     """Allow superusers to add a new product using a form."""
 
     if request.method == "POST":
-        form = UpdateProductForm(request.POST, request.FILES)  # We use UpdateProductForm to add new products as well
-		
+        form = UpdateProductForm(request.POST, request.FILES)
+        # We use UpdateProductForm to add new products as well
         if form.is_valid():
             form.save()
             messages.success(request, "Product added successfully.")
-            return redirect('products')  # Redirect to home or any other page after adding the product
-    else:
-        form = UpdateProductForm()
+            return redirect('products')
+            # Redirect to home or any other page after adding the product
+        else:
+            form = UpdateProductForm()
     return render(request, 'add_product.html', {'form': form})
 
 
@@ -108,14 +116,17 @@ def update_product(request, pk):
             return redirect('product', pk=product.pk)
     else:
         form = UpdateProductForm(instance=product)
-    return render(request, 'update_product.html', {'form': form, 'product': product})
+    return render(request, 'update_product.html', {
+        'form': form, 'product': product
+    })
 
 
 def delete_product_confirmation(request, pk):
     """Render a confirmation page before deleting a product."""
 
-    product = get_object_or_404(Product, pk=pk)    
-    return render(request, 'delete_product_confirm.html', {'product': product})
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'delete_product_confirm.html', {
+        'product': product})
 
 
 def delete_product(request, pk):
@@ -124,25 +135,26 @@ def delete_product(request, pk):
         product = get_object_or_404(Product, pk=pk)
         product.delete()
         messages.warning(request, "Product has been deleted successfully.")
-        return redirect('products')  # Redirect to home or any other page after deletion
-    else:
-        messages.error(request, "You do not have permission to delete this product.")
         return redirect('products')
+        # Redirect to home or any other page after deletion
+    else:
+        messages.error(request, "You can not delete this product.")
+        return redirect('products')
+
 
 def search(request):
     """Search for products based on user input in the search form."""
     if request.method == "POST":
         searched = request.POST['searched']
-		
         searched = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
-		# Test for null
         if not searched:
             messages.error(request, "That Product Does Not Exist...Please try Again.")
             return render(request, "search.html", {})
         else:
-            return render(request, "search.html", {'searched':searched})
+            return render(request, "search.html", {'searched':searched}
     else:
-        return render(request, "search.html", {})	
+        return render(request, "search.html", {})
+
 
 def update_user_and_shipping_profile(request):
     """
@@ -151,13 +163,11 @@ def update_user_and_shipping_profile(request):
     """
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
-
         # Get Current User's profile and shipping info with error handling
         try:
             user_profile = Profile.objects.get(user__id=request.user.id)
         except Profile.DoesNotExist:
             user_profile = None  # Optional: handle missing profile here
-
         try:
             shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
         except ShippingAddress.DoesNotExist:
@@ -404,9 +414,7 @@ def register_user(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']            
             user = authenticate(username=username, password=password)
-
             login(request, user)
-
             # Send confirmation email
             subject = 'Welcome to Astro Shop!'
             message = render_to_string('confirmation_emails/confirmation_email_registration.txt', {
@@ -454,34 +462,22 @@ class SubscribeView(FormView):
             subscription.confirmation_code = confirmation_code
             subscription.is_confirmed = False
             subscription.save()
-
             confirmation_link = f"{self.request.scheme}://{self.request.get_host()}/shopper/confirm/?code={confirmation_code}"
-
             subject = 'Confirm your subscription'
             message = f"Hello,\n\nClick the link to confirm your subscription: {confirmation_link}"
         else:
             subject = "Thank you for subscribing!"
             message = "You have successfully subscribed to our newsletter."
-
         from_email = settings.EMAIL_HOST_USER
         to_email = email
-
-        try:
-            
-            send_mail(subject, message, from_email, [to_email])
-            
-        except BadHeaderError:
-            
+        try:          
+            send_mail(subject, message, from_email, [to_email])            
+        except BadHeaderError:            
             return HttpResponse("Invalid header found.")
-        except Exception as e:
-            
+        except Exception as e:            
             return HttpResponse(f"Error sending email: {e}")
-
         # Redirect to the success page or confirmation page
         return HttpResponseRedirect(self.success_url)
-
-    
-
 
 def suppliers_list(request):
     """Display a list of all suppliers."""
@@ -499,22 +495,17 @@ def delete_supplier(request, supplier_id):
     if not request.user.is_superuser:
         messages.error(request, "You do not have permission to delete suppliers.")
         return redirect('suppliers_list')
-
     supplier = get_object_or_404(Supplier, id=supplier_id)
-
     if request.method == 'POST':
         supplier.delete()
         messages.warning(request, 'Supplier deleted successfully!')
         return redirect('suppliers_list')
-
     return redirect('supplier_detail', supplier_id=supplier.id)
 
 def supplier_confirm_delete(request, supplier_id):
     """Render a confirmation page before deleting a supplier."""
     supplier = get_object_or_404(Supplier, id=supplier_id)
     return render(request, 'supplier_confirm_delete.html', {'supplier': supplier})
-
-
 
 def add_supplier(request):
     """Allow superusers to add a new supplier."""
@@ -530,7 +521,6 @@ def add_supplier(request):
             return redirect('products')
     else:
         form = SupplierForm()
-
     return render(request, 'add_supplier.html', {'form': form})
 
 def general_conditions(request):
@@ -541,10 +531,10 @@ def disclaimer(request):
     """Render the Disclaimer page."""
     return render(request, 'disclaimer.html')
 
-
 def payment(request):
     """Render the Payment page."""
     return render(request, 'payment.html')
+
 
 def privacy(request):
     """Render the Privacy Policy page."""
