@@ -175,24 +175,19 @@ def update_user_and_shipping_profile(request):
         except Profile.DoesNotExist:
             user_profile = None  # Optional: handle missing profile here
         try:
-            shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
+            shipping_user = ShippingAddress.objects.get(
+                user__id=request.user.id
+                )
         except ShippingAddress.DoesNotExist:
             shipping_user = None
-        
-        # Initialize forms
         form = ProfileForm(request.POST or None, instance=current_user)
         profile_form = ProfileForm(request.POST or None, instance=user_profile)
-        shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
-        
+        shipping_form = ShippingForm(
+            request.POST or None, instance=shipping_user)
         # Prefill Full Name field in ShippingForm if empty
         if not shipping_user and request.method != "POST":
-            full_name = f"{current_user.first_name} {current_user.last_name}".strip()
-            shipping_form.initial['full_name'] = full_name
-        
-        if (form.is_valid() and profile_form.is_valid() and shipping_form.is_valid()):
-            # Save forms if valid
-            form.save()
-
+            full_name = f"{current_user.first_name} {current_user.last_name}"
+            shipping_form.initial['full_name'] = full_name.strip()
             if user_profile:  # If profile exists, update it
                 profile_form.save()
             else:  # If profile doesn't exist, create a new one
@@ -249,7 +244,9 @@ def update_user_profile(request):
                 new_profile.save()
             return redirect('products')
         return render(
-            request, "update_user_profile.html", {'form': form, 'profile_form': profile_form})    
+            request,
+            "update_user_profile.html",
+            {'form': form, 'profile_form': profile_form})
     else:
         return redirect('home')
 
@@ -282,15 +279,13 @@ def update_ship_profile(request):
         return redirect('home')
 
 
-
 def update_password(request):
     """Allow users to change their password."""
     if request.user.is_authenticated:
         current_user = request.user
-		# Did they fill out the form
-        if request.method  == 'POST':
+        if request.method == 'POST':
             form = ChangePasswordForm(current_user, request.POST)
-			# Is the form valid
+            # Is the form valid
             if form.is_valid():
                 form.save()
                 messages.success(request, "Your Password Has Been Updated...")
@@ -301,9 +296,10 @@ def update_password(request):
                     return redirect('update_password')
         else:
             form = ChangePasswordForm(current_user)
-            return render(request, "update_password.html", {'form':form})
+            return render(request, "update_password.html", {'form': form})
     else:
         return redirect('home')
+
 
 def update_user(request):
     """Allow users to update their account details."""
@@ -314,20 +310,21 @@ def update_user(request):
             user_form.save()
             login(request, current_user)
             return redirect('home')
-        return render(request, "update_user.html", {'user_form':user_form}) 
+        return render(request, "update_user.html", {'user_form': user_form})
     else:
         return redirect('home')
+
 
 def category_summary(request):
     """Display a summary of all categories."""
     categories = Category.objects.all()
-    return render(request, 'category_summary.html', {"categories":categories})
+    return render(request, 'category_summary.html', {"categories": categories})
+
 
 def category(request, foo):
     """Display products in a specific category or the sales category."""
-    # Replace hyphens with spaces
+    # Replace hyphens with spaces foo as of foo-fighters
     foo = foo.replace('-', ' ')
-    
     # Check if the requested category is "Sales"
     if foo.lower() == "sales":
         # Filter for products on sale
@@ -342,27 +339,31 @@ def category(request, foo):
         except Category.DoesNotExist:
             messages.info(request, "That Category Doesn't Exist...")
             return redirect('home')
-    
     # Render the category page with the list of products and category name
     return render(request, 'category.html', {
         'products': products,
         'category': category_name,
-        'is_sales': (foo.lower() == "sales")  # Pass is_sales as True if it's the "Sales" category
+        'is_sales': (foo.lower() == "sales")
+        # Pass is_sales as True if it's the "Sales" category
     })
 
-def product(request,pk):
+
+def product(request, pk):
     """Display the details of a single product."""
     product = Product.objects.get(id=pk)
-    return render(request, 'product.html', {'product':product})
+    return render(request, 'product.html', {'product': product})
+
 
 def home(request):
     """Render the home page with a list of products."""
     products = Product.objects.all()
-    return render(request, 'home.html', {'products':products})
+    return render(request, 'home.html', {'products': products})
+
 
 def about(request):
     """Render the About Us page."""
-    return render(request, 'about.html', {})	
+    return render(request, 'about.html', {})
+
 
 def login_user(request):
     """Log in an existing user and restore their saved cart."""
@@ -372,25 +373,25 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-			# Do some shopping cart stuff
+            # Do some shopping cart stuff
             current_user = Profile.objects.get(user__id=request.user.id)
-			# Get their saved cart from database
+            # Get their saved cart from database
             saved_cart = current_user.old_cart
-			# Convert database string to python dictionary
+            # Convert database string to Python dictionary
             if saved_cart:
-				# Convert to dictionary using JSON
+                # Convert to dictionary using JSON
                 converted_cart = json.loads(saved_cart)
-				# Add the loaded cart dictionary to our session
-				# Get the cart
+                # Add the loaded cart dictionary to our session
+                # Get the cart
                 cart = Cart(request)
-				# Loop thru the cart and add the items from the database
-                for key,value in converted_cart.items():
+                # Loop through the cart and add the items from the database
+                for key, value in converted_cart.items():
                     cart.db_add(product=key, quantity=value)
 
-            messages.success(request, ("You Have Been Logged In!"))
+            messages.success(request, "You Have Been Logged In!")
             return redirect('products')
         else:
-            messages.error(request, ("There was an error, please try again..."))
+            messages.error(request, "There was an error, please try again...")
             return redirect('login')
     else:
         return render(request, 'login.html', {})
@@ -399,8 +400,11 @@ def login_user(request):
 def logout_user(request):
     """Log out the current user."""
     logout(request)
-    messages.success(request, ("You have been logged out...Thanks for stopping by..."))
+    messages.success(request, (
+        "You have been logged out...Thanks for stopping by..."
+    ))
     return redirect('home')
+
 
 def register_user(request):
     """Register a new user and send a confirmation email."""
@@ -410,17 +414,19 @@ def register_user(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']            
+            password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
             # Send confirmation email
             subject = 'Welcome to Astro Shop!'
-            message = render_to_string('confirmation_emails/confirmation_email_registration.txt', {
-                'username': user.username,  # Pass the username to the template
-                'domain': get_current_site(request).domain,
-                'uid': user.pk,  # Optional, can be used for confirmation link
-                'token': 'dummy_token'  # Replace with actual token logic if needed
-            })
+            message = render_to_string(
+                'confirmation_emails/confirmation_email_registration.txt', {
+                    'username': user.username,
+                    # Pass the username to the template
+                    'domain': get_current_site(request).domain,
+                    'uid': user.pk,
+                    'token': 'dummy_token'
+                })
             send_mail(
                 subject,
                 message,
@@ -429,10 +435,17 @@ def register_user(request):
                 fail_silently=False,
             )
 
-            messages.success(request, "Username Created - Registration Email has send - Please Fill Out Your User Info Below...")
+            messages.success(
+                request,
+                "Username Created - Registration Email has been sent - "
+                "Please Fill Out Your User Info Below..."
+            )
             return redirect('update_user_and_shipping_profile')
         else:
-            messages.error(request, "Whoops! There was a problem registering, please try again...")
+            messages.error(
+                request,
+                "Whoops! There was a problem registering, please try again..."
+            )
             return redirect('register')
     else:
         return render(request, 'register.html', {'form': form})
@@ -449,32 +462,44 @@ class SubscribeView(FormView):
     template_name = 'index.html'
     success_url = reverse_lazy('check_email')
 
-    def form_valid(self, form):
-        email = form.cleaned_data['email']
-        # Attempt to create or retrieve the subscription
-        subscription, created = Subscription.objects.get_or_create(email=email)
-        # If new subscription, generate a confirmation code and save
-        if created:
-            confirmation_code = str(uuid.uuid4())
-            subscription.confirmation_code = confirmation_code
-            subscription.is_confirmed = False
-            subscription.save()
-            confirmation_link = f"{self.request.scheme}://{self.request.get_host()}/shopper/confirm/?code={confirmation_code}"
-            subject = 'Confirm your subscription'
-            message = f"Hello,\n\nClick the link to confirm your subscription: {confirmation_link}"
-        else:
-            subject = "Thank you for subscribing!"
-            message = "You have successfully subscribed to our newsletter."
-        from_email = settings.EMAIL_HOST_USER
-        to_email = email
-        try:          
-            send_mail(subject, message, from_email, [to_email])            
-        except BadHeaderError:            
-            return HttpResponse("Invalid header found.")
-        except Exception as e:            
-            return HttpResponse(f"Error sending email: {e}")
-        # Redirect to the success page or confirmation page
-        return HttpResponseRedirect(self.success_url)
+
+def form_valid(self, form):
+    email = form.cleaned_data['email']
+    # Attempt to create or retrieve the subscription
+    subscription, created = Subscription.objects.get_or_create(email=email)
+    # If new subscription, generate a confirmation code and save
+    if created:
+        confirmation_code = str(uuid.uuid4())
+        subscription.confirmation_code = confirmation_code
+        subscription.is_confirmed = False
+        subscription.save()
+
+        # Construct the confirmation link
+        confirmation_link = (
+            f"{self.request.scheme}://{self.request.get_host()}"
+            f"/shopper/confirm/?code={confirmation_code}"
+        )
+        subject = 'Confirm your subscription'
+        message = (
+            "Hello,\n\nClick the link to confirm your subscription: " +
+            confirmation_link
+        )
+    else:
+        subject = "Thank you for subscribing!"
+        message = "You have successfully subscribed to our newsletter."
+
+    from_email = settings.EMAIL_HOST_USER
+    to_email = email
+    try:
+        send_mail(subject, message, from_email, [to_email])
+    except BadHeaderError:
+        return HttpResponse("Invalid header found.")
+    except Exception as e:
+        return HttpResponse(f"Error sending email: {e}")
+
+    # Redirect to the success page or confirmation page
+    return HttpResponseRedirect(self.success_url)
+
 
 def suppliers_list(request):
     """Display a list of all suppliers."""
