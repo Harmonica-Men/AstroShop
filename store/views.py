@@ -439,10 +439,9 @@ class CheckEmailView(TemplateView):
 
 
 class SubscribeView(FormView):
-    """Handle subscription requests and send confirmation emails."""
     form_class = SubscribeForm
     template_name = 'index.html'
-    success_url = reverse_lazy('check_email')     
+    success_url = reverse_lazy('check-email')  # Adjust this if needed
 
     def form_valid(self, form):
         email = form.cleaned_data['email']
@@ -480,9 +479,7 @@ class SubscribeView(FormView):
             return HttpResponse(f"Error sending email: {e}")
 
         # Redirect to the success page or confirmation page
-        return HttpResponseRedirect(self.success_url)
-
-    
+        return HttpResponseRedirect(self.success_url) 
 
 
 def suppliers_list(request):
