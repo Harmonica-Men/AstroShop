@@ -41,4 +41,5 @@ urlpatterns = [
     path('update_user/', views.update_user, name='update_user'),
     path('update_user_and_shipping_profile/', views.update_user_and_shipping_profile, name='update_user_and_shipping_profile'),
     path('update_user_profile/', views.update_user_profile, name='update_user_profile'),
+    path('update-ship-profile/', views.update_ship_profile, name='update_ship_profile'),
 ]

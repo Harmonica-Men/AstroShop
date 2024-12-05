@@ -250,20 +250,24 @@ def update_user_profile(request):
     else:
         return redirect('home')
 
-
 def update_ship_profile(request):
+    """
+    Updates the user's profile and shipping address if authenticated. Redirects to 'products' on success, 
+    or renders the form with errors. Redirects unauthenticated users to the home page.
+    """
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
+        
         # Get Current User's Shipping Info with error handling
         try:
-            shipping_user = ShippingAddress.objects.get(
-                user__id=request.user.id)
+            shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
         except ShippingAddress.DoesNotExist:
             shipping_user = None
+        
         # Get original User Form
         form = ProfileForm(request.POST or None, instance=current_user)
-        shipping_form = ShippingForm(
-            request.POST or None, instance=shipping_user)
+        shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
+        
         if form.is_valid() and shipping_form.is_valid():
             form.save()
             if shipping_user:
@@ -273,11 +277,11 @@ def update_ship_profile(request):
                 shipping_user.user = request.user
                 shipping_user.save()
             return redirect('products')
+        
         return render(request, "update_ship_profile.html", {
             'form': form, 'shipping_form': shipping_form})
     else:
         return redirect('home')
-
 
 def update_password(request):
     """Allow users to change their password."""
