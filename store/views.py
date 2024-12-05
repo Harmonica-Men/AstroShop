@@ -18,10 +18,13 @@ from django.conf import settings
 from shopcart.cart import Cart
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
+
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.http import JsonResponse
+# from django.views.decorators.csrf import csrf_exempt
+
 from django.core.mail import send_mail, BadHeaderError
 
 
@@ -31,7 +34,6 @@ from django.views.generic import (
 )
 
 def add_to_cart(request, product_id):
-    """Add a product to the shopping cart and redirect to the cart page."""
     return redirect('cart')  # Redirect to a relevant page after adding to the cart
 
 
@@ -81,8 +83,6 @@ def index(request):
 
 # @user_passes_test(lambda u: u.is_superuser)
 def add_product(request):
-    """Allow superusers to add a new product using a form."""
-
     if request.method == "POST":
         form = UpdateProductForm(request.POST, request.FILES)  # We use UpdateProductForm to add new products as well
 		
@@ -97,8 +97,6 @@ def add_product(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def update_product(request, pk):
-    """Allow superusers to update an existing product's details."""
-
     product = get_object_or_404(Product, pk=pk)
     if request.method == "POST":
         form = UpdateProductForm(request.POST, request.FILES, instance=product)
@@ -112,14 +110,12 @@ def update_product(request, pk):
 
 
 def delete_product_confirmation(request, pk):
-    """Render a confirmation page before deleting a product."""
-
-    product = get_object_or_404(Product, pk=pk)    
+    product = get_object_or_404(Product, pk=pk)
+    messages.info(request, "Product deleted.")
     return render(request, 'delete_product_confirm.html', {'product': product})
 
 
 def delete_product(request, pk):
-    """Delete a product if the user has superuser permissions."""
     if request.user.is_superuser:
         product = get_object_or_404(Product, pk=pk)
         product.delete()
@@ -130,25 +126,23 @@ def delete_product(request, pk):
         return redirect('products')
 
 def search(request):
-    """Search for products based on user input in the search form."""
-    if request.method == "POST":
-        searched = request.POST['searched']
-		
-        searched = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
+	# Determine if they filled out the form
+	if request.method == "POST":
+		searched = request.POST['searched']
+		# Query The Products DB Model
+		searched = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
 		# Test for null
-        if not searched:
-            messages.error(request, "That Product Does Not Exist...Please try Again.")
-            return render(request, "search.html", {})
-        else:
-            return render(request, "search.html", {'searched':searched})
-    else:
-        return render(request, "search.html", {})	
+		if not searched:
+			messages.error(request, "That Product Does Not Exist...Please try Again.")
+			return render(request, "search.html", {})
+		else:
+			return render(request, "search.html", {'searched':searched})
+	else:
+		return render(request, "search.html", {})	
+
+
 
 def update_user_and_shipping_profile(request):
-    """
-    Update the user's profile and shipping information.
-    Create a new profile or shipping address if they do not exist.
-    """
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
 
@@ -205,10 +199,6 @@ def update_user_and_shipping_profile(request):
 
 
 def update_user_profile(request):
-    """
-    Update the authenticated user's profile.
-    Create a new profile if one does not already exist.
-    """
     if request.user.is_authenticated:
         current_user = Profile.objects.get(user__id=request.user.id)
         
@@ -234,14 +224,18 @@ def update_user_profile(request):
             else:  # If profile doesn't exist, create a new one
                 new_profile = profile_form.save(commit=False)
                 new_profile.user = request.user
-                new_profile.save()          
-            return redirect('products')        
-        return render(request, "update_user_profile.html", {'form': form, 'profile_form': profile_form})    
+                new_profile.save()
+          
+            return redirect('products')
+        
+        return render(request, "update_user_profile.html", {'form': form, 'profile_form': profile_form})
+    
     else:
+
         return redirect('home')
 
+
 def update_ship_profile(request):
-    """Update the authenticated user's shipping address."""
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
         
@@ -252,8 +246,7 @@ def update_ship_profile(request):
             shipping_user = None  # Optional: handle missing shipping address here
             
         # Get original User Form
-        form = """Update the authenticated user's profile."""
-        ProfileForm(request.POST or None, instance=current_user)
+        form = ProfileForm(request.POST or None, instance=current_user)
         
         # Get User's Shipping Form (use an empty instance if shipping_user is None)
         shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
@@ -276,47 +269,55 @@ def update_ship_profile(request):
         return redirect('home')
     
 def update_password(request):
-    """Allow users to change their password."""
-    if request.user.is_authenticated:
-        current_user = request.user
+	if request.user.is_authenticated:
+		current_user = request.user
 		# Did they fill out the form
-        if request.method  == 'POST':
-            form = ChangePasswordForm(current_user, request.POST)
+		if request.method  == 'POST':
+			form = ChangePasswordForm(current_user, request.POST)
 			# Is the form valid
-            if form.is_valid():
-                form.save()
-                messages.success(request, "Your Password Has Been Updated...")
-                login(request, current_user)
-                return redirect('update_user')
-            else:
-                for error in list(form.errors.values()):
-                    return redirect('update_password')
-        else:
-            form = ChangePasswordForm(current_user)
-            return render(request, "update_password.html", {'form':form})
-    else:
-        return redirect('home')
+			if form.is_valid():
+				form.save()
+				messages.success(request, "Your Password Has Been Updated...")
+				login(request, current_user)
+				return redirect('update_user')
+			else:
+				for error in list(form.errors.values()):
+
+                    
+
+					return redirect('update_password')
+		else:
+			form = ChangePasswordForm(current_user)
+			return render(request, "update_password.html", {'form':form})
+	else:
+
+		return redirect('home')
 
 def update_user(request):
-    """Allow users to update their account details."""
-    if request.user.is_authenticated:
-        current_user = User.objects.get(id=request.user.id)
-        user_form = UpdateUserForm(request.POST or None, instance=current_user)
-        if user_form.is_valid():
-            user_form.save()
-            login(request, current_user)
-            return redirect('home')
-        return render(request, "update_user.html", {'user_form':user_form}) 
-    else:
-        return redirect('home')
+	if request.user.is_authenticated:
+		current_user = User.objects.get(id=request.user.id)
+		user_form = UpdateUserForm(request.POST or None, instance=current_user)
+
+		if user_form.is_valid():
+			user_form.save()
+
+			login(request, current_user)
+
+			return redirect('home')
+		return render(request, "update_user.html", {'user_form':user_form})
+	else:
+
+		return redirect('home')
 
 def category_summary(request):
-    """Display a summary of all categories."""
-    categories = Category.objects.all()
-    return render(request, 'category_summary.html', {"categories":categories})
+	categories = Category.objects.all()
+	return render(request, 'category_summary.html', {"categories":categories})	
+
+
+
+
 
 def category(request, foo):
-    """Display products in a specific category or the sales category."""
     # Replace hyphens with spaces
     foo = foo.replace('-', ' ')
     
@@ -342,62 +343,65 @@ def category(request, foo):
         'is_sales': (foo.lower() == "sales")  # Pass is_sales as True if it's the "Sales" category
     })
 
+
+
+
+
+
 def product(request,pk):
-    """Display the details of a single product."""
-    product = Product.objects.get(id=pk)
-    return render(request, 'product.html', {'product':product})
+	product = Product.objects.get(id=pk)
+	return render(request, 'product.html', {'product':product})
 
 
 def home(request):
-    """Render the home page with a list of products."""
-    products = Product.objects.all()
-    return render(request, 'home.html', {'products':products})
+	products = Product.objects.all()
+	return render(request, 'home.html', {'products':products})
 
 
 def about(request):
-    """Render the About Us page."""
-    return render(request, 'about.html', {})	
+	return render(request, 'about.html', {})	
 
 def login_user(request):
-    """Log in an existing user and restore their saved cart."""
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
+	if request.method == "POST":
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(request, username=username, password=password)
+		if user is not None:
+			login(request, user)
+
 			# Do some shopping cart stuff
-            current_user = Profile.objects.get(user__id=request.user.id)
+			current_user = Profile.objects.get(user__id=request.user.id)
 			# Get their saved cart from database
-            saved_cart = current_user.old_cart
+			saved_cart = current_user.old_cart
 			# Convert database string to python dictionary
-            if saved_cart:
+			if saved_cart:
 				# Convert to dictionary using JSON
-                converted_cart = json.loads(saved_cart)
+				converted_cart = json.loads(saved_cart)
 				# Add the loaded cart dictionary to our session
 				# Get the cart
-                cart = Cart(request)
+				cart = Cart(request)
 				# Loop thru the cart and add the items from the database
-                for key,value in converted_cart.items():
-                    cart.db_add(product=key, quantity=value)
+				for key,value in converted_cart.items():
+					cart.db_add(product=key, quantity=value)
 
-            messages.success(request, ("You Have Been Logged In!"))
-            return redirect('products')
-        else:
-            messages.error(request, ("There was an error, please try again..."))
-            return redirect('login')
-    else:
-        return render(request, 'login.html', {})
+			messages.success(request, ("You Have Been Logged In!"))
+			return redirect('products')
+		else:
+			messages.error(request, ("There was an error, please try again..."))
+			return redirect('login')
+
+	else:
+		return render(request, 'login.html', {})
 
 
 def logout_user(request):
-    """Log out the current user."""
-    logout(request)
-    messages.success(request, ("You have been logged out...Thanks for stopping by..."))
-    return redirect('home')
+	logout(request)
+	messages.success(request, ("You have been logged out...Thanks for stopping by..."))
+	return redirect('home')
+
+
 
 def register_user(request):
-    """Register a new user and send a confirmation email."""
     form = SignUpForm()
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -434,14 +438,13 @@ def register_user(request):
         return render(request, 'register.html', {'form': form})
 
 class CheckEmailView(TemplateView):
-    """Render the email verification confirmation page."""
     template_name = 'check_email.html'
 
 
 class SubscribeView(FormView):
     form_class = SubscribeForm
     template_name = 'index.html'
-    success_url = reverse_lazy('check-email')  # Adjust this if needed
+    success_url = reverse_lazy('check_email')     
 
     def form_valid(self, form):
         email = form.cleaned_data['email']
@@ -479,22 +482,40 @@ class SubscribeView(FormView):
             return HttpResponse(f"Error sending email: {e}")
 
         # Redirect to the success page or confirmation page
-        return HttpResponseRedirect(self.success_url) 
+        return HttpResponseRedirect(self.success_url)
 
+    
+
+    
+# def send_mail_page(request):
+#     context = {}
+
+#     if request.method == 'POST':
+#         address = request.POST.get('address')
+#         subject = request.POST.get('subject')
+#         message = request.POST.get('message')
+
+#         if address and subject and message:
+#             try:
+#                 send_mail(subject, message, settings.EMAIL_HOST_USER, [address])
+#                 context['result'] = 'Email sent successfully'
+#             except Exception as e:
+#                 context['result'] = f'Error sending email: {e}'
+#         else:
+#             context['result'] = 'All fields are required'
+    
+#     return render(request, "test_email.html", context)
 
 def suppliers_list(request):
-    """Display a list of all suppliers."""
     suppliers = Supplier.objects.all()
     return render(request, 'suppliers.html', {'suppliers': suppliers})
 
 def supplier_detail(request, supplier_id):
-    """Display details for a specific supplier."""
     supplier = get_object_or_404(Supplier, id=supplier_id)
     return render(request, 'supplier_detail.html', {'supplier': supplier})
 
 
 def delete_supplier(request, supplier_id):
-    """Delete a supplier if the user has superuser permissions."""
     if not request.user.is_superuser:
         messages.error(request, "You do not have permission to delete suppliers.")
         return redirect('suppliers_list')
@@ -509,14 +530,12 @@ def delete_supplier(request, supplier_id):
     return redirect('supplier_detail', supplier_id=supplier.id)
 
 def supplier_confirm_delete(request, supplier_id):
-    """Render a confirmation page before deleting a supplier."""
     supplier = get_object_or_404(Supplier, id=supplier_id)
     return render(request, 'supplier_confirm_delete.html', {'supplier': supplier})
 
 
 
 def add_supplier(request):
-    """Allow superusers to add a new supplier."""
     if not request.user.is_superuser:
         messages.error(request, "You do not have permission to access this page.")
         return redirect('suppliers_list')
@@ -526,25 +545,8 @@ def add_supplier(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Supplier added successfully!")
-            return redirect('products')
+            return redirect('suppliers_list')
     else:
         form = SupplierForm()
 
     return render(request, 'add_supplier.html', {'form': form})
-
-def general_conditions(request):
-    """Render the General Conditions page."""
-    return render(request, 'general_conditions.html')
-
-def disclaimer(request):
-    """Render the Disclaimer page."""
-    return render(request, 'disclaimer.html')
-
-
-def payment(request):
-    """Render the Payment page."""
-    return render(request, 'payment.html')
-
-def privacy(request):
-    """Render the Privacy Policy page."""
-    return render(request, 'privacy.html')
