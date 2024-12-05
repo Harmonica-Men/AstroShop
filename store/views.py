@@ -146,12 +146,18 @@ def search(request):
     """Search for products based on user input in the search form."""
     if request.method == "POST":
         searched = request.POST['searched']
-        searched = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
-        if not searched:
-            messages.error(request, "That Product Does Not Exist...Please try Again.")
+        searched_products = Product.objects.filter(
+            Q(name__icontains=searched) | Q(description__icontains=searched)
+        )
+        if not searched_products:
+            messages.error(
+                request,
+                "That Product Does Not Exist... Please try Again."
+            )
             return render(request, "search.html", {})
         else:
-            return render(request, "search.html", {'searched':searched}
+            return render(
+                request, "search.html", {'searched': searched_products})
     else:
         return render(request, "search.html", {})
 
@@ -171,19 +177,19 @@ def update_user_and_shipping_profile(request):
         try:
             shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
         except ShippingAddress.DoesNotExist:
-            shipping_user = None  # Optional: handle missing shipping address here
-
+            shipping_user = None
+        
         # Initialize forms
         form = ProfileForm(request.POST or None, instance=current_user)
         profile_form = ProfileForm(request.POST or None, instance=user_profile)
         shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
-
+        
         # Prefill Full Name field in ShippingForm if empty
         if not shipping_user and request.method != "POST":
             full_name = f"{current_user.first_name} {current_user.last_name}".strip()
             shipping_form.initial['full_name'] = full_name
-
-        if form.is_valid() and profile_form.is_valid() and shipping_form.is_valid():
+        
+        if (form.is_valid() and profile_form.is_valid() and shipping_form.is_valid()):
             # Save forms if valid
             form.save()
 
@@ -203,15 +209,17 @@ def update_user_and_shipping_profile(request):
 
             return redirect('products')
 
-        return render(request, "update_user_and_shipping_profile.html", {
-            'form': form,
-            'profile_form': profile_form,
-            'shipping_form': shipping_form
-        })
+        return render(
+            request,
+            "update_user_and_shipping_profile.html",
+            {
+                'form': form,
+                'profile_form': profile_form,
+                'shipping_form': shipping_form,
+            }
+        )
 
-    else:
-        return redirect('home')
-
+    return redirect('home')
 
 
 def update_user_profile(request):
@@ -221,70 +229,60 @@ def update_user_profile(request):
     """
     if request.user.is_authenticated:
         current_user = Profile.objects.get(user__id=request.user.id)
-        
-        
         # Get Current User's profile Info with error handling
         try:
-            
             user_profile = Profile.objects.get(user__id=request.user.id)
         except Profile.DoesNotExist:
             user_profile = None  # Optional: handle missing profile here
-            
         # Get original User Form
         form = ProfileForm(request.POST or None, instance=current_user)
-        
         # Initialize profile form using the existing profile or None
         profile_form = ProfileForm(request.POST or None, instance=user_profile)
-        
         if form.is_valid() and profile_form.is_valid():
             # Save forms if valid
-            form.save()            
+            form.save()
             if user_profile:  # If profile exists, update it
                 profile_form.save()
             else:  # If profile doesn't exist, create a new one
                 new_profile = profile_form.save(commit=False)
                 new_profile.user = request.user
-                new_profile.save()          
-            return redirect('products')        
-        return render(request, "update_user_profile.html", {'form': form, 'profile_form': profile_form})    
+                new_profile.save()
+            return redirect('products')
+        return render(
+            request, "update_user_profile.html", {'form': form, 'profile_form': profile_form})    
     else:
         return redirect('home')
 
+
 def update_ship_profile(request):
-    """Update the authenticated user's shipping address."""
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
-        
         # Get Current User's Shipping Info with error handling
         try:
-            shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
+            shipping_user = ShippingAddress.objects.get(
+                user__id=request.user.id)
         except ShippingAddress.DoesNotExist:
-            shipping_user = None  # Optional: handle missing shipping address here
-            
+            shipping_user = None
         # Get original User Form
-        form = """Update the authenticated user's profile."""
-        ProfileForm(request.POST or None, instance=current_user)
-        
-        # Get User's Shipping Form (use an empty instance if shipping_user is None)
-        shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
-        
+        form = ProfileForm(request.POST or None, instance=current_user)
+        shipping_form = ShippingForm(
+            request.POST or None, instance=shipping_user)
         if form.is_valid() and shipping_form.is_valid():
-            # Save forms if valid
             form.save()
             if shipping_user:
                 shipping_form.save()
-            else:               
+            else:
                 shipping_user = shipping_form.save(commit=False)
                 shipping_user.user = request.user
                 shipping_user.save()
-
             return redirect('products')
-        
-        return render(request, "update_ship_profile.html", {'form': form, 'shipping_form': shipping_form})
-    
+        return render(request, "update_ship_profile.html", {
+            'form': form, 'shipping_form': shipping_form})
     else:
         return redirect('home')
-    
+
+
+
 def update_password(request):
     """Allow users to change their password."""
     if request.user.is_authenticated:
@@ -439,6 +437,7 @@ def register_user(request):
     else:
         return render(request, 'register.html', {'form': form})
 
+
 class CheckEmailView(TemplateView):
     """Render the email verification confirmation page."""
     template_name = 'check_email.html'
@@ -448,14 +447,12 @@ class SubscribeView(FormView):
     """Handle subscription requests and send confirmation emails."""
     form_class = SubscribeForm
     template_name = 'index.html'
-    success_url = reverse_lazy('check_email')     
+    success_url = reverse_lazy('check_email')
 
     def form_valid(self, form):
         email = form.cleaned_data['email']
-
         # Attempt to create or retrieve the subscription
         subscription, created = Subscription.objects.get_or_create(email=email)
-
         # If new subscription, generate a confirmation code and save
         if created:
             confirmation_code = str(uuid.uuid4())
@@ -484,6 +481,7 @@ def suppliers_list(request):
     suppliers = Supplier.objects.all()
     return render(request, 'suppliers.html', {'suppliers': suppliers})
 
+
 def supplier_detail(request, supplier_id):
     """Display details for a specific supplier."""
     supplier = get_object_or_404(Supplier, id=supplier_id)
@@ -493,7 +491,8 @@ def supplier_detail(request, supplier_id):
 def delete_supplier(request, supplier_id):
     """Delete a supplier if the user has superuser permissions."""
     if not request.user.is_superuser:
-        messages.error(request, "You do not have permission to delete suppliers.")
+        messages.error(
+            request, "You do not have permission to delete suppliers.")
         return redirect('suppliers_list')
     supplier = get_object_or_404(Supplier, id=supplier_id)
     if request.method == 'POST':
@@ -502,15 +501,19 @@ def delete_supplier(request, supplier_id):
         return redirect('suppliers_list')
     return redirect('supplier_detail', supplier_id=supplier.id)
 
+
 def supplier_confirm_delete(request, supplier_id):
     """Render a confirmation page before deleting a supplier."""
     supplier = get_object_or_404(Supplier, id=supplier_id)
-    return render(request, 'supplier_confirm_delete.html', {'supplier': supplier})
+    return render(
+        request, 'supplier_confirm_delete.html', {'supplier': supplier})
+
 
 def add_supplier(request):
     """Allow superusers to add a new supplier."""
     if not request.user.is_superuser:
-        messages.error(request, "You do not have permission to access this page.")
+        messages.error(
+            request, "You do not have permission to access this page.")
         return redirect('suppliers_list')
 
     if request.method == "POST":
@@ -523,13 +526,16 @@ def add_supplier(request):
         form = SupplierForm()
     return render(request, 'add_supplier.html', {'form': form})
 
+
 def general_conditions(request):
     """Render the General Conditions page."""
     return render(request, 'general_conditions.html')
 
+
 def disclaimer(request):
     """Render the Disclaimer page."""
     return render(request, 'disclaimer.html')
+
 
 def payment(request):
     """Render the Payment page."""
