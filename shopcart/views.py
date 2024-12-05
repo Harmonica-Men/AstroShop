@@ -6,73 +6,133 @@ from django.contrib import messages
 
 
 def shopcart_summary(request):
-	# Get the cart
-	cart = Cart(request)
-	cart_products = cart.get_prods
-	quantities = cart.get_quants
-	totals = cart.cart_total()
-	return render(request, "shopcart_summary.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals})
+    """
+    Display a summary of the shopping cart.
+
+    Retrieves the products in the cart, their quantities, and the total price,
+    and renders the 'shopcart_summary.html' template with this data.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered HTML template with cart details.
+    """
+    # Get the cart
+    cart = Cart(request)
+    cart_products = cart.get_prods
+    quantities = cart.get_quants
+    totals = cart.cart_total()
+    return render(request, "shopcart_summary.html", {
+        "cart_products": cart_products,
+        "quantities": quantities,
+        "totals": totals,
+    })
 
 
 def shopcart_add(request):
+    """
+    Add a product to the shopping cart.
 
+    Retrieves product ID and quantity from a POST request, adds the product to
+    the cart, and returns a JSON response with the updated cart quantity.
 
-	# Get the cart
-	cart = Cart(request)
-	# test for POST
-	if request.POST.get('action') == 'post':
-		# Get stuff
-		product_id = int(request.POST.get('product_id'))
-		product_qty = int(request.POST.get('product_qty'))
-		# redirect_url = request.POST.get('redirect_url')
+    Args:
+        request: The HTTP request object.
 
+    Returns:
+        JsonResponse: A JSON response containing,
+        the cart quantity after adding the product.
+    """
+    # Get the cart
+    cart = Cart(request)
 
-		# lookup product in DB
-		product = get_object_or_404(Product, id=product_id)
-		
-		# Save to session
-		cart.add(product=product, quantity=product_qty)
+    # Check for POST action
+    if request.POST.get('action') == 'post':
+        # Get product details
+        product_id = int(request.POST.get('product_id'))
+        product_qty = int(request.POST.get('product_qty'))
 
-		# Get Cart Quantity
-		cart_quantity = cart.__len__()
+        # Lookup product in the database
+        product = get_object_or_404(Product, id=product_id)
 
+        # Add product to the cart
+        cart.add(product=product, quantity=product_qty)
 
-		# toasts 
-		messages.success(request, f'Added { product.name } to your bag ')
+        # Get the updated cart quantity
+        cart_quantity = cart.__len__()
 
-		# Return resonse
-		# response = JsonResponse({'Product Name: ': product.name})
-		response = JsonResponse({'qty': cart_quantity})
-		
-		return response
-		# return redirect(redirect_url)
+        # Display success message
+        messages.success(request, f'Added {product.name} to your bag')
 
+        # Return JSON response
+        response = JsonResponse({'qty': cart_quantity})
+        return response
 
 
 def shopcart_delete(request):
-	cart = Cart(request)
-	if request.POST.get('action') == 'post':
-		# Get stuff
-		product_id = int(request.POST.get('product_id'))
-		# Call delete Function in Cart
-		cart.delete(product=product_id)
+    """
+    Remove a product from the shopping cart.
 
-		response = JsonResponse({'product':product_id})
-		#return redirect('cart_summary')
-		messages.warning(request, f'Item Deleted From Shopping Cart')
-		return response
+    Retrieves product ID from a POST request,
+    deletes the product from the cart,
+    and returns a JSON response with the deleted product ID.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        JsonResponse: A JSON response containing,
+        the product ID of the deleted product.
+    """
+    # Get the cart
+    cart = Cart(request)
+
+    # Check for POST action
+    if request.POST.get('action') == 'post':
+        # Get product ID
+        product_id = int(request.POST.get('product_id'))
+
+        # Delete product from the cart
+        cart.delete(product=product_id)
+
+        # Display warning message
+        messages.warning(request, f'Item Deleted From Shopping Cart')
+
+        # Return JSON response
+        response = JsonResponse({'product': product_id})
+        return response
 
 
 def shopcart_update(request):
-	cart = Cart(request)
-	if request.POST.get('action') == 'post':
-		# Get stuff
-		product_id = int(request.POST.get('product_id'))
-		product_qty = int(request.POST.get('product_qty'))
+    """
+    Update the quantity of a product in the shopping cart.
 
-		cart.update(product=product_id, quantity=product_qty)
+    Retrieves product ID and quantity from a POST request, updates the quantity
+    in the cart, and returns a JSON response with the updated quantity.
 
-		response = JsonResponse({'qty':product_qty})
-		#return redirect('cart_summary')
-		messages.success(request, f'Your Cart Has Been Updated')
-		return response
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        JsonResponse: A JSON response containing,
+        the updated quantity for the product.
+    """
+    # Get the cart
+    cart = Cart(request)
+
+    # Check for POST action
+    if request.POST.get('action') == 'post':
+        # Get product details
+        product_id = int(request.POST.get('product_id'))
+        product_qty = int(request.POST.get('product_qty'))
+
+        # Update product quantity in the cart
+        cart.update(product=product_id, quantity=product_qty)
+
+        # Display success message
+        messages.success(request, f'Your Cart Has Been Updated')
+
+        # Return JSON response
+        response = JsonResponse({'qty': product_qty})
+        return response
