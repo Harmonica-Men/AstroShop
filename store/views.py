@@ -344,19 +344,19 @@ def category(request, foo):
 
 def product(request,pk):
     """Display the details of a single product."""
-	product = Product.objects.get(id=pk)
-	return render(request, 'product.html', {'product':product})
+    product = Product.objects.get(id=pk)
+    return render(request, 'product.html', {'product':product})
 
 
 def home(request):
     """Render the home page with a list of products."""
-	products = Product.objects.all()
-	return render(request, 'home.html', {'products':products})
+    products = Product.objects.all()
+    return render(request, 'home.html', {'products':products})
 
 
 def about(request):
     """Render the About Us page."""
-	return render(request, 'about.html', {})	
+    return render(request, 'about.html', {})	
 
 def login_user(request):
     """Log in an existing user and restore their saved cart."""
