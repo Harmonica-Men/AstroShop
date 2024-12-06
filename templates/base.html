@@ -105,7 +105,7 @@
                 <a href="{% url 'shopcart_summary' %}" class="text-black nav-link btn mt-1 mr-2 hover-effect">
                     <div class="text-center">
                         <i class="fas fa-cart-shopping fa-lg"></i>
-                        <span class="badge bg-black text-white rounded-pill" id="cart_quantity">
+                        <span class="badge bg-black text-white rounded-pill">
                             {{ cart|length|default:0 }}
                         </span>
                     </div>
@@ -154,7 +154,7 @@
                         </li>
 
                         <li class="list-inline-item dropdown">
-                            <a href="#" class="text-black nav-link btn cart-box" data-toggle="dropdown"
+                            <a href="#"  id="account-options" class="text-black nav-link btn cart-box" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <div class="text-center">
                                     <i class="fas fa-user fa-lg"></i>
@@ -196,7 +196,7 @@
                                 <div class="text-center">
                                     <i class="fas fa-cart-shopping fa-lg"></i>
                                     <p class="my-0">Shop&nbsp;Cart&nbsp;Items
-                                        <span class="badge bg-black text-white rounded-pill" id="cart_quantity">
+                                        <span class="badge bg-black text-white rounded-pill">
                                             {{ cart|length|default:0 }}
                                         </span>
                                     </p>
@@ -218,89 +218,21 @@
         <!-- section navbar -->
         <div class="hamburger-menu">
 
-            <input id="menu__toggle" type="checkbox" />
+            <input id="menu__toggle" type="checkbox">
             <label class="menu__btn" for="menu__toggle">
                 <span></span>
             </label>
 
             <ul class="menu__box">
-                <li><a class="menu__item" href="{% url 'home' %}">Home Page</a></li>
-
-                <li>
-
-                    <a class="menu__item" href="{% url 'category' 'Sales' %}" class="py-2 mx-2 text-white">
-
-                        <span class="fa-regular fa-star"></span>
-                        <strong class="mx-2">Sale!</strong>
-                        <span class="fa-regular fa-star"></span>
-
-                    </a>
-
-                </li>
-
-                <li><a class="menu__item" href="{% url 'category' 'Binoculars' %}" class="dropdown-item">Binoculars</a>
-                </li>
-
+                <li><a class="menu__item" href="{% url 'category' 'Sales' %}" class="py-2 mx-2 text-white">Sale!</a></li>
+                <li><a class="menu__item" href="{% url 'category' 'Binoculars' %}" class="dropdown-item">Binoculars</a></li>
                 <li><a class="menu__item" href="{% url 'category' 'Books' %}" class="dropdown-item">Books</a></li>
-                <li><a class="menu__item" href="{% url 'category' 'Toys' %}" class="dropdown-item">Toys</a></li>
-                <li><a class="menu__item" href="{% url 'category' 'Telescopes' %}" class="dropdown-item">Telescopes</a>
-                </li>
-                <li><a class="menu__item" href="{% url 'category' 'Globes' %}" class="dropdown-item">Globes</a></li>
-                <li><a class="menu__item" href="{% url 'category' 'Specials' %}" class="dropdown-item">Specials</a></li>
-                <li><a class="menu__item" href="{% url 'category' 'Weather Stations' %}" class="dropdown-item">Weather
-                        Stations</a></li>
+                <li><a class="menu__item" href="{% url 'category' 'Weather Stations'|urlencode %}" class="dropdown-item">
+                    Weather Stations
+                </a></li>
                 <li><a class="menu__item" href="{% url 'products' %}" class="dropdown-item">All Products</a></li>
-
-                {% if request.user.is_authenticated %}
-                <li class="dropdown">
-                    <a class="menu__item dropdown-toggle" href="#" id="account-options" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        My&nbsp;Account
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
-                        <ul class="no-bullets">
-
-                            <li><a class="menu__item" href="{% url 'update_user_profile' %}" class="dropdown-item">My
-                                    Profile</a></li>
-                            <li><a class="menu__item" href="{% url 'update_ship_profile' %}" class="dropdown-item">My
-                                    Shipping</a></li>
-                            <li><a class="menu__item" href="{% url 'update_payment_paypal' %}" class="dropdown-item">My
-                                    Payment</a></li>
-                            <li><a class="menu__item" href="{% url 'update_user' %}" class="dropdown-item">User
-                                    Account</a></li>
-                            <li> <a class="menu__item" href="{% url 'orders' %}" class="dropdown-item">View Orders</a>
-
-                            <li><a class="menu__item" href="{% url 'update_password' %}" class="dropdown-item">Change
-                                    Password</a></li>
-                            <div class="dropdown-divider"></div>
-                            <li><a class="menu__item" href="{% url 'logout' %}" class="dropdown-item">Logout</a></li>
-                            {% if request.user.is_superuser %}
-                            <div class="dropdown-divider"></div>
-                            <li><a class="menu__item" href="{% url 'add_product' %}" class="dropdown-item">Add
-                                    Product</a></li>
-                            <div class="dropdown-divider"></div>
-                            <li><a class="menu__item" href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers
-                                    List</a></li>
-
-
-                            <li><a class="menu__item" href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped
-                                    Orders</a></li>
-                            <li><a class="menu__item" href="{% url 'not_shipped_dash' %}"
-                                    class="dropdown-item">Unshipped Orders</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </li>
-                {% else %}
-                <li><a class="menu__item" href="{% url 'search' %}" class="dropdown-item">Search</a></li>
-
-
-                <li><a class="menu__item" href="{% url 'register' %}" class="dropdown-item">Register</a></li>
-                <li><a class="menu__item" href="{% url 'login' %}" class="dropdown-item">Login</a></li>
-                {% endif %}
-                <li><a class="menu__item" href="{% url 'about' %}">About</a></li>
             </ul>
-
+            
 
 
         </div>
