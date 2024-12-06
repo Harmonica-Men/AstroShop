@@ -113,159 +113,160 @@
         </div>
     </header>
 
-    <body>
-        <div class="row justify-content-around">
-            <div class="astroshop-container">
-                <div class="astroshop-image">
-                    <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1732211978/image_shop_uuurk0.webp"
-                        class="img-fluid rounded-0" alt="this is our store ...">
-                    <div class="image-text-overlay rounded-0">
-                        <p>Welcome to the Astroshop website. In our Astroshop, you'll find the largest range of
-                            astronomical products in Belgium at very favorable prices.</p>
-                        <br>
-                        <p><strong>Opening Hours:</strong> Tuesday and Friday from 19:30 to 22:00, and Wednesday from
-                            14:00
-                            to 16:00.</p>
-                        <br>
-                        <p>Visits to the Astroshop are by appointment during opening hours, or at another time by
-                            contacting
-                            us at GSM 0999/99.55.99</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-
-        <div class="my-5">
-            <div class="row container-custom margin-sub mt-4">
-                <a href="{% url 'products' %}"
-                    class="shop-now-button btn btn-outline-dark btn-lg rounded-0 text-uppercase py-3 text-center"
-                    style="font-size: xx-large; width: 350px;">SHOP&nbsp;NOW</a>
-            </div>
-        </div>
-
-        <div class="d-flex flex-wrap justify-content-between my-5">
-            <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
-                <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732212725/baader_bkifdw.webp" alt="baader"
-                    class="img-fluid w-100 rounded">
-            </div>
-            <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
-                <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732211977/bresser_j3notr.webp"
-                    alt="bresser" class="img-fluid w-100 rounded">
-            </div>
-            <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
-                <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732211977/omegon_yzisbe.webp" alt="omegon"
-                    class="img-fluid w-100 rounded">
-            </div>
-            <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
-                <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732211977/ts-optics_x5kosb.webp"
-                    alt="ts-optics" class="img-fluid w-100 rounded">
-            </div>
-        </div>
-
-        <div class="d-flex row justify-content-center mb-2">
-            <div class="col-12 text-center">
-                <label for="id_email" class="font-weight-bold">Subscribe to our Newsletter</label>
-            </div>
-            <form method="POST" action="{% url 'subscribe' %}"
-                class="col-12 d-flex align-items-center justify-content-center">
-                {% csrf_token %}
-                <input type="email" class="form-control" id="id_email" name="email" placeholder="name@example.com"
-                    required style="max-width: 300px;">
-                <button type="submit" value="Submit" class="btn-sm btn-light" title="Subscribe">
-                    <span>Subscribe</span>
-                </button>
-            </form>
-        </div>
-
-        <footer class="py-1 bg-dark" style="background-color: rgba(0, 0, 0, 0.5);">
-            <div class="d-flex align-items-center justify-content-between py-1 mx-4">
-                <div class="container my-1">
-                    <h5 class="text-white"><strong> Astroshop.com</strong></h5>
-                    <i class="fa-solid fa-phone text-white"><span style="font-family: 'Lato';">&nbsp;0499 99 11 99
-                        </span></i>
+    <div class="row justify-content-around">
+        <div class="astroshop-container">
+            <div class="astroshop-image">
+                <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1732211978/image_shop_uuurk0.webp"
+                    class="img-fluid rounded-0" alt="this is our store ...">
+                <div class="image-text-overlay rounded-0">
+                    <p>Welcome to the Astroshop website. In our Astroshop, you'll find the largest range of
+                        astronomical products in Belgium at very favorable prices.</p>
                     <br>
-                    <i class="fa-solid fa-envelope text-white"><span
-                            style="font-family: 'Lato';">&nbsp;info@astroshop.com</span>
-                    </i>
+                    <p><strong>Opening Hours:</strong> Tuesday and Friday from 19:30 to 22:00, and Wednesday from
+                        14:00
+                        to 16:00.</p>
+                    <br>
+                    <p>Visits to the Astroshop are by appointment during opening hours, or at another time by
+                        contacting
+                        us at GSM 0999/99.55.99</p>
                 </div>
-
-                <div class="container text-white p-2" style="font-size: small">
-                    <div class="row">
-                        <div class="col-md-4 mb-2">
-                            <div class="ml-2">
-                                <h6><strong>Client&nbsp;Service</strong></h6>
-                                <a href="{% url 'about' %}" class="nav-link-index text-white "
-                                    style="font-size: small">About</a><br>
-                                <a href="{% url 'general_conditions' %}" class="nav-link-index text-white"
-                                    style="font-size: small">General
-                                    conditions</a><br>
-                                <a href="{% url 'disclaimer' %}" class="nav-link-index text-white"
-                                    style="font-size: small">Disclaimer</a><br>
-                                <a href="{% url 'privacy' %}" class="nav-link-index text-white"
-                                    style="font-size: small">Privacy
-                                    Policy</a><br>
-                                <a href="{% url 'payment' %}" class="nav-link-index text-white"
-                                    style="font-size: small">Payment</a><br>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mb-2">
-                            <div class="ml-2">
-                                <h6><strong>Products</strong></h6>
-                                <a href="{% url 'products' %}" class="nav-link-index text-white"
-                                    style="font-size: small">All
-                                    Products</a><br>
-                                <a href="{% url 'category' 'Sales' %}" class="nav-link-index text-white"
-                                    style="font-size: small">Sales</a><br>
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mb-2">
-                            <div class="ml-2">
-                                <h6><strong>User&nbsp;Account</strong></h6>
-                                <a href="{% url 'shopcart_summary' %}" class="nav-link-index text-white"
-                                    style="font-size: small">Shopping
-                                    Cart</a><br>
-                                <a href="{% url 'login' %}" class="nav-link-index text-white"
-                                    style="font-size: small">Login</a><br>
-
-                                <a href="{% url 'register' %}" class="nav-link-index text-white"
-                                    style="font-size: small">Register</a><br>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <li class="ms-4">
-                        <a href="https://x.com/?lang=en" aria-label="Twitter" target="_blank">
-                            <i class="fab fa-twitter fa-2x p-2 icon-white nav-link-index"
-                                style="text-decoration: none;"></i>
-                        </a>
-                    </li>
-                    <li class="ms-4">
-                        <a href="https://www.instagram.com/" aria-label="Instagram" target="_blank">
-                            <i class="fab fa-instagram fa-2x p-2 icon-white nav-link-index"
-                                style="text-decoration: none;"></i>
-                        </a>
-                    </li>
-                    <li class="ms-4">
-                        <a href="https://www.facebook.com/" aria-label="Facebook" target="_blank">
-                            <i class="fab fa-facebook fa-2x p-2 icon-white nav-link-index"
-                                style="text-decoration: none;"></i>
-                        </a>
-                    </li>
-                    <li class="ms-4">
-                        <a href="https://codeinstitute.net/global/" aria-label="Website" target="_blank">
-                            <i class="fa-solid fa-globe fa-2x p-2 icon-white nav-link-index"
-                                style="text-decoration: none;"></i>
-                        </a>
-                    </li>
-                </ul>
             </div>
-        </footer>
-    </body>
+        </div>
+    </div>
+
+
+    <div class="my-5">
+        <div class="row container-custom margin-sub mt-4">
+            <a href="{% url 'products' %}"
+                class="shop-now-button btn btn-outline-dark btn-lg rounded-0 text-uppercase py-3 text-center"
+                style="font-size: xx-large; width: 350px;">SHOP&nbsp;NOW</a>
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-between my-5">
+        <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
+            <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732212725/baader_bkifdw.webp" alt="baader"
+                class="img-fluid w-100 rounded">
+        </div>
+        <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
+            <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732211977/bresser_j3notr.webp" alt="bresser"
+                class="img-fluid w-100 rounded">
+        </div>
+        <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
+            <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732211977/omegon_yzisbe.webp" alt="omegon"
+                class="img-fluid w-100 rounded">
+        </div>
+        <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
+            <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732211977/ts-optics_x5kosb.webp"
+                alt="ts-optics" class="img-fluid w-100 rounded">
+        </div>
+    </div>
+
+    <div class="d-flex row justify-content-center mb-2">
+        <div class="col-12 text-center">
+            <label for="id_email" class="font-weight-bold">Subscribe to our Newsletter</label>
+        </div>
+        <form method="POST" action="{% url 'subscribe' %}"
+            class="col-12 d-flex align-items-center justify-content-center">
+            {% csrf_token %}
+            <input type="email" class="form-control" id="id_email" name="email" placeholder="name@example.com" required
+                style="max-width: 300px;">
+            <button type="submit" value="Submit" class="btn-sm btn-light" title="Subscribe">
+                <span>Subscribe</span>
+            </button>
+        </form>
+    </div>
+
+    <footer class="py-1 bg-dark" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="d-flex align-items-center justify-content-between py-1 mx-4">
+            <div class="container my-1">
+                <h5 class="text-white"><strong> Astroshop.com</strong></h5>
+                <i class="fa-solid fa-phone text-white"><span style="font-family: 'Lato';">&nbsp;0499 99 11 99
+                    </span></i>
+                <br>
+                <i class="fa-solid fa-envelope text-white"><span
+                        style="font-family: 'Lato';">&nbsp;info@astroshop.com</span>
+                </i>
+            </div>
+
+            <div class="container text-white p-2" style="font-size: small">
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <div class="ml-2">
+                            <h6><strong>Client&nbsp;Service</strong></h6>
+                            <a href="{% url 'about' %}" class="nav-link-index text-white "
+                                style="font-size: small">About</a><br>
+                            <a href="{% url 'general_conditions' %}" class="nav-link-index text-white"
+                                style="font-size: small">General
+                                conditions</a><br>
+                            <a href="{% url 'disclaimer' %}" class="nav-link-index text-white"
+                                style="font-size: small">Disclaimer</a><br>
+                            <a href="{% url 'privacy' %}" class="nav-link-index text-white"
+                                style="font-size: small">Privacy
+                                Policy</a><br>
+                            <a href="{% url 'payment' %}" class="nav-link-index text-white"
+                                style="font-size: small">Payment</a><br>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="ml-2">
+                            <h6><strong>Products</strong></h6>
+                            <a href="{% url 'products' %}" class="nav-link-index text-white"
+                                style="font-size: small">All
+                                Products</a><br>
+                            <a href="{% url 'category' 'Sales' %}" class="nav-link-index text-white"
+                                style="font-size: small">Sales</a><br>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <div class="ml-2">
+                            <h6><strong>User&nbsp;Account</strong></h6>
+                            <a href="{% url 'shopcart_summary' %}" class="nav-link-index text-white"
+                                style="font-size: small">Shopping
+                                Cart</a><br>
+                            <a href="{% url 'login' %}" class="nav-link-index text-white"
+                                style="font-size: small">Login</a><br>
+
+                            <a href="{% url 'register' %}" class="nav-link-index text-white"
+                                style="font-size: small">Register</a><br>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-4">
+                    <a href="https://x.com/?lang=en" aria-label="Twitter" target="_blank">
+                        <i class="fab fa-twitter fa-2x p-2 icon-white nav-link-index"
+                            style="text-decoration: none;"></i>
+                    </a>
+                </li>
+                <li class="ms-4">
+                    <a href="https://www.instagram.com/" aria-label="Instagram" target="_blank">
+                        <i class="fab fa-instagram fa-2x p-2 icon-white nav-link-index"
+                            style="text-decoration: none;"></i>
+                    </a>
+                </li>
+                <li class="ms-4">
+                    <a href="https://www.facebook.com/" aria-label="Facebook" target="_blank">
+                        <i class="fab fa-facebook fa-2x p-2 icon-white nav-link-index"
+                            style="text-decoration: none;"></i>
+                    </a>
+                </li>
+                <li class="ms-4">
+                    <a href="https://codeinstitute.net/global/" aria-label="Website" target="_blank">
+                        <i class="fa-solid fa-globe fa-2x p-2 icon-white nav-link-index"
+                            style="text-decoration: none;"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
 </html>
