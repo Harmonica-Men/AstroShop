@@ -1,6 +1,6 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto mx-auto">
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown-item">
             <a class="logo-font product-name nav-link text-black mr-5" href="{% url 'products' %}"
                 id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 All Products
@@ -30,7 +30,7 @@
                 <a href="{% url 'category' 'Globes' %}" class="dropdown-item">Globes</a>
                 <a href="{% url 'category' 'Specials' %}" class="dropdown-item">Specials</a>
                 <a href="{% url 'category' 'Weather Stations' %}" class="dropdown-item">Weather Stations</a>
-                <a href="{% url 'products' %}" class="dropdown-item" class="dropdown-item">All Products</a>
+                <a href="{% url 'products' %}"  class="dropdown-item">All Products</a>
             </div>
         </li>
     </ul>
