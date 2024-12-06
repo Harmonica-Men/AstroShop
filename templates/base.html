@@ -64,36 +64,36 @@
                     <ul class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
                         {% if request.user.is_authenticated %}
                         <!-- Links for authenticated users -->
-                        <li><a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a></li>
-                        <li><a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a></li>
-                        <li><a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a></li>
+                        <li><a href="{% url 'update_user_profile' %}">My Profile</a></li>
+                        <li><a href="{% url 'update_ship_profile' %}">My Shipping</a></li>
+                        <li><a href="{% url 'update_payment_paypal' %}">My Payment</a></li>
                         {% if not request.user.is_superuser %}
-                        <li><a href="{% url 'orders' %}" class="dropdown-item">My Orders</a></li>
+                        <li><a href="{% url 'orders' %}">My Orders</a></li>
                         {% endif %}
-                        <li><a href="{% url 'update_user' %}" class="dropdown-item">User Account</a></li>
-                        <li><a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a></li>
+                        <li><a href="{% url 'update_user' %}">User Account</a></li>
+                        <li><a href="{% url 'update_password' %}">Change Password</a></li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
 
                         <!-- Admin-specific links -->
                         {% if request.user.is_superuser %}
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers List</a></li>
-                        <li><a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a></li>
+                        <li><a href="{% url 'suppliers_list' %}">Suppliers List</a></li>
+                        <li><a href="{% url 'add_product' %}">Add Product</a></li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a></li>
-                        <li><a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a></li>
+                        <li><a href="{% url 'shipped_dash' %}">Shipped Orders</a></li>
+                        <li><a href="{% url 'not_shipped_dash' %}">Unshipped Orders</a></li>
                         {% endif %}
                         {% else %}
                         <!-- Links for unauthenticated users -->
-                        <li><a href="{% url 'register' %}" class="dropdown-item">Register</a></li>
-                        <li><a href="{% url 'login' %}" class="dropdown-item">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                        <li><a href="{% url 'login' %}">Login</a></li>
                         {% endif %}
                     </ul>
                 </li>
