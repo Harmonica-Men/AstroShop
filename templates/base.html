@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Astro Shop</title>
 
@@ -77,59 +78,57 @@
     {% block extra_js %}
     {% endblock %}
 
-    <title>Astro Shop {% block extra_title %}{% endblock %}</title>
+    <title>{% block extra_title %}Astro Shop{% endblock %}</title>
     <link rel="icon" type="image/x-icon"
-        href="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732213214/favicon_dingdt.ico" />
+        href="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732213214/favicon_dingdt.ico">
+
 </head>
 
 <body>
     <header class="bg-dark">
         <div class="account-cart">
-            <li class="list-inline-item">
-                <!-- Trigger for dropdown -->
-                <a href="#" class="text-black nav-link btn mt-1 hover-effect" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <div class="text-center">
-                        <i class="fas fa-user fa-lg"></i>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <!-- Trigger for dropdown -->
+                    <a href="#" class="text-black nav-link btn mt-1 hover-effect" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <div class="text-center">
+                            <i class="fas fa-user fa-lg"></i>
+                        </div>
+                    </a>
+
+                    <!-- Dropdown menu -->
+                    <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
+                        {% if request.user.is_authenticated %}
+                        <!-- Links for authenticated users -->
+                        <a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a>
+                        <a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a>
+                        <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
+                        {% if not request.user.is_superuser %}
+                        <a href="{% url 'orders' %}" class="dropdown-item">My Orders</a>
+                        {% endif %}
+                        <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
+                        <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+
+                        <!-- Admin-specific links -->
+                        {% if request.user.is_superuser %}
+                        <div class="dropdown-divider"></div>
+                        <a href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers List</a>
+                        <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
+                        <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
+                        {% endif %}
+                        {% else %}
+                        <!-- Links for unauthenticated users -->
+                        <a href="{% url 'register' %}" class="dropdown-item">Register</a>
+                        <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                        {% endif %}
                     </div>
-                </a>
-
-
-                <!-- Dropdown menu -->
-                <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
-                    {% if request.user.is_authenticated %}
-                    <!-- Links for authenticated users -->
-                    <a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a>
-                    <a href="{% url 'update_ship_profile' %}" class="dropdown-item">My Shipping</a>
-                    <a href="{% url 'update_payment_paypal' %}" class="dropdown-item">My Payment</a>
-                    {% if not request.user.is_superuser %}
-                    <a href="{% url 'orders' %}" class="dropdown-item">My Orders</a>
-                    {% endif %}
-
-                    <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
-                    <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
-
-                    <!-- Admin-specific links -->
-                    {% if request.user.is_superuser %}
-                    <div class="dropdown-divider"></div>
-                    <a href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers List</a>
-                    <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
-
-                    <div class="dropdown-divider"></div>
-                    <a href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers List</a>
-
-                    <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
-                    <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
-                    {% endif %}
-                    {% else %}
-                    <!-- Links for unauthenticated users -->
-                    <a href="{% url 'register' %}" class="dropdown-item">Register</a>
-                    <a href="{% url 'login' %}" class="dropdown-item">Login</a>
-                    {% endif %}
-                </div>
-            </li>
+                </li>
+            </ul>
 
 
 
@@ -151,10 +150,10 @@
         <div id="topnav" class="row bg-white justify-content-between">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="cart-box nav-link hover-bg ml-5">
-                  
 
-                        <h2><strong>ASTRO&nbsp;SHOP</strong></h2>
-                  
+
+                    <h2><strong>ASTRO&nbsp;SHOP</strong></h2>
+
                 </a>
             </div>
 
