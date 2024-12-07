@@ -62,8 +62,12 @@
                 </a>
 
 
-                <!-- Dropdown menu -->
-                <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
+                <!-- Dropdown menu
+                <button id="account-options" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i> Account Options
+                </button> -->
+
+                <div class="dropdown-menu dropdown-menu-right border-1">
                     {% if request.user.is_authenticated %}
                     <!-- Links for authenticated users -->
                     <a href="{% url 'update_user_profile' %}" class="dropdown-item">My Profile</a>
