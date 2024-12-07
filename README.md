@@ -420,7 +420,7 @@ Here’s the validation result:
 
 <details>
   <summary>Click to view CSS Validation Result</summary>
-  <img src="" style="display: block; margin: auto;" alt="CSS Validation Result showing zero errors">
+  <img src="static/images/readme-images/W3C_CSS_validation_test.webp" style="display: block; margin: auto;" alt="CSS Validation Result showing zero errors">
 </details>
 
 ### Accessibility
