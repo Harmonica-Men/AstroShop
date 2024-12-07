@@ -7,6 +7,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block meta_description %}Welcome to Astro Shop, your one-stop destination for telescopes, binoculars, and astronomy books! Explore our vast collection of products today.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}astro shop, telescopes, binoculars, astronomy books, astronomy toys, globes, weather stations{% endblock %}">
+    <meta name="author" content="Astro Shop">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="{% block og_title %}Astro Shop{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Explore high-quality telescopes, binoculars, and more at Astro Shop. Perfect for stargazers and science enthusiasts!{% endblock %}">
+    <meta property="og:image" content="{% static 'images/astro_shop_og_image.jpg' %}">
+    <meta property="og:url" content="{% block og_url %}{% url 'home' %}{% endblock %}">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Astro Shop{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Shop the best in astronomy equipment and books at Astro Shop!{% endblock %}">
+    <meta name="twitter:image" content="{% static 'images/astro_shop_twitter_image.jpg' %}">
+
     {% endblock %}
 
     {% block extra_meta %}
@@ -45,7 +65,6 @@
     <link rel="icon" type="image/x-icon"
         href="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732213214/favicon_dingdt.ico">
 </head>
-
 
 <body>
     <header class="bg-dark">

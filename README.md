@@ -781,3 +781,9 @@ For more information about the Creative Commons Attribution-NonCommercial-ShareA
 
 
 ![alt text](static/images/readme-images/Html_check_products.webp)
+
+
+![alt text](static/images/readme-images/wave_check_index.webp)
+
+
+![alt text](static/images/readme-images/wave_check_products.webp)
