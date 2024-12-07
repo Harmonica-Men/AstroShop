@@ -28,7 +28,8 @@ A live version of the project can be accessed here: [AstroShop](https://https://
     - [Frameworks & Software](#frameworks--software)
     - [Libraries and modules](#libraries-and-modules)
     - [AWS](#aws)
-    - [Newsletter Gmail API](#newsletter-gmail-api)
+    - [Newsletter Gmail API](#newsletter-gmail-api)    
+    - [Bootstrap themes](#bootstrap-themes)
     - [The Structure Plane - Site maps] *(#the-structure-plane---site-maps)
     - [The Structure Plane - Database] *(#the-structure-plane---database)
       - *[Database](#database)
@@ -334,7 +335,7 @@ You can create a free account for development purposes to integrate it into your
 
 **AWS S3** (Amazon Simple Storage Service) is a scalable, secure, and high-performance cloud storage solution provided by Amazon Web Services. It is designed for object storage, allowing users to store and retrieve data of any size and type, such as images, videos, documents, or backups. 
 
-## Key Features
+### Key Features
 
 - **Scalability**: Automatically scales to handle increasing or decreasing storage needs.  
 - **Durability and Availability**: Offers 99.9% durability and high availability across multiple geographic regions.  
@@ -357,9 +358,6 @@ With the newsletter subscription API, the business can target their audience mor
 
 - More information how to integrate the Gmail API can be found [here](https://developers.google.com/gmail/api/guides)
 
-### Mobile first design
-To ensure a seamless experience across devices, Bootstrap is used to make the Home- & Frontpage fully responsive. On mobile devices, the table features horizontal scrolling to prevent content compression, maintaining clarity and usability. Additionally, each table row highlights with a colour change on hover, making it easier for users to track their interactions as they navigate.
-
 [Table Of Contents](#table-of-contents)
 
 ## Bootstrap themes
@@ -375,6 +373,13 @@ It's recommend to use a front-end bootstrap template, so that easier to start th
 
 *** ux & agile
 
+## Facebook
+
+<details>
+  <summary>Click to view Facebook Mockup Page</summary>
+  Facebook Mockup 
+  <img src="static/images/readme-images/AstroShopFacebookMockup4.png" style="display: block; margin: auto;" alt="facebook marketing mockup">
+</details>
 
 ## Testing
 
@@ -389,11 +394,11 @@ The detail of these test can evaluate on this link.
 <details>
   <summary>Click to view HTML Validation Results</summary>
   homepage
-  <img src="static/images/readme-images/Html-Check-AstroBlog-homepage.webp" style="display: block; margin: auto;" alt="HTML Validation Result Homepage showing zero errors">
+  <img src="static/images/readme-images/Html_check_index1.webp" style="display: block; margin: auto;" alt="HTML Validation Result indexpage showing zero errors">
   <br>
 
-  frontpage
-  <img src="static/images/readme-images/Html-Check-AstroBlog-frontpage.webp" style="display: block; margin: auto;" alt="HTML Validation Result Frontpage-Blogpost showing zero errors">
+  products
+  <img src="static/images/readme-images/Html_check_products.webp" style="display: block; margin: auto;" alt="HTML Validation Result products page showing zero errors">
 
 </details>
 
@@ -415,7 +420,7 @@ Here’s the validation result:
 
 <details>
   <summary>Click to view CSS Validation Result</summary>
-  <img src="static/images/readme-images/CSS-validation-check-AstroBlog.webp" style="display: block; margin: auto;" alt="CSS Validation Result showing zero errors">
+  <img src="" style="display: block; margin: auto;" alt="CSS Validation Result showing zero errors">
 </details>
 
 ### Accessibility
@@ -440,7 +445,7 @@ I have conducted a thorough accessibility audit using the WAVE (Web Accessibilit
 <details>
   <br>
   <summary>Click to view Wave Homepage Result</summary>
-  <img src="staticfiles/images/readme-images/wave-errors-homepage-header.webp" style="display: block; margin: auto;" alt="Contrast Error homepage header">
+  <img src="static/images/readme-images/wave_check_index.webp" style="display: block; margin: auto;" alt="Wave validator index page test">
   <br>
 </details>
 <br>
@@ -450,24 +455,12 @@ I have also identified contrast issues with the modal buttons, which follow a si
 <details>
   <br>
   <summary>Click to view Contrast Errors homepage footer</summary>
-  <img src="staticfiles/images/readme-images/wave-errors-homepage-footer.webp" style="display: block; margin: auto;" alt="Contrast Errors homepage footer">
-  <br>
-</details>
-<br>
-
-Additionally, contrast warnings were noted in the Flash messages—interestingly, all colors except yellow were flagged. While we understand that white text on a transparent background might pose a readability challenge, WAVE does flaged it as an issue. Conversely, other colors, which do not seem problematic to us, were marked for contrast errors.
-
-<details>
-  <br>
-  <summary>Click to view Contrast Errors front-page pagination</summary>
-  <img src="staticfiles/images/readme-images/wave-errors-frontpage-pagination.webp" style="display: block; margin: auto;" alt="Contrast Errors front-page pagination">
+  <img src="static/images/readme-images/wave_check_products.webp" style="display: block; margin: auto;" alt="Wave validator products page test">
   <br>
 </details>
 <br>
 
 Overall, the WAVE validation confirms that our website adheres to accessibility standards, with only a few minor contrast issues that have been carefully considered in the design process. While I will continue exploring potential solutions to these issues, I have prioritized maintaining a visually cohesive and intuitive theme for the site.
-
-**Note:** I'm fully aware of the contrast issues highlighted by the WAVE Validation Tool. It is my duty to address these in future updates to ensure an even higher level of accessibility across the entire platform. I appreciate the insights provided by the tool and will use this feedback to guide our ongoing improvements.
 
 ### Lighthouse Validation
 
@@ -476,17 +469,16 @@ My Lighthouse validation results have been very promising, with high scores acro
 <details>
   <br>
   <summary>Click to view Lighthouse Homepage Result</summary>
-  <img src="static/images/readme-images/lighthouse-astroblog-homepage.webp" style="display: block; margin: auto;" alt="lighthouse test">
+  <img src="static/images/readme-images/lighthouse_desktop.webp" style="display: block; margin: auto;" alt="lighthouse desktop test">
   <br>
 </details>
 <br>
 <details>
   <br>
-  <summary>Click to view Lighthouse Frontpage Result</summary>
-  <img src="static/images/readme-images/lighthouse-astroblog-frontpage.webp" style="display: block; margin: auto;" alt="lighthouse test">
+  <summary>Click to view Lighthouse mobile Result</summary>
+  <img src="static/images/readme-images/lighthouse_mobile.webp" style="display: block; margin: auto;" alt="lighthouse mobile test">
   <br>
 </details>
-
 <br>
 A specific recommendation from Lighthouse was to use the WebP format for images to improve load times. In response, I made sure that all images served through the browser are now in WebP format. However, I also understand that too much compression could negatively impact the user experience, especially on larger screens. So, I made a conscious decision to balance performance with visual quality. After gathering feedback from a diverse group of users, I confirmed that the image quality is well-received across various devices. As a result, I decided to maintain slightly larger image sizes to prioritize a smooth and visually appealing experience, even if it means sacrificing a little bit of performance.
 
@@ -781,12 +773,6 @@ In each browser, the website performs smoothly, maintaining consistent functiona
 
 No significant issues were encountered during the tests, confirming that our site is accessible and reliable across these popular browsers. This ensures that users can interact with the platform without any unexpected disruptions, regardless of their preferred browser.
 
-
-
-
-
-
-
 ## Deployment
 
 ### Heroku Deployment
@@ -994,15 +980,6 @@ For more information about the Creative Commons Attribution-NonCommercial-ShareA
 
 
 
-
-
-
-![alt text](static/images/readme-images/Html_check_index1.webp)
-
-
-
-
-![alt text](static/images/readme-images/Html_check_products.webp)
 
 
 
