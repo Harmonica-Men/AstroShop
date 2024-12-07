@@ -496,7 +496,7 @@ There is only one warning that issue has probably to do JSHint interpreter itsel
   <br>
   <summary>Click to view JSHint Result</summary>
 
-  <img src="static/images/readme-images/JShint-validation-Astro-Blog.png" style="display: block; margin: auto;" alt="JSHint test">
+  <img src="static/images/readme-images/JS_linter_validation.webp" style="display: block; margin: auto;" alt="JSHint test">
 </details>
 
 ### PEP8
