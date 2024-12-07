@@ -29,10 +29,10 @@ A live version of the project can be accessed here: [AstroShop](https://https://
     - [Libraries and modules](#libraries-and-modules)
     - [AWS](#aws)
     - [Newsletter Gmail API](#newsletter-gmail-api)
-    - [The Structure Plane - Site maps](#the-structure-plane---site-maps)
-    - [The Structure Plane - Database](#the-structure-plane---database)
-      - [Database](#database)
-  - [UX & Agile](#ux--agile)
+    - [The Structure Plane - Site maps] *(#the-structure-plane---site-maps)
+    - [The Structure Plane - Database] *(#the-structure-plane---database)
+      - *[Database](#database)
+  - *[UX & Agile](#ux--agile)
 
   - [Facebook](#facebook)
 
@@ -265,8 +265,10 @@ The favicon was created with [Favicon.io](https://favicon.io/favicon-generator/)
 
 [Table Of Contents](#table-of-contents)
 
-
-### Libraries and modules
+ ### Libraries and modules
+<details>
+  <summary>Libraries and modules</summary>
+ 
 
 `asgiref==3.7.2`
 ASGI (Asynchronous Server Gateway Interface) reference implementation. It provides utilities for building and maintaining asynchronous web applications in Python. This module is particularly useful for handling asynchronous protocols such as WebSockets and HTTP/2.
@@ -318,6 +320,11 @@ Is a non-validating SQL parser for Python. It provides tools for parsing, format
 A middleware for serving static files in a Django application. Whitenoise allows applications to serve static assets directly without needing a separate web server, simplifying deployment and reducing complexity.
 
 
+  
+</details>
+
+[Table Of Contents](#table-of-contents)
+
 
 
 ## AWS
@@ -350,12 +357,10 @@ With the newsletter subscription API, the business can target their audience mor
 
 - More information how to integrate the Gmail API can be found [here](https://developers.google.com/gmail/api/guides)
 
-
-
 ### Mobile first design
 To ensure a seamless experience across devices, Bootstrap is used to make the Home- & Frontpage fully responsive. On mobile devices, the table features horizontal scrolling to prevent content compression, maintaining clarity and usability. Additionally, each table row highlights with a colour change on hover, making it easier for users to track their interactions as they navigate.
 
-
+[Table Of Contents](#table-of-contents)
 
 ## Bootstrap themes
 
@@ -365,6 +370,422 @@ this theme i espiaclly designed for Ecommerce apllications.
 It delivers the template file you can customize afterwords whit default ccs, js ,index page en asset folder for favicon.
 
 It's recommend to use a front-end bootstrap template, so that easier to start the project and dive in to core application of Django.
+
+*** the structure
+
+*** ux & agile
+
+
+## Testing
+
+### HTML Validation
+
+All pages have been passed through the [W3C HTML Validator](https://validator.w3.org/) successfully save for a few minor issues which have been left 'as is' as attempts to correct them proved unsuccessful and lead to results which devalued the user experience. Specifically, these were:
+
+I ensured that the HTML structure of AstroBlog adheres strictly to web standards. I utilized the W3C Validator to validate our HTML code, striving to minimize and eliminate all possible errors. There are many templates to consider but the main pages where is the focus of stite are the Homepage and the Frontpaga-Blogpost.
+After experimenting whit different container layout and fixing all the issues validation results showed **zero errors**.
+
+The detail of these test can evaluate on this link.
+<details>
+  <summary>Click to view HTML Validation Results</summary>
+  homepage
+  <img src="static/images/readme-images/Html-Check-AstroBlog-homepage.webp" style="display: block; margin: auto;" alt="HTML Validation Result Homepage showing zero errors">
+  <br>
+
+  frontpage
+  <img src="static/images/readme-images/Html-Check-AstroBlog-frontpage.webp" style="display: block; margin: auto;" alt="HTML Validation Result Frontpage-Blogpost showing zero errors">
+
+</details>
+
+### CSS Validation
+
+<p>
+    <a href="https://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
+            alt="Valid CSS!" />
+    </a>
+</p>
+
+The CSS of AstroBlog has been carefully crafted and validated to ensure it adheres to the highest standards. I utilized the W3C CSS Validator to check for any errors, and I'm pleased to report that our stylesheets passed with **zero errors**.
+
+This thorough validation process ensures that the user interface is both visually appealing and fully compliant with modern web standards. We took particular care to validate our responsive design elements to ensure consistency across all devices.
+
+Here’s the validation result:
+
+<details>
+  <summary>Click to view CSS Validation Result</summary>
+  <img src="static/images/readme-images/CSS-validation-check-AstroBlog.webp" style="display: block; margin: auto;" alt="CSS Validation Result showing zero errors">
+</details>
+
+### Accessibility
+
+Ensuring accessibility is a key priority for AstroBlog. We've taken great care to make sure our platform is inclusive and usable by as many people as possible, regardless of their abilities or the devices they are using.
+
+Throughout the development process, we adhered to the Web Content Accessibility Guidelines (WCAG) to guarantee that our site meets accessibility standards. This includes:
+
+- **Proper use of ARIA attributes:** We have utilized ARIA attributes effectively to enhance the accessibility of dynamic content and interactive elements, ensuring screen readers can accurately convey the information to users.
+- **Keyboard Navigation:** All interactive elements, including forms, buttons, and navigation links, are fully accessible via keyboard navigation, making the site usable without a mouse.
+- **Contrast Ratios:** We carefully selected our color scheme to ensure sufficient contrast between text and background colors, making the content readable for users with visual impairments.
+- **Alt Text for Images:** All images include descriptive `alt` attributes, providing context to users who rely on screen readers.
+
+These efforts help ensure that our site is not only compliant with accessibility standards but also provides an inclusive user experience. We continue to monitor and improve the accessibility of astroblog as we develop new features and enhancements.
+
+[Table Of Contents](#table-of-contents)
+
+### Wave Validation
+
+I have conducted a thorough accessibility audit using the WAVE (Web Accessibility Evaluation Tool). There is a smooth transition between the header of the page and the rest of the main page. Nevertheless, there are some issues to address due to the background MPEG replay. WAVE is dynamic and cannot make a persistent measurement of background contrast.
+
+<details>
+  <br>
+  <summary>Click to view Wave Homepage Result</summary>
+  <img src="staticfiles/images/readme-images/wave-errors-homepage-header.webp" style="display: block; margin: auto;" alt="Contrast Error homepage header">
+  <br>
+</details>
+<br>
+
+I have also identified contrast issues with the modal buttons, which follow a similar color pattern to the Flash Danger alerts. However, the inclusion of shadow effects and other design enhancements significantly aids visibility. I believe these design choices ensure the buttons remain accessible and visually clear, even if they do not fully meet WAVE’s contrast recommendations.
+
+<details>
+  <br>
+  <summary>Click to view Contrast Errors homepage footer</summary>
+  <img src="staticfiles/images/readme-images/wave-errors-homepage-footer.webp" style="display: block; margin: auto;" alt="Contrast Errors homepage footer">
+  <br>
+</details>
+<br>
+
+Additionally, contrast warnings were noted in the Flash messages—interestingly, all colors except yellow were flagged. While we understand that white text on a transparent background might pose a readability challenge, WAVE does flaged it as an issue. Conversely, other colors, which do not seem problematic to us, were marked for contrast errors.
+
+<details>
+  <br>
+  <summary>Click to view Contrast Errors front-page pagination</summary>
+  <img src="staticfiles/images/readme-images/wave-errors-frontpage-pagination.webp" style="display: block; margin: auto;" alt="Contrast Errors front-page pagination">
+  <br>
+</details>
+<br>
+
+Overall, the WAVE validation confirms that our website adheres to accessibility standards, with only a few minor contrast issues that have been carefully considered in the design process. While I will continue exploring potential solutions to these issues, I have prioritized maintaining a visually cohesive and intuitive theme for the site.
+
+**Note:** I'm fully aware of the contrast issues highlighted by the WAVE Validation Tool. It is my duty to address these in future updates to ensure an even higher level of accessibility across the entire platform. I appreciate the insights provided by the tool and will use this feedback to guide our ongoing improvements.
+
+### Lighthouse Validation
+
+My Lighthouse validation results have been very promising, with high scores across most categories. One area where I noticed a slightly lower score is in SEO, and I’m actively working on improvements to achieve even better results. Lighthouse has been instrumental in helping me organize my files and optimize for performance.
+
+<details>
+  <br>
+  <summary>Click to view Lighthouse Homepage Result</summary>
+  <img src="static/images/readme-images/lighthouse-astroblog-homepage.webp" style="display: block; margin: auto;" alt="lighthouse test">
+  <br>
+</details>
+<br>
+<details>
+  <br>
+  <summary>Click to view Lighthouse Frontpage Result</summary>
+  <img src="static/images/readme-images/lighthouse-astroblog-frontpage.webp" style="display: block; margin: auto;" alt="lighthouse test">
+  <br>
+</details>
+
+<br>
+A specific recommendation from Lighthouse was to use the WebP format for images to improve load times. In response, I made sure that all images served through the browser are now in WebP format. However, I also understand that too much compression could negatively impact the user experience, especially on larger screens. So, I made a conscious decision to balance performance with visual quality. After gathering feedback from a diverse group of users, I confirmed that the image quality is well-received across various devices. As a result, I decided to maintain slightly larger image sizes to prioritize a smooth and visually appealing experience, even if it means sacrificing a little bit of performance.
+
+Additionally, Lighthouse suggested reducing the CSS payload, which I’m currently considering. One option I’m exploring is breaking the main styles.css file into smaller files tied to specific widgets. This would allow me to send only the necessary CSS for each page, potentially cutting down the overall size of the CSS file and improving load times.
+
+While the desktop version scores are very high, the mobile version, although still passing, has some room for improvement. I’m committed to refining these areas to ensure the best possible experience across all devices.
+
+### JSHint Validation
+
+Although my project doesn't include an extensive amount of JavaScript, I can ensured that the code we do have is fully validated using [**JSHint**](https://jshint.com/). I'm pleased to report that my JavaScript code has passed the validation process with a 99% clean bill of health—no errors whatsoever.
+
+There is only one warning that issue has probably to do JSHint interpreter itself.
+
+<details>
+  <br>
+  <summary>Click to view JSHint Result</summary>
+
+  <img src="static/images/readme-images/JShint-validation-Astro-Blog.png" style="display: block; margin: auto;" alt="JSHint test">
+</details>
+
+### PEP8
+All Python files as well *env.py* and *manage.py*, have been passed through the [Code Institute PEP8 Linter](https://pep8ci.herokuapp.com/).
+
+<details>
+  <br>
+  <summary>Click to view PEP8 Result</summary>
+  PEP8 Compliant
+
+  | Directory | File        | Check |
+  | --------- | ----------- | ----- |
+  | AstroBlog | Settings.py | PASS  |
+  | AstroBlog | urls.py     | PASS  |
+  | AstroBlog | env.py      | PASS  |
+  | AstroBlog | manage.py   | PASS  |
+  | Blogger   | admin.py    | PASS  |
+  | Blogger   | apps.py     | PASS  |
+  | Blogger   | forms.py    | PASS  |
+  | Blogger   | models.py   | PASS  |
+  | Blogger   | urls.py     | PASS  |
+  | Blogger   | views.py    | PASS  |
+  | Members   | admin.py    | PASS  |
+  | Members   | apps.py     | PASS  |
+  | Members   | forms.py    | PASS  |
+  <br>
+</details>
+
+### Device Testing
+
+The website has undergone thorough testing across a variety of devices, including desktop computers, tablets, and smartphones. We focused on ensuring that the responsiveness of the site is consistent and effective across all screen sizes, providing an optimal user experience regardless of the device used.
+
+To achieve this, we employed media queries to adapt the layout for different screen sizes. This approach ensures that when the device's dimensions fall within specific ranges, certain elements will reposition themselves, maintaining readability and proper alignment. 
+
+For instance, on smaller screens, such as smartphones, we adjusted the distribution of content to ensure that all elements are easily accessible and clearly visible, avoiding any overlap or readability issues. The result is a fluid and intuitive experience across devices, meeting our goal of a responsive design that performs well on all tested platforms.
+
+## User Story Testing
+
+<details>
+<summary>Manual Testing Result Report</summary>
+<br>
+
+| Scenario                                                        | Action                                                     | Result                                                                                    | Check |
+| --------------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----- |
+| Click the “SHOP NOW” Button                                     | Should navigate to Products page                           | Redirect to “Product” page                                                                | PASS  |
+| Fill in “Subscribe to our Newsletter”Fill in Email after Submit | Should navigate to Check Email Page<br>                    | Redirect to “Check your Email” page<br>                                                   | PASS  |
+| Homepage – Header                                               |                                                            |                                                                                           |       |
+| Click “Sales”                                                   | Should navigate to “Category/Sales”                        | Redirect to “category/Sales” page                                                         | PASS  |
+| Click “Books”                                                   | Should navigate to “Category/Books”                        | Redirect to “category/books” page                                                         | PASS  |
+| Clcik “Telescopes”                                              | Should navigate to “Category/Toys”                         | Redirect to “category/toys” page                                                          | PASS  |
+| Clcik “Globes”                                                  | Should navigate to “Category/Globes”                       | Redirect to “category/globes” page                                                        | PASS  |
+| Click “Binoculars”                                              | Should navigate to “Category/Binoculars”                   | Redirect to “category/binoculars” page                                                    | PASS  |
+| Clcik “Weather Station”                                         | Should navigate to “Category/Weather Station”              | Redirect to “category/weather stations” page                                              | PASS  |
+| Clcik “All Products”                                            | Should navigate to “Category/All Products”                 | Redirect to “category/all Products” page                                                  | PASS  |
+| Click “My Account”                                              | Should navigate to Account Menu as Super User              | Show Menu                                                                                 |       |
+| Click “My Account” – My Profile                                 | Should navigate to ‘Update User Profile”                   | Redirect to “Update User Profile” – page                                                  | Pass  |
+| Click “My Account” – My Update Shipping                         | Should navigate to ‘Update Ship Profle”                    | Redirect to “Update Ship Profile” – page                                                  |       |
+| Click “My Account” – My Payment                                 | Should navigate to ‘Update Payment Profle”                 | Redirect to “Update Payment Profile” – page                                               | PASS  |
+| Click “My Account” – User Account                               | Should navigate to ‘User Account”                          | Redirect to “User Account” Settings                                                       | PASS  |
+| Click “My Account” – Change Password                            | Should navigate to “Update Password”                       | Redirect to “Update Password” Page                                                        | PASS  |
+| Click “My Account” – Log Out                                    | Should navigate to “Home Page”                             | Redirect to “Home Page” whit Message “You have logged out”                                |       |
+| Click “My Account” – Add new product                            | Should navigate to “Add New Product”                       | Redirect to “Add a New Product”                                                           | PASS  |
+| Click “My Account” – Supplier List                              | Should navigate to “Supplier List”                         | Redirect to “Suppliers” Page                                                              | PASS  |
+| Click “My Account” – View Orders                                | Should navigate to “payment Orders ”                       | Redirect to “Payment Orders” Page                                                         | PASS  |
+| Click ”My Account” – Shipped Orders                             | Should navigate to “Shipping Dashboard”                    | Redirect to “Shipped Dash” Page                                                           | PASS  |
+| Click ”My Account” – Unshipped Orders                           | Should navigate to “Unshipping Dashboard”                  | Redirect to “Unshipped Dash” Page                                                         | PASS  |
+| Click “My Account”                                              | Should navigate to Account Menu as Regular User            | Show Menu                                                                                 |       |
+| Click “My Account” – My Profile                                 | Should navigate to ‘Update User Profile”                   | Redirect to “Update User Profile” – page                                                  | PASS  |
+| Click “My Account” – My Update Shipping                         | Should navigate to ‘Update Ship Profle”                    | Redirect to “Update Ship Profile” – page                                                  | PASS  |
+| Click “My Account” – My Payment                                 | Should navigate to ‘Update Payment Profle”                 | Redirect to “Update Payment Profile” – page                                               | PASS  |
+| Click “My Account” – My Orders                                  | Should navigate to “payment Orders ”                       | Redirect to “Payment Orders” Page                                                         | PASS  |
+| Click “My Account” – User Account                               | Should navigate to ‘User Account”                          | Redirect to “User Account” Settings                                                       | PASS  |
+| Click “My Account” – Change Password                            | Should navigate to “Update Password”                       | Redirect to “Update Password” Page                                                        | PASS  |
+| Click “My Account” – Log Out                                    | Should navigate to “Home Page”                             | Redirect to “Home Page” whit Message “You have logged out”                                | PASS  |
+| Click “Shop Cart Items”                                         | Should navigate to “Shopping Cart”                         | Redirect to “ShopCart” Page                                                               | PASS  |
+| Homepage – footer section                                       |                                                            |                                                                                           |       |
+| Click “About”                                                   | Should navigate to “About”                                 | Redirect to “About” Page                                                                  | PASS  |
+| Click “General Condintions”                                     | Should navigate to “General Conditions”                    | Redirect to “General Conditions ” Page                                                    | PASS  |
+| Click “Privacy Policy”                                          | Should navigate to “Privacy Policy”                        | Redirect to “Privacy Policy” Page                                                         | PASS  |
+| Click “Disclaimer”                                              | Should navigate to “Disclaimer”                            | Redirect to “Disclaimer” Page                                                             | PASS  |
+| Click “Payment”                                                 | Should navigate to “Payment”                               | Redirect to “Payment” Page                                                                | PASS  |
+| Homepage – socails section                                      |                                                            |                                                                                           |       |
+| clcik “twitter”                                                 | Should navigate to “Twitter”                               | Redirect to “[https://x.com/?lang=en](https://x.com/?lang=en)” Page                       | PASS  |
+| clcik “Instagram”                                               | Should navigate to “Instagram”                             | Redirect to “[https://www.instagram.com/](https://www.instagram.com/)” Page               | PASS  |
+| clcik “facebook”                                                | Should navigate to “Facebook”                              | Redirect to “[https://www.facebook.com/](https://www.facebook.com/)” Page                 | PASS  |
+| click “Globe”                                                   | Should navigate to “CodeInstitute”                         | Redirect to “[https://codeinstitute.net/global/](https://codeinstitute.net/global/)” Page | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Products Page – Template                                        |                                                            |                                                                                           |       |
+| Click “Astro Shop” Button                                       | Should navigate to “Home Page”                             | Redirect to “Homepage”                                                                    | PASS  |
+| Click “Product”                                                 | Should navigate to product                                 | Redirect to “product” page (product detail page)                                          | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Navbar Buttons                                                  |                                                            |                                                                                           |       |
+| Click “About” Button                                            | Should navigate to “About”                                 | Redirect to “About” Page                                                                  | PASS  |
+| Click “Search” Button                                           | Should navigate to “Search”                                | Redirect to “Search” Page                                                                 | PASS  |
+| Click “My Account”                                              | Should navigate to Account Menu as Super User              | Show Menu                                                                                 | PASS  |
+| Click “My Account” – My Profile                                 | Should navigate to ‘Update User Profile”                   | Redirect to “Update User Profile” – page                                                  | PASS  |
+| Click “My Account” – My Update Shipping                         | Should navigate to ‘Update Ship Profle”                    | Redirect to “Update Ship Profile” – page                                                  | PASS  |
+| Click “My Account” – My Payment                                 | Should navigate to ‘Update Payment Profle”                 | Redirect to “Update Payment Profile” – page                                               | PASS  |
+| Click “My Account” – User Account                               | Should navigate to ‘User Account”                          | Redirect to “User Account” Settings                                                       | PASS  |
+| Click “My Account” – Change Password                            | Should navigate to “Update Password”                       | Redirect to “Update Password” Page                                                        | PASS  |
+| Click “My Account” – Log Out                                    | Should navigate to “Home Page”                             | Redirect to “Home Page” whit Message “You have logged out”                                | PASS  |
+| Click “My Account” – Add new product                            | Should navigate to “Add New Product”                       | Redirect to “Add a New Product”                                                           | PASS  |
+| Click “My Account” – Supplier List                              | Should navigate to “Supplier List”                         | Redirect to “Suppliers” Page                                                              | PASS  |
+| Click “My Account” – View Orders                                | Should navigate to “payment Orders ”                       | Redirect to “Payment Orders” Page                                                         | PASS  |
+| Click ”My Account” – Shipped Orders                             | Should navigate to “Shipping Dashboard”                    | Redirect to “Shipped Dash” Page                                                           | PASS  |
+| Click ”My Account” – Unshipped Orders                           | Should navigate to “Unshipping Dashboard”                  | Redirect to “Unshipped Dash” Page                                                         | PASS  |
+| Click “My Account”                                              | Should navigate to Account Menu as Regular User            | Show Menu                                                                                 | PASS  |
+| Click “My Account” – My Profile                                 | Should navigate to ‘Update User Profile”                   | Redirect to “Update User Profile” – page                                                  | PASS  |
+| Click “My Account” – My Update Shipping                         | Should navigate to ‘Update Ship Profle”                    | Redirect to “Update Ship Profile” – page                                                  | PASS  |
+| Click “My Account” – My Payment                                 | Should navigate to ‘Update Payment Profle”                 | Redirect to “Update Payment Profile” – page                                               | PASS  |
+| Click “My Account” – My Orders                                  | Should navigate to “payment Orders ”                       | Redirect to “Payment Orders” Page                                                         | PASS  |
+| Click “My Account” – User Account                               | Should navigate to ‘User Account”                          | Redirect to “User Account” Settings                                                       | PASS  |
+| Click “My Account” – Change Password                            | Should navigate to “Update Password”                       | Redirect to “Update Password” Page                                                        | PASS  |
+| Click “My Account” – Log Out                                    | Should navigate to “Home Page”                             | Redirect to “Home Page” whit Message “You have logged out”                                | PASS  |
+| Click “Shop Cart Items”                                         | Should navigate to “Shopping Cart”                         | Redirect to “ShopCart” Page                                                               | PASS  |
+| Click All Products                                              | Should navigate to All Products Menu                       | Show Menu                                                                                 | PASS  |
+| Click “By Price”                                                | Should navigate to Products page sort by price             | Redirect to Products page sort by price (ascending)                                       | PASS  |
+| Click “By Category”                                             | Should navigate to Products page sort by category          | Redirect to Products page sort by category (category)                                     | PASS  |
+| Click “All Products”                                            | Should navigate to Products page                           | Redirect to Products page                                                                 | PASS  |
+| Click Product Category                                          | Should navigate to Product Category menu                   | Show Menu                                                                                 | PASS  |
+| Click “Sale”                                                    | Should navigate to “Sale” category                         | Redirect to “Sale” page                                                                   | PASS  |
+| Click “Books”                                                   | Should navigate to “Books” category                        | Redirect to “Books” page (product page by Books)                                          | PASS  |
+| Click “Toys”                                                    | Should navigate to “Toys” category                         | Redirect to “Toys” page (product page by Toys)                                            | PASS  |
+| Click “Telescopes”                                              | Should navigate to “Telescopes” category                   | Redirect to “Telescopes” page (product page by Telescopes)                                | PASS  |
+| Click “Globes”                                                  | Should navigate to “Globes” category                       | Redirect to “Globes” page (product page by Globes)                                        | PASS  |
+| Click “Specials”                                                | Should navigate to “Specials” category                     | Redirect to “Specials” page (product page by Specails)                                    | PASS  |
+| Click “Weather Stations”                                        | Should navigate to “Weather Stations” category             | Redirect to “Weather Stations” page (product page by Weather Stations)                    | PASS  |
+| Click “All Products”                                            | Should navigate to products                                | Redirect to “Products” page                                                               | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Click “Product”                                                 | Should navigate to product                                 | Redirect to “product” page (product detail page)                                          | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Product Details Page – logged in as regular user                |                                                            |                                                                                           |       |
+| Navbar Buttons                                                  | see above – tests navbar – (regular user)                  | see above – tests navbar – (regular user)                                                 | PASS  |
+| Click “Add to Chart” button                                     | Should navigate to “Product” + toast message succes        | Stay on the Product page                                                                  | PASS  |
+| click “Category” item                                           | Should navigate to Category                                | Redirect to Products page sort by category (category)                                     | PASS  |
+| Click “Quantity” selector                                       | Should select to quantity                                  | Set the amount of quantity                                                                | PASS  |
+| Click “Delete Item” Button                                      | Should delete Item                                         | Toast Message “Item deleted from Shopping Cart”                                           | PASS  |
+| Click “Edit Product”                                            | Should navigate to “Product update” page                   | Redirect to Products Update page                                                          | PASS  |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to Products page                                                                 | PASS  |
+| Click “Checkout”                                                | Should navigate to “Check Out” page                        | Redirect to Check out page                                                                | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Shopcart Page (summary) – logged in as superuser                |                                                            |                                                                                           |       |
+| Navbar Buttons                                                  | see above – tests navbar                                   | see above – tests navbar                                                                  | PASS  |
+| Click “Add to Chart” button                                     | Should navigate to “Product” + toast message succes        | Stay on the Product page                                                                  | PASS  |
+| click “Category” item                                           | Should navigate to Category                                | Redirect to Products page sort by category (category)                                     | PASS  |
+| Click “Quantity” selector                                       | Should select to quantity                                  | Set the amount of quantity                                                                | PASS  |
+| Click “Delete Product”                                          | Should navigate to “Delete Product Confirmation”           | Redirect to Delete Product Confirm page                                                   | PASS  |
+| Click “Edit Product”                                            | Should navigate to “Product update” page                   | Redirect to Products Update page                                                          | PASS  |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to Products page                                                                 | PASS  |
+| Click “Checkout”                                                | Should navigate to “Check Out” page                        | Redirect to Check out page                                                                | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Checkout Page                                                   |                                                            |                                                                                           |       |
+| Navbar Buttons                                                  | see above – tests navbar                                   | see above – tests navbar                                                                  | PASS  |
+| Click “Update Chart”                                            | Should navigate to “Shopcart” Page                         | Redirect to “ShopCart” Page                                                               | PASS  |
+| Click “Make Order”                                              | Should navigate to “Billing Info” Page                     | Redirect to “Billing Info” Page                                                           | PASS  |
+| Click “PayPal” Button                                           | Should navigate to “PayPal.com” Page                       | Redirect to “PayPal.com” Page                                                             | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Search Page                                                     |                                                            |                                                                                           |       |
+| Navbar Buttons                                                  | see above – tests navbar                                   | see above – tests navbar                                                                  | PASS  |
+| Click “Search”                                                  | Should navigate to “Search”Page (product found)            | Redirect to “Search” Page (listed products found)                                         | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Update User Profile – template                                  |                                                            |                                                                                           |       |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+| Click “Update Profile”                                          | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Update Ship Profile – template                                  |                                                            |                                                                                           |       |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+| Click “Update Profile”                                          | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Update User – template                                          |                                                            |                                                                                           |       |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+| Click “Update Profile”                                          | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Update Password – template                                      |                                                            |                                                                                           |       |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+| Click “Update Password”                                         | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Add New Product – template – as superuser                       |                                                            |                                                                                           |       |
+| Click “Add Product”                                             | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+| Click “Cancel”                                                  | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Suppliers – template – as superuser                             |                                                            |                                                                                           |       |
+| click “Add Supplier”                                            | Should navigate to “Supplier Add”page                      | Redirect to “Supllier Add” Page                                                           | PASS  |
+| Click Nav link “Supplier”                                       | Should navigate to “Supplier” index page                   | Redirect to “Suppliers” index page                                                        | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| View Orders – template – as superuser                           |                                                            |                                                                                           |       |
+| Click “Mark as Shipped”                                         | Should navigate to “Mark Shipped”                          | Redirect to “Shipped” Page                                                                | PASS  |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+| Click “Shipped Orders”                                          | Should navigate to “Shipping Dashboard”                    | Redirect to “Shipped Dash” Page                                                           | PASS  |
+| Click “Delete Order”                                            | Should navigate to “Delete Order”                          | Redirect to “Orders” Page                                                                 | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Shipped Items – template – as super user                        |                                                            |                                                                                           |       |
+| Click nav link “Order”                                          | Should navigate to “Order” index page                      | Redirect to “Order” index page                                                            | PASS  |
+| Click “Mark UnShipped”                                          | Should navigate to “Mark Unshipped”                        | Redirect to “Unshipped Dash” Page                                                         | PASS  |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+| Click “Unshipped Orders”                                        | Should navigate to “Unshipping Dashboard”                  | Redirect to “Unshipped Dash” Page                                                         | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| UnShipped Items – template – as super user                      |                                                            |                                                                                           |       |
+| Click nav link “Order”                                          | Should navigate to “Order” index page                      | Redirect to “Order” index page                                                            | PASS  |
+| Click “Mark Shipped”                                            | Should navigate to “Mark Shipped”                          | Redirect to “Shipped” Page                                                                | PASS  |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+| Click “Shipped Orders”                                          | Should navigate to “Shipping Dashboard”                    | Redirect to “Shipped Dash” Page                                                           | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| About – template                                                |                                                            |                                                                                           |       |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Disclaimer – template                                           |                                                            |                                                                                           |       |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| General conditions – template                                   |                                                            |                                                                                           |       |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Privacy – template                                              |                                                            |                                                                                           |       |
+| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Login – template                                                |                                                            |                                                                                           |       |
+| Click “Login”                                                   | Should navigate to “Home” page                             | Redirect to “index” homepage                                                              | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Register – template                                             |                                                            |                                                                                           |       |
+| Click “Register”                                                | Should navigate to “Update User And Shipping Profile” page | Redirect to “Update User And Shipping Profile” homepage                                   | PASS  |
+|                                                                 |                                                            |                                                                                           |       |
+| Update User And Shipping Profile – template                     |                                                            |                                                                                           |       |
+| Click “Save Changes”                                            | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
+
+
+</details>
+<br>
+
+[Table Of Contents](#table-of-contents)
+
+
+
+
+### Browser Compatibility
+
+I have conducted extensive testing to ensure that the website is fully compatible across a range of web browsers. Specifically, the site has been tested on:
+
+- <img src="static/images/readme-images/google-icon.ico" width="18px"> **Google Chrome**
+- <img src="static/images/readme-images/edge-icon.ico" width="18px"> **Microsoft Edge**
+- <img src="static/images/readme-images/opera-icon.ico" width="18px"> **Opera**
+- <img src="static/images/readme-images/firefox-icon.ico" width="18px"> **Mozilla Firefox**
+
+<br>
+<details>
+  <br>
+  <summary>Click to view Google Browser Result</summary>
+  <img src="static/images/readme-images/AstroBlog-Google.png" style="display: block; margin: auto;" alt="Google Browser Test">
+  <br>
+</details>
+<br>
+<details>
+  <br>
+  <summary>Click to view Edge Browser Result</summary>
+  <img src="static/images/readme-images/AstroBlog-Edge.png" style="display: block; margin: auto;" alt="Edge Browser Test">
+  <br>
+</details>
+<br>
+<details>
+  <br>
+  <summary>Click to view FireFox Browser Result</summary>
+  <img src="static/images/readme-images/AstroBlog-Firefox.png" style="display: block; margin: auto;" alt="FireFox Browser Test">
+  <br>
+</details>
+<br>
+<details>
+  <br>
+  <summary>Click to view Opera Browser Result</summary>
+  <img src="static/images/readme-images/AstroBlog-Opera.png" style="display: block; margin: auto;" alt="Opera Browser Test">
+  <br>
+</details>
+<br>
+
+In each browser, the website performs smoothly, maintaining consistent functionality and appearance. We focused on ensuring that all features, from user registration to job application processes, operate seamlessly regardless of the browser used.
+
+No significant issues were encountered during the tests, confirming that our site is accessible and reliable across these popular browsers. This ensures that users can interact with the platform without any unexpected disruptions, regardless of their preferred browser.
+
+
+
+
+
+
 
 ## Deployment
 
@@ -564,199 +985,6 @@ For more information about the Creative Commons Attribution-NonCommercial-ShareA
 
 
 
-## User Story Testing
-
-<details>
-<summary>Manual Testing Result Report</summary>
-<br>
-
-| Scenario                                                        | Action                                                     | Result                                                                                    | Check |
-| --------------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----- |
-| Click the “SHOP NOW” Button                                     | Should navigate to Products page                           | Redirect to “Product” page                                                                | PASS  |
-| Fill in “Subscribe to our Newsletter”Fill in Email after Submit | Should navigate to Check Email Page<br>                    | Redirect to “Check your Email” page<br>                                                   | PASS  |
-| Homepage – Header                                               |                                                            |                                                                                           |       |
-| Click “Sales”                                                   | Should navigate to “Category/Sales”                        | Redirect to “category/Sales” page                                                         | PASS  |
-| Click “Books”                                                   | Should navigate to “Category/Books”                        | Redirect to “category/books” page                                                         | PASS  |
-| Clcik “Telescopes”                                              | Should navigate to “Category/Toys”                         | Redirect to “category/toys” page                                                          | PASS  |
-| Clcik “Globes”                                                  | Should navigate to “Category/Globes”                       | Redirect to “category/globes” page                                                        | PASS  |
-| Click “Binoculars”                                              | Should navigate to “Category/Binoculars”                   | Redirect to “category/binoculars” page                                                    | PASS  |
-| Clcik “Weather Station”                                         | Should navigate to “Category/Weather Station”              | Redirect to “category/weather stations” page                                              | PASS  |
-| Clcik “All Products”                                            | Should navigate to “Category/All Products”                 | Redirect to “category/all Products” page                                                  | PASS  |
-| Click “My Account”                                              | Should navigate to Account Menu as Super User              | Show Menu                                                                                 |       |
-| Click “My Account” – My Profile                                 | Should navigate to ‘Update User Profile”                   | Redirect to “Update User Profile” – page                                                  | Pass  |
-| Click “My Account” – My Update Shipping                         | Should navigate to ‘Update Ship Profle”                    | Redirect to “Update Ship Profile” – page                                                  |       |
-| Click “My Account” – My Payment                                 | Should navigate to ‘Update Payment Profle”                 | Redirect to “Update Payment Profile” – page                                               | PASS  |
-| Click “My Account” – User Account                               | Should navigate to ‘User Account”                          | Redirect to “User Account” Settings                                                       | PASS  |
-| Click “My Account” – Change Password                            | Should navigate to “Update Password”                       | Redirect to “Update Password” Page                                                        | PASS  |
-| Click “My Account” – Log Out                                    | Should navigate to “Home Page”                             | Redirect to “Home Page” whit Message “You have logged out”                                |       |
-| Click “My Account” – Add new product                            | Should navigate to “Add New Product”                       | Redirect to “Add a New Product”                                                           | PASS  |
-| Click “My Account” – Supplier List                              | Should navigate to “Supplier List”                         | Redirect to “Suppliers” Page                                                              | PASS  |
-| Click “My Account” – View Orders                                | Should navigate to “payment Orders ”                       | Redirect to “Payment Orders” Page                                                         | PASS  |
-| Click ”My Account” – Shipped Orders                             | Should navigate to “Shipping Dashboard”                    | Redirect to “Shipped Dash” Page                                                           | PASS  |
-| Click ”My Account” – Unshipped Orders                           | Should navigate to “Unshipping Dashboard”                  | Redirect to “Unshipped Dash” Page                                                         | PASS  |
-| Click “My Account”                                              | Should navigate to Account Menu as Regular User            | Show Menu                                                                                 |       |
-| Click “My Account” – My Profile                                 | Should navigate to ‘Update User Profile”                   | Redirect to “Update User Profile” – page                                                  | PASS  |
-| Click “My Account” – My Update Shipping                         | Should navigate to ‘Update Ship Profle”                    | Redirect to “Update Ship Profile” – page                                                  | PASS  |
-| Click “My Account” – My Payment                                 | Should navigate to ‘Update Payment Profle”                 | Redirect to “Update Payment Profile” – page                                               | PASS  |
-| Click “My Account” – My Orders                                  | Should navigate to “payment Orders ”                       | Redirect to “Payment Orders” Page                                                         | PASS  |
-| Click “My Account” – User Account                               | Should navigate to ‘User Account”                          | Redirect to “User Account” Settings                                                       | PASS  |
-| Click “My Account” – Change Password                            | Should navigate to “Update Password”                       | Redirect to “Update Password” Page                                                        | PASS  |
-| Click “My Account” – Log Out                                    | Should navigate to “Home Page”                             | Redirect to “Home Page” whit Message “You have logged out”                                | PASS  |
-| Click “Shop Cart Items”                                         | Should navigate to “Shopping Cart”                         | Redirect to “ShopCart” Page                                                               | PASS  |
-| Homepage – footer section                                       |                                                            |                                                                                           |       |
-| Click “About”                                                   | Should navigate to “About”                                 | Redirect to “About” Page                                                                  | PASS  |
-| Click “General Condintions”                                     | Should navigate to “General Conditions”                    | Redirect to “General Conditions ” Page                                                    | PASS  |
-| Click “Privacy Policy”                                          | Should navigate to “Privacy Policy”                        | Redirect to “Privacy Policy” Page                                                         | PASS  |
-| Click “Disclaimer”                                              | Should navigate to “Disclaimer”                            | Redirect to “Disclaimer” Page                                                             | PASS  |
-| Click “Payment”                                                 | Should navigate to “Payment”                               | Redirect to “Payment” Page                                                                | PASS  |
-| Homepage – socails section                                      |                                                            |                                                                                           |       |
-| clcik “twitter”                                                 | Should navigate to “Twitter”                               | Redirect to “[https://x.com/?lang=en](https://x.com/?lang=en)” Page                       | PASS  |
-| clcik “Instagram”                                               | Should navigate to “Instagram”                             | Redirect to “[https://www.instagram.com/](https://www.instagram.com/)” Page               | PASS  |
-| clcik “facebook”                                                | Should navigate to “Facebook”                              | Redirect to “[https://www.facebook.com/](https://www.facebook.com/)” Page                 | PASS  |
-| click “Globe”                                                   | Should navigate to “CodeInstitute”                         | Redirect to “[https://codeinstitute.net/global/](https://codeinstitute.net/global/)” Page | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Products Page – Template                                        |                                                            |                                                                                           |       |
-| Click “Astro Shop” Button                                       | Should navigate to “Home Page”                             | Redirect to “Homepage”                                                                    | PASS  |
-| Click “Product”                                                 | Should navigate to product                                 | Redirect to “product” page (product detail page)                                          | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Navbar Buttons                                                  |                                                            |                                                                                           |       |
-| Click “About” Button                                            | Should navigate to “About”                                 | Redirect to “About” Page                                                                  | PASS  |
-| Click “Search” Button                                           | Should navigate to “Search”                                | Redirect to “Search” Page                                                                 | PASS  |
-| Click “My Account”                                              | Should navigate to Account Menu as Super User              | Show Menu                                                                                 | PASS  |
-| Click “My Account” – My Profile                                 | Should navigate to ‘Update User Profile”                   | Redirect to “Update User Profile” – page                                                  | PASS  |
-| Click “My Account” – My Update Shipping                         | Should navigate to ‘Update Ship Profle”                    | Redirect to “Update Ship Profile” – page                                                  | PASS  |
-| Click “My Account” – My Payment                                 | Should navigate to ‘Update Payment Profle”                 | Redirect to “Update Payment Profile” – page                                               | PASS  |
-| Click “My Account” – User Account                               | Should navigate to ‘User Account”                          | Redirect to “User Account” Settings                                                       | PASS  |
-| Click “My Account” – Change Password                            | Should navigate to “Update Password”                       | Redirect to “Update Password” Page                                                        | PASS  |
-| Click “My Account” – Log Out                                    | Should navigate to “Home Page”                             | Redirect to “Home Page” whit Message “You have logged out”                                | PASS  |
-| Click “My Account” – Add new product                            | Should navigate to “Add New Product”                       | Redirect to “Add a New Product”                                                           | PASS  |
-| Click “My Account” – Supplier List                              | Should navigate to “Supplier List”                         | Redirect to “Suppliers” Page                                                              | PASS  |
-| Click “My Account” – View Orders                                | Should navigate to “payment Orders ”                       | Redirect to “Payment Orders” Page                                                         | PASS  |
-| Click ”My Account” – Shipped Orders                             | Should navigate to “Shipping Dashboard”                    | Redirect to “Shipped Dash” Page                                                           | PASS  |
-| Click ”My Account” – Unshipped Orders                           | Should navigate to “Unshipping Dashboard”                  | Redirect to “Unshipped Dash” Page                                                         | PASS  |
-| Click “My Account”                                              | Should navigate to Account Menu as Regular User            | Show Menu                                                                                 | PASS  |
-| Click “My Account” – My Profile                                 | Should navigate to ‘Update User Profile”                   | Redirect to “Update User Profile” – page                                                  | PASS  |
-| Click “My Account” – My Update Shipping                         | Should navigate to ‘Update Ship Profle”                    | Redirect to “Update Ship Profile” – page                                                  | PASS  |
-| Click “My Account” – My Payment                                 | Should navigate to ‘Update Payment Profle”                 | Redirect to “Update Payment Profile” – page                                               | PASS  |
-| Click “My Account” – My Orders                                  | Should navigate to “payment Orders ”                       | Redirect to “Payment Orders” Page                                                         | PASS  |
-| Click “My Account” – User Account                               | Should navigate to ‘User Account”                          | Redirect to “User Account” Settings                                                       | PASS  |
-| Click “My Account” – Change Password                            | Should navigate to “Update Password”                       | Redirect to “Update Password” Page                                                        | PASS  |
-| Click “My Account” – Log Out                                    | Should navigate to “Home Page”                             | Redirect to “Home Page” whit Message “You have logged out”                                | PASS  |
-| Click “Shop Cart Items”                                         | Should navigate to “Shopping Cart”                         | Redirect to “ShopCart” Page                                                               | PASS  |
-| Click All Products                                              | Should navigate to All Products Menu                       | Show Menu                                                                                 | PASS  |
-| Click “By Price”                                                | Should navigate to Products page sort by price             | Redirect to Products page sort by price (ascending)                                       | PASS  |
-| Click “By Category”                                             | Should navigate to Products page sort by category          | Redirect to Products page sort by category (category)                                     | PASS  |
-| Click “All Products”                                            | Should navigate to Products page                           | Redirect to Products page                                                                 | PASS  |
-| Click Product Category                                          | Should navigate to Product Category menu                   | Show Menu                                                                                 | PASS  |
-| Click “Sale”                                                    | Should navigate to “Sale” category                         | Redirect to “Sale” page                                                                   | PASS  |
-| Click “Books”                                                   | Should navigate to “Books” category                        | Redirect to “Books” page (product page by Books)                                          | PASS  |
-| Click “Toys”                                                    | Should navigate to “Toys” category                         | Redirect to “Toys” page (product page by Toys)                                            | PASS  |
-| Click “Telescopes”                                              | Should navigate to “Telescopes” category                   | Redirect to “Telescopes” page (product page by Telescopes)                                | PASS  |
-| Click “Globes”                                                  | Should navigate to “Globes” category                       | Redirect to “Globes” page (product page by Globes)                                        | PASS  |
-| Click “Specials”                                                | Should navigate to “Specials” category                     | Redirect to “Specials” page (product page by Specails)                                    | PASS  |
-| Click “Weather Stations”                                        | Should navigate to “Weather Stations” category             | Redirect to “Weather Stations” page (product page by Weather Stations)                    | PASS  |
-| Click “All Products”                                            | Should navigate to products                                | Redirect to “Products” page                                                               | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Click “Product”                                                 | Should navigate to product                                 | Redirect to “product” page (product detail page)                                          | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Product Details Page – logged in as regular user                |                                                            |                                                                                           |       |
-| Navbar Buttons                                                  | see above – tests navbar – (regular user)                  | see above – tests navbar – (regular user)                                                 | PASS  |
-| Click “Add to Chart” button                                     | Should navigate to “Product” + toast message succes        | Stay on the Product page                                                                  | PASS  |
-| click “Category” item                                           | Should navigate to Category                                | Redirect to Products page sort by category (category)                                     | PASS  |
-| Click “Quantity” selector                                       | Should select to quantity                                  | Set the amount of quantity                                                                | PASS  |
-| Click “Delete Item” Button                                      | Should delete Item                                         | Toast Message “Item deleted from Shopping Cart”                                           | PASS  |
-| Click “Edit Product”                                            | Should navigate to “Product update” page                   | Redirect to Products Update page                                                          | PASS  |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to Products page                                                                 | PASS  |
-| Click “Checkout”                                                | Should navigate to “Check Out” page                        | Redirect to Check out page                                                                | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Shopcart Page (summary) – logged in as superuser                |                                                            |                                                                                           |       |
-| Navbar Buttons                                                  | see above – tests navbar                                   | see above – tests navbar                                                                  | PASS  |
-| Click “Add to Chart” button                                     | Should navigate to “Product” + toast message succes        | Stay on the Product page                                                                  | PASS  |
-| click “Category” item                                           | Should navigate to Category                                | Redirect to Products page sort by category (category)                                     | PASS  |
-| Click “Quantity” selector                                       | Should select to quantity                                  | Set the amount of quantity                                                                | PASS  |
-| Click “Delete Product”                                          | Should navigate to “Delete Product Confirmation”           | Redirect to Delete Product Confirm page                                                   | PASS  |
-| Click “Edit Product”                                            | Should navigate to “Product update” page                   | Redirect to Products Update page                                                          | PASS  |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to Products page                                                                 | PASS  |
-| Click “Checkout”                                                | Should navigate to “Check Out” page                        | Redirect to Check out page                                                                | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Checkout Page                                                   |                                                            |                                                                                           |       |
-| Navbar Buttons                                                  | see above – tests navbar                                   | see above – tests navbar                                                                  | PASS  |
-| Click “Update Chart”                                            | Should navigate to “Shopcart” Page                         | Redirect to “ShopCart” Page                                                               | PASS  |
-| Click “Make Order”                                              | Should navigate to “Billing Info” Page                     | Redirect to “Billing Info” Page                                                           | PASS  |
-| Click “PayPal” Button                                           | Should navigate to “PayPal.com” Page                       | Redirect to “PayPal.com” Page                                                             | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Search Page                                                     |                                                            |                                                                                           |       |
-| Navbar Buttons                                                  | see above – tests navbar                                   | see above – tests navbar                                                                  | PASS  |
-| Click “Search”                                                  | Should navigate to “Search”Page (product found)            | Redirect to “Search” Page (listed products found)                                         | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Update User Profile – template                                  |                                                            |                                                                                           |       |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-| Click “Update Profile”                                          | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Update Ship Profile – template                                  |                                                            |                                                                                           |       |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-| Click “Update Profile”                                          | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Update User – template                                          |                                                            |                                                                                           |       |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-| Click “Update Profile”                                          | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Update Password – template                                      |                                                            |                                                                                           |       |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-| Click “Update Password”                                         | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Add New Product – template – as superuser                       |                                                            |                                                                                           |       |
-| Click “Add Product”                                             | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-| Click “Cancel”                                                  | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Suppliers – template – as superuser                             |                                                            |                                                                                           |       |
-| click “Add Supplier”                                            | Should navigate to “Supplier Add”page                      | Redirect to “Supllier Add” Page                                                           | PASS  |
-| Click Nav link “Supplier”                                       | Should navigate to “Supplier” index page                   | Redirect to “Suppliers” index page                                                        | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| View Orders – template – as superuser                           |                                                            |                                                                                           |       |
-| Click “Mark as Shipped”                                         | Should navigate to “Mark Shipped”                          | Redirect to “Shipped” Page                                                                | PASS  |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-| Click “Shipped Orders”                                          | Should navigate to “Shipping Dashboard”                    | Redirect to “Shipped Dash” Page                                                           | PASS  |
-| Click “Delete Order”                                            | Should navigate to “Delete Order”                          | Redirect to “Orders” Page                                                                 | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Shipped Items – template – as super user                        |                                                            |                                                                                           |       |
-| Click nav link “Order”                                          | Should navigate to “Order” index page                      | Redirect to “Order” index page                                                            | PASS  |
-| Click “Mark UnShipped”                                          | Should navigate to “Mark Unshipped”                        | Redirect to “Unshipped Dash” Page                                                         | PASS  |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-| Click “Unshipped Orders”                                        | Should navigate to “Unshipping Dashboard”                  | Redirect to “Unshipped Dash” Page                                                         | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| UnShipped Items – template – as super user                      |                                                            |                                                                                           |       |
-| Click nav link “Order”                                          | Should navigate to “Order” index page                      | Redirect to “Order” index page                                                            | PASS  |
-| Click “Mark Shipped”                                            | Should navigate to “Mark Shipped”                          | Redirect to “Shipped” Page                                                                | PASS  |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-| Click “Shipped Orders”                                          | Should navigate to “Shipping Dashboard”                    | Redirect to “Shipped Dash” Page                                                           | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| About – template                                                |                                                            |                                                                                           |       |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Disclaimer – template                                           |                                                            |                                                                                           |       |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| General conditions – template                                   |                                                            |                                                                                           |       |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Privacy – template                                              |                                                            |                                                                                           |       |
-| Click “Back To Products”                                        | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Login – template                                                |                                                            |                                                                                           |       |
-| Click “Login”                                                   | Should navigate to “Home” page                             | Redirect to “index” homepage                                                              | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Register – template                                             |                                                            |                                                                                           |       |
-| Click “Register”                                                | Should navigate to “Update User And Shipping Profile” page | Redirect to “Update User And Shipping Profile” homepage                                   | PASS  |
-|                                                                 |                                                            |                                                                                           |       |
-| Update User And Shipping Profile – template                     |                                                            |                                                                                           |       |
-| Click “Save Changes”                                            | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
-
-
-</details>
-<br>
-
-[Table Of Contents](#table-of-contents)
 
 
 
@@ -764,12 +992,6 @@ For more information about the Creative Commons Attribution-NonCommercial-ShareA
 
 
 
-
-
-
-# FaceBook
-
-![alt text](static/images/readme-images/AstroShopFacebookMockup4.png)
 
 
 
@@ -783,7 +1005,17 @@ For more information about the Creative Commons Attribution-NonCommercial-ShareA
 ![alt text](static/images/readme-images/Html_check_products.webp)
 
 
+
 ![alt text](static/images/readme-images/wave_check_index.webp)
 
 
+
 ![alt text](static/images/readme-images/wave_check_products.webp)
+
+
+
+![alt text](static/images/readme-images/lighthouse_desktop.webp)
+
+
+
+![alt text](static/images/readme-images/lighthouse_mobile.webp)
