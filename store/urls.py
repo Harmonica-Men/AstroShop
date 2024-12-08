@@ -10,6 +10,16 @@ from .views import (
     category_summary, CheckEmailView
 )
 
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap, ProductSitemap, CategorySitemap
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    'products': ProductSitemap,
+    'categories': CategorySitemap,
+}
+
+
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -42,4 +52,5 @@ urlpatterns = [
     path('update_user_and_shipping_profile/', views.update_user_and_shipping_profile, name='update_user_and_shipping_profile'),
     path('update_user_profile/', views.update_user_profile, name='update_user_profile'),
     path('update-ship-profile/', views.update_ship_profile, name='update_ship_profile'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
