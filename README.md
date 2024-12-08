@@ -347,8 +347,8 @@ S3 is widely used for website hosting, data backups, content delivery, and big d
 
 ### How to Set It Up?
 
-The setup can be quite comprehensive, so here is a guide to help you through it:  
-[Google Docs Guide](https://docs.google.com/document/d/1bqvCFiCW_JV9sllNZrN5uUJpIiusHICTk4TIk3oUWHY/edit?tab=t.0#heading=h.jypp4mbtvx4q)
+The setup can be quite comprehensive, so [here](https://docs.google.com/document/d/1bqvCFiCW_JV9sllNZrN5uUJpIiusHICTk4TIk3oUWHY/edit?tab=t.0#heading=h.jypp4mbtvx4q)
+ is a guide to help you through it.
 
 ## Newsletter Gmail API
 
