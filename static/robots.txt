@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://astroshop-1fc783ba013f.herokuapp.com/sitemap.xml
