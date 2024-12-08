@@ -6,8 +6,7 @@ class StaticViewSitemap(Sitemap):
     priority = 0.8
     changefreq = 'daily'
 
-    def items(self):
-        # Replace 'index', 'about', 'contact' with your actual URL names
+    def items(self):        
         return ['home', 'about', 'category', 'products']
 
     def location(self, item):
@@ -28,10 +27,8 @@ class CategorySitemap(Sitemap):
     changefreq = 'weekly'
     priority = 0.7
 
-    def items(self):
-        # Return all Category objects
+    def items(self):    
         return Category.objects.all()
 
-    def location(self, item):
-        # Use the appropriate field (e.g., 'slug', 'id') for the 'foo' argument
-        return reverse('category', kwargs={'foo': item.slug})  # Replace 'slug' with the correct field
+    def location(self, item):    
+        return reverse('category', args=[item.slug])    
