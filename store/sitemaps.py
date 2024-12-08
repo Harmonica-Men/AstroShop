@@ -29,3 +29,7 @@ class CategorySitemap(Sitemap):
 
     def items(self):
         return Category.objects.all()
+
+    def location(self, item):
+        # Pass the required argument for the 'category' URL
+        return reverse('category', kwargs={'foo': item.name})  # Adjust based on your model
