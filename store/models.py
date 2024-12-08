@@ -65,6 +65,12 @@ class Category(models.Model):
         name (CharField): The name of the category.
     """
     name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True, null=False, default='default-slug')
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)  
+        super().save(*args, **kwargs)
 
     def __str__(self):
         """Returns the name of the category."""
