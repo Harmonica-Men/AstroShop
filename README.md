@@ -509,19 +509,30 @@ All Python files as well *env.py* and *manage.py*, have been passed through the 
 
   | Directory | File        | Check |
   | --------- | ----------- | ----- |
-  | AstroBlog | Settings.py | PASS  |
-  | AstroBlog | urls.py     | PASS  |
-  | AstroBlog | env.py      | PASS  |
-  | AstroBlog | manage.py   | PASS  |
-  | Blogger   | admin.py    | PASS  |
-  | Blogger   | apps.py     | PASS  |
-  | Blogger   | forms.py    | PASS  |
-  | Blogger   | models.py   | PASS  |
-  | Blogger   | urls.py     | PASS  |
-  | Blogger   | views.py    | PASS  |
-  | Members   | admin.py    | PASS  |
-  | Members   | apps.py     | PASS  |
-  | Members   | forms.py    | PASS  |
+  | shopper   | Settings.py | PASS  |
+  | shopper   | urls.py     | PASS  |
+  | shopper   | env.py      | PASS  |
+  | shopper   | manage.py   | PASS  |
+  | payment   | admin.py    | PASS  |
+  | payment   | apps.py     | PASS  |
+  | payment   | forms.py    | PASS  |
+  | payment   | models.py   | PASS  |
+  | payment   | urls.py     | PASS  |
+  | payment   | views.py    | PASS  |
+  | shopcart  | admin.py    | PASS  |
+  | shopcart  | apps.py     | PASS  |
+  | shopcart  | cart.py     | PASS  |
+  | shopcart  | context_processors.py    | PASS  |
+  | shopcart  | models.py   | PASS  |
+  | shopcart  | urls.py     | PASS  |
+  | shopcart  | views.py    | PASS  |
+  | store     | admin.py    | PASS  |
+  | store     | apps.py     | PASS  |
+  | store     | forms.py    | PASS  |
+  | store     | models.py   | PASS  |
+  | store     | urls.py     | PASS  |
+  | store     | views.py    | PASS  |
+
   <br>
 </details>
 
