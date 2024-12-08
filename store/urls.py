@@ -11,12 +11,11 @@ from .views import (
 )
 
 from django.contrib.sitemaps.views import sitemap
-from .sitemaps import StaticViewSitemap, ProductSitemap, CategorySitemap
+from .sitemaps import StaticViewSitemap, ProductSitemap
 
 sitemaps = {
     'static': StaticViewSitemap,
     'products': ProductSitemap,
-    'categories': CategorySitemap,
 }
 
 

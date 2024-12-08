@@ -1,13 +1,13 @@
 from django.contrib.sitemaps import Sitemap
-from django.urls import reverse  # Correct import
-from .models import Product, Category
+from django.urls import reverse  
+from .models import Product
 
 class StaticViewSitemap(Sitemap):
     priority = 0.8
     changefreq = 'daily'
 
     def items(self):        
-        return ['home', 'about', 'category', 'products']
+        return ['home', 'about', 'products']
 
     def location(self, item):
         return reverse(item)
@@ -22,12 +22,3 @@ class ProductSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.updated_at  
 
-class CategorySitemap(Sitemap):
-    changefreq = 'weekly'
-    priority = 0.7
-
-    def items(self):    
-        return Category.objects.all()
-
-    def location(self, item):    
-        return reverse('category', args=[item.slug]) 
