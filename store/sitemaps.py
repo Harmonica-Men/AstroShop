@@ -17,8 +17,8 @@ class ProductSitemap(Sitemap):
     priority = 0.9
 
     def items(self):
-        return Product.objects.filter(is_sale=True)  
+        return Product.objects.filter(is_sale=True)
 
     def lastmod(self, obj):
-        return obj.updated_at  
-
+        # Ensure 'date_added' is a valid field in your Product model.
+        return obj.date_added  # Replace this with the actual field you want to use.

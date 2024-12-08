@@ -1,3 +1,5 @@
+from django.urls import reverse
+
 from django.db import models
 import datetime
 from django.contrib.auth.models import User
@@ -102,6 +104,7 @@ class Product(models.Model):
     description = models.TextField(default='', blank=True, null=True)
     image = models.ImageField(upload_to='uploads/product/')
     is_sale = models.BooleanField(default=False)
+    date_added = models.DateTimeField(auto_now_add=True)  # Automatically set when the product is created
     sale_price = models.DecimalField(
         max_digits=10, decimal_places=2, null=True, blank=True
     )
@@ -109,6 +112,11 @@ class Product(models.Model):
     def __str__(self):
         """Returns the name of the product."""
         return self.name
+
+    updated_at = models.DateTimeField(auto_now=True)  # Automatically updates on save
+
+    def get_absolute_url(self):
+       pass
 
 
 class Supplier(models.Model):
