@@ -7,7 +7,8 @@ class StaticViewSitemap(Sitemap):
     changefreq = 'daily'
 
     def items(self):
-        return ['index', 'about', 'contact']  # Add your static views' names
+        # Replace 'index', 'about', 'contact' with your actual URL names
+        return ['home', 'about', 'category', 'products']
 
     def location(self, item):
         return reverse(item)
