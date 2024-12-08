@@ -23,13 +23,15 @@ class ProductSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.updated_at  # Assuming you have an `updated_at` field in the Product model
 
+
 class CategorySitemap(Sitemap):
     changefreq = 'weekly'
     priority = 0.7
 
     def items(self):
+        # Return all Category objects
         return Category.objects.all()
 
     def location(self, item):
-        # Pass the required argument for the 'category' URL
-        return reverse('category', kwargs={'foo': item.name})  # Adjust based on your model
+        # Use the appropriate field (e.g., 'slug', 'id') for the 'foo' argument
+        return reverse('category', kwargs={'foo': item.slug})  # Replace 'slug' with the correct field
