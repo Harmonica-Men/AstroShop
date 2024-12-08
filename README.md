@@ -373,6 +373,93 @@ It's recommend to use a front-end bootstrap template, so that easier to start th
 
 *** ux & agile
 
+
+
+
+
+
+
+### The Structure Plane - Database
+
+The database schema was created with [eraser](https://app.eraser.io/workspace/A4EDloZQMT27ohXOp7Vj)
+
+<details>
+  <summary>ERD - Diagram</summary>
+  <img src="static/images/readme-images/ERD_diagram_AstroShop.png" style="display: block; margin: auto;" alt="ERD-Diagram-Astro-Shop">
+</details>
+
+#### Database 
+
+I used a PostgreSQL provided by Code Institute as relational database.
+
+- **FieldTypes:**<br>
+  - AutoField: An integer field that automatically increments.
+  - CharField: A text field with a maximum length.
+  - EmailField: A CharField that checks if the value is a valid email address.
+  - DateTimeField: A field for storing date and time.
+  - DateField: A field for storing dates.
+  - TextField: A large text field.
+  - OneToOneField: A one-to-one relationship.
+  - ForeignKey: A many-to-one relationship.
+  - IntegerField: An integer field.
+  - DecimalField: A fixed-precision decimal number.
+  - URLField: A CharField for URLs.
+  - ResizedImageField: An image field with resizing options.<br>
+
+- **Relationships:**<br>
+
+The **Astro Shop ERD** describes the relationships between various entities in an e-commerce application. Here's an overview:
+
+**User and PaymentOfPayPal**:
+  - Each user can have multiple PayPal payment methods, represented in the PaymentOfPayPal table. The user_paypal field in PaymentOfPayPal links to the id of the User table (one-to-many relationship).
+
+**User and ShippingAddress**
+  - Each user can have multiple shipping addresses. The user field in the ShippingAddress table refers to the id of the User table (one-to-many relationship).
+
+**User and Order**
+  - Each order is associated with a specific user. The user field in the Order table links to the id of the User table (one-to-many relationship).
+
+**Order and OrderItem**
+  - Each order can contain multiple items. The order field in OrderItem refers to the id of the Order table (one-to-many relationship).
+
+**Product and OrderItem**
+  - Each order item represents a specific product. The product field in OrderItem connects to the id of the Product table (many-to-one relationship).
+
+**User and OrderItem**
+  - Each order item also tracks the user who purchased it. The user field in OrderItem links to the id of the User table (many-to-one relationship).
+
+**User and Profile**
+  - Each user can have one profile. The user field in the Profile table refers to the id of the User table (one-to-one relationship).
+
+**Category and Product**
+  - Each product belongs to one category. The category field in the Product table links to the id of the Category table (many-to-one relationship).
+
+**Supplier and Product**
+  - Each supplier provides one specific product. The supplier_product field in the Supplier table refers to the id of the Product table (one-to-one relationship).
+
+**Subscription**
+  - Subscriptions track email addresses for newsletters or updates. No direct relationships with other tables are indicated in the diagram.
+
+In summary, the Astro Shop ERD showcases how users, orders, products, categories, suppliers, and related entities interact within the system, with well-defined relationships to manage payments, profiles, and shipping.
+
+**note:** The **Subscriber Model** has only one particlular function and that is to make a list for all user who to join the newsletter, they don't have to be active member of the astro shop website and is oly used for marketing purposes.
+
+[Table Of Contents](#table-of-contents)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Facebook
 
 <details>
