@@ -406,36 +406,37 @@ I used a PostgreSQL provided by Code Institute as relational database.
   - URLField: A CharField for URLs.
   - ResizedImageField: An image field with resizing options.<br>
 
-- **Relationships:**<br>
+#### Relationships
+<br>
 
 The **Astro Shop ERD** describes the relationships between various entities in an e-commerce application. Here's an overview:
 
 **User and PaymentOfPayPal**:
-  - Each user can have multiple PayPal payment methods, represented in the PaymentOfPayPal table. The user_paypal field in PaymentOfPayPal links to the id of the User table (one-to-many relationship).
+  - Each user can have multiple PayPal payment methods, represented in the `PaymentOfPayPal` table. The `user_paypal` field in  `PaymentOfPayPal` links to the id `id` of the `User` table (one-to-many relationship).
 
 **User and ShippingAddress**
-  - Each user can have multiple shipping addresses. The user field in the ShippingAddress table refers to the id of the User table (one-to-many relationship).
+  - Each user can have multiple shipping addresses. The `user` field in the `ShippingAddress` table refers to the `id` of the `User` table (one-to-many relationship).
 
 **User and Order**
-  - Each order is associated with a specific user. The user field in the Order table links to the id of the User table (one-to-many relationship).
+  - Each order is associated with a specific user. The `user` field in the `Order` table links to the `id` of the `User` table (one-to-many relationship).
 
 **Order and OrderItem**
-  - Each order can contain multiple items. The order field in OrderItem refers to the id of the Order table (one-to-many relationship).
+  - Each order can contain multiple items. The `order` field in `OrderItem` refers to the `id` of the `Order` table (one-to-many relationship).
 
 **Product and OrderItem**
-  - Each order item represents a specific product. The product field in OrderItem connects to the id of the Product table (many-to-one relationship).
+  - Each order item represents a specific product. The `product` field in `OrderItem` connects to the id `id` of the `Product` table (many-to-one relationship).
 
 **User and OrderItem**
-  - Each order item also tracks the user who purchased it. The user field in OrderItem links to the id of the User table (many-to-one relationship).
+  - Each order item also tracks the user who purchased it. The user `git clone`field in `OrderItem` links to the `id` of the `User` table (many-to-one relationship).
 
 **User and Profile**
-  - Each user can have one profile. The user field in the Profile table refers to the id of the User table (one-to-one relationship).
+  - Each user can have one profile. The `user` field in the `Profile` table refers to the `id` of the `User` table (one-to-one relationship).
 
 **Category and Product**
-  - Each product belongs to one category. The category field in the Product table links to the id of the Category table (many-to-one relationship).
+  - Each product belongs to one category `category`. The category `category` field in the `Product` table links to the `id` of the `Category` table (many-to-one relationship).
 
 **Supplier and Product**
-  - Each supplier provides one specific product. The supplier_product field in the Supplier table refers to the id of the Product table (one-to-one relationship).
+  - Each supplier provides one specific product. The `supplier_product` field in the `Supplier` table refers to the `id` of the `Product` table (one-to-one relationship).
 
 **Subscription**
   - Subscriptions track email addresses for newsletters or updates. No direct relationships with other tables are indicated in the diagram.
@@ -907,12 +908,12 @@ This site was deployed to and is currently [hosted on the Heroku platform](https
 
 ### Forking this GitHub repository
 1. Log in to GitHub.
-2. Navigate to the repository for this project by selecting [*Harmonica-Men/AstroShare-Blog*](https://github.com/Harmonica-Men/AstroShare-Blog)
+2. Navigate to the repository for this project by selecting [*Harmonica-Men/AstroShop*](https://github.com/Harmonica-Men/AstroShop)
 3. Click at the top of the repository on the Fork button on the right side
 
 ### Clone this repository
 1. Log in to GitHub.
-2. Navigate to the repository for this project by selecting [*Harmonica-Men/AstroShare-Blog*](https://github.com/Harmonica-Men/AstroShare-Blog)
+2. Navigate to the repository for this project by selecting [*Harmonica-Men/AstroShop*](https://github.com/Harmonica-Men/AstroShop)
 3. In the top-right corner, click on the green *Code* button
 4. Copy the HTTPS URL in the tab *Local*
 5. Go to the code editor of your choice and open the terminal
