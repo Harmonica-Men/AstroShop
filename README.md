@@ -39,10 +39,8 @@ A live version of the project can be accessed here: [AstroShop](https://https://
     - [Newsletter Marketing](#newsletter-marketing)
     - [Future Strategies to Support the E-Commerce Business Model](#future-strategies-to-support-the-e-commerce-business-model)
     - [Advanced SEO Techniques](#advanced-seo-techniques)
-    - [Expanded Social Media Marketing](#Expanded Social Media Marketing
-    )
+    - [Expand Social Media Marketing](#expanded-social-media-marketing)
     - [Email Marketing Enhancements](#email-marketing-enhancements)
-  - [Facebook](#facebook)
   - [Testing](#testing)
     - [HTML Validation](#html-validation)
     - [CSS Validation](#css-validation)
@@ -275,23 +273,33 @@ The favicon was created with [Favicon.io](https://favicon.io/favicon-generator/)
 
 [Table Of Contents](#table-of-contents)
 
- ### Libraries and modules
+ ### Libraries, Modules & Packages
 <details>
   <summary>Libraries and modules</summary>
- 
+  <br> 
 
-`asgiref==3.7.2`
+`asgiref==3.8.1`
 ASGI (Asynchronous Server Gateway Interface) reference implementation. It provides utilities for building and maintaining asynchronous web applications in Python. This module is particularly useful for handling asynchronous protocols such as WebSockets and HTTP/2.
 
 `boto3==1.35.45` is the AWS SDK for Python, enabling Python apps to manage and automate AWS resources like S3, EC2, and Lambda. It provides updated APIs for seamless integration with AWS services.
 
 `botocore==1.35.45` is a core library for AWS SDK in Python, providing low-level access to AWS APIs. It underlies `boto3`, handling service requests, authentication, and responses for seamless AWS interactions.
 
+`cart==1.2.2` A cart module in Django is used to manage shopping cart functionality in e-commerce applications. It typically involves:
+
+Models: To store cart items (e.g., Cart and CartItem models).
+Views: To handle adding, updating, and removing items from the cart.
+Templates: To display the cart to users, showing item details, quantities, and totals.
+Sessions: Often used to track the cart for anonymous users.
+Utilities: For calculating totals, taxes, and discounts.
+The cart module integrates seamlessly with other modules like orders and payments for a complete checkout process.
+
+`chardet==5.2.0` is a Python package used for detecting the character encoding of text. It's commonly used in web scraping, file parsing, and other situations where text encoding needs to be determined dynamically.
+
+`cloudinary==5.2.0` is a cloud-based service that provides tools for managing, optimizing, and delivering media (images, videos, and other assets) for websites and applications. It is commonly used in Django and other web frameworks to handle media storage and delivery efficiently.
+
 `dj-database-url==0.5.0`
 A utility for Django that allows database configuration from a URL string. This is particularly useful for deploying applications on platforms like Heroku, where database URLs are often provided in the environment variables.
-
-`dj3-cloudinary-storage==0.0.6`
-A storage backend for Django that integrates with Cloudinary. It allows developers to easily upload and manage media files in their Django applications using Cloudinary as the storage provider.
 
 `django==4.2`
 The latest version of the Django web framework, which is a high-level Python framework that encourages rapid development and clean, pragmatic design. Django is known for its scalability and its robust features like ORM, admin interface, authentication, and security features.
@@ -323,13 +331,14 @@ Is a Python library providing accurate and up-to-date timezone definitions, esse
 `s3transfer==0.10.3` 
 Is a Python library that provides a high-level interface for transferring files to and from Amazon S3. It supports multipart uploads, automatic retries, and parallel transfers, enhancing the efficiency and reliability of file handling in applications that interact with S3.
 
+`setuptools==75.3.0`
+is a widely used Python library for building, packaging, and distributing Python projects. It provides tools to define a project’s metadata, dependencies, and installation instructions. It is often used alongside pip and is essential for creating Python packages.
+
 `sqlparse==0.5.1` 
 Is a non-validating SQL parser for Python. It provides tools for parsing, formatting, and analyzing SQL statements, making it useful for applications that require SQL code manipulation or analysis, such as ORM libraries or database administration tools.
 
 `whitenoise==5.3.0`
 A middleware for serving static files in a Django application. Whitenoise allows applications to serve static assets directly without needing a separate web server, simplifying deployment and reducing complexity.
-
-
   
 </details>
 
@@ -387,7 +396,7 @@ The database schema was created with [eraser](https://app.eraser.io/workspace/A4
   <img src="static/images/readme-images/ERD_diagram_AstroShop.png" style="display: block; margin: auto;" alt="ERD-Diagram-Astro-Shop">
 </details>
 
-#### Database 
+### Database 
 
 I used a PostgreSQL provided by Code Institute as relational database.
 
@@ -405,8 +414,7 @@ I used a PostgreSQL provided by Code Institute as relational database.
   - URLField: A CharField for URLs.
   - ResizedImageField: An image field with resizing options.<br>
 
-#### Relationships
-<br>
+### Relationships
 
 The **Astro Shop ERD** describes the relationships between various entities in an e-commerce application. Here's an overview:
 
@@ -468,18 +476,21 @@ Other optimizations include:
 
 To support the website, a Facebook Business Page has been created. This serves as an additional platform for brand visibility and user engagement.
 
-![Facebook Fan Page](readme-images/facebook-screenshot.png)
-
 - Why businesses use Facebook pages: Social media platforms, especially Facebook, allow businesses to connect directly with their audience, foster community, and share updates about products or promotions.
 - Value to the company: A Facebook page increases the company’s reach, drives traffic to the website, and creates a space for user-generated content, such as reviews and testimonials, which can further boost credibility.
+<br>
+<details>
+  <summary>Click to view Facebook Mockup Fan Page</summary>
+  Facebook Mockup 
+  <img src="static/images/readme-images/AstroShopFacebookMockup4.png" style="display: block; margin: auto;" alt="facebook marketing mockup fan page">
+</details>
 
 ### Newsletter Marketing
 
 The website features a newsletter signup option in the footer, enabling users to subscribe by sharing their email addresses. 
+![Subscribe Footer](static/images/readme-images/subscribe-footer.webp)
 
-![Subscribe Footer](readme-images/subscribe-footer.png)
-
-![Mailchimp Screenshot](readme-images/mailchimp-screenshot.png)
+![Gmail Screenshot](static/images/readme-images/email_confirmation.webp)
 
 This approach offers several advantages:
 
@@ -511,13 +522,7 @@ To further enhance the e-commerce business model and drive growth, the following
 - Personalization: Using customer data to send tailored recommendations, offers, and content to improve engagement and conversions.
 - Analytics Integration: Using email marketing analytics to measure the success of campaigns and refine strategies over time.
 
-## Facebook
-
-<details>
-  <summary>Click to view Facebook Mockup Page</summary>
-  Facebook Mockup 
-  <img src="static/images/readme-images/AstroShopFacebookMockup4.png" style="display: block; margin: auto;" alt="facebook marketing mockup">
-</details>
+[Table Of Contents](#table-of-contents)
 
 ## Testing
 
@@ -560,6 +565,9 @@ Here’s the validation result:
   <summary>Click to view CSS Validation Result</summary>
   <img src="static/images/readme-images/W3C_CSS_validation_test.webp" style="display: block; margin: auto;" alt="CSS Validation Result showing zero errors">
 </details>
+<br>
+
+[Table Of Contents](#table-of-contents)
 
 ### Accessibility
 
