@@ -30,13 +30,19 @@ A live version of the project can be accessed here: [AstroShop](https://https://
     - [AWS](#aws)
     - [Newsletter Gmail API](#newsletter-gmail-api)    
     - [Bootstrap themes](#bootstrap-themes)
-    - [The Structure Plane - Site maps] *(#the-structure-plane---site-maps)
-    - [The Structure Plane - Database] *(#the-structure-plane---database)
-      - *[Database](#database)
-  - *[UX & Agile](#ux--agile)
-
+    - [The Structure Plane - Database](#the-structure-plane---database)
+      - [Database](#database)
+      - [Relationships](#relationships)
+  - [Ecommerce](#e-commerce-business-model)
+    - [Search Engine Optimization (SEO)](#search-engine-optimization-seo)
+    - [Social Media Marketing](#social-media-marketing)
+    - [Newsletter Marketing](#newsletter-marketing)
+    - [Future Strategies to Support the E-Commerce Business Model](#future-strategies-to-support-the-e-commerce-business-model)
+    - [Advanced SEO Techniques](#advanced-seo-techniques)
+    - [Expanded Social Media Marketing](#Expanded Social Media Marketing
+    )
+    - [Email Marketing Enhancements](#email-marketing-enhancements)
   - [Facebook](#facebook)
-
   - [Testing](#testing)
     - [HTML Validation](#html-validation)
     - [CSS Validation](#css-validation)
@@ -175,10 +181,13 @@ Key elements of the colour customization process include:
 
 - **CSS Variables**: The different colour palettes are implemented using CSS Variables, which allows for dynamic and flexible styling of various elements across the site. This ensures a consistent and responsive design while providing a personalised experience for each user.
 
-### Fonts
+### Fonts - Typography
 
 I used a combination of classic and modern fonts to diversify myself, I've integrated [Google Fonts](https://fonts.google.com/ "Google Fonts") to find a typeface that complements the website's aesthetic. For the main text, I've opted for [Lato](https://fonts.google.com/specimen/Lato?query=Lato/ "Lato") due to its classic appearance. Its make it easy to read long sentences.
 
+![Lato Font](static/images/readme-images/lato-font.png)
+
+To ensure accessibility and functionality across all devices and browsers, I included a fallback font stack. If Lato is unavailable, the design defaults to a generic sans-serif font, maintaining readability and visual appeal.
 
 ### Icons
 
@@ -369,16 +378,6 @@ It delivers the template file you can customize afterwords whit default ccs, js 
 
 It's recommend to use a front-end bootstrap template, so that easier to start the project and dive in to core application of Django.
 
-*** the structure
-
-*** ux & agile
-
-
-
-
-
-
-
 ### The Structure Plane - Database
 
 The database schema was created with [eraser](https://app.eraser.io/workspace/A4EDloZQMT27ohXOp7Vj)
@@ -447,19 +446,70 @@ In summary, the Astro Shop ERD showcases how users, orders, products, categories
 
 [Table Of Contents](#table-of-contents)
 
+## E-Commerce Business Model
 
+This application incorporates several key strategies to ensure a sustainable and successful e-commerce business. Below are the primary components that underline the model:
 
+### Search Engine Optimization (SEO)
 
+Effective SEO techniques have been integrated to improve the visibility and reach of the website. Key features include:
 
+- Meta tags: Meta descriptions and keywords are dynamically added within Django templates to improve search engine rankings, using carefully researched long and short-form keywords identified through brainstorming, Google tools, and keyword analysis.
+- Sitemap: A sitemap file is provided, allowing search engines to efficiently crawl and index the site's structure.
+- Robots.txt: A robots.txt file has been included to guide search engines on which parts of the site to crawl and index, optimizing the crawl budget.
 
+Other optimizations include:
 
+- Alt text for images: All product images include descriptive alt text, making the site more accessible and improving image search rankings.
+- Mobile responsiveness: The site's design is fully responsive, catering to a growing audience of mobile users, which search engines favour.
+- Optimized URLs: The application uses clean and descriptive URLs, which are user-friendly and beneficial for SEO.
 
+### Social Media Marketing
 
+To support the website, a Facebook Business Page has been created. This serves as an additional platform for brand visibility and user engagement.
 
+![Facebook Fan Page](readme-images/facebook-screenshot.png)
 
+- Why businesses use Facebook pages: Social media platforms, especially Facebook, allow businesses to connect directly with their audience, foster community, and share updates about products or promotions.
+- Value to the company: A Facebook page increases the company’s reach, drives traffic to the website, and creates a space for user-generated content, such as reviews and testimonials, which can further boost credibility.
 
+### Newsletter Marketing
 
+The website features a newsletter signup option in the footer, enabling users to subscribe by sharing their email addresses. 
 
+![Subscribe Footer](readme-images/subscribe-footer.png)
+
+![Mailchimp Screenshot](readme-images/mailchimp-screenshot.png)
+
+This approach offers several advantages:
+
+- User retention: Regular newsletters keep the brand in the minds of customers, encouraging repeat visits and purchases.
+- Targeted marketing: Collecting user data allows for more personalized and segmented marketing campaigns, increasing conversion rates.
+- Announcements and promotions: Newsletters provide a direct channel for communicating new product launches, sales events, and exclusive discounts to loyal customers.
+
+By combining these strategies, the e-commerce application creates a strong foundation for attracting, engaging, and retaining customers while maintaining scalability for future growth.
+
+### Future Strategies to Support the E-Commerce Business Model
+
+To further enhance the e-commerce business model and drive growth, the following strategies could be implemented in the future:
+
+### Advanced SEO Techniques
+
+- Structured Data Markup: Adding schema.org markup to product pages to improve how information appears in search results, including rich snippets for reviews, prices, and availability.
+- Voice Search Optimization: Tailoring content to accommodate the growing trend of voice search, using natural language and question-based keywords.
+- Faster Page Load Times: Optimizing images, implementing lazy loading, and using Content Delivery Networks (CDNs) to enhance page speed, which is critical for SEO and user experience.
+
+### Expanded Social Media Marketing
+
+- Multi-platform Presence: Establishing a presence on platforms like Instagram and Pinterest, which are highly visual and align well with the luxury perfume market.
+- Influencer Partnerships: Collaborating with influencers to promote products, increase brand credibility, and reach niche audiences.
+- Social Commerce: Integrating product catalogs directly into social media platforms for seamless shopping experiences.
+
+### Email Marketing Enhancements
+
+- Drip Campaigns: Creating automated email sequences to nurture leads, onboard new customers, and re-engage inactive users.
+- Personalization: Using customer data to send tailored recommendations, offers, and content to improve engagement and conversions.
+- Analytics Integration: Using email marketing analytics to measure the success of campaigns and refine strategies over time.
 
 ## Facebook
 

@@ -11,10 +11,10 @@ from .views import (
 )
 
 from django.contrib.sitemaps.views import sitemap
-from .sitemaps import StaticViewSitemap, ProductSitemap
+from .sitemaps import ProductSitemap
 
 sitemaps = {
-    'static': StaticViewSitemap,
+   
     'products': ProductSitemap,
 }
 
@@ -23,7 +23,7 @@ sitemaps = {
 urlpatterns = [
     path('', views.index, name='home'),
     path('about/', views.about, name='about'),
-    path('category/<slug:foo>/', views.category, name='category'),
+    path('category/<str:foo>/', views.category, name='category'),
     path('category_summary/', views.category_summary, name='category_summary'),
     path('check_email/', views.CheckEmailView.as_view(), name='check_email'),
     path('disclaimer/', disclaimer, name='disclaimer'),
