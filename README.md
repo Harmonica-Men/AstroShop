@@ -6,11 +6,12 @@ Explore the universe with AstroShop, the ultimate e-commerce destination for all
 
 A live version of the project can be accessed here: [AstroShop](https://https://astroshop-1fc783ba013f.herokuapp.com/)
 
-![alt text](static/images/readme-images/amiresponsive.webp)
+![Am I Responsive](static/images/readme-images/amiresponsive.webp)
 
 
 # Table Of Contents
   - [Astro Shop](#astro-shop)
+  - UX
   - [Development Tools](#development-tools)
   - [CSS Management for Project Structure](#css-management-for-project-structure)
     - [Index Page Overview](#index-page-overview)
@@ -66,6 +67,10 @@ A live version of the project can be accessed here: [AstroShop](https://https://
   - [Bugs & Fixes](#bugs--fixes)
   - [License](#license)
   - [Credits](#credits)
+
+## UX
+
+
 
 ## Development Tools
 
