@@ -11,6 +11,20 @@ A live version of the project can be accessed here: [AstroShop](https://https://
 
 # Table Of Contents
   - [Astro Shop](#astro-shop)
+  - [E-commerce Applications for Astro Shop](#e-commerce-applications-for-astro-shop)
+    - [What is E-commerce?](#what-is-e-commerce)
+    - [What are business model examples for Astro Shop?](#what-are-business-model-examples-for-astro-shop)
+    - [Key Ways to Define E-commerce for Astro Shop](#key-ways-to-define-e-commerce-for-astro-shop)
+      - [WHO: Who is the customer?](#who-who-is-the-customer)
+        - [B2C (Business to Customer)](#b2c-business-to-customer)
+        - [B2B (Business to Business)](#b2b-business-to-business)
+      - [WHAT: What are they buying?](#what-what-are-they-buying)
+        - [Products](#products)
+        - [Digital Products](#digital-products)
+        - [Services](#services)
+      - [HOW: How will they pay?](#how-how-will-they-pay)
+        - [Single Payment](#single-payment)
+        - [Subsciption](#subscription)
   - UX
   - [Development Tools](#development-tools)
   - [CSS Management for Project Structure](#css-management-for-project-structure)
@@ -67,6 +81,82 @@ A live version of the project can be accessed here: [AstroShop](https://https://
   - [Bugs & Fixes](#bugs--fixes)
   - [License](#license)
   - [Credits](#credits)
+
+# E-commerce Applications for Astro Shop
+
+## What is E-commerce?
+
+An E-commerce app, like Astro Shop, is specifically designed to facilitate commercial and business transactions by enabling the online transfer of information and payments.
+
+## What are business model examples for Astro Shop?
+
+- **Would a site for an astronomy shop selling telescopes and accessories be considered E-commerce?**  
+  Yes, as customers purchase items directly online, and payments are processed digitally.
+
+- **What about a site offering online consultations for setting up telescopes?**  
+  Yes, if customers pay for the consultation online, it would be considered E-commerce.
+
+- **What about a site providing free stargazing guides and star charts? Is this E-commerce?**  
+  No, if there’s no payment involved, it is not E-commerce. However, selling downloadable premium guides would be considered E-commerce.
+
+- **What about a local astronomy club website accepting donations through PayPal? Would this be E-commerce?**  
+  No, the primary purpose of the website is to collect donations, not to conduct commercial transactions.
+
+## Key Ways to Define E-commerce for Astro Shop
+
+### WHO: Who is the customer?
+
+- #### **B2C (Business to Customer):**  
+  - Customers buying telescopes, astrophotography gear, or astronomy books for personal use.  
+  - **Impulsive purchases:** Make checkout easy to encourage spur-of-the-moment purchases (e.g., limited-time offers on star maps).  
+  - Customers typically don’t need to justify their purchases.
+
+- #### **B2B (Business to Business):**  
+  - Astronomy clubs, schools, or research institutions purchasing multiple items like telescopes or bulk astronomy kits.  
+  - **Rational purchasing:** These buyers take more time to evaluate options and compare products. Providing detailed product specs and comparisons can help them decide.
+  - As for the purpose of the webshop, it should be noted that significantly larger purchases are better handled by contacting the store manager of Astro Shop to ensure even better sales conditions.  
+
+### WHAT: What are they buying?
+
+Astro Shop offers three types of deliverables: **products, digital products, and services.**
+
+1. #### **Products:**  
+   Examples include telescopes, astronomy kits, star trackers, or space-themed apparel.  
+   To deliver these products, Astro Shop needs:  
+   - **Database features:**  
+     - Product details (name, description, price). (must haves)
+     - Stock numbers and low-stock notifications. (should haves)
+     - Shipping or delivery costs. (should haves)
+     - Product reviews and ratings. (should haves)
+
+2. #### **Digital Products:**  
+   Examples include high-resolution space photos, star charts, and downloadable e-books.
+   - **Database features:**  
+     - Product details (name, description, price). (must haves)
+     - Search and filter options. (must haves)
+     - Storing digital products securely. (must haves)
+     - Immediate product access after payment. (must haves)
+
+3. #### **Services:**  
+   Examples include virtual telescope setup assistance, online astrophotography workshops, or stargazing event planning.  
+   - **Database features:**  
+     - Service details (title, description, price). (must haves)
+     - Terms of service and liability disclaimers. (must haves)
+     - Navigation and customer testimonials for credibility. (should haves)
+
+### HOW: How will they pay?
+
+Astro Shop can offer two payment models:
+
+1. #### **Single Payment:**  
+   (B2C Business Model) Suitable for one-time purchases like telescopes, astronomy kits, or digital downloads.
+
+2. #### **Subscription:**  
+   (B2B Business Model)
+   - Monthly or yearly subscriptions for exclusive services, like access to a premium stargazing guide, online courses, or regular delivery of star charts and space-themed merchandise.  
+   - Ideal for products or services requiring regular use or updates.
+
+[Table Of Contents](#table-of-contents)
 
 ## UX
 
@@ -502,10 +592,12 @@ To support the website, a Facebook Business Page has been created. This serves a
 
 ### Newsletter Marketing
 
-The website features a newsletter signup option in the footer, enabling users to subscribe by sharing their email addresses. 
+The website features a newsletter signup option on homepage just above the footer, enabling users to subscribe by sharing their email addresses. 
+
+
 ![Subscribe Footer](static/images/readme-images/subscribe-footer.webp)
 
-![Gmail Screenshot](static/images/readme-images/email_confirmation.webp)
+![Email Confirm Screenshot](static/images/readme-images/email_confirmation.webp)
 
 This approach offers several advantages:
 
