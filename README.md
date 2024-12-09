@@ -33,6 +33,7 @@ A live version of the project can be accessed here: [AstroShop](https://https://
     - [The Structure Plane - Database](#the-structure-plane---database)
       - [Database](#database)
       - [Relationships](#relationships)
+    - [Version Control](#version-control)
   - [Ecommerce](#e-commerce-business-model)
     - [Search Engine Optimization (SEO)](#search-engine-optimization-seo)
     - [Social Media Marketing](#social-media-marketing)
@@ -201,7 +202,13 @@ The wireframes for this project served as a crucial guide during the development
 
 I chose to highlight only two wireframes in this README as they are the most critical to the overall user experience. Other pages did not require such detailed wireframing and followed more standard, basic templates.
 
-### Wireframes for Homepage & Frontpage
+### Wireframes for Homepage & Products
+
+All wireframes for the website were designed using the **Balsamiq Desktop Application**. These wireframes served as the foundation for planning the website's layout and user experience across different devices. 
+
+Below, you can find examples of how a typical page is structured on both desktop, tablet and mobile devices.
+
+#### Desktop
 
 <details>
   <summary>Wireframe for Homepage (index) - Desktop </summary>
@@ -274,6 +281,7 @@ The favicon was created with [Favicon.io](https://favicon.io/favicon-generator/)
 [Table Of Contents](#table-of-contents)
 
  ### Libraries, Modules & Packages
+
 <details>
   <summary>Libraries and modules</summary>
   <br> 
@@ -341,10 +349,7 @@ Is a non-validating SQL parser for Python. It provides tools for parsing, format
 A middleware for serving static files in a Django application. Whitenoise allows applications to serve static assets directly without needing a separate web server, simplifying deployment and reducing complexity.
   
 </details>
-
-[Table Of Contents](#table-of-contents)
-
-
+<br>
 
 ## AWS
 
@@ -434,7 +439,7 @@ The **Astro Shop ERD** describes the relationships between various entities in a
   - Each order item represents a specific product. The `product` field in `OrderItem` connects to the id `id` of the `Product` table (many-to-one relationship).
 
 **User and OrderItem**
-  - Each order item also tracks the user who purchased it. The user `git clone`field in `OrderItem` links to the `id` of the `User` table (many-to-one relationship).
+  - Each order item also tracks the user who purchased it. The `user` field in `OrderItem` links to the `id` of the `User` table (many-to-one relationship).
 
 **User and Profile**
   - Each user can have one profile. The `user` field in the `Profile` table refers to the `id` of the `User` table (one-to-one relationship).
@@ -451,6 +456,11 @@ The **Astro Shop ERD** describes the relationships between various entities in a
 In summary, the Astro Shop ERD showcases how users, orders, products, categories, suppliers, and related entities interact within the system, with well-defined relationships to manage payments, profiles, and shipping.
 
 **note:** The **Subscriber Model** has only one particlular function and that is to make a list for all user who to join the newsletter, they don't have to be active member of the astro shop website and is oly used for marketing purposes.
+
+### Version Control
+
+- [Git](https://git-scm.com/) - Used for version control via the terminal.
+- [GitHub](https://github.com/) - Used as the remote repository to store and manage the project.
 
 [Table Of Contents](#table-of-contents)
 
@@ -975,7 +985,7 @@ This site was deployed to and is currently [hosted on the Heroku platform](https
 3. In the top-right corner, click on the green *Code* button
 4. Copy the HTTPS URL in the tab *Local*
 5. Go to the code editor of your choice and open the terminal
-5. Type `git clone` and paste the URL you copied into your terminal
+5. Type `copy` and `paste` the URL you copied into your terminal
 6. Press the enter key
 
 ### Cloudinary
@@ -1047,11 +1057,7 @@ From codeinstitute every student can maintain up to eight databases to run there
 
 ## Bugs & Fixes
 
-- In order to properly work with the NASA APOD API, I was unable to hide the API KEY from *views.py* (line 266) and the JavaScript (line 6). After extensive debugging, I was forced to hardcode the API KEY into the code.
-- The issues I struggled with were how to enforce the JavaScript onto a JSON response fetch, which was too complicated.
-- After that, I also had problems recalling the `NASA_API_KEY` from *settings.py*.
-- For demonstrational purposes, I hardcoded the API KEYS to show the potential of the APIs.
-- Further more in the newsletter subscription there should be a confirmation message displayed but was included but fail to render. Instead a 404 page was returned.
+- bugs & fixes
 
 ## License
 
