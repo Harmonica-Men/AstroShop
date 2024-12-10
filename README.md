@@ -25,7 +25,7 @@ A live version of the project can be accessed here: [AstroShop](https://https://
       - [HOW: How will they pay?](#how-how-will-they-pay)
         - [Single Payment](#single-payment)
         - [Subsciption](#subscription)
-  - UX
+  - [UX & Agile](#ux--agile)
   - [Development Tools](#development-tools)
   - [CSS Management for Project Structure](#css-management-for-project-structure)
     - [Index Page Overview](#index-page-overview)
@@ -158,7 +158,31 @@ Astro Shop can offer two payment models:
 
 [Table Of Contents](#table-of-contents)
 
-## UX
+## UX & Agile
+- The complete User Experience and Agile methology are explained to this link [here](AGILE.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
