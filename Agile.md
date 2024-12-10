@@ -3,6 +3,7 @@
 # Table Of Contents
 
 - Agile
+[Table Of Contents](#table-of-contents)
 - Table Of Contents
     - [Introduction](#introduction)
     - [Benefits of agile development](#benefits-of-agile-development)
@@ -80,7 +81,7 @@ For this project I have caculated that for the Fibonacci User Story Points Score
   10. [Conclusion](#10-conclusion)
 
 ### 1. Welcome and Introduction
-**User opens the blog website:**
+**User opens the Astro Shop:**
 
 - **Landing Page:**
   - On the home page ther is a banner that include all links to the categories product pages.

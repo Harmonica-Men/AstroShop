@@ -159,7 +159,7 @@ Astro Shop can offer two payment models:
 [Table Of Contents](#table-of-contents)
 
 ## UX & Agile
-- The complete User Experience and Agile methology are explained to this link [here](AGILE.md)
+- The complete User Experience and Agile methology are explained to this link [here](Agile.md)
 
 
 
