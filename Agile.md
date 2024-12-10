@@ -3,7 +3,7 @@
 # Table Of Contents
 
 - Agile
-[Table Of Contents](#table-of-contents)
+
 - Table Of Contents
     - [Introduction](#introduction)
     - [Benefits of agile development](#benefits-of-agile-development)
@@ -21,7 +21,7 @@
     - [Product Details](#5-product-details)
     - [The Shopping Cart](#6-the-shopping-cart)
     - [Check Out](#7-check-out)
-    - [Ease of Use and Accessibility](#8-ease-of-use-and-accessibility)
+    - [Payment](#8-ease-of-use-and-accessibility)
     - [Continuous Engagement](#9-continuous-engagement)
     - [Conclusion](#10-conclusion)
   - [User Demographic Table of Contents](#user-demographic-table-of-contents)
@@ -181,30 +181,52 @@ For this project I have caculated that for the Fibonacci User Story Points Score
   - A email is sent to the customer to confirm that there was a transaction that verify the order.
 
 
-### 8. 
-**User enjoys a seamless experience:**
+### 8. Payment
+**Client is redirected to PayPal**
 
-- **Responsive Design:**
-  - Blog is fully responsive and works seamlessly on desktop, tablet, and mobile devices.
-  - Fast loading times and smooth transitions between pages.
+- PayPal offers a variety of options for secure online transactions:
 
-- **Accessibility:**
-  - High contrast mode and text resizing options for visually impaired users.
-  - Keyboard navigable interface and screen reader compatibility.
+  1. **PayPal Balance**: Pay directly using funds stored in your PayPal account.
+  2. **Linked Bank Account**: Payments are debited from your connected bank account.
+  3. **Credit/Debit Card**: Use cards linked to your PayPal account for secure payments.
+  4. **PayPal Credit**: A credit line for eligible users, allowing flexible payment terms.
+  5. **Pay in 4**: Split the purchase into four interest-free installments.
+  6. **Guest Checkout**: Make payments without creating a PayPal account using a card.
+  7. **PayPal Business Payments**: For merchants, supports invoicing, subscription payments, and POS systems.
 
-### 9. Continuous Engagement
-**User stays engaged and returns to the blog:**
+  These methods ensure secure and flexible payment experiences.
 
-- **Content Recommendations:**
-  - Personalized content recommendations based on user’s interests and activity.
-  - Regular email updates with highlights from the blog and upcoming astronomical events.
+### 9. Email Confirmation and Redirect to Merchant
+**After a Successful PayPal Payment:**
 
-- **Events and Challenges:**
-  - Community events such as virtual star-gazing sessions, photo contests, and Q&A sessions with astronomy experts.
-  - Interactive challenges and quizzes to keep users engaged and learning.
+1. **Payment Confirmation**:  
+   PayPal sends a confirmation to both the buyer and the merchant, typically via email. This includes transaction details, such as the amount, payer's information, and a unique transaction ID.
 
-### 10. Conclusion
-AstroShare offers a user-friendly, engaging, and collaborative platform for astronomy enthusiasts to share knowledge, interact with the community, and enjoy a seamless and enriching experience.
+2. **Merchant Notification**:  
+   The merchant’s system receives an Instant Payment Notification (IPN) or Webhook, confirming the payment status.
+
+3. **Order Processing**:  
+   The merchant begins processing the order, such as shipping the purchased item or granting access to digital products.
+
+4. **Transaction Logging**:  
+   The payment is recorded in both PayPal and the merchant’s order management system for future reference.
+
+**After an Unsuccessful PayPal Payment:**
+
+1. **Payment Denied Notification**:  
+   PayPal informs the buyer of the failure, typically citing reasons such as insufficient funds, incorrect card details, or declined authorization.
+
+2. **Merchant Notification**:  
+   The merchant may also receive a failed payment notification or see a "payment failed" status in their system.
+
+3. **Retry Option**:  
+   The buyer is usually prompted to correct any issues (e.g., updating card information) and try the payment again.
+
+4. **Order on Hold**:  
+   The merchant's system may put the order on hold or cancel it until payment is successfully completed.
+
+5. **No Funds Deduction**:  
+   In the case of failure, no funds are deducted from the buyer’s PayPal account or linked payment method.
 
 [Table Of Contents](#table-of-contents)
 
