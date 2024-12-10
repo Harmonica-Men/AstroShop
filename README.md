@@ -4,7 +4,7 @@ Explore the universe with AstroShop, the ultimate e-commerce destination for all
 
 "Unlock the wonders of the universe—shop AstroShop today!"
 
-A live version of the project can be accessed here: [AstroShop](https://https://astroshop-1fc783ba013f.herokuapp.com/)
+A live version of the project can be accessed here: [AstroShop](https://astroshop-1fc783ba013f.herokuapp.com/)
 
 ![Am I Responsive](static/images/readme-images/amiresponsive.webp)
 
