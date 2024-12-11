@@ -142,7 +142,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -153,7 +152,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -171,8 +169,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AWS settings
-if 'USE_AWS' in os.environ:
-    print('using aws')
+if 'USE_AWS' in os.environ:   
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = 'astroshop-aws-bucket'
     AWS_S3_REGION_NAME = 'eu-north-1'

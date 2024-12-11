@@ -18,8 +18,11 @@
             <form method="POST" action="{% url 'update_payment_paypal' %}" class="mt-2">
                 {% csrf_token %}
 
+                <strong class="product-name text-black">Pay Pal - Credit Card Info</strong>
+                <br>
+                <strong class="product-name text-black" style="text-align: center;">Payment Information of 
+                    {{ request.user.first_name }} {{ request.user.last_name }} </strong>
 
-                <strong class="product-name text-black">Pay Pal - Payment Information</strong>
                 {{ payment_form.as_p }}
                 <div class="d-flex justify-content-between mb-4">
                     <a href="{% url 'products' %}" class="btn btn-secondary mr-2">Back To Products</a>

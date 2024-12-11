@@ -28,15 +28,14 @@ def update_payment_paypal(request):
     Updates or creates PayPal payment info for the logged-in user.
     Redirects to the products page upon successful submission.
     """
-    try:
-        payment_instance = PaymentOfPayPal.objects.get(
-            user_paypal=request.user)
-    except PaymentOfPayPal.DoesNotExist:
-        payment_instance = None
+    if not request.user.is_authenticated:
+        return redirect("home")  # Redirect unauthenticated users
+
+    # Get or create the payment instance
+    payment_instance, created = PaymentOfPayPal.objects.get_or_create(user_paypal=request.user)
 
     if request.method == "POST":
-        payment_form = PaymentOfPayPalForm(
-            request.POST, instance=payment_instance)
+        payment_form = PaymentForm(request.POST, instance=payment_instance)  # Assuming PaymentForm is the correct form
         if payment_form.is_valid():
             # Set the user_paypal field explicitly
             payment = payment_form.save(commit=False)
@@ -44,10 +43,11 @@ def update_payment_paypal(request):
             payment.save()
             return redirect("products")
     else:
-        payment_form = PaymentOfPayPalForm(instance=payment_instance)
+        payment_form = PaymentForm(instance=payment_instance)
 
     return render(
-        request, "payment/update_payment_paypal.html", {"payment_form": payment_form})
+        request, "payment/update_payment_paypal.html", {"payment_form": payment_form}
+    )
 
 
 def shipped_dash(request):
