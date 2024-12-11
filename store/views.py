@@ -450,43 +450,41 @@ class SubscribeView(FormView):
     template_name = 'index.html'
     success_url = reverse_lazy('check_email')
 
+    def form_valid(self, form):
+        email = form.cleaned_data['email']
+        # Attempt to create or retrieve the subscription
+        subscription, created = Subscription.objects.get_or_create(email=email.lower())  # Ensure case-insensitivity
+        if created:
+            # Generate and save confirmation code for new subscriptions
+            confirmation_code = str(uuid.uuid4())
+            subscription.confirmation_code = confirmation_code
+            subscription.is_confirmed = False
+            subscription.save()
 
-def form_valid(self, form):
-    email = form.cleaned_data['email']
-    # Attempt to create or retrieve the subscription
-    subscription, created = Subscription.objects.get_or_create(email=email)
-    # If new subscription, generate a confirmation code and save
-    if created:
-        confirmation_code = str(uuid.uuid4())
-        subscription.confirmation_code = confirmation_code
-        subscription.is_confirmed = False
-        subscription.save()
+            # Construct confirmation link
+            confirmation_link = self.request.build_absolute_uri(
+                reverse('confirm_subscription') + f"?code={confirmation_code}"
+            )
+            subject = 'Confirm your subscription'
+            message = (
+                f"Hello,\n\nClick the link to confirm your subscription: {confirmation_link}"
+            )
+        else:
+            # Existing subscription logic
+            subject = "Thank you for subscribing!"
+            message = "You have successfully subscribed to our newsletter."
 
-        # Construct the confirmation link
-        confirmation_link = (
-            f"{self.request.scheme}://{self.request.get_host()}"
-            f"/shopper/confirm/?code={confirmation_code}"
-        )
-        subject = 'Confirm your subscription'
-        message = (
-            "Hello,\n\nClick the link to confirm your subscription: " +
-            confirmation_link
-        )
-    else:
-        subject = "Thank you for subscribing!"
-        message = "You have successfully subscribed to our newsletter."
+        from_email = settings.EMAIL_HOST_USER
+        to_email = email
+        try:
+            send_mail(subject, message, from_email, [to_email])
+        except BadHeaderError:
+            return HttpResponse("Invalid header found.")
+        except Exception as e:
+            logger.error(f"Email sending failed: {e}")  # Log the error
+            return HttpResponse(f"Error sending email: {e}")
 
-    from_email = settings.EMAIL_HOST_USER
-    to_email = email
-    try:
-        send_mail(subject, message, from_email, [to_email])
-    except BadHeaderError:
-        return HttpResponse("Invalid header found.")
-    except Exception as e:
-        return HttpResponse(f"Error sending email: {e}")
-
-    # Redirect to the success page or confirmation page
-    return HttpResponseRedirect(self.success_url)
+        return HttpResponseRedirect(self.success_url)
 
 
 def suppliers_list(request):
