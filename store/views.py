@@ -389,9 +389,15 @@ def login_user(request):
 def logout_user(request):
     """Log out the current user."""
     logout(request)
-    messages.success(request, (
-        "You have been logged out...Thanks for stopping by..."
-    ))
+
+    for error in list(form.errors.values()):
+                messages.error(request, error)
+
+
+    # messages.success(request, (
+    #     "You have been logged out...Thanks for stopping by..."
+    # ))
+
     return redirect('home')
 
 
@@ -431,10 +437,15 @@ def register_user(request):
             )
             return redirect('update_user_and_shipping_profile')
         else:
-            messages.error(
-                request,
-                "Whoops! There was a problem registering, please try again..."
-            )
+            for error in list(form.errors.values()):
+                messages.error(request, error)
+
+
+
+            # messages.error(
+            #     request,
+            #     "Whoops! There was a problem registering, please try again..."
+            # )
             return redirect('register')
     else:
         return render(request, 'register.html', {'form': form})
