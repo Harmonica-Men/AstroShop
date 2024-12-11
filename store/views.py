@@ -188,7 +188,7 @@ def update_user_and_shipping_profile(request):
             return redirect('products')
 
     # Prefill Full Name field in ShippingForm if empty
-    if not shipping_user.full_name:
+    if not shipping_user.shipping_full_name:
         full_name = f"{current_user.first_name} {current_user.last_name}".strip()
         shipping_form.initial['full_name'] = full_name
 
