@@ -451,13 +451,19 @@ def confirm_subscription(request):
         subscription = get_object_or_404(Subscription, confirmation_code=confirmation_code)
         
         if not subscription.is_confirmed:
+            # Mark the subscription as confirmed
             subscription.is_confirmed = True
             subscription.save()
+            
+            # Render confirmation success template
             return render(request, 'confirmation_success.html', {
-                'message': "Your subscription has been confirmed! Thank you for subscribing."
+                'subscription': subscription
             })
         else:
-            return HttpResponse("Your subscription is already confirmed.")
+            # Render already confirmed template
+            return render(request, 'already_confirmed.html', {
+                'subscription': subscription
+            })
     return HttpResponse("Invalid confirmation code.")
 
 
@@ -483,6 +489,7 @@ class SubscribeView(FormView):
             # Construct the confirmation link
             confirmation_link = (
                 f"{self.request.scheme}://{self.request.get_host()}"
+                # f"/shopper/confirm/?code={confirmation_code}"
                 f"/confirm/?code={confirmation_code}"
             )
             subject = 'Confirm your subscription'

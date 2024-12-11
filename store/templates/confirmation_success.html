@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Subscription Confirmed{% endblock %}
+{% block content %}
+
+<!-- Header -->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-4">
+        <div class="text-center text-white">
+            <br>
+            <h1 class="display-4 fw-bolder mt-5">Subscription Confirmed!</h1>
+            <p class="lead fw-normal text-white-40 mb-2">Thank you for subscribing.</p>
+        </div>
+    </div>
+</header>
+
+<section class="container-sub">
+    <div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 130px); padding: 2rem;">
+        <div class="steps--background-white rounded p-4 text-center" style="max-width: 600px; width: 100%;">
+            <h1 class="mb-4">Thank You</h1>
+            <p class="mb-4"><strong>Your subscription has been confirmed!</strong></p>
+            <strong><a href="/" class="btn btn-secondary">Return to homepage</a></strong>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
