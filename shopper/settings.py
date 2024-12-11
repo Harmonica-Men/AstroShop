@@ -33,8 +33,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 CLOUDINARY_URL = 'cloudinary://555555948157323:cLY3URO_imRS3iZMiNoOh3O-4oc@dtbji5cfz'
 
-DEBUG = True
-# DEBUG = 'DEVELOPMENT' in os.environ
+# DEBUG = True
+DEBUG = 'DEVELOPMENT' in os.environ
 
 
 ALLOWED_HOSTS = ['8000-harmonicamen-astroshop-37z6o1iwvkr.ws.codeinstitute-ide.net',
