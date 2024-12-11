@@ -7,7 +7,7 @@ from .views import (
     update_product, update_user_and_shipping_profile,
     update_user_profile, update_password, logout_user, login_user,
     privacy, product, register_user, search, category,
-    category_summary, CheckEmailView
+    category_summary, CheckEmailView, ConfirmSubscriptionView
 )
 
 from django.contrib.sitemaps.views import sitemap
