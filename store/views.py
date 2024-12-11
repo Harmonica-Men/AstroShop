@@ -445,6 +445,23 @@ class CheckEmailView(TemplateView):
     template_name = 'check_email.html'
 
 
+def confirm_subscription(request):
+    confirmation_code = request.GET.get('code')
+    if confirmation_code:
+        subscription = get_object_or_404(Subscription, confirmation_code=confirmation_code)
+        
+        if not subscription.is_confirmed:
+            subscription.is_confirmed = True
+            subscription.save()
+            return render(request, 'confirmation_success.html', {
+                'message': "Your subscription has been confirmed! Thank you for subscribing."
+            })
+        else:
+            return HttpResponse("Your subscription is already confirmed.")
+    return HttpResponse("Invalid confirmation code.")
+
+
+
 class SubscribeView(FormView):
     """Handle subscription requests and send confirmation emails."""
     form_class = SubscribeForm
@@ -466,7 +483,7 @@ class SubscribeView(FormView):
             # Construct the confirmation link
             confirmation_link = (
                 f"{self.request.scheme}://{self.request.get_host()}"
-                f"/shopper/confirm/?code={confirmation_code}"
+                f"/confirm/?code={confirmation_code}"
             )
             subject = 'Confirm your subscription'
             message = (

@@ -7,8 +7,7 @@ from .views import (
     update_product, update_user_and_shipping_profile,
     update_user_profile, update_password, logout_user, login_user,
     privacy, product, register_user, search, category,
-    category_summary, CheckEmailView
-    # , ConfirmSubscriptionView
+    category_summary, CheckEmailView, confirm_subscription
 )
 
 from django.contrib.sitemaps.views import sitemap
@@ -40,8 +39,8 @@ urlpatterns = [
     path('products/', views.all_products, name='products'),
     path('register/', views.register_user, name='register'),
     path('search/', views.search, name='search'),
-    path('subscribe/', SubscribeView.as_view(), name='subscribe'),
-    # path('confirm/', ConfirmSubscriptionView.as_view(), name='confirm_subscription'),
+    path('subscribe/', SubscribeView.as_view(), name='subscribe'),    
+    path('confirm/', confirm_subscription, name='confirm_subscription'),
     path('suppliers/', suppliers_list, name='suppliers_list'),
     path('supplier/<int:supplier_id>/', supplier_detail, name='supplier_detail'),
     path('supplier/<int:supplier_id>/delete/', delete_supplier, name='supplier_delete'),
