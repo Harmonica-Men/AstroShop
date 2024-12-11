@@ -9,14 +9,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Q
 from django.db.models.functions import Lower
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template.loader import render_to_string
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib import messages
-from django.views import View
+# from django.views import View
 from django import forms
 
 from .models import Product, Category, Profile, Subscription, Supplier
@@ -445,35 +445,33 @@ class CheckEmailView(TemplateView):
     template_name = 'check_email.html'
 
 
-class ConfirmSubscriptionView(View):
-    def get(self, request):
-        confirmation_code = request.GET.get('code')
-        # Add logic to handle confirmation using the confirmation_code
-        return HttpResponse("Subscription confirmed!")
-
-
 class SubscribeView(FormView):
     """Handle subscription requests and send confirmation emails."""
     form_class = SubscribeForm
     template_name = 'index.html'
     success_url = reverse_lazy('check_email')
 
+
     def form_valid(self, form):
         email = form.cleaned_data['email']
-        subscription, created = Subscription.objects.get_or_create(email=email.lower())
+        # Attempt to create or retrieve the subscription
+        subscription, created = Subscription.objects.get_or_create(email=email)
+        # If new subscription, generate a confirmation code and save
         if created:
             confirmation_code = str(uuid.uuid4())
             subscription.confirmation_code = confirmation_code
             subscription.is_confirmed = False
             subscription.save()
 
-            # Use reverse to construct the confirmation link dynamically
-            confirmation_link = self.request.build_absolute_uri(
-                reverse('confirm_subscription') + f"?code={confirmation_code}"
+            # Construct the confirmation link
+            confirmation_link = (
+                f"{self.request.scheme}://{self.request.get_host()}"
+                f"/shopper/confirm/?code={confirmation_code}"
             )
             subject = 'Confirm your subscription'
             message = (
-                f"Hello,\n\nClick the link to confirm your subscription: {confirmation_link}"
+                "Hello,\n\nClick the link to confirm your subscription: " +
+                confirmation_link
             )
         else:
             subject = "Thank you for subscribing!"
@@ -486,11 +484,10 @@ class SubscribeView(FormView):
         except BadHeaderError:
             return HttpResponse("Invalid header found.")
         except Exception as e:
-            logger.error(f"Email sending failed: {e}")
             return HttpResponse(f"Error sending email: {e}")
 
+        # Redirect to the success page or confirmation page
         return HttpResponseRedirect(self.success_url)
-
 
 def suppliers_list(request):
     """Display a list of all suppliers."""
