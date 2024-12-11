@@ -41,6 +41,7 @@ urlpatterns = [
     path('register/', views.register_user, name='register'),
     path('search/', views.search, name='search'),
     path('subscribe/', SubscribeView.as_view(), name='subscribe'),
+    path('confirm/', ConfirmSubscriptionView.as_view(), name='confirm_subscription'),
     path('suppliers/', suppliers_list, name='suppliers_list'),
     path('supplier/<int:supplier_id>/', supplier_detail, name='supplier_detail'),
     path('supplier/<int:supplier_id>/delete/', delete_supplier, name='supplier_delete'),

@@ -444,6 +444,12 @@ class CheckEmailView(TemplateView):
     template_name = 'check_email.html'
 
 
+class ConfirmSubscriptionView(View):
+    def get(self, request):
+        confirmation_code = request.GET.get('code')
+        # Add logic to handle confirmation using the confirmation_code
+        return HttpResponse("Subscription confirmed!")
+
 
 class SubscribeView(FormView):
     """Handle subscription requests and send confirmation emails."""
@@ -483,6 +489,7 @@ class SubscribeView(FormView):
             return HttpResponse(f"Error sending email: {e}")
 
         return HttpResponseRedirect(self.success_url)
+
 
 def suppliers_list(request):
     """Display a list of all suppliers."""
