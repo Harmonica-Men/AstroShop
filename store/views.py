@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Q
 from django.db.models.functions import Lower
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template.loader import render_to_string
 from django.core.mail import send_mail, BadHeaderError
@@ -444,6 +444,7 @@ class CheckEmailView(TemplateView):
     template_name = 'check_email.html'
 
 
+
 class SubscribeView(FormView):
     """Handle subscription requests and send confirmation emails."""
     form_class = SubscribeForm
@@ -452,16 +453,14 @@ class SubscribeView(FormView):
 
     def form_valid(self, form):
         email = form.cleaned_data['email']
-        # Attempt to create or retrieve the subscription
-        subscription, created = Subscription.objects.get_or_create(email=email.lower())  # Ensure case-insensitivity
+        subscription, created = Subscription.objects.get_or_create(email=email.lower())
         if created:
-            # Generate and save confirmation code for new subscriptions
             confirmation_code = str(uuid.uuid4())
             subscription.confirmation_code = confirmation_code
             subscription.is_confirmed = False
             subscription.save()
 
-            # Construct confirmation link
+            # Use reverse to construct the confirmation link dynamically
             confirmation_link = self.request.build_absolute_uri(
                 reverse('confirm_subscription') + f"?code={confirmation_code}"
             )
@@ -470,7 +469,6 @@ class SubscribeView(FormView):
                 f"Hello,\n\nClick the link to confirm your subscription: {confirmation_link}"
             )
         else:
-            # Existing subscription logic
             subject = "Thank you for subscribing!"
             message = "You have successfully subscribed to our newsletter."
 
@@ -481,11 +479,10 @@ class SubscribeView(FormView):
         except BadHeaderError:
             return HttpResponse("Invalid header found.")
         except Exception as e:
-            logger.error(f"Email sending failed: {e}")  # Log the error
+            logger.error(f"Email sending failed: {e}")
             return HttpResponse(f"Error sending email: {e}")
 
         return HttpResponseRedirect(self.success_url)
-
 
 def suppliers_list(request):
     """Display a list of all suppliers."""
