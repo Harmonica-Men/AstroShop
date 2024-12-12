@@ -16,7 +16,6 @@ from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib import messages
-# from django.views import View
 from django import forms
 
 from .models import Product, Category, Profile, Subscription, Supplier
@@ -280,7 +279,7 @@ def update_password(request):
                 form.save()
                 messages.success(request, "Your Password Has Been Updated...")
                 login(request, current_user)
-                return redirect('update_user')
+                return redirect('products')
             else:
                 for error in list(form.errors.values()):
                     messages.error(request, error)
