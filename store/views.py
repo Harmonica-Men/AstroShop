@@ -99,8 +99,9 @@ def add_product(request):
             messages.success(request, "Product added successfully.")
             return redirect('products')
             # Redirect to home or any other page after adding the product
-        else:
-            form = UpdateProductForm()
+    else:
+        form = UpdateProductForm()
+
     return render(request, 'add_product.html', {'form': form})
 
 
@@ -282,7 +283,8 @@ def update_password(request):
                 return redirect('update_user')
             else:
                 for error in list(form.errors.values()):
-                    return redirect('update_password')
+                    messages.error(request, error)
+                return redirect('update_password')
         else:
             form = ChangePasswordForm(current_user)
             return render(request, "update_password.html", {'form': form})
@@ -380,7 +382,7 @@ def login_user(request):
             messages.success(request, "You Have Been Logged In!")
             return redirect('products')
         else:
-            messages.error(request, "There was an error, please try again...")
+            messages.error(request, "User Name and Password can not be found ...")
             return redirect('login')
     else:
         return render(request, 'login.html', {})
@@ -389,14 +391,6 @@ def login_user(request):
 def logout_user(request):
     """Log out the current user."""
     logout(request)
-
-    for error in list(form.errors.values()):
-                messages.error(request, error)
-
-
-    # messages.success(request, (
-    #     "You have been logged out...Thanks for stopping by..."
-    # ))
 
     return redirect('home')
 
