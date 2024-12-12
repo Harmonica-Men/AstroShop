@@ -143,24 +143,20 @@
         </div>
         <!-- section navbar -->
 
-        <div id="topnav" class="row bg-white justify-content-between">
+        <div id="topnav" class="row no-gutters bg-white justify-content-between">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="cart-box nav-link hover-bg ml-5">
-
-
                     <h2><strong>ASTRO&nbsp;SHOP</strong></h2>
-
                 </a>
             </div>
-
-            <div class="row bg-white">
+        
+            <div class="row no-gutters bg-white">
                 <nav class="navbar navbar-expand-lg navbar-light w-100 mr-3">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
                         aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
-                    <!-- <div class="collapse navbar-collapse" id="main-nav"> -->
+        
                     <ul class="list-inline list-unstyled text-lg-right my-0 d-flex justify-content-end mb-2">
                         <li class="list-inline-item">
                             <a href="{% url 'about' %}" class="text-black nav-link btn cart-box">
@@ -170,7 +166,7 @@
                                 </div>
                             </a>
                         </li>
-
+        
                         <li class="list-inline-item">
                             <a href="{% url 'search' %}" class="text-black nav-link btn cart-box">
                                 <div class="text-center">
@@ -179,7 +175,7 @@
                                 </div>
                             </a>
                         </li>
-
+        
                         <li class="list-inline-item dropdown">
                             <a href="#" class="text-black nav-link btn cart-box" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -196,7 +192,7 @@
                                 {% if not request.user.is_superuser %}
                                 <a href="{% url 'orders' %}" class="dropdown-item">My Orders</a>
                                 {% endif %}
-
+        
                                 <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
                                 <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
                                 <div class="dropdown-divider"></div>
@@ -204,7 +200,7 @@
                                 {% if request.user.is_superuser %}
                                 <div class="dropdown-divider"></div>
                                 <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
-
+        
                                 <div class="dropdown-divider"></div>
                                 <a href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers List</a>
                                 <a href="{% url 'orders' %}" class="dropdown-item">View Orders</a>
@@ -217,7 +213,7 @@
                                 {% endif %}
                             </div>
                         </li>
-
+        
                         <li class="list-inline-item">
                             <a href="{% url 'shopcart_summary' %}" class="text-black nav-link btn cart-box">
                                 <div class="text-center">
@@ -232,12 +228,10 @@
                         </li>
                     </ul>
                     {% include 'includes/main-nav.html' %}
-                    <!-- </div> -->
                 </nav>
-
             </div>
-
         </div>
+        
 
 
 
