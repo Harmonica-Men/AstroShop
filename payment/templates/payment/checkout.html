@@ -15,7 +15,7 @@
 </header>
 
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
-    <div class="row shadow-lg" style="width: 100%; max-width: 850px;">
+    <div class="row no-gutters shadow-lg" style="width: 100%; max-width: 850px;">
         <div class="col-12 mt-3 mb-3">
             <!-- Order Summary Card -->
 
@@ -81,7 +81,7 @@
                         </table>
                     </div>
 
-                    <div class="row">
+                    <div class="row no-gutters">
                         <div class="col-12">
                             <div class="card-header mb-3">
                                 Shipping Info {{ request.user.first_name }} {{ request.user.last_name }}
@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3 ml-1 row">
+                                <div class="mb-3 ml-1 row no-gutters">
                                     <label for="{{ shipping_form.shipping_address1.id_for_label }}"
                                         class="col-sm-4 col-form-label">Address 1</label>
                                     <div class="col-sm-8">
@@ -106,7 +106,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3 ml-1 row">
+                                <div class="mb-3 ml-1 row no-gutters">
                                     <label for="{{ shipping_form.shipping_address2.id_for_label }}"
                                         class="col-sm-4 col-form-label">Address 2</label>
                                     <div class="col-sm-8">
@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3 ml-1 row">
+                                <div class="mb-3 ml-1 row no-gutters">
                                     <label for="{{ shipping_form.shipping_city.id_for_label }}"
                                         class="col-sm-4 col-form-label">City</label>
                                     <div class="col-sm-8">
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3 ml-1 row">
+                                <div class="mb-3 ml-1 row no-gutters">
                                     <label for="{{ shipping_form.shipping_state.id_for_label }}"
                                         class="col-sm-4 col-form-label">State</label>
                                     <div class="col-sm-8">
@@ -130,7 +130,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3 ml-1 row">
+                                <div class="mb-3 ml-1 row no-gutters">
                                     <label for="{{ shipping_form.shipping_zipcode.id_for_label }}"
                                         class="col-sm-4 col-form-label">Zip Code</label>
                                     <div class="col-sm-8">
@@ -138,7 +138,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3 ml-1 row">
+                                <div class="mb-3 ml-1 row no-gutters">
                                     <label for="{{ shipping_form.shipping_country.id_for_label }}"
                                         class="col-sm-4 col-form-label">Country</label>
                                     <div class="col-sm-8">
@@ -149,8 +149,6 @@
                                 <div class="d-flex justify-content-center mt-5">
                                     <button type="submit" class="btn btn-secondary">Make Order</button>
                                 </div>
-
-
                             </form>
                         </div>
                     </div>

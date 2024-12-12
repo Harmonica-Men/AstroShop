@@ -14,7 +14,7 @@
 </header>
 
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
-    <div class="row shadow-lg" style="width: 100%; max-width: 600px;">
+    <div class="row no-gutters shadow-lg" style="width: 100%; max-width: 600px;">
 
         <div class="col-md-12 mt-3">
             <div class="card mb-3">
@@ -30,7 +30,7 @@
                                 <table class="table table-bordered mt-3">
                                     <tbody>
                                         <tr>
-                                            <th scope="row">Date</th>
+                                            <th scope="row no-gutters">Date</th>
                                             <td>
                                                 {% if order.date_shipped %}
                                                 <strong>Date Shipped:</strong> {{ order.date_shipped }}
@@ -40,7 +40,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Email</th>
+                                            <th scope="row no-gutters">Email</th>
                                             <td>{{ order.email }}</td>
                                         </tr>
                                     </tbody>
@@ -57,11 +57,11 @@
                                 <table class="table table-bordered mt-3">
                                     <tbody>
                                         <tr>
-                                            <th scope="row">Name</th>
+                                            <th scope="row no-gutters">Name</th>
                                             <td>{{ order.full_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Address</th>
+                                            <th scope="row no-gutters">Address</th>
                                             <td>{{ order.shipping_address }}</td>
                                         </tr>
                                     </tbody>

@@ -10,7 +10,7 @@
     </div>
 </header>
 <div class="container">
-    <div class="row">
+    <div class="row no-gutters">
         {% for order in orders %}
         <div class="col-lg-4 col-lg-6 col-sm-12 text-center">
             <div class="mt-3">
@@ -46,7 +46,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Date</th>
+                                        <th scope="row no-gutters">Date</th>
                                         <td>
                                             {% if order.date_shipped %}
                                             <strong>Date Shipped:</strong> {{ order.date_shipped }}
@@ -56,15 +56,15 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Email</th>
+                                        <th scope="row no-gutters">Email</th>
                                         <td>{{ order.email }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Name</th>
+                                        <th scope="row no-gutters">Name</th>
                                         <td>{{ order.full_name }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Address</th>
+                                        <th scope="row no-gutters">Address</th>
                                         <td>{{ order.shipping_address }}</td>
                                     </tr>
                                 </tbody>
