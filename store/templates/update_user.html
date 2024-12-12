@@ -7,34 +7,36 @@
     <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
             <br>
-            <h1 class="display-4 fw-bolder mt-5">User Account</h1>          
+            <h1 class="display-4 fw-bolder mt-5">User Account</h1>
             <p class="lead fw-normal text-white-40 mb-2">User Account Information details</p>
         </div>
     </div>
 </header>
 
-
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
-    <div class="row no-gutters shadow-lg" style="width: 100%; max-width: 500px;">
-        <div class="text-md-left col-md-12 mt-3">
-            
-            <form method="POST" action="{% url 'update_user' %}">
-                {% csrf_token %}
 
-                <strong class="product-name text-black" style="text-align: center;">User Account Info </strong>
+    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
+        <div class="row no-gutters shadow-lg" style="width: 100%; max-width: 500px;">
+            <div class="text-md-left col-md-12 mt-3">
 
-                {{ user_form.as_p }}
-                
-                <div class="d-flex justify-content-between mb-4">
-                    <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
-                    <button type="submit" class="btn btn-secondary"> Update Profile
-                    </button>
-                </div>
-            </form>          
+                <form method="POST" action="{% url 'update_user' %}">
+                    {% csrf_token %}
+
+                    <strong class="product-name text-black" style="text-align: center;">User Account Info </strong>
+
+                    {{ user_form.as_p }}
+
+                    <div class="d-flex justify-content-between mb-4">
+                        <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
+                        <button type="submit" class="btn btn-secondary"> Update Profile
+                        </button>
+                    </div>
+                </form>
+
+            </div>
 
         </div>
-
     </div>
 </div>
 
-{% endblock %}
+    {% endblock %}
