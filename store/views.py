@@ -167,7 +167,10 @@ def update_user_and_shipping_profile(request):
     Update the user's profile and shipping information.
     Create a new profile or shipping address if they do not exist.
     """
+    print("Debug: Current user:", request.user)
+
     if not request.user.is_authenticated:
+        print('back to home')
         return redirect('home')
 
     current_user = request.user
@@ -186,20 +189,23 @@ def update_user_and_shipping_profile(request):
             profile_form.save()
             shipping_form.save()
             return redirect('products')
+        else:
+            print('not valid')
 
     # Prefill Full Name field in ShippingForm if empty
     if not shipping_user.shipping_full_name:
         full_name = f"{current_user.first_name} {current_user.last_name}".strip()
-        shipping_form.initial['full_name'] = full_name
+        shipping_form.fields['shipping_full_name'].initial = full_name
 
     return render(
         request,
-        "index.html",
+        "update_user_and_shipping_profile.html",
         {
             'profile_form': profile_form,
             'shipping_form': shipping_form,
         }
     )
+
 
 
 def update_user_profile(request):
@@ -281,8 +287,9 @@ def update_password(request):
                 login(request, current_user)
                 return redirect('products')
             else:
-                for error in list(form.errors.values()):
-                    messages.error(request, error)
+                for error_list in form.errors.values():
+                    for error in error_list:
+                        messages.error(request, str(error))
                 return redirect('update_password')
         else:
             form = ChangePasswordForm(current_user)
@@ -427,18 +434,12 @@ def register_user(request):
                 request,
                 "Username Created - Registration Email has been sent - "
                 "Please Fill Out Your User Info Below..."
-            )
+            )            
             return redirect('update_user_and_shipping_profile')
         else:
-            for error in list(form.errors.values()):
-                messages.error(request, error)
-
-
-
-            # messages.error(
-            #     request,
-            #     "Whoops! There was a problem registering, please try again..."
-            # )
+            for error_list in form.errors.values():
+                for error in error_list:
+                    messages.error(request, str(error))
             return redirect('register')
     else:
         return render(request, 'register.html', {'form': form})
