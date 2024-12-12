@@ -13,9 +13,13 @@ class PaymentOfPayPal(models.Model):
     """
     user_paypal = models.OneToOneField(User, on_delete=models.CASCADE)
     card_name = models.CharField(max_length=100)
-    card_number = models.CharField(max_length=19)
-    card_exp_date = models.CharField(max_length=5)
-    card_cvv_number = models.CharField(max_length=4)
+    card_number = models.CharField(
+            max_length=16
+    )
+    card_exp_date = models.CharField(max_length=10)
+    card_cvv_number = models.CharField(
+        max_length=4
+    )
     card_address1 = models.CharField(max_length=200)
     card_address2 = models.CharField(max_length=200, blank=True, null=True)
     card_city = models.CharField(max_length=200)

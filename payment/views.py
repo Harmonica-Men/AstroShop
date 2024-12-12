@@ -2,14 +2,16 @@ from django.shortcuts import render, get_object_or_404, redirect
 from shopcart.cart import Cart
 from payment.forms import ShippingForm, PaymentForm
 from payment.models import ShippingAddress, Order, OrderItem, PaymentOfPayPal
+from .models import PaymentOfPayPal
 from django.db.models import Q
 from django.contrib.auth.models import User
-from django.contrib import messages
+from django.core.exceptions import ValidationError
 from store.models import Product, Profile
 from django.utils import timezone
 from django.urls import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
+from django.contrib import messages
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
@@ -18,36 +20,34 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
-from .forms import PaymentOfPayPalForm
+from .forms import PaymentForm
 import datetime
 import uuid
 
 
+
 def update_payment_paypal(request):
-    """
-    Updates or creates PayPal payment info for the logged-in user.
-    Redirects to the products page upon successful submission.
-    """
-    if not request.user.is_authenticated:
-        return redirect("home")  # Redirect unauthenticated users
+    if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
 
-    # Get or create the payment instance
-    payment_instance, created = PaymentOfPayPal.objects.get_or_create(user_paypal=request.user)
+        try:
+            pay_user = PaymentOfPayPal.objects.get(user_paypal_id=request.user.id)
+        except PaymentOfPayPal.DoesNotExist:
+            pay_user = None
 
-    if request.method == "POST":
-        payment_form = PaymentForm(request.POST, instance=payment_instance)  # Assuming PaymentForm is the correct form
+        # Use PaymentForm
+        payment_form = PaymentForm(request.POST or None, instance=pay_user)
+
         if payment_form.is_valid():
-            # Set the user_paypal field explicitly
-            payment = payment_form.save(commit=False)
-            payment.user_paypal = request.user
-            payment.save()
-            return redirect("products")
-    else:
-        payment_form = PaymentForm(instance=payment_instance)
+            pay_user = payment_form.save(commit=False)
+            pay_user.user_paypal_id = request.user.id
+            pay_user.save()
+            return redirect('products')
 
-    return render(
-        request, "payment/update_payment_paypal.html", {"payment_form": payment_form}
-    )
+        return render(request, "payment/update_payment_paypal.html", {'payment_form': payment_form})
+    else:
+        messages.warning(request, "You Must Be Logged In To Access That Page!!")
+        return redirect('home')
 
 
 def shipped_dash(request):
