@@ -12,9 +12,9 @@
 </header>
 
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
+    {% if request.user.is_superuser %}
     <div class="row no-gutters shadow-lg" style="width: 100%; max-width: 500px;">
         <div class="text-md-left col-md-12 mt-3">
-
             <div class="card-header bg-secondary text-white">
                 <h2 class="mb-0">Product Details</h2>
             </div>
@@ -71,6 +71,20 @@
             </div>
         </div>
     </div>
+    {% else %}
+    <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">
+        <div class="card shadow-lg text-center rounded-0 mb-3 p-3" style="width: 500px;">
+            <h3><strong>No Access</strong></h3>
+            <p>You are not authorized to access this page</p>
+
+
+            <div class="d-flex justify-content-center mt-3">
+                <a href="{% url 'products' %}" class="btn btn-secondary">Back To Home</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>
+
 
 {% endblock %}
