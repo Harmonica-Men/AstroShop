@@ -107,34 +107,34 @@ Below is an example of how the user stories where structured for this project.
 - [EPIC 4: Purchasing and checkout](https://github.com/users/Harmonica-Men/projects/12?pane=issue&itemId=90498707&issue=Harmonica-Men%7CAstroShop%7C25#:~:text=EPIC%204-,Purchasing%20and%20checkout,-%2325)
 
 User Stories with their id:  <br>
-## EPIC 0
+#### EPIC 0
 - As a software developer, I can set up the VS Code IDE on my local machine, so that I can efficiently develop and debug my projects. [#31](https://github.com/Harmonica-Men/AstroShop/issues/31)
 - As a software developer, I want to set up a GitHub repository for our new project, so that the team can collaborate on the codebase efficiently and maintain version control. [#30](https://github.com/Harmonica-Men/AstroShop/issues/30)
 - As a software developer, I can to create a working Django app, so that I can build and deploy a web application efficiently. [#32](https://github.com/Harmonica-Men/AstroShop/issues/32)
 - As a software developer, I want to deploy our application to Heroku, so that it is accessible to users and can be tested in a live environment. [#33](https://github.com/Harmonica-Men/AstroShop/issues/33)
 - As a software developer, I want to set up a GitHub repository for our new project, so that the team can collaborate on the codebase efficiently and maintain version control.[#34](https://github.com/Harmonica-Men/AstroShop/issues/34)
 
-## EPIC 1
+#### EPIC 1
 - As a shopper, I can view specific categories of products so that I quickly find the items I'm interested in and make informed purchasing decisions.[#3](https://github.com/Harmonica-Men/AstroShop/issues/3)
 - As a shopper, I want to be able to view individual product details so that I can identify the price, description, product rating, product image, and available sizes.[#4](https://github.com/Harmonica-Men/AstroShop/issues/4)
 - As a shopper I can be able to quickly identify deals, clearance items, and special offers so that I take advantage of special savings on products I’d like to purchase.[#5](https://github.com/Harmonica-Men/AstroShop/issues/5)
 - As a shopper, I want to easily view the total of my purchases at any time, so that I can avoid spending too much.[#28](https://github.com/Harmonica-Men/AstroShop/issues/28)
 
-## EPIC 2
+#### EPIC 2
 - As a Site User I can easily register for an account so that I can have a personal account and view my profile.[#35](https://github.com/Harmonica-Men/AstroShop/issues/35)
 - As a Site User I can easily log in or log out so that I can access my personal account information.[#36](https://github.com/Harmonica-Men/AstroShop/issues/36)
 - As a Site User I can easily recover my password in case I forget it so that I can recover my personal account.[#37](https://github.com/Harmonica-Men/AstroShop/issues/37)
 - As a Site User I can receive an email confirmation after registering so that I can verify that my account registration was successful.[#38](https://github.com/Harmonica-Men/AstroShop/issues/38)
 - As a Site User I can have a personalized user profile so that I can view my personal order history, order confirmations, and save my payment information.[#39](https://github.com/Harmonica-Men/AstroShop/issues/39)
 
-## EPIC 3
+#### EPIC 3
 - As a shopper, I can sort the list of available products so that I can easily identify the best-rated, best-priced, and categorically sorted products.[#12](https://github.com/Harmonica-Men/AstroShop/issues/12)
 - As a shopper, I can sort a specific category of products so that I can find the best-priced or best-rated product in that category or sort the products by their names.[#13](https://github.com/Harmonica-Men/AstroShop/issues/13)
 - As a Site User I can easily recover my password in case I forget it so that I can recover my personal account.[#37](https://github.com/Harmonica-Men/AstroShop/issues/37)
 - As a shopper, I can search for a product by name or description so that I can find a specific product I’d like to purchase.[#15](https://github.com/Harmonica-Men/AstroShop/issues/15)
 - As a shopper, I can easily see what I’ve searched for and the number of results so that I can quickly decide whether the product I want is available.[#16](https://github.com/Harmonica-Men/AstroShop/issues/16)
 
-## EPIC 4
+#### EPIC 4
 - As a shopper I can be able to view the total of my purchases at any time easily so that I void spending too much.[#6](https://github.com/Harmonica-Men/AstroShop/issues/6)
 
 
@@ -309,7 +309,6 @@ User Stories with their id:  <br>
   **Make The Order**
   - This is the fase where order is made official but that does not mean the deal is closed.
   - A email is sent to the customer to confirm that there was a transaction that verify the order.
-
 
 ### 8. Payment
 **Client is redirected to PayPal**
