@@ -31,11 +31,10 @@ class PaymentForm(forms.ModelForm):
         validators=[validate_card_number],
         required=True
     )
-    card_exp_date = forms.DateField(
+    card_exp_date = forms.CharField(
         label="Card Expiry",
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'MM/YYYY'}),
-        required=True,
-        input_formats=['%m/%Y']
+        required=True
     )
     card_cvv_number = forms.CharField(
         label="CVV Code",

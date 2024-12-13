@@ -150,6 +150,7 @@ Astro Shop can offer two payment models:
 
 1. #### **Single Payment:**  
    (B2C Business Model) Suitable for one-time purchases like telescopes, astronomy kits, or digital downloads.
+   - The goal of this webshop is to focus on B2C Business Model.
 
 2. #### **Subscription:**  
    (B2B Business Model)
@@ -592,7 +593,7 @@ This application incorporates several key strategies to ensure a sustainable and
 Effective SEO techniques have been integrated to improve the visibility and reach of the website. Key features include:
 
 - Meta tags: Meta descriptions and keywords are dynamically added within Django templates to improve search engine rankings, using carefully researched long and short-form keywords identified through brainstorming, Google tools, and keyword analysis.
-- Sitemap: A sitemap file is provided, allowing search engines to efficiently crawl and index the site's structure.
+- Sitemap: A sitemap file is dynamically generated in Python and made available to search engines, allowing them to efficiently crawl and index the site's structure. The sitemap includes all products and other relevant pages. Click [here](https://astroshop-1fc783ba013f.herokuapp.com/sitemap.xml) to see sitemap.xml for AstroShop
 - Robots.txt: A robots.txt file has been included to guide search engines on which parts of the site to crawl and index, optimizing the crawl budget.
 
 Other optimizations include:

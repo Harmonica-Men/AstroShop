@@ -18,85 +18,9 @@
             <form method="POST" action="{% url 'update_payment_paypal' %}" class="mt-2">
                 {% csrf_token %}
 
-                <strong class="product-name text-black">Payment Information</strong>
-                <div class="form-group">
-                    <label for="id_card_name">Card Name</label>
-                    <input type="text" name="card_name" id="id_card_name" 
-                           class="form-control" 
-                           placeholder="Name on the Card" 
-                           value="{{ payment_form.card_name.value }}">
-                </div>
+                {{ payment_form.as_p }}
 
-                <div class="form-group">
-                    <label for="id_card_number">Card Number</label>
-                    <input name="card_number" id="id_card_number" 
-                           class="form-control" 
-                           placeholder="Card Number" 
-                           value="{{ payment_form.card_number.value }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="id_card_exp_date">Card Expiry</label>
-                    <input name="card_exp_date" id="id_card_exp_date" 
-                           class="form-control" 
-                           value="{{ payment_form.card_exp_date.value }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="id_card_cvv_number">CVV Code</label>
-                    <input name="card_cvv_number" id="id_card_cvv_number" 
-                           class="form-control" 
-                           placeholder="CVV Code" 
-                           value="{{ payment_form.card_cvv_number.value }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="id_card_address1">Address 1</label>
-                    <input type="text" name="card_address1" id="id_card_address1" 
-                           class="form-control" 
-                           placeholder="Billing Address 1" 
-                           value="{{ payment_form.card_address1.value }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="id_card_address2">Address 2</label>
-                    <input type="text" name="card_address2" id="id_card_address2" 
-                           class="form-control" 
-                           placeholder="Billing Address 2" 
-                           value="{{ payment_form.card_address2.value }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="id_card_city">City</label>
-                    <input type="text" name="card_city" id="id_card_city" 
-                           class="form-control" 
-                           placeholder="Billing City" 
-                           value="{{ payment_form.card_city.value }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="id_card_state">State</label>
-                    <input type="text" name="card_state" id="id_card_state" 
-                           class="form-control" 
-                           placeholder="Billing State" 
-                           value="{{ payment_form.card_state.value }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="id_card_zipcode">Zipcode</label>
-                    <input type="text" name="card_zipcode" id="id_card_zipcode" 
-                           class="form-control" 
-                           placeholder="Billing Zipcode" 
-                           value="{{ payment_form.card_zipcode.value }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="id_card_country">Country</label>
-                    <input type="text" name="card_country" id="id_card_country" 
-                           class="form-control" 
-                           placeholder="Billing Country" 
-                           value="{{ payment_form.card_country.value }}">
-                </div>
+                
 
                 <div class="d-flex justify-content-between mb-4">
                     <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
