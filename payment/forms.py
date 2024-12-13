@@ -28,12 +28,12 @@ class PaymentForm(forms.ModelForm):
     card_number = forms.CharField(
         label="Card Number",
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Card Numbers'}),
-        # validators=[validate_card_number],
-        required=False
+        validators=[validate_card_number],
+        required=True
     )
     card_exp_date = forms.DateField(
         label="Card Expiry",
-        widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'MM/Year'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'MM/YYYY'}),
         required=True,
         input_formats=['%m/%Y']
     )
