@@ -341,7 +341,7 @@ Below, you can find examples of how a typical page is structured on both desktop
 </details>
 <br>
 <details>
-  <summary>Wireframe for Tablet Homepage Responsive</summary>
+  <summary>Wireframe for Tablet Homepage (index) Responsive</summary>
   <img src="static/images/readme-images/Tablet_Index.png" style="display: block; margin: auto;" alt="Wireframe for index page - Mobile">
 </details>
 <br>
@@ -351,7 +351,7 @@ Below, you can find examples of how a typical page is structured on both desktop
 </details>
 <br>
 <details>
-  <summary>Wireframe for Smart Phone Homepage Responsive</summary>
+  <summary>Wireframe for Smart Phone Homepage (index) Responsive</summary>
   <img src="static/images/readme-images/SmartPhone_Index.png" style="display: block; margin: auto;" alt="Wireframe for index page - Mobile">
 </details>
 <br>
@@ -505,11 +505,8 @@ With the newsletter subscription API, the business can target their audience mor
 
 ## Bootstrap themes
 
-I choose to make life easier to use a free bootstap template from https://startbootstrap.com/template/shop-homepage
-this theme i espiaclly designed for Ecommerce apllications.
-
+I chose to make life easier by using a free Bootstrap template from  [startbootstap.com](https://startbootstrap.com/template/shop-homepage). This theme is especially designed for eCommerce applications.
 It delivers the template file you can customize afterwords whit default ccs, js ,index page en asset folder for favicon.
-
 It's recommend to use a front-end bootstrap template, so that easier to start the project and dive in to core application of Django.
 
 ### The Structure Plane - Database
@@ -593,7 +590,7 @@ This application incorporates several key strategies to ensure a sustainable and
 Effective SEO techniques have been integrated to improve the visibility and reach of the website. Key features include:
 
 - Meta tags: Meta descriptions and keywords are dynamically added within Django templates to improve search engine rankings, using carefully researched long and short-form keywords identified through brainstorming, Google tools, and keyword analysis.
-- Sitemap: A sitemap file is dynamically generated in Python and made available to search engines, allowing them to efficiently crawl and index the site's structure. The sitemap includes all products and other relevant pages. Click [here](https://astroshop-1fc783ba013f.herokuapp.com/sitemap.xml) to see sitemap.xml for AstroShop
+- Sitemap: A sitemap file is dynamically generated in Python and made available to search engines, allowing them to efficiently crawl and index the site's structure. The sitemap includes all products and other relevant pages. Click [here](https://astroshop-1fc783ba013f.herokuapp.com/sitemap.xml) to see **sitemap.xml** for AstroShop
 - Robots.txt: A robots.txt file has been included to guide search engines on which parts of the site to crawl and index, optimizing the crawl budget.
 
 Other optimizations include:
@@ -718,17 +715,17 @@ These efforts help ensure that our site is not only compliant with accessibility
 
 ### Wave Validation
 
-I have conducted a thorough accessibility audit using the WAVE (Web Accessibility Evaluation Tool). There is a smooth transition between the header of the page and the rest of the main page. Nevertheless, there are some issues to address due to the background MPEG replay. WAVE is dynamic and cannot make a persistent measurement of background contrast.
+I have conducted a thorough accessibility audit using the WAVE (Web Accessibility Evaluation Tool). There is a smooth transition between the header of the page and the rest of the main page. 
 
 <details>
   <br>
-  <summary>Click to view Wave Homepage Result</summary>
+  <summary>Click to view Wave Homepage (index) Result</summary>
   <img src="static/images/readme-images/wave_check_index.webp" style="display: block; margin: auto;" alt="Wave validator index page test">
   <br>
 </details>
 <br>
 
-I have also identified contrast issues with the modal buttons, which follow a similar color pattern to the Flash Danger alerts. However, the inclusion of shadow effects and other design enhancements significantly aids visibility. I believe these design choices ensure the buttons remain accessible and visually clear, even if they do not fully meet WAVE’s contrast recommendations.
+On the products page.
 
 <details>
   <br>
@@ -746,7 +743,7 @@ My Lighthouse validation results have been very promising, with high scores acro
 
 <details>
   <br>
-  <summary>Click to view Lighthouse Homepage Result</summary>
+  <summary>Click to view Lighthouse Homepage (index) Result</summary>
   <img src="static/images/readme-images/lighthouse_desktop.webp" style="display: block; margin: auto;" alt="lighthouse desktop test">
   <br>
 </details>
