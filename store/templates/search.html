@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
 <!-- Header-->
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-4">
@@ -55,19 +54,16 @@
                         Sale
                     </div>
                     {% endif %}
-
                     <!-- Product Image -->
                     <a href="{% url 'product' product.id %}">
                         <img class="card-img-top img-fluid shrink-image" src="{{ product.image.url }}"
                             alt="{{ product.name }}">
                     </a>
-
                     <!-- Product Details -->
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product Name -->
                             <h5 class="fw-bolder">{{ product.name }}</h5>
-
                             {% if product.is_sale %}
                             <!-- Sale Label and Price -->
                             <div class="d-flex justify-content-center small text-danger mb-2">
@@ -96,6 +92,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}

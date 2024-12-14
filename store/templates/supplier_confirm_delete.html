@@ -11,17 +11,13 @@
     </div>
 </header>
 
-
-
 <div class="container">
     <h1>Confirm Deletion</h1>
     <p>Are you sure you want to delete the supplier <strong>{{ supplier.supplier_company_name }}</strong>?</p>
-
     <form method="POST" action="{% url 'supplier_delete' supplier.id %}">
         {% csrf_token %}
         <button type="submit" class="confirm">Yes, Delete</button>
     </form>
-
     <a href="{% url 'suppliers_list' %}">
         <button type="button" class="cancel">No, Cancel</button>
     </a>

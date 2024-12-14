@@ -12,7 +12,6 @@
     </div>
 </header>
 
-
 {% if not user.is_superuser %}
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
     <div class="container d-flex justify-content-center align-items-center mt-3 mb-3">
@@ -25,17 +24,13 @@
         </div>
     </div>
 </div>
-
 {% else %}
-
 <div class="container d-flex justify-content-between align-items-center mt-3">
     <h2 class="text-dark">Supplier List</h2>
     <!-- Add Supplier Button -->
     <a href="{% url 'add_supplier' %}" class="btn btn-primary">Add Supplier</a>
 </div>
-
 {% if suppliers %}
-
 <div class="container mt-3 mb-3">
     <!-- Responsive wrapper -->
     <div class="table-responsive" style="min-height: calc(60vh);">
@@ -82,13 +77,10 @@
         </table>
     </div>
 </div>
-
 {% else %}
 <div class="container mt-5">
     <p>No suppliers found.</p>
 </div>
 {% endif %}
 {% endif %}
-
-
 {% endblock %}

@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
 <!-- Header-->
 <header class="bg-dark py-5">
@@ -23,12 +22,10 @@
             </a>
         </p>
         {% endif %}
-
         <div class="d-flex flex-column flex-md-row align-items-center mt-3">
             <div class="flex-shrink-0 mb-3 mb-md-0" style="width: 30%;">
                 <img src="{{ product.image.url }}" class="img-fluid rounded-0 product-image"
                                 alt="{{ product.name }}" style="max-width: 200px; height: auto;">
-
                 <!-- Product price or sale price -->
                 <div class="text-center mt-3">
                     {% if product.is_sale %}
@@ -39,12 +36,10 @@
                     {% endif %}
                 </div>
             </div>
-
             <div class="text-md-left ml-md-5" style="width: 70%;">
                 <div class="card-body">
                     <h5 class="product-name card-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description }}</p>
-
                     {% if product.is_sale %}
                     <div class="d-flex justify-content-center justify-content-md-start small text-danger mb-2">
                         <span class="fa-regular fa-star"></span>
@@ -69,15 +64,11 @@
                         {% endfor %}
                     </select>
                 </div>
-
                 <!-- Centered buttons -->
                 <div class="text-center">
-                   
-
                     <button type="button" value="{{ product.id }}" class="btn btn-secondary mt-2 mb-2 mr-4" id="add-cart">
                         Add To Cart
                     </button>
-
                     {% if user.is_superuser %}
                     <a href="{% url 'delete_product_confirmation' product.id %}" class="btn btn-danger mt-2 mb-2 mr-4">
                         Delete Product
@@ -90,7 +81,6 @@
 
             </div>
         </div>
-
     </div>
 </div>
 
@@ -115,12 +105,7 @@
                 // Handle error
             }
         });
-    })
-
-
-
-    
-   
+    }) 
 </script>
 
 {% endblock %}

@@ -13,14 +13,11 @@
 </header>
 
 <div class="container d-flex justify-content-center align-items-center" style="min-height: calc(60vh);">
-    <div class="p-4 mt-3 shadow-lg" style="width: 100%; max-width: 850px;">
-        
-
+    <div class="p-4 mt-3 shadow-lg" style="width: 100%; max-width: 850px;">    
         <form method="POST" class="text-start mt-4">
             {% csrf_token %}
             {{ form.as_p }}
                 <div class="d-flex justify-content-around mt-3 mb-3">
-
                     <button type="submit" class="btn btn-success">Save Supplier</button>
                     <a href="{% url 'suppliers_list' %}" class="btn btn-secondary">Cancel</a>
                 </div>
