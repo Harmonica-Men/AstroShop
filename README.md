@@ -793,7 +793,6 @@ All Python files as well *env.py* and *manage.py*, have been passed through the 
   | payment   | models.py   | PASS  |
   | payment   | urls.py     | PASS  |
   | payment   | views.py    | PASS  |
-  
   | shopcart  | admin.py    | PASS  |
   | shopcart  | apps.py     | PASS  |
   | shopcart  | cart.py     | PASS  |
@@ -801,7 +800,6 @@ All Python files as well *env.py* and *manage.py*, have been passed through the 
   | shopcart  | models.py   | PASS  |
   | shopcart  | urls.py     | PASS  |
   | shopcart  | views.py    | PASS  |
-
   | store     | admin.py    | PASS  |
   | store     | apps.py     | PASS  |
   | store     | forms.py    | PASS  |
@@ -809,6 +807,18 @@ All Python files as well *env.py* and *manage.py*, have been passed through the 
   | store     | urls.py     | PASS  |
   | store     | views.py    | PASS  |
 
+  <br>
+</details>
+<br>
+
+**note** The *# noqa* comment is used to tell linters (like flake8) to ignore a specific line of code, typically to suppress warnings or errors that would otherwise appear.
+
+<details>
+  <br>
+  <summary>Click to view the debug</summary>
+  <img src="static/images/readme-images/PEP8_bug.webp" style="display: block; margin: auto;" alt="PEP8 linter bug">
+  <br>
+  <img src="static/images/readme-images/PEP8_noqa.webp" style="display: block; margin: auto;" alt="debug # noqa">
   <br>
 </details>
 
