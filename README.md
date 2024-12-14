@@ -793,6 +793,7 @@ All Python files as well *env.py* and *manage.py*, have been passed through the 
   | payment   | models.py   | PASS  |
   | payment   | urls.py     | PASS  |
   | payment   | views.py    | PASS  |
+  
   | shopcart  | admin.py    | PASS  |
   | shopcart  | apps.py     | PASS  |
   | shopcart  | cart.py     | PASS  |
@@ -800,6 +801,7 @@ All Python files as well *env.py* and *manage.py*, have been passed through the 
   | shopcart  | models.py   | PASS  |
   | shopcart  | urls.py     | PASS  |
   | shopcart  | views.py    | PASS  |
+
   | store     | admin.py    | PASS  |
   | store     | apps.py     | PASS  |
   | store     | forms.py    | PASS  |
