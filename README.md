@@ -784,10 +784,10 @@ All Python files as well *env.py* and *manage.py*, have been passed through the 
 
   | Directory | File        | Check |
   | --------- | ----------- | ----- |
-  | shopper   | Settings.py | PASS  |
+  | root      | manage.py   | PASS  |
+  | shopper   | settings.py | PASS  |
   | shopper   | urls.py     | PASS  |
-  | shopper   | env.py      | PASS  |
-  | shopper   | manage.py   | PASS  |
+  
   | payment   | admin.py    | PASS  |
   | payment   | apps.py     | PASS  |
   | payment   | forms.py    | PASS  |
