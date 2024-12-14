@@ -572,7 +572,7 @@ The **Astro Shop ERD** describes the relationships between various entities in a
 
 In summary, the Astro Shop ERD showcases how users, orders, products, categories, suppliers, and related entities interact within the system, with well-defined relationships to manage payments, profiles, and shipping.
 
-**note:** The **Subscriber Model** has only one particlular function and that is to make a list for all user who to join the newsletter, they don't have to be active member of the astro shop website and is oly used for marketing purposes.
+**note:** The **Subscriber Model** has only one particlular function and that is to make a list for all user who to join the newsletter, they don't have to be active member of the astro shop website and is only used for marketing purposes.
 
 ### Version Control
 
@@ -665,11 +665,11 @@ After experimenting whit different container layout and fixing all the issues va
 The detail of these test can evaluate on this link.
 <details>
   <summary>Click to view HTML Validation Results</summary>
-  homepage
+  homepage (index)
   <img src="static/images/readme-images/Html_check_index1.webp" style="display: block; margin: auto;" alt="HTML Validation Result indexpage showing zero errors">
   <br>
 
-  products
+  products page
   <img src="static/images/readme-images/Html_check_products.webp" style="display: block; margin: auto;" alt="HTML Validation Result products page showing zero errors">
 
 </details>
@@ -811,7 +811,7 @@ All Python files as well *env.py* and *manage.py*, have been passed through the 
 </details>
 <br>
 
-**note** The *# noqa* comment is used to tell linters (like flake8) to ignore a specific line of code, typically to suppress warnings or errors that would otherwise appear.
+**note:** The *# noqa* comment is used to tell linters (like flake8) to ignore a specific line of code, typically to suppress warnings or errors that would otherwise appear.
 
 <details>
   <br>
@@ -1080,7 +1080,7 @@ This site was deployed to and is currently [hosted on the Heroku platform](https
 3. Click on the New button and select *Create new app*
 4. Give it a unique name and choose the region *Europe*
 5. Click the Settings tab, go to the *Config Vars* section and click on the Reveal Config Vars button
-6. Add all variables from *env.py* to ConfigVars of Heroku
+6. Add all variables from *env.py* to *Config Vars* of Heroku
 <details>
 <br>
   <summary>Click to view details Config Vars Heroku</summary>
@@ -1088,6 +1088,7 @@ This site was deployed to and is currently [hosted on the Heroku platform](https
   <br>
 </details>
 <br>
+
 7. Click the *Add* button
 8. Click the *Deploy* tab, go to the *Deployment method section*, select *GitHub* and confirm this selection by clicking on the *Connect to Github* button
 9. Search for the repository name on github *Astro Blog* and click the *Connect* button
@@ -1171,7 +1172,7 @@ From codeinstitute every student can maintain up to eight databases to run there
        <img src="static/images/readme-images/004.png" style="display: block; margin: auto;" alt="PostgreSQL creation step4">
        <br>
       </details>
-      <br>
+  
 
 ### Gmail
 

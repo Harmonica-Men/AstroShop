@@ -1,3 +1,6 @@
+from django.apps import AppConfig
+
+
 class ShopcartConfig(AppConfig):
     """
     Configuration for the 'shopcart' app in the Django project.
