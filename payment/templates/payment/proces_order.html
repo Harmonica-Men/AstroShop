@@ -17,7 +17,6 @@
 
 <div class="container">
     <div class="row no-gutters">
-
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-header">
@@ -31,7 +30,6 @@
                     {% else %}
                     ${{ product.price }}
                     {% endif %}
-
                     <br />
                     <small>Quantity:
                         {% for key, value in quantities.items %}
@@ -40,7 +38,6 @@
                         {% endif %}
                         {% endfor %}</small>
                     <br /><br />
-
                     {% endfor %}
                     Total: ${{ totals }}
                     <br /><br />
@@ -53,7 +50,6 @@
                     Shipping Info
                 </div>
                 <div class="card-body">
-
                     Name: {{ shipping_info.shipping_full_name }}<br />
                     Email: {{ shipping_info.shipping_email }}<br />
                     Address 1: {{ shipping_info.shipping_address1 }}<br />
@@ -68,7 +64,6 @@
                 </div>
             </div>
             <br>
-
             <div class="card">
                 <div class="card-header">
                     Billing Info
@@ -81,7 +76,6 @@
                 </div>
             </div>
             <br>
-
             <button type="submit" class="btn btn-secondary">
                 Pay Now
             </button>

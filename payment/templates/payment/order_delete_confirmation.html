@@ -12,13 +12,11 @@
     </div>
 </header>
 
-
 <div class="container text-center d-flex justify-content-center align-items-center" style="min-height: calc(60vh);">
     <div class="container d-flex justify-content-center align-items-center">
         <div class="p-4 shadow-lg" style="width: 100%; max-width: 578px;">
             <p>Order details for Order #{{ order.id }} will be deleted. </p>
                 <p>This action cannot be undone.</p>
-
             <form method="POST">
                 <div class="d-flex justify-content-between">
                     {% csrf_token %}
@@ -28,10 +26,7 @@
                     <a href="{% url 'orders' %}" class="btn btn-secondary">Cancel</a>
                 </div>
             </form>
-
-
         </div>
     </div>
 </div>
-
 {% endblock %}

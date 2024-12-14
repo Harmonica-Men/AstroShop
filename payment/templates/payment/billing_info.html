@@ -10,11 +10,9 @@
             <h1 class="display-4 fw-bolder mt-5">Pay whit PayPal</Details>
             </h1>
             <p class="lead fw-normal text-white-40 mb-2">All most there ...</p>
-
         </div>
     </div>
 </header>
-
 
 <div class="container d-flex justify-content-center align-items-center mt-3 mb-3" style="min-height: calc(60vh);">
     <div class="row shadow-lg" style="width: 100%; max-width: 850px;">
@@ -27,7 +25,6 @@
                 <div class="card-body">
                     <p><strong>Invoice UUID:</strong> {{ invoice }}</p> <!-- Display invoice number -->
                     <div class="table-responsive">
-
                         <!-- Order Summary Table -->
                         <table class="table table-striped table-hover table-bordered">
                             <thead class="table-secondary">
@@ -72,7 +69,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <!-- Shipping Info Column -->
                 <div class="col-md-6">
@@ -91,7 +87,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Payment Info Column -->
                 {% if request.user.is_authenticated %}
                 <div class="col-md-6">
@@ -116,20 +111,13 @@
                 </div>
                 {% endif %}
             </div>
-
             <div>
                 <button class="btn btn-outline-secondary btn-lg ml-5 mt-3 mb-3">
                     {{ paypal_form.render }}
                 </button>
             </div>
-
         </div>
     </div>
 </div>
-
-
-
-
-
 
 {% endblock %}

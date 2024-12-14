@@ -15,8 +15,6 @@
     <div class="row no-gutters shadow-lg" style="width: 100%; max-width: 850px;">
         <div class="col-12 mt-3">
             <div class="table-responsive">
-
-
                 <table class="table table-striped table-hover table-bordered">
                     <thead class="table-dark">
                         <tr>
@@ -44,22 +42,14 @@
                             </td>
                         </tr>
                         {% endfor %}
-
-
-
-
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-around mt-3 mb-3">
                     <a href="{% url 'products' %}" class="btn btn-secondary">Back To Products</a>
-
                     <a href="{% url 'not_shipped_dash' %}" class="btn btn-secondary">Unshipped Orders</a>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 {% endblock %}
