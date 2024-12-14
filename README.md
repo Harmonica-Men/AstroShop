@@ -787,7 +787,6 @@ All Python files as well *env.py* and *manage.py*, have been passed through the 
   | root      | manage.py   | PASS  |
   | shopper   | settings.py | PASS  |
   | shopper   | urls.py     | PASS  |
-  
   | payment   | admin.py    | PASS  |
   | payment   | apps.py     | PASS  |
   | payment   | forms.py    | PASS  |
