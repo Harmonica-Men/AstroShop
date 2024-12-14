@@ -162,6 +162,7 @@ def search(request):
     else:
         return render(request, "search.html", {})
 
+
 def update_user_and_shipping_profile(request):
     """
     Update the user's profile and shipping information.
@@ -194,7 +195,7 @@ def update_user_and_shipping_profile(request):
 
     # Prefill Full Name field in ShippingForm if empty
     if not shipping_user.shipping_full_name:
-        full_name = f"{current_user.first_name} {current_user.last_name}".strip()
+        full_name = f"{current_user.first_name}  # noqa {current_user.last_name}".strip()
         shipping_form.fields['shipping_full_name'].initial = full_name
 
     return render(
@@ -205,7 +206,6 @@ def update_user_and_shipping_profile(request):
             'shipping_form': shipping_form,
         }
     )
-
 
 
 def update_user_profile(request):
@@ -241,24 +241,30 @@ def update_user_profile(request):
     else:
         return redirect('home')
 
+
 def update_ship_profile(request):
     """
-    Updates the user's profile and shipping address if authenticated. Redirects to 'products' on success, 
-    or renders the form with errors. Redirects unauthenticated users to the home page.
+    Updates the user's profile and shipping address if authenticated.
+    Redirects to 'products' on success or renders the form with errors.
+    Redirects unauthenticated users to the home page.
     """
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
-        
-        # Get Current User's Shipping Info with error handling
+
+        # Get current user's shipping info with error handling
         try:
-            shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
+            shipping_user = ShippingAddress.objects.get(
+                user__id=request.user.id
+            )
         except ShippingAddress.DoesNotExist:
             shipping_user = None
-        
-        # Get original User Form
+
+        # Get original user and shipping forms
         form = ProfileForm(request.POST or None, instance=current_user)
-        shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
-        
+        shipping_form = ShippingForm(
+            request.POST or None, instance=shipping_user
+        )
+
         if form.is_valid() and shipping_form.is_valid():
             form.save()
             if shipping_user:
@@ -268,11 +274,15 @@ def update_ship_profile(request):
                 shipping_user.user = request.user
                 shipping_user.save()
             return redirect('products')
-        
-        return render(request, "update_ship_profile.html", {
-            'form': form, 'shipping_form': shipping_form})
+
+        return render(
+            request,
+            "update_ship_profile.html",
+            {'form': form, 'shipping_form': shipping_form}
+        )
     else:
         return redirect('home')
+
 
 def update_password(request):
     """Allow users to change their password."""
@@ -388,7 +398,8 @@ def login_user(request):
             messages.success(request, "You Have Been Logged In!")
             return redirect('products')
         else:
-            messages.error(request, "User Name and Password can not be found ...")
+            messages.error(
+                request, "User Name and Password can not be found ...")
             return redirect('login')
     else:
         return render(request, 'login.html', {})
@@ -434,7 +445,7 @@ def register_user(request):
                 request,
                 "Username Created - Registration Email has been sent - "
                 "Please Fill Out Your User Info Below..."
-            )            
+            )
             return redirect('update_user_and_shipping_profile')
         else:
             for error_list in form.errors.values():
@@ -453,13 +464,12 @@ class CheckEmailView(TemplateView):
 def confirm_subscription(request):
     confirmation_code = request.GET.get('code')
     if confirmation_code:
-        subscription = get_object_or_404(Subscription, confirmation_code=confirmation_code)
-        
+        subscription = get_object_or_404(
+            Subscription, confirmation_code=confirmation_code)
         if not subscription.is_confirmed:
             # Mark the subscription as confirmed
             subscription.is_confirmed = True
             subscription.save()
-            
             # Render confirmation success template
             return render(request, 'confirmation_success.html', {
                 'subscription': subscription
@@ -472,13 +482,11 @@ def confirm_subscription(request):
     return HttpResponse("Invalid confirmation code.")
 
 
-
 class SubscribeView(FormView):
     """Handle subscription requests and send confirmation emails."""
     form_class = SubscribeForm
     template_name = 'index.html'
     success_url = reverse_lazy('check_email')
-
 
     def form_valid(self, form):
         email = form.cleaned_data['email']
@@ -517,6 +525,7 @@ class SubscribeView(FormView):
 
         # Redirect to the success page or confirmation page
         return HttpResponseRedirect(self.success_url)
+
 
 def suppliers_list(request):
     """Display a list of all suppliers."""
