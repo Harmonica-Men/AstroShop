@@ -35,7 +35,10 @@ CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 # DEBUG = True
 DEBUG = 'DEVELOPMENT' in os.environ
 CSRF_TRUSTED_ORIGINS = ['https://8000-harmonicamen-astroshop-37z6o1iwvkr.ws.codeinstitute-ide.net']  # noqa
-ALLOWED_HOSTS = ['8000-harmonicamen-astroshop-37z6o1iwvkr.ws.codeinstitute-ide.net'.'herokuapp.com']  # noqa
+ALLOWED_HOSTS = [
+    '8000-harmonicamen-astroshop-37z6o1iwvkr.ws.codeinstitute-ide.net',
+    '.herokuapp.com'
+]
 
 # Application definition
 INSTALLED_APPS = [
