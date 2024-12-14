@@ -5,11 +5,13 @@
 - Agile [KanBan](https://github.com/users/Harmonica-Men/projects/12)
 
 - Table Of Contents
-    - [Introduction](#introduction)
     - [Benefits of agile development](#benefits-of-agile-development)
     - [MoSCoW](#moscow)   
     - [Milestones](#milestones)
     - [User Stories and Epics](#user-stories-and-epics)
+    - [Story Points](#story-points)
+    - [Interactions & Milestones](#iterations-and-milestones)
+    - [Kanban Board](#kanban-board)
     - [User Stories](#user-stories)
     - [List Of Epics](#list-of-epics)
   - [UX Table Of Contents](#the-ux-table-of-contents)
@@ -24,9 +26,6 @@
     - [Email Confirmation](#9-email-confirmation-and-redirect-to-merchant)
     - [Review and follow up orders](#10-review-and-follow-up-orders)
 
-## Introduction
-
-Agile planning methodology was used to create the site Astro Shop. GitHub projects was used to organise the development process into sprints, epics, Kanban boards and issues. This was the first time I have undertaken a project that was driven by the agile development process and a learning curve was associated with the development of this project, however the benefits of an agile approach soon outweighed the learning curve associated. I first started by creating issues. These where user stories that had a detailed acceptance criteria and unit tasks associated with each issue. These issues where also labelled using the MoSCoW technique. Each issue was then sorted into the epic in which it belonged. This project was completed over five Milestones of work.
 
 ## Benefits of agile development
 
@@ -39,21 +38,29 @@ As mentioned in the introduction there was a learning curve associated with usin
 
 ## MoSCoW
 
-MoSCoW analysis helps developers understand which tasks to prioritise. It is a process by which labels are added to issues. These labels include 'Must-have', 'Could-have', 'Should-have' and ' Wont-have'. In my project I tried to ensure 'Should-have' prioritised user stories was not more than 60% of total. On reflection I should have prioritised more 'Must-have'. I also did not use 'Wont-have' and 'Could-have' in this project and this is something I would considering using more of in future projects as I found this technique useful to determine important work to be carried out. The image below shows a portion of the issues associated with this project and their labels in place.
+Having created the user stories, I used **MoSCoW prioritisation** to ensure that the most important requirements were addressed first. MoSCoW is a useful technique for managing project scope and ensuring that critical tasks are prioritised, while also providing flexibility in the development process. Here's how I applied the MoSCoW method:
+
+- **Must-Have**: Critical requirements that are essential for project success.
+- **Should-Have**: Important requirements that significantly add value.
+- **Could-Have**: Desirable features that provide additional benefits.
+- **Won't-Have**: Features explicitly excluded from the project scope.
+
+This method is beneficial as it allows for clear communication about what will be delivered in each iteration. It ensures that essential features are prioritised, while also managing expectations by clearly defining what will not be included. By using MoSCoW prioritisation, I was able to focus on delivering the highest value to users and stakeholders first, while still maintaining the flexibility to address lower-priority features later in the project.
+
 
 [Table Of Contents](#table-of-contents)
 
 ## Milestones 
 
-The project was divided into three milestones, each containing the corresponding epics and user stories: [Milestone in Projects](https://github.com/Harmonica-Men/AstroShare-Blog/milestones)
+The project was divided into three milestones, each containing the corresponding epics and user stories: [Milestone in Projects](https://github.com/Harmonica-Men/AstroShop/milestones)
 <br>
 
 1. [Setting Up The Project @ Bear minimums](https://github.com/Harmonica-Men/AstroShop/issues/18)
 - Task: The goal is to set up the project at its bare minimum.
   - EPIC 0 (Repository and Deploy Early)
 
-2. [Basic Blog Functionality](https://github.com/Harmonica-Men/AstroShop/milestone/3)
-- Task: Implement basic blog functionality including models, views, and templates.
+2. [Basic Astro Shop Functionality](https://github.com/Harmonica-Men/AstroShop/milestone/3)
+- Task: Implement basic Astro Shop functionality including models, views, and templates.
   - EPIC 1 (Viewing and Navigation)
   - EPIC 2 (Registration and User Accounts) 
   - EPIC 3 (Sorting and Searching)  
@@ -65,23 +72,55 @@ The project was divided into three milestones, each containing the corresponding
 
 ## User Stories and Epics
 
-Astro Blog Share is for those who are interested in Astronomical subjects and like to share there toughs in a deticated blog. The blog can be used as a discussion platform for anybody who have a special affliation whit astronomy.
+### User Stories and Epics  
 
-A user story is an explanation of a software feature written from the perspective of the end user. Its purpose is to articulate how a software feature will provide value to the customer. User stories were created with the help of GitHub issues. Each user story contains:
-* Title - Short description of the user story. 
-* Description - As a **role** i can **capability** so that **received benefit**.
-* Acceptance criteria - A set of conditions that a feature must meet to be accepted by the user. 
-* Unit tasks - A break down of each task needed to complete user story. 
-* A MoSCoW label - To prioritise tasks. 
-* Assignee -  Who the user store is assigned too. 
-* Milestone - Which epic this user store is associated with.
-<br/>
+Astro Shop is designed for individuals passionate about astronomy and related subjects/objects.  
 
-I used an Agile methodology approach to plan this project. This was implemented through the GitHub Project board with milestones, epics, user stories and tasks.
-Each user story was classified with a label according to MoSCoW prioritization.
-<br>
-The Kanban board can be seen [here](https://github.com/users/Harmonica-Men/projects/12).
+During the project planning phase, I carefully analyzed and defined the functional requirements for the platform. I considered the website's primary goals, the needs of its target audience, and the features that would deliver the most value to users. From this foundation, I crafted user stories to outline the required functionalities.  
 
+These user stories were documented as issues on GitHub. Any requirement that was too extensive to fit into a single user story was categorized as an Epic, with related user stories grouped under it. This method ensured that large tasks could be broken down into smaller, more manageable components.  
+
+Each user story included:  
+- **Title** - A concise description summarizing the user story.  
+- **Description** - Structured as: *As a **[role]**, I can **[capability]** so that **[received benefit]***.  
+- **Acceptance Criteria** - Specific conditions that must be met for the feature to be accepted by the user.  
+- **Unit Tasks** - A detailed breakdown of tasks required to complete the user story.  
+- **MoSCoW Label** - Prioritization of tasks using the MoSCoW method (Must have, Should have, Could have, Won’t have).  
+
+Additionally, the following fields were tracked:  
+- **Assignee** - The team member responsible for completing the user story.  
+- **Milestone** - The associated Epic or project milestone.  
+
+An Agile methodology was used to organize and execute the project. This was implemented via the GitHub Project Board, which helped manage milestones, epics, user stories, and tasks effectively. Each user story was labeled with a MoSCoW prioritization to ensure clarity and focus throughout the development process.
+
+### Story Points
+
+In this project, story points were used to estimate the relative complexity of each user story, enabling efficient time management and iteration planning. Each story was assigned a point value of 1, 2, 3, 5, 8, 13, or 21 based on the Fibonacci sequence, which provides a non-linear scale to account for increasing uncertainty with more complex tasks. By analysing the tasks and acceptance criteria for each story, I determined its difficulty relative to others, ensuring a realistic assessment of workload. This method facilitated the prediction of solo velocity for each iteration, aiding in the planning of future development cycles and prioritisation of features.
+
+### Iterations and Milestones
+
+To organise and manage progress, I divided the project into 7 weekly iterations, each represented by a milestone in GitHub. 
+
+- Story Point Allocation: User stories were prioritised and assigned story points to estimate effort. The total story points were divided evenly across the 7 iterations.
+- Adding to Iterations: At the start of each iteration, user stories were added until their total story points matched the planned weekly workload.
+- Adjustments: Incomplete tasks at the end of an iteration were moved back to the backlog (or no-status) for refinement and included in the next iteration.
+
+This approach ensured steady progress throughout the project while allowing flexibility to adjust as needed.
+
+### Kanban Board
+
+To manage and track the progress of user stories during the project, I created a Kanban Board board. The board was divided into four columns: **Epics**, **To Do**, **In Progress**, and **Done**.
+
+- Epics: This column contained overarching goals that grouped related user stories together.
+- To Do: At the start of each iteration, user stories to be completed were moved here.
+- In Progress: As work began on a user story, it was moved to this column.
+- Done: Completed user stories were moved to this column to indicate they were finished.
+
+This setup provided a clear and simple way to track the status of tasks throughout the project, ensuring that progress was organised and transparent.
+
+**Github Kanboard During Development**
+
+You can view the [Astro Shop Kanban Board](https://github.com/users/Harmonica-Men/projects/12) for a detailed overview of the project's progress and task management.
 
 ### User stories 
 
@@ -105,6 +144,7 @@ Below is an example of how the user stories where structured for this project.
 - [EPIC 2: Registration and User Accounts](https://github.com/users/Harmonica-Men/projects/12?pane=issue&itemId=90498621&issue=Harmonica-Men%7CAstroShop%7C23)
 - [EPIC 3: Sorting and Searching](https://github.com/users/Harmonica-Men/projects/12?pane=issue&itemId=90498654&issue=Harmonica-Men%7CAstroShop%7C24)
 - [EPIC 4: Purchasing and checkout](https://github.com/users/Harmonica-Men/projects/12?pane=issue&itemId=90498707&issue=Harmonica-Men%7CAstroShop%7C25#:~:text=EPIC%204-,Purchasing%20and%20checkout,-%2325)
+- EPIC5
 
 User Stories with their id:  <br>
 #### EPIC 0
@@ -155,35 +195,33 @@ User Stories with their id:  <br>
 - I want to see a visually appealing landing page with a space theme and a welcoming headline.
 - I want to read a brief introduction about the shop and its features.
 - I want to have prominent "Sign Up" and "Log In" buttons to easily join or access the shop.
+- I want to actual status of the shopping cart items across the site. 
 
 ### Sign-Up Process  
 **As a shopper:**  
 - I want to click on "Sign Up" and fill out a simple form with my Username, Email, Password, and Confirm Password.  
 - I want the option to sign up using my social media accounts (Twitter, Facebook, etc.).  
 - I want to access my purchase history and order details after signing up.  
+- I want to access my shopping cart at any give time to checkout.  
 
 ### Navigation and Exploration  
 **As a shopper:**  
-- I want to be directed to a personalized homepage with a welcome message after signing up.  
-- I want an easy-to-navigate menu with options like **Home**, **Shop**, **Categories**, **My Cart**, **Orders**, **My Profile**, **Wishlist**, and **Log Out**.  
-- I want to browse a shop feed showcasing featured products, discounts, new arrivals, and recommendations based on my preferences.  
-- I want each product listing to display the product image, name, price, a brief description, and action buttons like **Add to Cart**, **Add to Wishlist**, and **View Details**.  
+- I want an easy-to-navigate menu with options like **Home**, **Shop**, **Categories**, **My Cart**, **Orders**, **My Profile** and **Log Out**.  
+- I want to browse a shop feed showcasing featured products, sales, specials, and recommendations based on my preferences.  
+- I want each product listing to display the product image, name, price, a brief description, and action buttons like **Add to Cart** and **View Details**.  
 
 ### Shopping and Checkout  
 **As a shopper:**  
 - I want to search for products using a search bar with filters for price range, categories, ratings, and availability.  
-- I want to view detailed product pages with multiple images, detailed descriptions, customer reviews, and related product recommendations.  
+- I want to view detailed product pages with multiple images and detailed descriptions.  
 - I want to add products to my cart and adjust quantities directly in the cart.  
 - I want a seamless checkout process with options to:  
   - Enter my shipping and billing details.  
-  - Choose a payment method (credit card, PayPal, etc.).  
-  - Apply discount codes or promotional offers.  
+  - Choose a payment method (credit card, PayPal, etc.).      
   - Review my order summary before confirming the purchase.  
 
 ### Interaction and Engagement  
 **As a shopper:**  
-- I want to leave reviews and ratings on products I purchase.  
-- I want to ask questions about products and get answers from the seller or other customers.  
 - I want to share products with my friends through social media or email.  
 - I want to receive notifications for price drops, new arrivals, order status updates, and exclusive deals.  
 
@@ -191,7 +229,6 @@ User Stories with their id:  <br>
 **As a shopper:**  
 - I want to manage my profile, including my shipping address, payment methods, and personal information.  
 - I want to view my order history, including order details, status, and tracking information for shipped items.  
-- I want to save products to my wishlist for future reference.  
 - I want to manage my subscriptions for newsletters, deals, and promotional updates.  
 
 ### Ease of Use and Accessibility  
@@ -200,7 +237,7 @@ User Stories with their id:  <br>
 - I want fast loading times and smooth transitions between pages.  
 - I want a high contrast mode and text resizing options for better accessibility if I am visually impaired.  
 - I want a keyboard-navigable interface and screen reader compatibility.  
-- I want an easily accessible help section with FAQs, return policy information, and a contact support option for direct assistance.  
+- I want an easily accessible help section with FAQs, return policy information, and a contact support option for direct assistance. (index)
 
 ### Continuous Engagement  
 **As a shopper:**  
@@ -219,7 +256,6 @@ User Stories with their id:  <br>
   - On the home page there is no nav-bar but only "Shop Now" button to navigate to the Astro Shop.
   - The background image is of the physical store.
   - Subscribtion section for newsletter sign up.
-  - A snap of the most popular suppliers of this shop.
   - The Footer contain all legal and fiscal information of the store whit the social media links.
   
 - **Call to Action:**
@@ -228,13 +264,13 @@ User Stories with their id:  <br>
   - Subscription is no registration to the "Astro Shop".
 
 ### 2. Product page 
-- **User clicks on "Astro Shop":**
+- **User clicks on "Shop Now":**
   - All registered users can a purchase of anything on the shop.
   - All selected items are located in the shopping cart.
   - At any give time the shopping cart can be checked out to the payment methode 
 
 - **Call to Action:**
-  - All non-autheticad users can access the shop, but can not buy.
+  - All non-autheticad users can access the shop, but can not buy. (no guest mode)
   - All autheticad users can access the shop, they can make purchases.
 
 [Table Of Contents](#table-of-contents)
@@ -254,7 +290,7 @@ User Stories with their id:  <br>
   - The users can easy login or logout.
   - The users can update and/or manipulate there profile.    
   - The users can search for certain key words to access and find products.
-  - Display all produxts relevant to the category.
+  - Display all products relevant to the category.
   - Show all categories and there content in Product Category.
   - Subpage of the shop is the product page of the Astro Shop.
   - Mainpage of the shop is the homepage of the Astro Shop.
