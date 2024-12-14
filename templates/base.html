@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- SEO Meta Tags -->
     <meta name="description"
         content="{% block meta_description %}Welcome to Astro Shop, your one-stop destination for telescopes, binoculars, and astronomy books! Explore our vast collection of products today.{% endblock %}">
@@ -15,7 +14,6 @@
         content="{% block meta_keywords %}astro shop, telescopes, binoculars, astronomy books, astronomy toys, globes, weather stations{% endblock %}">
     <meta name="author" content="Astro Shop">
     <meta name="robots" content="index, follow">
-
     <!-- Open Graph Meta Tags for Social Sharing -->
     <meta property="og:title" content="{% block og_title %}Astro Shop{% endblock %}">
     <meta property="og:description"
@@ -23,19 +21,15 @@
     <meta property="og:image" content="{% static 'images/astro_shop_og_image.jpg' %}">
     <meta property="og:url" content="{% block og_url %}{% url 'home' %}{% endblock %}">
     <meta property="og:type" content="website">
-
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% block twitter_title %}Astro Shop{% endblock %}">
     <meta name="twitter:description"
         content="{% block twitter_description %}Shop the best in astronomy equipment and books at Astro Shop!{% endblock %}">
     <meta name="twitter:image" content="{% static 'images/astro_shop_twitter_image.jpg' %}">
-
     {% endblock %}
-
     {% block extra_meta %}
     {% endblock %}
-
     {% block corecss %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -61,10 +55,8 @@
         const aboutUrl = "{% url 'about' %}";
     </script>
     {% endblock %}
-
     {% block extra_js %}
     {% endblock %}
-
     <title>{% block extra_title %}Astro Shop{% endblock %}</title>
     <link rel="icon" type="image/x-icon"
         href="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732213214/favicon_dingdt.ico">
@@ -77,20 +69,10 @@
                 <!-- Trigger for dropdown -->
                 <a role="button" class="text-black nav-link btn mt-1 hover-effect" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" aria-label="Account Options">
-
-                    <!-- <a href="#" class="text-black nav-link btn mt-1 hover-effect" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false"> -->
                     <div class="text-center">
                         <i class="fas fa-user fa-lg"></i>
                     </div>
                 </a>
-
-
-                <!-- Dropdown menu
-                <button id="account-options" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"></i> Account Options
-                </button> -->
-
                 <div class="dropdown-menu dropdown-menu-right border-1">
                     {% if request.user.is_authenticated %}
                     <!-- Links for authenticated users -->
@@ -100,21 +82,17 @@
                     {% if not request.user.is_superuser %}
                     <a href="{% url 'orders' %}" class="dropdown-item">My Orders</a>
                     {% endif %}
-
                     <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
                     <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
                     <div class="dropdown-divider"></div>
                     <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
-
                     <!-- Admin-specific links -->
                     {% if request.user.is_superuser %}
                     <div class="dropdown-divider"></div>
                     <a href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers List</a>
                     <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
-
                     <div class="dropdown-divider"></div>
                     <a href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers List</a>
-
                     <a href="{% url 'shipped_dash' %}" class="dropdown-item">Shipped Orders</a>
                     <a href="{% url 'not_shipped_dash' %}" class="dropdown-item">Unshipped Orders</a>
                     {% endif %}
@@ -125,9 +103,6 @@
                     {% endif %}
                 </div>
             </li>
-
-
-
             <li class="list-inline-item">
                 <a href="{% url 'shopcart_summary' %}" class="text-black nav-link btn mt-1 mr-2 hover-effect">
                     <div class="text-center">
@@ -137,9 +112,7 @@
                         </span>
                     </div>
                 </a>
-
             </li>
-
         </div>
         <!-- section navbar -->
 
@@ -149,14 +122,14 @@
                     <h2><strong>ASTRO&nbsp;SHOP</strong></h2>
                 </a>
             </div>
-        
+
             <div class="row no-gutters bg-white">
                 <nav class="navbar navbar-expand-lg navbar-light w-100 mr-3">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
                         aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-        
+
                     <ul class="list-inline list-unstyled text-lg-right my-0 d-flex justify-content-end mb-2">
                         <li class="list-inline-item">
                             <a href="{% url 'about' %}" class="text-black nav-link btn cart-box">
@@ -166,7 +139,7 @@
                                 </div>
                             </a>
                         </li>
-        
+
                         <li class="list-inline-item">
                             <a href="{% url 'search' %}" class="text-black nav-link btn cart-box">
                                 <div class="text-center">
@@ -175,7 +148,7 @@
                                 </div>
                             </a>
                         </li>
-        
+
                         <li class="list-inline-item dropdown">
                             <a href="#" class="text-black nav-link btn cart-box" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -192,7 +165,6 @@
                                 {% if not request.user.is_superuser %}
                                 <a href="{% url 'orders' %}" class="dropdown-item">My Orders</a>
                                 {% endif %}
-        
                                 <a href="{% url 'update_user' %}" class="dropdown-item">User Account</a>
                                 <a href="{% url 'update_password' %}" class="dropdown-item">Change Password</a>
                                 <div class="dropdown-divider"></div>
@@ -200,7 +172,7 @@
                                 {% if request.user.is_superuser %}
                                 <div class="dropdown-divider"></div>
                                 <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
-        
+
                                 <div class="dropdown-divider"></div>
                                 <a href="{% url 'suppliers_list' %}" class="dropdown-item">Suppliers List</a>
                                 <a href="{% url 'orders' %}" class="dropdown-item">View Orders</a>
@@ -213,7 +185,6 @@
                                 {% endif %}
                             </div>
                         </li>
-        
                         <li class="list-inline-item">
                             <a href="{% url 'shopcart_summary' %}" class="text-black nav-link btn cart-box">
                                 <div class="text-center">
@@ -231,37 +202,23 @@
                 </nav>
             </div>
         </div>
-        
-
-
-
-
         <!-- section navbar -->
         <div class="hamburger-menu">
-
             <input id="menu__toggle" type="checkbox" />
             <label class="menu__btn" for="menu__toggle" aria-label="Toggle menu">
                 <span></span>
             </label>
-
             <ul class="menu__box">
                 <li><a class="menu__item" href="{% url 'home' %}">Home Page</a></li>
-
                 <li>
-
                     <a class="menu__item" href="{% url 'category' 'Sales' %}" class="py-2 mx-2 text-white">
-
                         <span class="fa-regular fa-star"></span>
                         <strong class="mx-2">Sale!</strong>
                         <span class="fa-regular fa-star"></span>
-
                     </a>
-
                 </li>
-
                 <li><a class="menu__item" href="{% url 'category' 'Binoculars' %}" class="dropdown-item">Binoculars</a>
                 </li>
-
                 <li><a class="menu__item" href="{% url 'category' 'Books' %}" class="dropdown-item">Books</a></li>
                 <li><a class="menu__item" href="{% url 'category' 'Toys' %}" class="dropdown-item">Toys</a></li>
                 <li><a class="menu__item" href="{% url 'category' 'Telescopes' %}" class="dropdown-item">Telescopes</a>
@@ -271,7 +228,6 @@
                 <li><a class="menu__item" href="{% url 'category' 'Weather Stations' %}" class="dropdown-item">Weather
                         Stations</a></li>
                 <li><a class="menu__item" href="{% url 'products' %}" class="dropdown-item">All Products</a></li>
-
                 {% if request.user.is_authenticated %}
                 <li class="dropdown">
                     <a class="menu__item dropdown-toggle" href="#" id="account-options" data-toggle="dropdown"
@@ -280,7 +236,6 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right border-1" aria-labelledby="account-options">
                         <ul class="no-bullets">
-
                             <li><a class="menu__item" href="{% url 'update_user_profile' %}" class="dropdown-item">My
                                     Profile</a></li>
                             <li><a class="menu__item" href="{% url 'update_ship_profile' %}" class="dropdown-item">My
@@ -314,22 +269,12 @@
                 </li>
                 {% else %}
                 <li><a class="menu__item" href="{% url 'search' %}" class="dropdown-item">Search</a></li>
-
-
                 <li><a class="menu__item" href="{% url 'register' %}" class="dropdown-item">Register</a></li>
                 <li><a class="menu__item" href="{% url 'login' %}" class="dropdown-item">Login</a></li>
                 {% endif %}
                 <li><a class="menu__item" href="{% url 'about' %}">About</a></li>
             </ul>
-
-
-
         </div>
-
-
-
-
-
     </header>
 
     {% if messages %}
@@ -359,14 +304,12 @@
 
     {% block postloadjs %}
 
-
     <script>
         $(document).ready(function () {
             // Initialize the toast
             $('.custom-toast').toast();
         });
     </script>
-
 
     {% endblock %}
 
@@ -379,18 +322,20 @@
                 </a>
             </div>
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-4"><a class="color-hyperlink" href="https://x.com/?lang=en" target="_blank" rel="noopener nofollow" aria-label="Twitter"><i
+                <li class="ms-4"><a class="color-hyperlink" href="https://x.com/?lang=en" target="_blank"
+                        rel="noopener nofollow" aria-label="Twitter"><i
                             class="fab fa-twitter fa-2x p-2 icon-white"></i></a></li>
-                <li class="ms-4"><a class="color-hyperlink" href="https://www.instagram.com/" target="_blank" rel="noopener nofollow" aria-label="Instagram"><i
+                <li class="ms-4"><a class="color-hyperlink" href="https://www.instagram.com/" target="_blank"
+                        rel="noopener nofollow" aria-label="Instagram"><i
                             class="fab fa-instagram fa-2x p-2 icon-white"></i></a></li>
-                <li class="ms-4"><a class="color-hyperlink" href="https://www.facebook.com/" target="_blank" rel="noopener nofollow" aria-label="Facebook"><i
+                <li class="ms-4"><a class="color-hyperlink" href="https://www.facebook.com/" target="_blank"
+                        rel="noopener nofollow" aria-label="Facebook"><i
                             class="fab fa-facebook fa-2x p-2 icon-white"></i></a></li>
-                <li class="ms-4"><a class="color-hyperlink" href="https://codeinstitute.net/global/" target="_blank" rel="noopener nofollow"
-                        aria-label="Website"><i class="fa-solid fa-globe fa-2x p-2 icon-white"></i></a></li>
+                <li class="ms-4"><a class="color-hyperlink" href="https://codeinstitute.net/global/" target="_blank"
+                        rel="noopener nofollow" aria-label="Website"><i
+                            class="fa-solid fa-globe fa-2x p-2 icon-white"></i></a></li>
             </ul>
         </div>
     </footer>
-
 </body>
-
 </html>
