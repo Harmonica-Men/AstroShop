@@ -5,68 +5,75 @@
     <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
             <br>
-            <h1 class="display-4 fw-bolder mt-5">{{ category }} </h1>          
+            <h1 class="display-4 fw-bolder mt-5">{{ category }} </h1>
             <p class="lead fw-normal text-white-40 mb-2">Category Page</p>
         </div>
-    </div> 
+    </div>
 </header>
 <!-- Section-->
 <section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
+    <div class="container-fluid">
         <p class="text-muted mt-3 text-center text-md-left">
             {{ products|length }} Products
         </p>
-        <div class="row">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
             {% for product in products %}
-            {% if product.is_sale %}
-            <div class="col mb-5">
-                <div class="card h-100 shadow-lg rounded-0">
-                    <!-- Sale badge-->
-                    <div class="badge bg-black text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                    </div>
-                    <!-- Product image-->
-                    <a href="{% url 'product' product.id %}">
-                        <img class="card-img-top" src="{{ product.image.url }}" alt="product {{ product.image.url }}" />
-                    </a>
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">{{ product.name }}</h5>
-                            <!-- Sale -->
-                            <div class="d-flex justify-content-center small text-danger mb-2">
-                                <span class="fa-regular fa-star"></span>
-                                <strong class="mx-2" style="font-size: 1.25rem;">Sale!</strong>
-                                <span class="fa-regular fa-star"></span>
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 text-center">
+                {% if product.is_sale %}
+                <div class="col mb-5">
+                    <div class="card h-100 shadow-lg rounded-0">
+                        <!-- Sale badge-->
+                        <div class="badge bg-black text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                            Sale
+                        </div>
+                        <!-- Product image-->
+                        <a href="{% url 'product' product.id %}">
+                            <img class="card-img-top" src="{{ product.image.url }}"
+                                alt="product {{ product.image.url }}" />
+                        </a>
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ product.name }}</h5>
+                                <!-- Sale -->
+                                <div class="d-flex justify-content-center small text-danger mb-2">
+                                    <span class="fa-regular fa-star"></span>
+                                    <strong class="mx-2" style="font-size: 1.25rem;">Sale!</strong>
+                                    <span class="fa-regular fa-star"></span>
+                                </div>
+                                <!-- Product price-->
+                                <div class="product-price text-muted text-center mr-2"
+                                    style="text-decoration: line-through;">
+                                    €{{ product.price }}</div>
+                                <strong class="text-black"
+                                    style="font-size: 1.25rem;">€{{ product.sale_price }}</strong>
                             </div>
-                            <!-- Product price-->
-                            <div class="product-price text-muted text-center mr-2"
-                                style="text-decoration: line-through;">
-                                €{{ product.price }}</div>
-                            <strong class="text-black" style="font-size: 1.25rem;">€{{ product.sale_price }}</strong>
                         </div>
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="col mb-5">
-                <div class="card h-100 shadow-lg rounded-0">
-                    <!-- Product image-->
-                    <a href="{% url 'product' product.id %}">
-                        <img class="card-img-top" src="{{ product.image.url }}" alt="product {{ product.image.url }}" />
-                    </a>
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="product-name fw-bolder product-name">{{ product.name }}</h5>
-                            <!-- Product price-->
-                            <strong class="product-pricetext-black product-price">€{{ product.price }} </strong>
+                {% else %}
+                <div class="col mb-5">
+                    <div class="card h-100 shadow-lg rounded-0">
+                        <!-- Product image-->
+                        <a href="{% url 'product' product.id %}">
+                            <img class="card-img-top" src="{{ product.image.url }}"
+                                alt="product {{ product.image.url }}" />
+                        </a>
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="product-name fw-bolder product-name">{{ product.name }}</h5>
+                                <!-- Product price-->
+                                <strong class="product-pricetext-black product-price">€{{ product.price }} </strong>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {% endif %}
+                {% endif %}
+            </div>           
+            
             {% endfor %}
         </div>
 </section>

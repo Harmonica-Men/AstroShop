@@ -13,121 +13,125 @@
     </div>
 </header>
 
-<div class="container-fluid">
-    <div class="row no-gutters">
-        <div class="product-container col-10 offset-1">
-            <div class="row no-gutters mt-2 mb-2">
-                <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-                    <div class="sort-select-wrapper w-30">
-                        <select id="sort-selector"
-                            class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                            <option value="reset" {% if current_sorting == 'None_None' %}selected="selected"
-                                {% endif %}>Sort by...</option>
-                            <option value="name_asc" {% if current_sorting == 'name_asc' %}selected="selected"
-                                {% endif %}>Name (A-Z)</option>
-                            <option value="name_desc" {% if current_sorting == 'name_desc' %}selected="selected"
-                                {% endif %}>Name (Z-A)</option>
-                            <option value="price_asc" {% if current_sorting == 'price_asc' %}selected="selected"
-                                {% endif %}>Price (low to high)</option>
-                            <option value="price_desc" {% if current_sorting == 'price_desc' %}selected="selected"
-                                {% endif %}>Price: High to Low</option>
-                        </select>
+<!-- Section-->
+<section class="py-5">
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="product-container col-10 offset-1">
+                <div class="row no-gutters mt-2 mb-2">
+                    <div
+                        class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+                        <div class="sort-select-wrapper w-30">
+                            <select id="sort-selector"
+                                class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                                <option value="reset" {% if current_sorting == 'None_None' %}selected="selected"
+                                    {% endif %}>Sort by...</option>
+                                <option value="name_asc" {% if current_sorting == 'name_asc' %}selected="selected"
+                                    {% endif %}>Name (A-Z)</option>
+                                <option value="name_desc" {% if current_sorting == 'name_desc' %}selected="selected"
+                                    {% endif %}>Name (Z-A)</option>
+                                <option value="price_asc" {% if current_sorting == 'price_asc' %}selected="selected"
+                                    {% endif %}>Price (low to high)</option>
+                                <option value="price_desc" {% if current_sorting == 'price_desc' %}selected="selected"
+                                    {% endif %}>Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 order-md-first">
+                        <p class="text-muted mt-3 text-center text-md-left">
+                            {{ products|length }} Products
+                        </p>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 order-md-first">
-                    <p class="text-muted mt-3 text-center text-md-left">
-                        {{ products|length }} Products
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                {% for product in products %}
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 text-center">
-                    <div class="card h-100 shadow-lg rounded-0 position-relative">
-                        {% if product.category %}
-                        <p class="position-absolute top-0 start-0 mt-2 ml-2 ms-2 mb-0">
-                            <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
-                                <i class="fas fa-tag me-1"></i>{{ product.category.name }}
-                            </a>
-                        </p>
-                        {% endif %}
-
-                        {% if product.is_sale %}
-                        <!-- Sale badge-->
-                        <div class="badge bg-black text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-                            Sale
-                        </div>
-                        {% endif %}
-
-                        {% if product.image %}
-                        <a href="{% url 'product' product.id %}">
-                            <img class="card-img-top img-fluid shrink-image mt-5" src="{{ product.image.url }}"
-                                alt="{{ product.name }}">
-                        </a>
-                        {% else %}
-                        <a href="no_image">
-                            <img class="card-img-top img-fluid shrink-image" src="{{ MEDIA_URL }}noimage.png"
-                                alt="{{ product.name }}">
-                        </a>
-                        {% endif %}
-
-                        <div class="card-body pb-0 mb-2">
-                            <p class="product-name mb-0 fw-bolder">{{ product.name }}</p>
+                <div class="row">
+                    {% for product in products %}
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 text-center">
+                        <div class="card h-100 shadow-lg rounded-0 position-relative">
+                            {% if product.category %}
+                            <p class="position-absolute top-0 start-0 mt-2 ml-2 ms-2 mb-0">
+                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                                    <i class="fas fa-tag me-1"></i>{{ product.category.name }}
+                                </a>
+                            </p>
+                            {% endif %}
 
                             {% if product.is_sale %}
-                            <!-- Sale details -->
-                            <div class="d-flex justify-content-center small text-danger ">
-                                <span class="fa-regular fa-star"></span>
-                                <strong class="mx-2" style="font-size: 1.25rem;">Sale!</strong>
-                                <span class="fa-regular fa-star"></span>
+                            <!-- Sale badge-->
+                            <div class="badge bg-black text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                                Sale
                             </div>
-                            <div class="d-flex justify-content-center">
-                                <div class="product-price text-muted text-center me-2"
-                                    style="text-decoration: line-through;">
-                                    €{{ product.price }}</div>
-                                <strong class="product-price text-black ml-3">€{{ product.sale_price }}</strong>
-                            </div>
-                            {% else %}
-                            <!-- Regular price-->
-                            <strong class="product-price text-black">€{{ product.price }} </strong>
                             {% endif %}
+
+                            {% if product.image %}
+                            <a href="{% url 'product' product.id %}">
+                                <img class="card-img-top img-fluid shrink-image mt-5" src="{{ product.image.url }}"
+                                    alt="{{ product.name }}">
+                            </a>
+                            {% else %}
+                            <a href="no_image">
+                                <img class="card-img-top img-fluid shrink-image" src="{{ MEDIA_URL }}noimage.png"
+                                    alt="{{ product.name }}">
+                            </a>
+                            {% endif %}
+
+                            <div class="card-body pb-0 mb-2">
+                                <p class="product-name mb-0 fw-bolder">{{ product.name }}</p>
+
+                                {% if product.is_sale %}
+                                <!-- Sale details -->
+                                <div class="d-flex justify-content-center small text-danger ">
+                                    <span class="fa-regular fa-star"></span>
+                                    <strong class="mx-2" style="font-size: 1.25rem;">Sale!</strong>
+                                    <span class="fa-regular fa-star"></span>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="product-price text-muted text-center me-2"
+                                        style="text-decoration: line-through;">
+                                        €{{ product.price }}</div>
+                                    <strong class="product-price text-black ml-3">€{{ product.sale_price }}</strong>
+                                </div>
+                                {% else %}
+                                <!-- Regular price-->
+                                <strong class="product-price text-black">€{{ product.price }} </strong>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Responsive divider rows for different screen sizes -->
-                {% if forloop.counter|divisibleby:1 %}
-                <div class="col-12 d-sm-none mb-1">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-1">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:3 %}
-                <div class="col-12 d-none d-lg-block d-xl-none mb-1">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:4 %}
-                <div class="col-12 d-none d-xl-block mb-1">
-                    <hr>
-                </div>
-                {% endif %}
-                {% endfor %}
+                    <!-- Responsive divider rows for different screen sizes -->
+                    {% if forloop.counter|divisibleby:1 %}
+                    <div class="col-12 d-sm-none mb-1">
+                        <hr>
+                    </div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:2 %}
+                    <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-1">
+                        <hr>
+                    </div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:3 %}
+                    <div class="col-12 d-none d-lg-block d-xl-none mb-1">
+                        <hr>
+                    </div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:4 %}
+                    <div class="col-12 d-none d-xl-block mb-1">
+                        <hr>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
 
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="btt-button shadow-sm rounded-0 border border-black mr-3 mb-3">
-        <a class="btt-link d-flex h-100">
-            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-        </a>
+        <div class="btt-button shadow-sm rounded-0 border border-black mr-3 mb-3">
+            <a class="btt-link d-flex h-100">
+                <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+            </a>
+        </div>
     </div>
-</div>
+</section>
 
 {% endblock %}
 
