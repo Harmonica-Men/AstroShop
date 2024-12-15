@@ -133,9 +133,9 @@
 
 
     <div class="my-5 d-flex justify-content-center">
-        <a href="{% url 'products' %}" 
-           class="shop-now-button btn btn-outline-dark btn-lg rounded-0 text-uppercase py-3 text-center" 
-           style="font-size: xx-large; width: 350px;">
+        <a href="{% url 'products' %}"
+            class="shop-now-button btn btn-outline-dark btn-lg rounded-0 text-uppercase py-3 text-center"
+            style="font-size: xx-large; width: 350px;">
             SHOP&nbsp;NOW
         </a>
     </div>
@@ -163,101 +163,81 @@
         <label for="id_email" class="font-weight-bold text-center mb-2">Subscribe to our Newsletter</label>
         <form method="POST" action="{% url 'subscribe' %}" class="d-flex align-items-center justify-content-center">
             {% csrf_token %}
-            <input type="email" class="form-control mx-2" id="id_email" name="email" placeholder="name@example.com" 
-                   required style="max-width: 300px;">
+            <input type="email" class="form-control mx-2" id="id_email" name="email" placeholder="name@example.com"
+                required style="max-width: 300px;">
             <button type="submit" value="Submit" class="btn-sm btn-light" title="Subscribe">
                 <span>Subscribe</span>
             </button>
         </form>
     </div>
 
-    <footer class="py-1 bg-dark" style="background-color: rgba(0, 0, 0, 0.5);">
-        <div class="d-flex align-items-center justify-content-between py-1 mx-4">
-            <div class="container my-1">
-                <h5 class="text-white"><strong> Astroshop.com</strong></h5>
-                <i class="fa-solid fa-phone text-white"><span style="font-family: 'Lato';">&nbsp;0499 99 11 99
-                    </span></i>
-                <br>
-                <i class="fa-solid fa-envelope text-white"><span
-                        style="font-family: 'Lato';">&nbsp;info@astroshop.com</span>
-                </i>
-            </div>
-
-            <div class="container text-white p-2" style="font-size: small">
-                <div class="row no-gutters">
-                    <div class="col-md-4 mb-2">
-                        <div class="ml-2">
-                            <h6><strong>Client&nbsp;Service</strong></h6>
-                            <a href="{% url 'about' %}" class="nav-link-index text-white "
-                                style="font-size: small">About</a><br>
-                            <a href="{% url 'general_conditions' %}" class="nav-link-index text-white"
-                                style="font-size: small">General
-                                conditions</a><br>
-                            <a href="{% url 'disclaimer' %}" class="nav-link-index text-white"
-                                style="font-size: small">Disclaimer</a><br>
-                            <a href="{% url 'privacy' %}" class="nav-link-index text-white"
-                                style="font-size: small">Privacy
-                                Policy</a><br>
-                            <a href="{% url 'payment' %}" class="nav-link-index text-white"
-                                style="font-size: small">Payment</a><br>
-                        </div>
+    <footer class="py-1 bg-dark d-flex flex-column align-items-center justify-content-center">       
+        <div class="container text-white p-2" style="font-size: small">
+            <div class="row no-gutters">
+                <div class="col-md-4 mb-2">
+                    <div class="ml-2">
+                        <h5><strong>Astroshop.com</strong></h5>
+                        <p><i class="fa-solid fa-phone"></i> &nbsp;0499 99 11 99</p>
+                        <p><i class="fa-solid fa-envelope"></i> &nbsp;info@astroshop.com</p>
                     </div>
+                </div>
 
-                    <div class="col-md-4 mb-2">
-                        <div class="ml-2">
-                            <h6><strong>Products</strong></h6>
-                            <a href="{% url 'products' %}" class="nav-link-index text-white"
-                                style="font-size: small">All
-                                Products</a><br>
-                            <a href="{% url 'category' 'Sales' %}" class="nav-link-index text-white"
-                                style="font-size: small">Sales</a><br>
-
-                        </div>
+                <div class="col-md-4 mb-2">
+                    <div class="ml-2">
+                        <h6><strong>Client&nbsp;Service</strong></h6>
+                        <a href="{% url 'about' %}" class="nav-link-index text-white "
+                            style="font-size: small">About</a><br>
+                        <a href="{% url 'general_conditions' %}" class="nav-link-index text-white"
+                            style="font-size: small">General
+                            conditions</a><br>
+                        <a href="{% url 'disclaimer' %}" class="nav-link-index text-white"
+                            style="font-size: small">Disclaimer</a><br>
+                        <a href="{% url 'privacy' %}" class="nav-link-index text-white" style="font-size: small">Privacy
+                            Policy</a><br>
+                        <a href="{% url 'payment' %}" class="nav-link-index text-white"
+                            style="font-size: small">Payment</a><br>
                     </div>
+                </div>             
 
-                    <div class="col-md-4 mb-2">
-                        <div class="ml-2">
-                            <h6><strong>User&nbsp;Account</strong></h6>
-                            <a href="{% url 'shopcart_summary' %}" class="nav-link-index text-white"
-                                style="font-size: small">Shopping
-                                Cart</a><br>
-                            <a href="{% url 'login' %}" class="nav-link-index text-white"
-                                style="font-size: small">Login</a><br>
+                <div class="col-md-4 mb-2">
+                    <div class="ml-2">
+                        <h6><strong>User&nbsp;Account</strong></h6>
+                        <a href="{% url 'shopcart_summary' %}" class="nav-link-index text-white"
+                            style="font-size: small">Shopping
+                            Cart</a><br>
+                        <a href="{% url 'login' %}" class="nav-link-index text-white"
+                            style="font-size: small">Login</a><br>
 
-                            <a href="{% url 'register' %}" class="nav-link-index text-white"
-                                style="font-size: small">Register</a><br>
-                        </div>
+                        <a href="{% url 'register' %}" class="nav-link-index text-white"
+                            style="font-size: small">Register</a><br>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-4">
-                    <a href="https://x.com/?lang=en" aria-label="Twitter" target="_blank" rel="noopener nofollow">
-                        <i class="fab fa-twitter fa-2x p-2 icon-white nav-link-index"
-                            style="text-decoration: none;"></i>
-                    </a>
-                </li>
-                <li class="ms-4">
-                    <a href="https://www.instagram.com/" aria-label="Instagram" target="_blank" rel="noopener nofollow">
-                        <i class="fab fa-instagram fa-2x p-2 icon-white nav-link-index"
-                            style="text-decoration: none;"></i>
-                    </a>
-                </li>
-                <li class="ms-4">
-                    <a href="https://www.facebook.com/" aria-label="Facebook" target="_blank" rel="noopener nofollow">
-                        <i class="fab fa-facebook fa-2x p-2 icon-white nav-link-index"
-                            style="text-decoration: none;"></i>
-                    </a>
-                </li>
-                <li class="ms-4">
-                    <a href="https://codeinstitute.net/global/" aria-label="Website" target="_blank"
-                        rel="noopener nofollow">
-                        <i class="fa-solid fa-globe fa-2x p-2 icon-white nav-link-index"
-                            style="text-decoration: none;"></i>
-                    </a>
-                </li>
-            </ul>
+        <ul class="nav col-md-4 justify-content-center list-unstyled d-flex">
+            <li class="ms-4">
+                <a href="https://x.com/?lang=en" aria-label="Twitter" target="_blank" rel="noopener nofollow">
+                    <i class="fab fa-twitter fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
+                </a>
+            </li>
+            <li class="ms-4">
+                <a href="https://www.instagram.com/" aria-label="Instagram" target="_blank" rel="noopener nofollow">
+                    <i class="fab fa-instagram fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
+                </a>
+            </li>
+            <li class="ms-4">
+                <a href="https://www.facebook.com/" aria-label="Facebook" target="_blank" rel="noopener nofollow">
+                    <i class="fab fa-facebook fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
+                </a>
+            </li>
+            <li class="ms-4">
+                <a href="https://codeinstitute.net/global/" aria-label="Website" target="_blank"
+                    rel="noopener nofollow">
+                    <i class="fa-solid fa-globe fa-2x p-2 icon-white nav-link-index" style="text-decoration: none;"></i>
+                </a>
+            </li>
+        </ul>
         </div>
     </footer>
 </body>
