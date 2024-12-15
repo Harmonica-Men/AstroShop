@@ -315,7 +315,7 @@ p {
     top: 0;
     left: 0;
     position: relative;
-    background: white;
+    background: var(--bs-body-bg);
     z-index: -1;
 }
 
@@ -370,7 +370,7 @@ a.category-badge>span.badge:hover {
     width: 20px;
     height: 20px;
     z-index: 1000;
-    background-color: white;
+    background-color: var(--bs-body-bg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -384,7 +384,6 @@ a.category-badge>span.badge:hover {
     /* Light gray background on hover */
     transform: scale(1.1);
     /* Slightly enlarge on hover */
-
 }
 
 .menu__btn span {
@@ -423,7 +422,7 @@ a.category-badge>span.badge:hover {
 .menu__btn:hover span,
 .menu__btn:hover span::before,
 .menu__btn:hover span::after {
-    background-color: #007bff;
+    background-color: var(--accent-color);
     /* Change bar color on hover */
 }
 
@@ -467,7 +466,7 @@ a.category-badge>span.badge:hover {
 }
 
 .font-head {
-    color: white;
+    color: var(--bs-body-bg);
     font-size: 75px;
 }
 
@@ -483,7 +482,7 @@ a.category-badge>span.badge:hover {
 
 /* Add hover effect for the entire link */
 .hover-effect:hover {
-    color: #007bff;
+    color: var(--accent-color);
     /* Change text/icon color */
     background-color: rgba(0, 123, 255, 0.1);
     /* Subtle background change */
@@ -502,23 +501,23 @@ a.category-badge>span.badge:hover {
 .hover-effect:hover i {
     transform: scale(1.2);
     /* Slightly enlarge the icon on hover */
-    color: #0056b3;
+    color: var(--accent-color);
     /* Optional: Change icon color on hover */
 }
 
 .hover-bg {
-    background-color: white;
+    background-color: var(--bs-body-bg);
     /* Default background color */
-    color: black;
+    color: --main-text-color-invers;
     /* Default text color */
     transition: background-color 0.3s ease, color 0.3s ease;
     /* Smooth transition */
 }
 
 .hover-bg:hover {
-    background-color: black;
+    background-color: var(--main-text-color-invers);
     /* Background color on hover */
-    color: white;
+    color: var(--bs-body-bg);
     /* Text color on hover */
 }
 
@@ -535,8 +534,8 @@ a.category-badge>span.badge:hover {
         left: -100%;
         width: 300px;
         height: 100%;
-        background-color: white;
-        box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+        background-color: var(--bs-body-bg);
+        box-shadow: 2px 2px 6px var(--bs-body-bg-transparent);
         z-index: 999;
         transition: left 0.25s ease-in-out;
     }
@@ -569,7 +568,7 @@ a.category-badge>span.badge:hover {
     .hamburger-menu {
         display: block;
         padding: 5px;
-        background-color: white;
+        background-color: var(--bs-body-bg);
     }
 
     .table-responsive {
@@ -594,9 +593,7 @@ a.category-badge>span.badge:hover {
         /* Adjust font size for smaller screens */
         padding: 8px;
         /* Reduce padding */
-    }
-
-    
+    }    
 
     h1,
     h2 {

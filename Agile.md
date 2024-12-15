@@ -47,7 +47,6 @@ Having created the user stories, I used **MoSCoW prioritisation** to ensure that
 
 This method is beneficial as it allows for clear communication about what will be delivered in each iteration. It ensures that essential features are prioritised, while also managing expectations by clearly defining what will not be included. By using MoSCoW prioritisation, I was able to focus on delivering the highest value to users and stakeholders first, while still maintaining the flexibility to address lower-priority features later in the project.
 
-
 [Table Of Contents](#table-of-contents)
 
 ## Milestones 
@@ -71,8 +70,6 @@ The project was divided into three milestones, each containing the corresponding
   - EPIC 5 (Testing and Validations) 
 
 ## User Stories and Epics
-
-### User Stories and Epics  
 
 Astro Shop is designed for individuals passionate about astronomy and related subjects/objects.  
 
@@ -144,9 +141,9 @@ Below is an example of how the user stories where structured for this project.
 - [EPIC 2: Registration and User Accounts](https://github.com/users/Harmonica-Men/projects/12?pane=issue&itemId=90498621&issue=Harmonica-Men%7CAstroShop%7C23)
 - [EPIC 3: Sorting and Searching](https://github.com/users/Harmonica-Men/projects/12?pane=issue&itemId=90498654&issue=Harmonica-Men%7CAstroShop%7C24)
 - [EPIC 4: Purchasing and checkout](https://github.com/users/Harmonica-Men/projects/12?pane=issue&itemId=90498707&issue=Harmonica-Men%7CAstroShop%7C25#:~:text=EPIC%204-,Purchasing%20and%20checkout,-%2325)
-- EPIC5
+- [EPIC 5: Testing and Validations](https://github.com/Harmonica-Men/AstroShop/issues/40)
 
-User Stories with their id:  <br>
+User Stories with their id: <br>
 #### EPIC 0
 - As a software developer, I can set up the VS Code IDE on my local machine, so that I can efficiently develop and debug my projects. [#31](https://github.com/Harmonica-Men/AstroShop/issues/31)
 - As a software developer, I want to set up a GitHub repository for our new project, so that the team can collaborate on the codebase efficiently and maintain version control. [#30](https://github.com/Harmonica-Men/AstroShop/issues/30)
@@ -176,6 +173,10 @@ User Stories with their id:  <br>
 
 #### EPIC 4
 - As a shopper I can be able to view the total of my purchases at any time easily so that I void spending too much.[#6](https://github.com/Harmonica-Men/AstroShop/issues/6)
+
+#### EPIC 5
+- As a software developer, I want to write unit tests and integration tests for critical functionality, So that I can ensure the reliability and correctness of the application and catch issues early in the development cycle.[#38](https://github.com/Harmonica-Men/AstroShare-Blog/issues/38)
+- As a software developer I want to set up continuous integration (CI) So that I can automate tests and streamline manual testing processes to improve software quality and reduce the time spent on manual checks. [#39](https://github.com/Harmonica-Men/AstroShare-Blog/issues/39)
 
 
 [Table Of Contents](#table-of-contents)

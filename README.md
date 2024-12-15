@@ -988,14 +988,10 @@ For instance, on smaller screens, such as smartphones, we adjusted the distribut
 | Update User And Shipping Profile – template                     |                                                            |                                                                                           |       |
 | Click “Save Changes”                                            | Should navigate to “Products” page                         | Redirect to “Products” page                                                               | PASS  |
 
-
 </details>
 <br>
 
 [Table Of Contents](#table-of-contents)
-
-
-
 
 ### Browser Compatibility
 
