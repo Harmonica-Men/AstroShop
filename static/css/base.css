@@ -508,9 +508,9 @@ a.category-badge>span.badge:hover {
 .hover-bg {
     background-color: var(--bs-body-bg);
     /* Default background color */
-    color: --main-text-color-invers;
+    color: var(--main-text-color-invers);
     /* Default text color */
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: var(--bs-body-bg-transparent) 0.3s ease, color 0.3s ease;
     /* Smooth transition */
 }
 

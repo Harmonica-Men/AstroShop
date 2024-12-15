@@ -14,16 +14,15 @@
     </div>
 </header>
 
-<section class="container-sub" style="background: url('{% static image_url %}') no-repeat fixed top right / cover;">
-    <div class="d-flex justify-content-center align-items-center"
-        style="min-height: calc(100vh - 130px); padding: 2rem;">
-        <div class="steps--background-white rounded p-4 text-center" style="max-width: 600px; width: 100%;">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: calc(60vh);">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="p-5 shadow-lg" style="width: 100%; max-width: 400px;">
             <h1 class="mb-4">{{ message }}</h1>
             <p class="mb-4"><strong>For Subscribing</strong></p>            
                 <strong><a href="/" class="btn btn-secondary">Return to homepage</a></strong>
             </div>
         </div>
     </div>
-</section>
+</div>
 
 {% endblock %}
