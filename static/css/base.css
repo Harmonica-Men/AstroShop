@@ -13,47 +13,57 @@
     --secondary-color-highlight: #FFC400; /* Highlight color for hover effects */
 }
 
+/* Set the height of the HTML element to 100% and remove default margin and padding */
 html {
     height: 100%;
     margin: 0; 
     padding: 0; 
 }
 
+/* Style the body to have a full-page background, custom font, and prevent horizontal scrolling */
 body {
     background-size: cover;
-    color: var(--bs-body-bg);
-    font-family: var(--bs-body-font-family);
+    color: var(--attrib-color);
+    font-family: 'Lato';
     margin: 0; 
     padding: 0;
     overflow-x: hidden; 
 }
 
+/* Adds spacing below each paragraph element */
 p {
     margin-bottom: 1rem;
 }
 
+/* Styling for category links */
 .category-links a {
     text-decoration: none; 
     color: var(--main-text-color); 
-    transition: color 0.3s ease, transform 0.2s ease;
+    transition: color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
 }
 
 .category-links a:hover {
-    color: var(--secondary-color-highlight);
-    text-decoration: underline;
-    transform: scale(1.10);
+    color: var(--secondary-color-highlight); /* Change color on hover (golden) */
+    text-decoration: underline; 
+    transform: scale(1.10); /* Slightly enlarge the text on hover */
 }
 
+/* Styling for product images */
 .product-image {
     max-width: 400px;
+    /* Cap the image width */
     height: auto;
+    /* Maintain aspect ratio */
     margin: 0 auto;
+    /* Center the image horizontally */
     display: block;
+    /* Ensure proper layout */
 }
 
+/* Styling for navigation links on the index page */
 .nav-link-index:hover {
-    color: #FFD700 !important;
-    text-decoration: underline;
+    color: var(--secondary-color-highlight) !important; /* Change text color to gold */
+    text-decoration: underline; /* Add underline */
     transform: scale(1.1); /* Slightly enlarge the item */
     transition: color 0.3s ease, transform 0.2s ease; /* Smooth transition */
 }
@@ -64,18 +74,24 @@ p {
     transition: color 0.3s ease, transform 0.2s ease; /* Add smooth effect to normal state */
 }
 
+/* Style the box around the link */
 .cart-box {
     display: inline-block;
     padding: 10px;
-    border: 1px solid var(--attrib-color);
+    border: 1px solid var(--primary-color);
+    /* Box border color */
     border-radius: 0px;
-    background-color: var(--bs-body-bg);
+    background-color: #f8f9fa;
+    /* Background color */
     transition: background-color 0.3s, border-color 0.3s;
 }
 
+/* Hover effect */
 .cart-box:hover {
-    background-color: var(--bs-body-bg);
-    border-color: var(--primary-color-highlight);
+    background-color: #e9ecef;
+    /* Darker background on hover */
+    border-color: #aaa;
+    /* Darker border on hover */
 }
 
 .cart-box .nav-link {
@@ -96,42 +112,53 @@ p {
     color: var(--main-text-color-invers);
 }
 
+/* Badge styling for the cart link */
 .cart-link:hover .badge {
     background-color: var(--main-text-color-invers);
     color: var(--main-text-color);
 }
 
+/* Styling for the AstroShop container */
 .astroshop-container {
     position: relative;
     width: 100%;
 }
 
+/* Styling for the AstroShop image container */
 .astroshop-image {
     position: relative;
     width: 100%;
-    height: 600px;    
+    height: 600px;
+    /* Set a specific height for the image */
     overflow: hidden;
 }
 
+/* Styling for images inside the AstroShop image container */
 .astroshop-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;    
+    object-fit: cover;
+    /* Ensures the image covers the area without distortion */
 }
 
+/* Styles for centering text over an image with a semi-transparent background */
 .image-text-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);    
+    transform: translate(-50%, -50%);
+    /* Center the text inside the image */
     color: var(--main-text-color);
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);    
+    background-color: var(--bs-body-box-shadow);
+    /* Semi-transparent background */
     padding: 20px;
     border-radius: 8px;
-    width: 80%;    
+    width: 80%;
+    /* Optional: Limit the width of the text */
 }
 
+/* Styling for paragraph text inside the overlay */
 .image-text-overlay p {
     text-align: left;
     margin: 0;
@@ -139,17 +166,18 @@ p {
     color: var(--bs-body-bg);
 }
 
+/* Shop Now button styling */
 .shop-now-button {
     font-size: 1.25rem;    
     max-width: 333px;
     min-width: 260px;
     margin: 0 auto;
-    background: var(--main-text-color);
+    background: var(--bs-body-bg);
     color: var(--main-text-color-invers);    
 }
 
 /* ------------------------------- bootstrap toasts */
-
+/* Styling for message containers (toast notifications) */
 .message-container {
     position: fixed;
     top: 72px;
@@ -157,14 +185,17 @@ p {
     z-index: 99999999999;
 }
 
+/* Toast-specific customizations */
 .custom-toast {
     overflow: visible;
 }
 
+/* Toast decoration (e.g., separator) */
 .toast-capper {
     height: 2px;
 }
 
+/* Responsive styling for smaller devices */
 @media (max-width: 768px) {
     .image-text-overlay p {
         font-size: 0.8rem;
@@ -200,6 +231,7 @@ p {
     color: var(--main-text-color-invers);
 }
 
+/* Styles for consistent icon sizing (based on Bulma framework) */
 .icon-white {
     color: var(--main-text-color);
     transition: color 0.3s ease;
@@ -207,7 +239,7 @@ p {
 }
 
 .icon-white:hover {
-    color: var(--bs-body-bg);
+    color: #ccc;
     /* Light gray on hover */
 }
 
@@ -228,21 +260,22 @@ p {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Apply a line-through (strikethrough) style */
 .strike-through {
     text-decoration: line-through;
 }
 
+/* Adjust input widths for specific containers */
 .wider-input input {
     width: 120%;
 }
-
 
 .fixed-width-label {
     width: auto;
 }
 
 .transparent-gray-bg {
-    background-color: var(--bs-body-bg-transparent);
+    background-color: rgba(128, 128, 128, 0.75);
 }
 
 .shrink-image {
@@ -251,7 +284,7 @@ p {
 
 .btn-black {
     background: var(--main-text-color-invers);
-    color: white;
+    color: var(--main-text-color);
 }
 
 .shop-now-button:hover,
@@ -282,12 +315,12 @@ p {
     top: 0;
     left: 0;
     position: relative;
-    background: var(--main-text-color);
+    background: white;
     z-index: -1;
 }
 
 a.category-badge>span.badge:hover {
-    background: #212529 !important;
+    background: var(--primary-color-highlight) !important;
     color: #fff !important;
 }
 
@@ -303,11 +336,13 @@ a.category-badge>span.badge:hover {
     cursor: pointer;
 }
 
-/* Hamburger menu */
+/* ------------------------ HAMBURGER MENU ------------------------ */
+/* Checkbox hack to toggle the hamburger menu */
 #menu__toggle {
     opacity: 0;
 }
 
+/* Hamburger menu button animations */
 #menu__toggle:checked+.menu__btn>span {
     transform: rotate(45deg);
 }
@@ -322,10 +357,12 @@ a.category-badge>span.badge:hover {
     transform: rotate(90deg);
 }
 
+/* Sliding animation for menu box */
 #menu__toggle:checked~.menu__box {
     left: 0 !important;
 }
 
+/* Styling for the hamburger menu button */
 .menu__btn {
     position: fixed;
     top: 15px;
@@ -333,7 +370,7 @@ a.category-badge>span.badge:hover {
     width: 20px;
     height: 20px;
     z-index: 1000;
-    background-color: var(--main-text-color);
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -341,9 +378,13 @@ a.category-badge>span.badge:hover {
     /* Smooth hover transition */
 }
 
+/* Hover effect for the hamburger menu button */
 .menu__btn:hover {
     background-color: #adadad;
+    /* Light gray background on hover */
     transform: scale(1.1);
+    /* Slightly enlarge on hover */
+
 }
 
 .menu__btn span {
@@ -351,8 +392,10 @@ a.category-badge>span.badge:hover {
     width: 20px;
     height: 2px;
     background-color: #333;
+    /* Default bar color */
     position: relative;
     transition: background-color 0.3s ease;
+    /* Smooth color transition */
 }
 
 .menu__btn span::before,
@@ -362,25 +405,32 @@ a.category-badge>span.badge:hover {
     width: 20px;
     height: 2px;
     background-color: #333;
+    /* Default bar color */
     transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Smooth hover transition */
 }
 
 .menu__btn span::before {
     top: -6px;
+    /* Position the top bar */
 }
 
 .menu__btn span::after {
     top: 6px;
+    /* Position the bottom bar */
 }
 
 .menu__btn:hover span,
 .menu__btn:hover span::before,
 .menu__btn:hover span::after {
-    background-color: var(--accent-color);
+    background-color: #007bff;
+    /* Change bar color on hover */
 }
 
+/* Optional: Animation effect for a more dynamic hover */
 .menu__btn:hover span::before {
     transform: translateY(2px);
+    /* Slight movement for top bar */
 }
 
 
@@ -398,13 +448,14 @@ a.category-badge>span.badge:hover {
     box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
     transition-duration: .25s;
     z-index: 999;
+    /* Ensure menu appears above other content */
 }
 
 .menu__item {
     display: block;
     padding: 12px 24px;
     color: #333;
-    font-family: var(--bs-body-font-family);
+    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 600;
     text-decoration: none;
@@ -416,7 +467,7 @@ a.category-badge>span.badge:hover {
 }
 
 .font-head {
-    color: var(--main-text-color);
+    color: white;
     font-size: 75px;
 }
 
@@ -430,31 +481,45 @@ a.category-badge>span.badge:hover {
     margin-bottom: 0;
 }
 
+/* Add hover effect for the entire link */
 .hover-effect:hover {
-    color: var(--accent-color);
+    color: #007bff;
+    /* Change text/icon color */
     background-color: rgba(0, 123, 255, 0.1);
+    /* Subtle background change */
     border-radius: 8px;
+    /* Add rounded corners if needed */
     transition: background-color 0.3s, color 0.3s;
+    /* Smooth hover transition */
 }
 
+/* Specific hover effect for the icon */
 .hover-effect i {
     transition: transform 0.3s;
+    /* Smooth scaling effect */
 }
 
 .hover-effect:hover i {
     transform: scale(1.2);
-    color: var(--accent-color);    
+    /* Slightly enlarge the icon on hover */
+    color: #0056b3;
+    /* Optional: Change icon color on hover */
 }
 
 .hover-bg {
-    background-color: var(--main-text-color);
-    color: var(--main-text-color-invers);
+    background-color: white;
+    /* Default background color */
+    color: black;
+    /* Default text color */
     transition: background-color 0.3s ease, color 0.3s ease;
+    /* Smooth transition */
 }
 
 .hover-bg:hover {
-    background-color: var(--main-text-color-invers);
-    color: var(--main-text-color);
+    background-color: black;
+    /* Background color on hover */
+    color: white;
+    /* Text color on hover */
 }
 
 .account-cart {
@@ -462,6 +527,7 @@ a.category-badge>span.badge:hover {
     z-index: 999;
 }
 
+/* For screens smaller than 500px */
 @media (max-width: 500px) {
     .menu__box {
         position: fixed;
@@ -469,7 +535,7 @@ a.category-badge>span.badge:hover {
         left: -100%;
         width: 300px;
         height: 100%;
-        background-color: var(--main-text-color);
+        background-color: white;
         box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
         z-index: 999;
         transition: left 0.25s ease-in-out;
@@ -503,7 +569,7 @@ a.category-badge>span.badge:hover {
     .hamburger-menu {
         display: block;
         padding: 5px;
-        background-color: var(--main-text-color);
+        background-color: white;
     }
 
     .table-responsive {
@@ -511,7 +577,7 @@ a.category-badge>span.badge:hover {
         /* Enable horizontal scrolling */
         -webkit-overflow-scrolling: touch;
         /* Smooth scrolling on touch devices */
-        border: 1px solid var(--bs-body-bg);
+        border: 1px solid #ddd;
         /* Optional: Add border for better visibility */
     }
 
@@ -528,7 +594,9 @@ a.category-badge>span.badge:hover {
         /* Adjust font size for smaller screens */
         padding: 8px;
         /* Reduce padding */
-    } 
+    }
+
+    
 
     h1,
     h2 {
@@ -612,8 +680,8 @@ a.category-badge>span.badge:hover {
         margin: 0;
         padding: 80px 0;
         list-style: none;
-        background-color: var(--attrib-color);
-        box-shadow: 2px 2px 6px var(--bs-body-box-shadow);
+        background-color: #ECEFF1;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
         transition: left 0.25s ease;
         /* Smooth transition */
         z-index: 999;
@@ -623,8 +691,8 @@ a.category-badge>span.badge:hover {
     .menu__item {
         display: block;
         padding: 12px 24px;
-        color: var(--attrib-color);
-        font-family: var(--bs-body-font-family);
+        color: #333;
+        font-family: 'Roboto', sans-serif;
         font-size: 20px;
         font-weight: 600;
         text-decoration: none;
@@ -632,7 +700,7 @@ a.category-badge>span.badge:hover {
     }
 
     .menu__item:hover {
-        background-color: var(--primary-color-highlight);
+        background-color: #CFD8DC;
     }
 }
 
