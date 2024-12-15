@@ -48,6 +48,18 @@ p {
     transform: scale(1.10); /* Slightly enlarge the text on hover */
 }
 
+/* Ensure all Bootstrap containers, rows, and columns have no gutters */
+.row.g-0,
+.container {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.container-fluid {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 /* Styling for product images */
 .product-image {
     max-width: 400px;
