@@ -36,8 +36,7 @@ A live version of the project can be accessed here: [AstroShop](https://astrosho
   - [Fonts](#fonts)
   - [Icons](#icons)      
   - [Technologies Used](#technologies-used)
-    - [Wireframes](#wireframes)
-      - [Wireframes for Homepage & Frontpage](#wireframes-for-homepage--frontpage)
+    - [Wireframes](#wireframes)      
     - [Favicon](#favicon)
     - [Languages](#languages)
     - [Frameworks & Software](#frameworks--software)
@@ -277,7 +276,7 @@ As for colors I decided to use Color-Hunt. https://colorhunt.co
 
 - **Main Text Color:** `#FFFFFF` - Tis pure white, the brightest and most neutral color, representing simplicity, cleanliness, and clarity.
 - <img src="static/images/readme-images/FFFFFF.webp" width="500px" height="50px">
-- **Secondary Text Color:** `#000000` - (--main-text-color-invers) Is pure black, the darkest color, symbolizing elegance, power, and sophistication.
+- **Secondary Text Color:** `#000000` Is pure black, the darkest color, symbolizing elegance, power, and sophistication.
 - <img src="static/images/readme-images/000000.webp" width="500px" height="50px">
 
 
