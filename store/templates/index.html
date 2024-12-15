@@ -113,24 +113,24 @@
         </div>
     </header>
 
-    
-        <div class="astroshop-image">
-            <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1732211978/image_shop_uuurk0.webp"
-                class="img-fluid rounded-0" alt="this is our store ...">
-            <div class="image-text-overlay rounded-0">
-                <p>Welcome to the Astroshop website. In our Astroshop, you'll find the largest range of
-                    astronomical products in Belgium at very favorable prices.</p>
-                <br>
-                <p><strong>Opening Hours:</strong> Tuesday and Friday from 19:30 to 22:00, and Wednesday from
-                    14:00
-                    to 16:00.</p>
-                <br>
-                <p>Visits to the Astroshop are by appointment during opening hours, or at another time by
-                    contacting
-                    us at GSM 0999/99.55.99</p>
-            </div>
+
+    <div class="astroshop-image">
+        <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1732211978/image_shop_uuurk0.webp"
+            class="img-fluid rounded-0" alt="this is our store ...">
+        <div class="image-text-overlay rounded-0">
+            <p>Welcome to the Astroshop website. In our Astroshop, you'll find the largest range of
+                astronomical products in Belgium at very favorable prices.</p>
+            <br>
+            <p><strong>Opening Hours:</strong> Tuesday and Friday from 19:30 to 22:00, and Wednesday from
+                14:00
+                to 16:00.</p>
+            <br>
+            <p>Visits to the Astroshop are by appointment during opening hours, or at another time by
+                contacting
+                us at GSM 0999/99.55.99</p>
         </div>
-    
+    </div>
+
 
     <div class="my-5 d-flex justify-content-center">
         <a href="{% url 'products' %}" 
@@ -140,51 +140,43 @@
         </a>
     </div>
 
-    <div class="d-flex flex-wrap justify-content-between my-5">
+    <div class="d-flex flex-wrap justify-content-center align-items-center my-5">
         <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
             <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732212725/baader_bkifdw.webp" alt="baader"
-                class="img-fluid w-100 rounded">
+                class="img-fluid mx-auto d-block rounded">
         </div>
         <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
             <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732211977/bresser_j3notr.webp" alt="bresser"
-                class="img-fluid w-100 rounded">
+                class="img-fluid mx-auto d-block rounded">
         </div>
         <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
             <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732211977/omegon_yzisbe.webp" alt="omegon"
-                class="img-fluid w-100 rounded">
+                class="img-fluid mx-auto d-block rounded">
         </div>
         <div class="image-container flex-fill m-2" style="flex: 1 1 22%; max-width: 22%;">
             <img src="https://res.cloudinary.com/dtbji5cfz/image/upload/v1732211977/ts-optics_x5kosb.webp"
-                alt="ts-optics" class="img-fluid w-100 rounded">
+                alt="ts-optics" class="img-fluid mx-auto d-block rounded">
         </div>
     </div>
 
-    <div class="d-flex row g-0 justify-content-center mb-2">
-        <div class="col-12 text-center">
-            <label for="id_email" class="font-weight-bold">Subscribe to our Newsletter</label>
-        </div>
-        <form method="POST" action="{% url 'subscribe' %}"
-            class="col-12 d-flex align-items-center justify-content-center">
+    <div class="d-flex flex-column align-items-center justify-content-center mb-2">
+        <label for="id_email" class="font-weight-bold text-center mb-2">Subscribe to our Newsletter</label>
+        <form method="POST" action="{% url 'subscribe' %}" class="d-flex align-items-center justify-content-center">
             {% csrf_token %}
-            <input type="email" class="form-control" id="id_email" name="email" placeholder="name@example.com" required
-                style="max-width: 300px;">
+            <input type="email" class="form-control mx-2" id="id_email" name="email" placeholder="name@example.com" 
+                   required style="max-width: 300px;">
             <button type="submit" value="Submit" class="btn-sm btn-light" title="Subscribe">
                 <span>Subscribe</span>
             </button>
         </form>
     </div>
 
-    <footer class="py-1 bg-dark" style="background-color: rgba(0, 0, 0, 0.5);">
-        <div class="d-flex align-items-center justify-content-between py-1 mx-4">
-            <div class="container my-1">
-                <h5 class="text-white"><strong> Astroshop.com</strong></h5>
-                <i class="fa-solid fa-phone text-white"><span style="font-family: 'Lato';">&nbsp;0499 99 11 99
-                    </span></i>
-                <br>
-                <i class="fa-solid fa-envelope text-white"><span
-                        style="font-family: 'Lato';">&nbsp;info@astroshop.com</span>
-                </i>
-            </div>
+    <footer class="py-1 bg-dark d-flex flex-column align-items-center justify-content-center">
+        <div class="text-center text-white">
+            <h5><strong>Astroshop.com</strong></h5>
+            <p><i class="fa-solid fa-phone"></i> &nbsp;0499 99 11 99</p>
+            <p><i class="fa-solid fa-envelope"></i> &nbsp;info@astroshop.com</p>
+        </div>
 
             <div class="container text-white p-2" style="font-size: small">
                 <div class="row no-gutters">

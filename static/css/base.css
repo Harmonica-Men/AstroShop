@@ -129,7 +129,6 @@ p {
     background-color: var(--main-text-color-invers);
     color: var(--main-text-color);
 }
-
 /* Styling for the AstroShop container */
 .astroshop-container {
     position: relative;
@@ -168,6 +167,26 @@ p {
     border-radius: 8px;
     width: 80%;
     /* Optional: Limit the width of the text */
+}
+
+/* Flexbox helper classes */
+.full-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Centering text inside containers */
+.text-center-container {
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* Custom alignment for images */
+.image-container img {
+    display: block;
+    margin: auto;
 }
 
 /* Styling for paragraph text inside the overlay */
