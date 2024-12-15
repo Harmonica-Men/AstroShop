@@ -49,16 +49,11 @@ p {
 }
 
 /* Ensure all Bootstrap containers, rows, and columns have no gutters */
-.row.g-0,
-.container {
+.row.g-0 {
     margin: 0 !important;
     padding: 0 !important;
 }
 
-.container-fluid {
-    margin: 0 !important;
-    padding: 0 !important;
-}
 
 /* Styling for product images */
 .product-image {
