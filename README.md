@@ -8,7 +8,6 @@ A live version of the project can be accessed here: [AstroShop](https://astrosho
 
 ![Am I Responsive](static/images/readme-images/amiresponsive.webp)
 
-
 # Table Of Contents
   - [Astro Shop](#astro-shop)
   - [E-commerce Applications for Astro Shop](#e-commerce-applications-for-astro-shop)
@@ -161,31 +160,6 @@ Astro Shop can offer two payment models:
 ## UX & Agile
 - The complete User Experience and Agile methology are explained to this link [here](Agile.md)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Development Tools
 
 - **Bootstrap:** Bootstrap is a popular front-end development framework that helps developers create responsive, mobile-first websites quickly and efficiently. It provides a collection of pre-designed HTML, CSS, and JavaScript components like buttons, forms, navigation bars, and grid layouts. By using Bootstrap, developers can build modern, visually consistent web pages without writing extensive custom code. It's widely appreciated for its ease of use, customization options, and ability to adapt to various screen sizes, making it a go-to tool for fast web development.
@@ -241,9 +215,6 @@ The **Front Page** is designed to give a quick overview of a list of 5 blog post
 To ensure a seamless experience across devices, Bootstrap is used to make the Home- & Frontpage fully responsive. On mobile devices, the table features horizontal scrolling to prevent content compression, maintaining clarity and usability. Additionally, each table row highlights with a colour change on hover, making it easier for users to track their interactions as they navigate.
 
 [Table Of Contents](#table-of-contents)
-
-
-
 
 ## Colors
 
@@ -1039,28 +1010,28 @@ I have conducted extensive testing to ensure that the website is fully compatibl
 <details>
   <br>
   <summary>Click to view Google Browser Result</summary>
-  <img src="static/images/readme-images/AstroBlog-Google.png" style="display: block; margin: auto;" alt="Google Browser Test">
+  <img src="static/images/readme-images/chrome_test.png" style="display: block; margin: auto;" alt="Google Browser Test">
   <br>
 </details>
 <br>
 <details>
   <br>
   <summary>Click to view Edge Browser Result</summary>
-  <img src="static/images/readme-images/AstroBlog-Edge.png" style="display: block; margin: auto;" alt="Edge Browser Test">
+  <img src="static/images/readme-images/edge_test.png" style="display: block; margin: auto;" alt="Edge Browser Test">
   <br>
 </details>
 <br>
 <details>
   <br>
   <summary>Click to view FireFox Browser Result</summary>
-  <img src="static/images/readme-images/AstroBlog-Firefox.png" style="display: block; margin: auto;" alt="FireFox Browser Test">
+  <img src="static/images/readme-images/firefox_test.png" style="display: block; margin: auto;" alt="FireFox Browser Test">
   <br>
 </details>
 <br>
 <details>
   <br>
   <summary>Click to view Opera Browser Result</summary>
-  <img src="static/images/readme-images/AstroBlog-Opera.png" style="display: block; margin: auto;" alt="Opera Browser Test">
+  <img src="static/images/readme-images/opera_test.png" style="display: block; margin: auto;" alt="Opera Browser Test">
   <br>
 </details>
 <br>
