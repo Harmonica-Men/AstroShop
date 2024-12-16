@@ -5,13 +5,13 @@ This is a confirmation of your order at Astro Shop.
 Order ID: {{ order_id }}
 
 Shipping Address:
-{{ shipping_full_name }}
+{{ shipping_full_name }} 
 {{ shipping_address1 }}
 {{ shipping_address2 }}
 {{ shipping_city }}
 {{ shipping_state }}
-{{ shipping_zipcode }}
-{{ shipping_country }}
+{{ shipping_country }} {{ shipping_zipcode }}
+
 
 Total Price: {{ total_price }}
 

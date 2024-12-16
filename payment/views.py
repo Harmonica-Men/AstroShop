@@ -187,17 +187,7 @@ def delete_order(request, order_id):
     return redirect('orders')
 
 
-def send_bill(
-        request,
-        user,
-        shipping_address1,
-        shipping_address2,
-        shipping_city,
-        shipping_state,
-        shipping_zipcode,
-        shipping_country,
-        total_price, 
-        order_id):
+def send_bill(request, user, shipping_address1, shipping_address2, shipping_city, shipping_state, shipping_zipcode, shipping_country, total_price, order_id):
     """
     Sends an order confirmation email to the user and clears the shopping cart.
     """
@@ -205,6 +195,10 @@ def send_bill(
     message = render_to_string('confirmation_emails/confirmation_email_order.txt', {
         'user': user.get_full_name() if user.first_name and user.last_name else user.username,
         'shipping_address1': shipping_address1,
+        'shipping_address2': shipping_address2,
+        'shipping_city': shipping_city,
+        'shipping_zipcode': shipping_zipcode,
+        'shipping_country': shipping_country,
         'total_price': f"{total_price:.2f} EUR",
         'order_id': order_id,
         'domain': get_current_site(request).domain,
@@ -331,6 +325,11 @@ def billing_info(request):
                 request,
                 user,
                 my_shipping['shipping_address1'],
+                my_shipping['shipping_address2'],
+                my_shipping['shipping_city'],
+                my_shipping['shipping_state'],
+                my_shipping['shipping_zipcode'],
+                my_shipping['shipping_country'],
                 totals,
                 create_order.id,
             )
