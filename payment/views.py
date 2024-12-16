@@ -187,7 +187,17 @@ def delete_order(request, order_id):
     return redirect('orders')
 
 
-def send_bill(request, user, shipping_address1, total_price, order_id):
+def send_bill(
+        request,
+        user,
+        shipping_address1,
+        shipping_address1,
+        shipping_city,
+        shipping_state,
+        shipping_zipcode,
+        shipping_country,
+        total_price, 
+        order_id):
     """
     Sends an order confirmation email to the user and clears the shopping cart.
     """

@@ -15,7 +15,7 @@ Shipping Address:
 
 Total Price: {{ total_price }}
 
-Thank you for your order! 
+Thank you for your order!!
 
 (Your order will executed after the payment)
 
