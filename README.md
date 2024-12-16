@@ -28,8 +28,7 @@ A live version of the project can be accessed here: [AstroShop](https://astrosho
   - [Development Tools](#development-tools)
   - [CSS Management for Project Structure](#css-management-for-project-structure)
     - [Index Page Overview](#index-page-overview)
-    - [Front Page Overview](#front-page-overview)
-    - [Mobile first design](#mobile-first-design)
+    - [Product Page Overview](#product-page-overview)
   - [Colors](#colors)
     - [Color Customization Process](#color-customization-process)  
   - [Fonts](#fonts)
@@ -177,18 +176,167 @@ By consolidating all the styles into one file, I make managing themes straightfo
 
 Additionally, having a single CSS file helps me avoid complications related to injecting styles through Bootstrap, ensuring that the CSS variables function as intended throughout the application.
 
-
 ### Index Page Overview
 
+#### **Header**
+- **Account Management**:  
+  Includes options like:
+  - "My Profile"
+  - "My Orders"
+  - "Login/Register" (depending on authentication status)  
+  Admin users have additional options:
+  - "Add Product"
+  - "View Orders"
+  - "Shipped/Unshipped Orders"
 
+- **Shopping Cart**:  
+  A quick link to view cart contents.
 
+- **Store Branding**:  
+  Displays the store's name **"ASTRO SHOP"** prominently.
 
+- **Categories**:  
+  Links to product categories like:
+  - **Books**
+  - **Toys**
+  - **Telescopes**
+  - **Globes**
+  - **Binoculars**
+  - **Weather Stations**
+  - **Sale!**  
+  A link for "All Products" is also included.
+
+#### **Main Banner**
+- A large banner with:
+  - An image introducing the store.
+  - A welcoming message.
+  - Store hours:  
+    **Tuesday and Friday**: 19:30–22:00  
+    **Wednesday**: 14:00–16:00  
+  - Appointment contact details: **GSM 0999/99.55.99**
+
+#### **Call-to-Action**
+- A prominent **"SHOP NOW" button** encouraging users to browse the product catalog.
+
+#### **Featured Products Section**
+- Displays images of four featured product brands:
+  - **Baader**
+  - **Bresser**
+  - **Omegon**
+  - **TS-Optics**
+
+#### **Newsletter Subscription**
+- A subscription form to sign up for the Astro Shop newsletter:
+  - Input field for email.
+  - A "Subscribe" button.
+
+#### **Footer**
+#### **Contact Information**
+- Phone: **0499 99 11 99**
+- Email: **info@astroshop.com**
+
+#### **Client Services**
+- Links to pages like:
+  - "About"
+  - "Privacy Policy"
+  - "General Conditions"
+  - "Disclaimer"
+
+#### **User Account**
+- Quick links to:
+  - "Shopping Cart"
+  - "Login"
+  - "Register"
+
+#### **Social Media Links**
+- Icons linking to:
+  - **Twitter**
+  - **Instagram**
+  - **Facebook**
+  - An external website.
+
+#### **Styling**
+- Built with:
+  - **Bootstrap 5**
+  - **Font Awesome icons**
+  - A custom stylesheet for branding.
+- Fonts from **Google Fonts (Lato)**.
+
+[Table Of Contents](#table-of-contents)
 
 ### Product Page Overview
 
+#### Header Section
+- Displays a **dark background** with the page title "Product Details".
+- Includes a short description beneath the title.
 
+#### Sorting Dropdown
+- Provides a dropdown for sorting products based on options like:
+  - **Name** (A-Z, Z-A)
+  - **Price** (low to high, high to low)
+- The selected sorting option is visually highlighted with a border color change.
 
+#### Products Display
+- Loops over `products`, displaying each product as a **card**.
+- If the product has a category, it displays a link to filter by that category.
+- If the product is on sale:
+  - A **"Sale" badge** appears.
+  - The regular price is shown with a **line-through**, and the **sale price** is displayed.
+- Displays a **product image** if available, otherwise shows a default "no image" placeholder.
+- **Responsive layout** with dividers appearing at different screen widths.
 
+#### Back-to-Top Button
+- A floating button that scrolls the page back to the top when clicked.
+
+#### JavaScript
+1. **Scroll to Top Button**: 
+  - When the back-to-top button is clicked, the page scrolls to the top.
+    ```javascript
+      $('.btt-link').click(function (e) {
+          window.scrollTo(0, 0);
+      });
+    ```
+2. **Sorting Functionality**:
+   - When the sorting dropdown is changed, the page reloads with the selected sorting options (`sort` and `direction`) applied as query parameters in the URL.
+     ```javascript
+     $('#sort-selector').change(function () {
+         var selector = $(this);
+         var currentUrl = new URL(window.location);
+
+         var selectedVal = selector.val();
+         if (selectedVal != "reset") {
+             var sort = selectedVal.split("_")[0];
+             var direction = selectedVal.split("_")[1];
+
+             currentUrl.searchParams.set("sort", sort);
+             currentUrl.searchParams.set("direction", direction);
+
+             window.location.replace(currentUrl);
+         } else {
+             currentUrl.searchParams.delete("sort");
+             currentUrl.searchParams.delete("direction");
+
+             window.location.replace(currentUrl);
+         }
+     });
+     ```
+
+#### HTML Structure
+
+- **Product Cards:** Each product is wrapped inside a `.card` element, displaying:
+  - A **category tag** (if applicable).
+  - **Sale badge** (if the product is on sale).
+  - **Product image**, with fallback if not available.
+  - **Product name** and **price** (with special styling for sale prices).
+
+- **Responsive Layout:** The product cards adjust based on screen size, using responsive classes (e.g., `col-sm-6 col-md-6 col-lg-4 col-xl-3`).
+
+#### Styling
+- **Sale Badge:** A badge is added to products on sale to highlight them.
+- **Price Formatting:** Regular price has a line-through style when the product is on sale, and the sale price is displayed in bold and black.
+
+#### Other Considerations
+- **Categories Filtering:** Each product category is clickable, which could be used for filtering products by category.
 
 [Table Of Contents](#table-of-contents)
 
@@ -1160,7 +1308,7 @@ For more information about the Creative Commons Attribution-NonCommercial-ShareA
 - Furthermore, I would like to thank Lino Bollansee. I greatly appreciate his frequent comments during the creation of my project.
 - The Code Institute **Boutique Ado** project is a Django e-commerce site walkthrough. It features product management, a shopping cart, Stripe payment integration, user authentication, and responsive design, culminating in deployment to Heroku with PostgreSQL.
 - **John Elder's** Django Wednesdays [E-commerce](https://www.youtube.com/playlist?list=PLCC34OHNcOtpRfBYk-8y0GMO4i1p1zn50) is a tutorial series teaching how to build an e-commerce site using Django. It covers topics like setting up a project, creating product models, handling shopping carts, payment processing, and deploying the site, aimed at beginners.
-- **Hamburger menu** The code for Hamburger menu was retrived and tweaked from this [site](https://alvarotrigo.com/blog/hamburger-menu-css/)
+- **Hamburger menu** The code for the Hamburger menu was retrieved and tweaked from this [site](https://alvarotrigo.com/blog/hamburger-menu-css/)
 
 <br>
 
