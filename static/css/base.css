@@ -24,7 +24,7 @@ html {
 body {
     background-size: cover;
     color: var(--attrib-color);
-    font-family: 'Lato';
+    font-family: var(--bs-body-font-family);
     margin: 0; 
     padding: 0;
     overflow-x: hidden; 
@@ -77,7 +77,6 @@ p {
 
 .nav-link-index {
     text-decoration: none; 
-
     transition: color 0.3s ease, transform 0.2s ease; /* Add smooth effect to normal state */
 }
 
@@ -457,7 +456,6 @@ a.category-badge>span.badge:hover {
     transform: translateY(2px);
     /* Slight movement for top bar */
 }
-
 
 .menu__box {
     display: block;
