@@ -74,8 +74,7 @@ A live version of the project can be accessed here: [AstroShop](https://astrosho
     - [Clone this repository](#clone-this-repository)
     - [Cloudinary](#cloudinary)
     - [Create PostgreSQL using Code Institute Database](#create-a-new-postgresql-code-institute-database)
-    - [Gmail](#gmail)
-  - [Bugs & Fixes](#bugs--fixes)
+    - [Gmail](#gmail)  
   - [License](#license)
   - [Credits](#credits)
 
@@ -157,7 +156,7 @@ Astro Shop can offer two payment models:
 [Table Of Contents](#table-of-contents)
 
 ## UX & Agile
-- The complete User Experience and Agile methology are explained to this link [here](Agile.md)
+- The complete User Experience and Agile methology are explained to this link [here](Agile.md).
 
 ## Development Tools
 
@@ -170,7 +169,7 @@ Astro Shop can offer two payment models:
 ## CSS Management for Project Structure
 
 In my project, I decided to use a single CSS file, base.css, to manage all the styling across the application.
-These variables are defined within styles.css, and ensuring they work correctly is crucial for applying themes consistently across the site.
+These variables are defined within base.css, and ensuring they work correctly is crucial for applying themes consistently across the site.
 
 By consolidating all the styles into one file, I make managing themes straightforward. If I need to switch themes or make adjustments, I only need to modify this single CSS file, which allows for a seamless transition to a new look and feel across the entire application. This approach not only simplifies maintenance but also reinforces my focus on code reuse and consistency.
 
@@ -851,7 +850,7 @@ My Lighthouse validation results have been very promising, with high scores acro
 <br>
 A specific recommendation from Lighthouse was to use the WebP format for images to improve load times. In response, I made sure that all images served through the browser are now in WebP format. However, I also understand that too much compression could negatively impact the user experience, especially on larger screens. So, I made a conscious decision to balance performance with visual quality. After gathering feedback from a diverse group of users, I confirmed that the image quality is well-received across various devices. As a result, I decided to maintain slightly larger image sizes to prioritize a smooth and visually appealing experience, even if it means sacrificing a little bit of performance.
 
-Additionally, Lighthouse suggested reducing the CSS payload, which I’m currently considering. One option I’m exploring is breaking the main styles.css file into smaller files tied to specific widgets. This would allow me to send only the necessary CSS for each page, potentially cutting down the overall size of the CSS file and improving load times.
+Additionally, Lighthouse suggested reducing the CSS payload, which I’m currently considering. One option I’m exploring is breaking the main base.css file into smaller files tied to specific widgets. This would allow me to send only the necessary CSS for each page, potentially cutting down the overall size of the CSS file and improving load times.
 
 While the desktop version scores are very high, the mobile version, although still passing, has some room for improvement. I’m committed to refining these areas to ensure the best possible experience across all devices.
 
@@ -1185,7 +1184,7 @@ This site was deployed to and is currently [hosted on the Heroku platform](https
 10. Add in the *setting.py* the Heroku app URL into ALLOWED HOSTS
 11. Gather all static files of the project by using the command *python3 manage.py collectstatic* in the terminal
 12. Make sure that DEBUG=FALSE in *settings.py*
-13. Create a *Procfile* in the root directory and add *web: gunicorn astroshare. astroshop.wsgi*
+13. Create a *Procfile* in the root directory and add *web: gunicorn shopper.wsgi*
 14. In Heroku enable the automatic deploy or manually deploy the code from the main branch
 
 ### Local Deployment
@@ -1276,10 +1275,6 @@ From codeinstitute every student can maintain up to eight databases to run there
   
 [Table Of Contents](#table-of-contents)
 
-## Bugs & Fixes
-
-- bugs & fixes
-
 ## License
 
 Astro Shop is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
@@ -1308,7 +1303,8 @@ For more information about the Creative Commons Attribution-NonCommercial-ShareA
 - Furthermore, I would like to thank Lino Bollansee. I greatly appreciate his frequent comments during the creation of my project.
 - The Code Institute **Boutique Ado** project is a Django e-commerce site walkthrough. It features product management, a shopping cart, Stripe payment integration, user authentication, and responsive design, culminating in deployment to Heroku with PostgreSQL.
 - **John Elder's** Django Wednesdays [E-commerce](https://www.youtube.com/playlist?list=PLCC34OHNcOtpRfBYk-8y0GMO4i1p1zn50) is a tutorial series teaching how to build an e-commerce site using Django. It covers topics like setting up a project, creating product models, handling shopping carts, payment processing, and deploying the site, aimed at beginners.
-- **Hamburger menu** The code for the Hamburger menu was retrieved and tweaked from this [site](https://alvarotrigo.com/blog/hamburger-menu-css/)
+- **Hamburger menu** The code for the Hamburger menu was retrieved and tweaked from this [site](https://alvarotrigo.com/blog/hamburger-menu-css/).
+- **Chat-GPT** For repetitive tasks.
 
 <br>
 
