@@ -29,7 +29,7 @@
 
 ## Benefits of agile development
 
-As mentioned in the introduction there was a learning curve associated with using agile development for the first time, however there was a received number of benefits associated as well. These benefits include:
+As mentioned in the introduction there was a learning curve associated with using agile development for the second time, however there was a received number of benefits associated as well. These benefits include:
 
  1. Having a plan in place. It was easier to know which task I was working on and found myself getting less distracted as I was carrying out the work associated with the project.
  2. Having a dedicated timeframe for issues to be done. This helped me stay on track in terms of timeframe for the project.
@@ -96,7 +96,7 @@ In this project, story points were used to estimate the relative complexity of e
 
 ### Iterations and Milestones
 
-To organise and manage progress, I divided the project into 7 weekly iterations, each represented by a milestone in GitHub. 
+To organise and manage progress, I divided the project into approx. 6-7 weekly iterations, each represented by a Epic in GitHub. 
 
 - Story Point Allocation: User stories were prioritised and assigned story points to estimate effort. The total story points were divided evenly across the 7 iterations.
 - Adding to Iterations: At the start of each iteration, user stories were added until their total story points matched the planned weekly workload.
@@ -108,7 +108,7 @@ This approach ensured steady progress throughout the project while allowing flex
 
 To manage and track the progress of user stories during the project, I created a Kanban Board board. The board was divided into four columns: **Epics**, **To Do**, **In Progress**, and **Done**.
 
-- Epics: This column contained overarching goals that grouped related user stories together.
+- Epics: This column contained overarching goals that grouped related user stories together. (Backlog)
 - To Do: At the start of each iteration, user stories to be completed were moved here.
 - In Progress: As work began on a user story, it was moved to this column.
 - Done: Completed user stories were moved to this column to indicate they were finished.
@@ -175,9 +175,8 @@ User Stories with their id: <br>
 - As a shopper I can be able to view the total of my purchases at any time easily so that I void spending too much.[#6](https://github.com/Harmonica-Men/AstroShop/issues/6)
 
 #### EPIC 5
-- As a software developer, I want to write unit tests and integration tests for critical functionality, So that I can ensure the reliability and correctness of the application and catch issues early in the development cycle.[#38](https://github.com/Harmonica-Men/AstroShare-Blog/issues/38)
-- As a software developer I want to set up continuous integration (CI) So that I can automate tests and streamline manual testing processes to improve software quality and reduce the time spent on manual checks. [#39](https://github.com/Harmonica-Men/AstroShare-Blog/issues/39)
-
+- As a software developer, I want to write unit tests and integration tests for critical functionality, So that I can ensure the reliability and correctness of the application and catch issues early in the development cycle.[#41](https://github.com/Harmonica-Men/AstroShop/issues/41)
+- As a software developer I want to set up continuous integration (CI) So that I can automate tests and streamline manual testing processes to improve software quality and reduce the time spent on manual checks. [#42](https://github.com/Harmonica-Men/AstroShop/issues/42)
 
 [Table Of Contents](#table-of-contents)
 
@@ -369,7 +368,7 @@ User Stories with their id: <br>
    PayPal sends a confirmation to both the buyer and the merchant, typically via email. This includes transaction details, such as the amount, payer's information, and a unique transaction ID.
 
 2. **Merchant Notification**:  
-   The merchant’s system receives an Instant Payment Notification (IPN) or Webhook, confirming the payment status.
+   The merchant’s system receives an Instant Payment Notification (IPN) or Webhook, confirming the payment status. (Admin Panel)
 
 3. **Order Processing**:  
    The merchant begins processing the order, such as shipping the purchased item or granting access to digital products.

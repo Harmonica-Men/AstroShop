@@ -2,8 +2,7 @@ Dear {{ user }},
 
 This is a confirmation that your payment request has been successfully processed.
 
-Order ID:
-{{ order_id }}
+Order ID: {{ order_id }}
 
 Thank you for shopping with us!
 

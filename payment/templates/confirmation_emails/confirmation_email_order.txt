@@ -8,8 +8,7 @@ Order ID:
 Shipping Address:
 {{ shipping_address1 }}
 
-Total Price:
-{{ total_price }}
+Total Price: {{ total_price }}
 
 Thank you for your order! 
 

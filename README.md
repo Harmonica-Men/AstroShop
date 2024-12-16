@@ -170,7 +170,7 @@ Astro Shop can offer two payment models:
 
 ## CSS Management for Project Structure
 
-In my project, I decided to use a single CSS file, styles.css, to manage all the styling across the application.
+In my project, I decided to use a single CSS file, base.css, to manage all the styling across the application.
 These variables are defined within styles.css, and ensuring they work correctly is crucial for applying themes consistently across the site.
 
 By consolidating all the styles into one file, I make managing themes straightforward. If I need to switch themes or make adjustments, I only need to modify this single CSS file, which allows for a seamless transition to a new look and feel across the entire application. This approach not only simplifies maintenance but also reinforces my focus on code reuse and consistency.
@@ -180,39 +180,15 @@ Additionally, having a single CSS file helps me avoid complications related to i
 
 ### Index Page Overview
 
-The homepage starts with a 'hero section' featuring an embedded video stream in replay, along with a parallax effect designed to captivate visitors. This section offers users the option to engage with the Blog Post.
 
-Following this, the AstroBlog section provides a brief introduction to the purpose of the site, helping visitors quickly understand what the site is about.
 
-To build more interest, I have incorporated an 'Astronomy Picture of the Day' (APOD) section where users and visitors always have a new astronomical item to explore, providing an easy and quick overview of the latest posts.
 
-In a zigzag pattern, the most popular categories are displayed on the homepage. To encourage further engagement with the blog, a 'Latest Contributors' section is also included.
 
-For astronomical enthusiasts, a nice widget is incorporated that tracks the current position of the International Space Station (ISS). When clicking on the 'Go To the ISS' button, a new page appears with an independently generated world map showing the ISS’s location.
+### Product Page Overview
 
-At the bottom of the page, I have included a subscription section where users can join the mailing list to receive newsletters, information, and relevant benefits.
 
-Finally, the page concludes with a footer that reinforces credibility and includes essential links, such as the social media links for the blog.
 
-### Front Page Overview
-The **Front Page** is designed to give a quick overview of a list of 5 blog posts ranked by the date added, with the most recent post at the top of the page.
 
-1. **NavBar**: The 'navbar' has a dual function and can be used by both visitors and authenticated users.
-   - **For Visitors & Users**: can quickly navigate back to the "homepage" by clicking the home icon or to the 'front page blog posts' by clicking the left arrow icon.
-   - **For Visitors**: Visitors can always read posts but cannot participate. They have the option to view posts by category or to join Astro Share Blog by registering.
-   - **For Users**: Users have full CRUD (Create, Read, Update, Delete) functionality for their own posts. The 'Add Post' option appears, and they see 'Logged in as,' giving them the ability to change their profile settings and details.
-
-2. **Blog Post Snippets**: Each blog post is presented as a snippet along with a corresponding image.
-   - **For Visitors**: The `[read more]` link redirects to the article detail page where the full post can be read.
-   - **For Users**: Users have the same functionality as visitors, but on the redirected page, they have full control over their posts.
-
-3. **Detailed Article Posts**: On this page, each post is treated individually.
-   - **For Visitors**: Visitors can read the full blog post and any comments (if available). They cannot like or comment on posts. Visitors can click on the author's name to view the author’s profile page.
-   - **For Users**: Users can read the post, comment, and 'Like' the posts. They can only 'Dislike' posts they have already liked.  
-     The option to dislike posts outright is not part of the blog’s policy.
-
-### Mobile first design
-To ensure a seamless experience across devices, Bootstrap is used to make the Home- & Frontpage fully responsive. On mobile devices, the table features horizontal scrolling to prevent content compression, maintaining clarity and usability. Additionally, each table row highlights with a colour change on hover, making it easier for users to track their interactions as they navigate.
 
 [Table Of Contents](#table-of-contents)
 
@@ -288,7 +264,7 @@ As for icons and officious reason [Bootstrap Icons](https://getbootstrap.com/doc
 
 ### Wireframes
 
-The wireframes for this project served as a crucial guide during the development process, essentially acting as a blueprint for the design and layout of the website. My focus was primarily on two key pages: the index (or homepage) and the frontpage blog post. Given the repetitive nature of the blog post, I decided that it was a better idea to separate the homepage and the frontpage. The homepage serves more as an introductory page, while the frontpage blog post is a more active working page for the blog posts.
+The wireframes for this project served as a crucial guide during the development process, essentially acting as a blueprint for the design and layout of the website. My focus was primarily on two key pages: the index (or homepage) and the product page shop. Given the repetitive nature of the products, I decided that it was a better idea to separate the homepage and the products pages. The homepage serves more as an introductory page, while the product page is a more introduction page for the webshop.
 
 I chose to highlight only two wireframes in this README as they are the most critical to the overall user experience. Other pages did not require such detailed wireframing and followed more standard, basic templates.
 
@@ -335,7 +311,7 @@ Below, you can find examples of how a typical page is structured on both desktop
 
 The favicon was created with [Favicon.io](https://favicon.io/favicon-generator/).<br>
 
-  ![Favicon for Astro Share Blog](static/images/readme-images/favicon.png)
+  ![Favicon for Astro Shop](static/images/readme-images/favicon.png)
 
 ### Languages
 * [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Provides the functionality for the site.
@@ -363,7 +339,7 @@ The favicon was created with [Favicon.io](https://favicon.io/favicon-generator/)
 * [HTML Validation](https://validator.w3.org/) - Used to validate HTML code
   - <img src="static/images/readme-images/icons8-html-16.ico" width="18px"> **HTML:** The foundation for structuring the web pages, providing the semantic markup needed for the site's content.
 * [CSS Validation](https://jigsaw.w3.org/css-validator/) - Used to validate CSS code
-  - <img src="static/images/readme-images/icons8-postgresql-16.ico" width="18px"> **PostgreSQL:** The primary database used to store user data, blog post listings, article details, ... chosen for its flexibility and scalability.
+  - <img src="static/images/readme-images/icons8-postgresql-16.ico" width="18px"> **PostgreSQL:** The primary database used to store user data, shop articles listings, product images, orders, ... chosen for its flexibility and scalability.
 * [PEP8 Validation](https://pep8ci.herokuapp.com/#) - Used to validate code 
 * [JSHint Validation](https://jshint.com/) - Used to validate JavaScript code
   - <img src="static/images/readme-images/icons8-js-16.ico" width="18px"> **JavaScript:** Employed to add interactivity and dynamic elements to the site, enhancing the user experience with features like form validation and asynchronous content updates.
@@ -629,7 +605,7 @@ To further enhance the e-commerce business model and drive growth, the following
 
 All pages have been passed through the [W3C HTML Validator](https://validator.w3.org/) successfully save for a few minor issues which have been left 'as is' as attempts to correct them proved unsuccessful and lead to results which devalued the user experience. Specifically, these were:
 
-I ensured that the HTML structure of AstroBlog adheres strictly to web standards. I utilized the W3C Validator to validate our HTML code, striving to minimize and eliminate all possible errors. There are many templates to consider but the main pages where is the focus of stite are the Homepage and the Frontpaga-Blogpost.
+I ensured that the HTML structure of Astro Shop adheres strictly to web standards. I utilized the W3C Validator to validate our HTML code, striving to minimize and eliminate all possible errors. There are many templates to consider but the main pages where is the focus of stite are the Homepage and the product page.
 After experimenting whit different container layout and fixing all the issues validation results showed **zero errors**.
 
 The detail of these test can evaluate on this link.
@@ -654,7 +630,7 @@ The detail of these test can evaluate on this link.
     </a>
 </p>
 
-The CSS of AstroBlog has been carefully crafted and validated to ensure it adheres to the highest standards. I utilized the W3C CSS Validator to check for any errors, and I'm pleased to report that our stylesheets passed with **zero errors**.
+The CSS of Astro Shop has been carefully crafted and validated to ensure it adheres to the highest standards. I utilized the W3C CSS Validator to check for any errors, and I'm pleased to report that our stylesheets passed with **zero errors**.
 
 This thorough validation process ensures that the user interface is both visually appealing and fully compliant with modern web standards. We took particular care to validate our responsive design elements to ensure consistency across all devices.
 
@@ -670,7 +646,7 @@ Here’s the validation result:
 
 ### Accessibility
 
-Ensuring accessibility is a key priority for AstroBlog. We've taken great care to make sure our platform is inclusive and usable by as many people as possible, regardless of their abilities or the devices they are using.
+Ensuring accessibility is a key priority for Astro Shop. We've taken great care to make sure our platform is inclusive and usable by as many people as possible, regardless of their abilities or the devices they are using.
 
 Throughout the development process, we adhered to the Web Content Accessibility Guidelines (WCAG) to guarantee that our site meets accessibility standards. This includes:
 
@@ -679,7 +655,7 @@ Throughout the development process, we adhered to the Web Content Accessibility 
 - **Contrast Ratios:** We carefully selected our color scheme to ensure sufficient contrast between text and background colors, making the content readable for users with visual impairments.
 - **Alt Text for Images:** All images include descriptive `alt` attributes, providing context to users who rely on screen readers.
 
-These efforts help ensure that our site is not only compliant with accessibility standards but also provides an inclusive user experience. We continue to monitor and improve the accessibility of astroblog as we develop new features and enhancements.
+These efforts help ensure that our site is not only compliant with accessibility standards but also provides an inclusive user experience. We continue to monitor and improve the accessibility of astro-shop as we develop new features and enhancements.
 
 [Table Of Contents](#table-of-contents)
 
@@ -1039,7 +1015,7 @@ No significant issues were encountered during the tests, confirming that our sit
 ## Deployment
 
 ### Heroku Deployment
-This site was deployed to and is currently [hosted on the Heroku platform](https://astroshare-blog-6a7ca9d34749.herokuapp.com/). The steps for deploying to Heroku, using PostgreSQL as the database host, are as follows:
+This site was deployed to and is currently [hosted on the Heroku platform](https://astroshop-1fc783ba013f.herokuapp.com/). The steps for deploying to Heroku, using PostgreSQL as the database host, are as follows:
 
 1. Create a list of requirements in the requirements.txt file by using the command pip3 freeze > requirements.txt
 2. Log in (or sign up) to Heroku
@@ -1057,11 +1033,11 @@ This site was deployed to and is currently [hosted on the Heroku platform](https
 
 7. Click the *Add* button
 8. Click the *Deploy* tab, go to the *Deployment method section*, select *GitHub* and confirm this selection by clicking on the *Connect to Github* button
-9. Search for the repository name on github *Astro Blog* and click the *Connect* button
+9. Search for the repository name on github *Astro Shop* and click the *Connect* button
 10. Add in the *setting.py* the Heroku app URL into ALLOWED HOSTS
 11. Gather all static files of the project by using the command *python3 manage.py collectstatic* in the terminal
 12. Make sure that DEBUG=FALSE in *settings.py*
-13. Create a *Procfile* in the root directory and add *web: gunicorn astroshare-blog.wsgi*
+13. Create a *Procfile* in the root directory and add *web: gunicorn astroshare. astroshop.wsgi*
 14. In Heroku enable the automatic deploy or manually deploy the code from the main branch
 
 ### Local Deployment
@@ -1158,7 +1134,7 @@ From codeinstitute every student can maintain up to eight databases to run there
 
 ## License
 
-Astro Share Blog is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+Astro Shop is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 
 ![License](static/images/readme-images/license.jpg)
 
@@ -1182,7 +1158,9 @@ For more information about the Creative Commons Attribution-NonCommercial-ShareA
 
 - I would like to express my deepest gratitude to my excellent mentor Student Mentor, Daisy Mcgirr for her numerous tips and wonderful assistance during the creation of this project.
 - Furthermore, I would like to thank Lino Bollansee. I greatly appreciate his frequent comments during the creation of my project.
-
+- The Code Institute Boutique Ado project is a Django e-commerce site walkthrough. It features product management, a shopping cart, Stripe payment integration, user authentication, and responsive design, culminating in deployment to Heroku with PostgreSQL.
+- **John Elder's** Django Wednesdays [E-commerce](https://www.youtube.com/playlist?list=PLCC34OHNcOtpRfBYk-8y0GMO4i1p1zn50) is a tutorial series teaching how to build an e-commerce site using Django. It covers topics like setting up a project, creating product models, handling shopping carts, payment processing, and deploying the site, aimed at beginners.
+- **Ham burger menu** code 
 **This is for educational use**
 
 [Table Of Contents](#table-of-contents)
