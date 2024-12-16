@@ -77,6 +77,7 @@ p {
 
 .nav-link-index {
     text-decoration: none; 
+
     transition: color 0.3s ease, transform 0.2s ease; /* Add smooth effect to normal state */
 }
 
@@ -456,6 +457,7 @@ a.category-badge>span.badge:hover {
     transform: translateY(2px);
     /* Slight movement for top bar */
 }
+
 
 .menu__box {
     display: block;

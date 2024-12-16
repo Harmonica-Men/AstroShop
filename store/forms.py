@@ -264,3 +264,9 @@ class SupplierForm(forms.ModelForm):
             'supplier_zipcode',
             'supplier_product',
         ]
+        widgets = {
+            'supplier_product': forms.Select(attrs={
+                'class': 'form-select',
+                'style': 'max-width: 15ch;',
+            }),
+        }
