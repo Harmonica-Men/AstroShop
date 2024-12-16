@@ -734,7 +734,7 @@ To further enhance the e-commerce business model and drive growth, the following
 
 ### Expanded Social Media Marketing
 
-- Multi-platform Presence: Establishing a presence on platforms like Instagram and Pinterest, which are highly visual and align well with the luxury perfume market.
+- Multi-platform Presence: Establishing a presence on platforms like Instagram and Pinterest, which are highly visual and align well with the astronomy enthusiasts market.
 - Influencer Partnerships: Collaborating with influencers to promote products, increase brand credibility, and reach niche audiences.
 - Social Commerce: Integrating product catalogs directly into social media platforms for seamless shopping experiences.
 
@@ -822,7 +822,7 @@ On the products page.
 
 <details>
   <br>
-  <summary>Click to view Contrast Errors homepage footer</summary>
+  <summary>Click to view Wave Products Page Result</summary>
   <img src="static/images/readme-images/wave_check_products.webp" style="display: block; margin: auto;" alt="Wave validator products page test">
   <br>
 </details>

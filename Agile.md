@@ -318,6 +318,8 @@ User Stories with their id: <br>
     - option to select quantity.
     - Add To Cart button to put the item(s) in to shopping cart.
 
+- **note** A *cookie* feature was build-in to indentify user shopping cart when user has logged out and items of shopping cart are not lost.
+
 [Table Of Contents](#table-of-contents)
 
 ### 6. The Shopping Cart 
