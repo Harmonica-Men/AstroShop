@@ -1158,9 +1158,12 @@ For more information about the Creative Commons Attribution-NonCommercial-ShareA
 
 - I would like to express my deepest gratitude to my excellent mentor Student Mentor, Daisy Mcgirr for her numerous tips and wonderful assistance during the creation of this project.
 - Furthermore, I would like to thank Lino Bollansee. I greatly appreciate his frequent comments during the creation of my project.
-- The Code Institute Boutique Ado project is a Django e-commerce site walkthrough. It features product management, a shopping cart, Stripe payment integration, user authentication, and responsive design, culminating in deployment to Heroku with PostgreSQL.
+- The Code Institute **Boutique Ado** project is a Django e-commerce site walkthrough. It features product management, a shopping cart, Stripe payment integration, user authentication, and responsive design, culminating in deployment to Heroku with PostgreSQL.
 - **John Elder's** Django Wednesdays [E-commerce](https://www.youtube.com/playlist?list=PLCC34OHNcOtpRfBYk-8y0GMO4i1p1zn50) is a tutorial series teaching how to build an e-commerce site using Django. It covers topics like setting up a project, creating product models, handling shopping carts, payment processing, and deploying the site, aimed at beginners.
-- **Ham burger menu** code 
-**This is for educational use**
+- **Hamburger menu** The code for Hamburger menu was retrived and tweaked from this [site](https://alvarotrigo.com/blog/hamburger-menu-css/)
+
+<br>
+
+**This is for educational use only, TY**
 
 [Table Of Contents](#table-of-contents)
