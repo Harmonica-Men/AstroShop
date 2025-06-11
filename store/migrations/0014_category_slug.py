@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='category',
             name='slug',
-            field=models.SlugField(default='default-slug', unique=True),
+            ## field=models.SlugField(default='default-slug', unique=True),
+            field=models.SlugField(default='default-slug'),
         ),
     ]
